@@ -1,0 +1,24 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+	<p>{{director}}</p>
+	<ul>
+		{% for movie in movies %}
+		    <li class='movie'>
+		    	<div class='movie'>
+		    		<p>{{movie}}</p>
+		    		<span>
+		    			<h3>{{movie.title}}</h3>
+		    			<h5>{{movie.year}}</h5>
+		    		</span>
+		    		
+		    		<p>{{movie.synopsis}}</p>
+		    	</div>
+		    </li>
+		{% empty %}
+		    <li>Sorry, no athletes in this list.</li>
+		{% endfor %}
+	<ul>
+
+
+{% endblock content %}

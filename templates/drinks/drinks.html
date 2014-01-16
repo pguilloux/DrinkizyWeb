@@ -1,0 +1,19 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+	<ul>
+		{% for drink in drinks %}
+		    <li class='drink'>
+		    	<div class='drink'>
+		    		<p>{{drink}}</p>
+		    		<span>
+		    			<h3>{{drink.name}}</h3>
+		    			<h5>{{drink.subcategory}}</h5>
+		    		</span>
+		    	</div>
+		    </li>
+		{% empty %}
+		    <li>Sorry, no drinks in this list.</li>
+		{% endfor %}
+	<ul>
+{% endblock content %}

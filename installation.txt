@@ -1,0 +1,76 @@
+Installer le projet Django sur Windows
+
+
+Pour utiliser votre projet django, il va d'abord falloir installer python :
+
+	www.python.org/ftp/python/2.7.6/python-2.7.6.msi
+
+
+
+Une fois python installé, on va changer la variable d'environnement PATH afin d'y ajouter python et qu'on puisse
+éxécuter des commandes en python sans préciser le mot-clé "python" à chaque fois
+
+Pour cela, clic droit sur Ordinateur > paramètres systèmes avancés > bouton "variables d'environnement"
+
+une fois la fenêtre des variables ouverte, sélectionnez la variable Path dans la liste des variables système et cliquez sur "modifier"
+à la fin de la valeur de la variable, ajoutez la ligne suivante :
+
+	C:\Python27\;C:\Python27\Scripts;
+puis cliquez sur "ok"
+
+
+
+
+Ensuite, on va installer un programme d'installation simplifié, il nous permettra d'installer facilement des paquets 
+par la suite, j'ai ajouté le ficher d'installation dans le repo git, dans le dossier install_files, il se nomme ez_setup.py,
+il vous suffit alors d'ouvrir un invite de commande, d'accéder au dossier install_files, là où se trouve le fichier ez_setup
+ et de taper la commande suivante :
+	
+	python ez_setup.py
+
+vous pourrez désormais installer des paquets très simplements grâce à la commande easy_install
+
+
+
+On utilisera des bases de données avec Django, donc on va installer un programme qui lie python et mySql, vous le trouverez dans le
+dossier install_files, il se nomme :
+
+	MySQL-python-1.2.5.win32-py2.7.exe
+
+
+
+
+
+Bien, on va maintenant installer Django avec ce programme, pour cela rien de plus simple, taper juste la commande :
+
+	easy_install Django==1.6.1  (ou si ça ne marche pas easy_install Django)
+
+
+
+Enfin, afin de tourner sur un environnement virtuel, on va utiliser virtual-env, installez-le avec la commande :
+
+	easy_install virtualenv
+
+
+Et une fois installé, pour l'utiliser, on va se mettre dans le dossier de notre projet Django et on tape la commande :
+	
+	 virtualenv venv --distribute
+
+Ceci aura donc pour effet de créer un dossier venv/ à la racine de votre projet
+
+
+Maintenant très important : à chaque fois que vous voulez bossez sur le projet rendez vous dans le dossier du projet 
+avec le terminal et activez l'environnement virtuel :
+
+	venv\Scripts\activate.bat
+
+
+Enfin, dernière étape, vous installez les paquets qui sont indiqués dans le fichiers requirements.txt, et pour cela rien de plsu simple :
+
+	easy_install -r requirements.txt
+
+
+
+Note :  Lorsque l'on installe une nouvelle lib au projet (dans l'environnement virtuel), on l'ajoute dans requirements.txt de la manière suivante :
+	
+	easy_install freeze > requirements.txt
