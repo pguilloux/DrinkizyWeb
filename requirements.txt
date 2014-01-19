@@ -1,22 +1,2 @@
-Searching for freeze
-Reading https://pypi.python.org/simple/freeze/
-Best match: freeze 0.8.0
-Downloading https://pypi.python.org/packages/source/f/freeze/freeze-0.8.0.tar.gz#md5=47a85b6b63da906e669feaaa2fe93f71
-Processing freeze-0.8.0.tar.gz
-Writing c:\users\utilis~1\appdata\local\temp\easy_install-p28cjj\freeze-0.8.0\setup.cfg
-Running freeze-0.8.0\setup.py -q bdist_egg --dist-dir c:\users\utilis~1\appdata\local\temp\easy_install-p28cjj\freeze-0.8.0\egg-dist-tmp-hcnp6v
-Adding freeze 0.8.0 to easy-install.pth file
-
-Installed c:\users\utilisateur\documents\drinkizy\drinkizyweb\venv\lib\site-packages\freeze-0.8.0-py2.7.egg
-Processing dependencies for freeze
-Searching for six
-Reading https://pypi.python.org/simple/six/
-Best match: six 1.5.2
-Downloading https://pypi.python.org/packages/source/s/six/six-1.5.2.tar.gz#md5=322b86d0c50a7d165c05600154cecc0a
-Processing six-1.5.2.tar.gz
-Writing c:\users\utilis~1\appdata\local\temp\easy_install-rdbm91\six-1.5.2\setup.cfg
-Running six-1.5.2\setup.py -q bdist_egg --dist-dir c:\users\utilis~1\appdata\local\temp\easy_install-rdbm91\six-1.5.2\egg-dist-tmp-ttjh7l
-Adding six 1.5.2 to easy-install.pth file
-
-Installed c:\users\utilisateur\documents\drinkizy\drinkizyweb\venv\lib\site-packages\six-1.5.2-py2.7.egg
-Finished processing dependencies for freeze
+pil==1.1.7
+south==0.8.4
