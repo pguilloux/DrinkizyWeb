@@ -6,10 +6,11 @@ from drinks.views import *
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^drinks', drinks, name='drinks'),
+    url(r'^categories', categories, name='categories'),
     # url(r'^movies', movies, name='movies'),
-    # url(r'^film/(?P<slug>[\w-]+)/$', movie_details, name='movie_details'),
-    # url(r'^director/(?P<slug>[\w-]+)/$', director_details, name='director_details'),
+    url(r'^category/(?P<slug>[\w-]+)/$', category, name='category'),
+    url(r'^subcategory/(?P<slug>[\w-]+)/$', subcategory, name='subcategory'),
+    url(r'^drink/(?P<slug>[\w-]+)/$', drink, name='drink'),
     # # url(r'^$', 'firstProject.views.home', name='home'),
     # url(r'^firstProject/', include('firstProject.foo.urls')),
 

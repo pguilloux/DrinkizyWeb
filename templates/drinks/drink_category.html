@@ -1,0 +1,17 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+
+	<h1>{{category.name}}</h1>
+	<ul>
+		{% for subcategory in subcategories %}
+		    <li class='subcategory'>
+		    	<a href="{% url "drinks.views.subcategory" subcategory.slug %}">{{subcategory.name}}</a>
+		    </li>
+		{% empty %}
+		    <li>Sorry, no subcategories in this category.</li>
+		{% endfor %}
+	</ul>
+
+
+{% endblock content %}
