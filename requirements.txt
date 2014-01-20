@@ -1,2 +1,4 @@
 pil==1.1.7
 south==0.8.4
+whoosh
+django-haystack
