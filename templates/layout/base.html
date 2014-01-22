@@ -33,13 +33,15 @@
                 </nav>
             </header>
             <header class="wrapper_search clearfix">
-            	<form>
-            		<input type="text" value="Quoi ? Boissons, Bar"/>
+            	<form method="get" action="/search/">
+            		<input type="text" name="q" id="id_q" value="Quoi ? Boissons, Bar"/>
             		<input type="text" value="Où ? Adresse, Métro, Arr."/>
             		<input type="submit" value="" class="goSearch" />
             		<label>ou</label>
             		<input type="submit" value="Recherche affinée" class="moreSearch buttonRadius"/>
             	</form>
+                
+           
             </header>
         </div>
 
