@@ -1,0 +1,4 @@
+{{ object.drink.name }}
+{{ object.bar.name }}
+{{ object.drink.subcategory.name }}
+{{ object.drink.subcategory.category.name }}

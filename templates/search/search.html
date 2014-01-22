@@ -2,15 +2,13 @@
 
 {% block content %}
 
-
-   
-
         {% if query %}
             <h3>Results</h3>
+            
+           {% for result in page.object_list %}
 
-            {% for result in page.object_list %}
                 <p>
-                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a>
+                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.bar.name }} {{ result.object.bar.address }}</a>
                 </p>
             {% empty %}
                 <p>No results found.</p>

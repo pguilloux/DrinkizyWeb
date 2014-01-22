@@ -46,4 +46,4 @@ class DrinkBar(models.Model):
 	bar = models.ForeignKey('bars.Bar')
 
 	def __unicode__(self):
-		return "%s %s %s" % (self.title, self.year, self)
+		return "%s %s %s" % (self.drink.name, self.bar.name, self.price)

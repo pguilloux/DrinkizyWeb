@@ -1,8 +1,12 @@
 from django.conf.urls import patterns, include, url
 from drinks.views import *
+from haystack.forms import ModelSearchForm
+from haystack.query import SearchQuerySet
+from haystack.views import SearchView
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -20,3 +24,11 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 )
+
+
+# # Without threading...
+# urlpatterns += patterns('haystack.views',
+#     url(r'^$', SearchView(
+#         template='templates/search/search.html',
+#     ), name='bars_search'),
+# )
