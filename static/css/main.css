@@ -10,6 +10,8 @@ textarea {
     color: #222;
 }
 
+*, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
 body {
     font-size: 1em;
     line-height: 1.4;
@@ -34,8 +36,12 @@ hr {
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 img {
-    vertical-align: middle;
+    /*vertical-align: middle;*/
 }
 
 fieldset {
@@ -118,7 +124,6 @@ nav ul {
     padding: 15px 0;
 
     text-align: center;
-    text-decoration: none;
     font-weight: bold;
 
     color: white;
@@ -230,7 +235,6 @@ nav ul {
    ========================================================================== */
 
 footer nav a {
-    text-decoration: none;
     color: #fff;
     font-size: 12px;
     padding-left: 15px;
@@ -242,11 +246,23 @@ footer nav {
 }
 
 .footer-follow li {
-    display: inline;
+    display: inline-block;
 }
 
 footer figure figcaption {
     font-size: 12px;
+}
+
+.footer-fb {
+    background-image: url("../medias/img/drinkizy_sprite.png");
+    background-position: -104px -12px;
+    height: 30px;
+}
+.footer-tw {
+    background-image: url("../medias/img/drinkizy_sprite.png");
+    background-position: -58px -12px;
+    height: 30px;
+    width: 33px;
 }
 
 
@@ -256,6 +272,87 @@ footer figure figcaption {
 
 .home aside img {
     width: 100%;
+}
+
+.home-topWeek {
+    background: #F4F4F4;
+    padding:10px;
+}
+.home-topWeek h2 { margin-top: 0;}
+.home-topWeek > ul, .home-topWeek ol {
+    padding-left: 0px;
+}
+.home-topWeek li {
+    list-style: none;
+}
+
+.home-topWeek > ul > li {
+    display: inline-block;
+    width: 190px;
+}
+.home-topWeek > ul > li:nth-last-child(n+2) {
+    margin-right: 10px;
+}
+
+.home-topWeek ol {
+    margin: 0;
+}
+
+.home-topWeek h5, .home-topWeek h6 {
+    margin: 0 0 -7px 0;
+}
+
+.home-topWeek h5:before {
+    content : "\"";
+    font-family: 'Aladin', cursive;  
+    font-size: 20px;
+    color: #F1B219;
+}
+.home-topWeek h5:after {
+    content : "\"";
+    font-family: 'Aladin', cursive;  
+    font-size: 20px;
+    color: #F1B219;
+}
+
+.home-topWeek h6 {
+    margin-top: -10px;
+    color: #3C3C3B;
+    padding-left: 15px;
+}
+.home-topWeek a {
+    text-align: right;
+    color: #3C3C3B;
+}
+.home-topWeek figcaption, .home-topWeek div  { display: inline-block;}
+.home-topWeek div {
+    width: 80px;
+    height: 100px;
+    overflow: hidden;
+    padding-top: 15px;
+    margin-right: 5px;
+}
+.home-topWeek figcaption li {
+    counter-increment: top;
+    font-size: 13px;
+    line-height: 17px;
+    margin-top: 10px;
+}
+
+.home-topWeek figcaption li:before {
+    content: counter(top); /* on affiche le compteur */
+    
+    background: #F1B219;
+    -moz-border-radius: 15px;
+         border-radius: 15px;
+    font-size: 1.7em;
+    color: #F4F4F4;  
+    font-family: 'Lobster', cursive;     
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    padding-left: 2px;
+    margin-right: 10px;
 }
 
 
@@ -279,7 +376,7 @@ footer figure figcaption {
 
     .header-container nav .connect {
         border: 4px solid #fff;
-        width: 110px;
+        width: 129px;
     }
 
     .header-container nav .subscribe {
