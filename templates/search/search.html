@@ -5,17 +5,18 @@
         {% if query %}
             <h3>Results</h3>
             {% with objects=page.object_list %}
-         
+         {{objects}}
             
             {% for result in objects %}
                 <p>
-                <a href="{{ result.object.get_absolute_url }}">
-                {% ifequal result.model_name 'bar' %}
-                    {{ result.object.name }} {{ result.object.address }}
-                {% else %}
-                    {{ result.object.bar.name }} {{ result.object.bar.address }}
-                {% endifequal %}
-</p>
+                    <a href="{{ result.object.get_absolute_url }}">
+                        {% ifequal result.model_name 'bar' %}
+                            {{ result.object.name }} {{ result.object.address }}
+                        {% else %}
+                            {{ result.object.bar.name }} {{ result.object.bar.address }} {{ result.object.price }}
+                        {% endifequal %}
+                    </a>
+                </p>
                 
             {% endfor %}
             {% endwith %}
