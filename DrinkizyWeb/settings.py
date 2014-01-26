@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     #apps
     'bars',
     'drinks',
+    'search',
     'users',
 )
 

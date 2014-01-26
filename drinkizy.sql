@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Sam 18 Janvier 2014 à 19:08
--- Version du serveur: 5.5.20
--- Version de PHP: 5.3.10
+-- Généré le: Dim 26 Janvier 2014 à 12:58
+-- Version du serveur: 5.5.24-log
+-- Version de PHP: 5.3.13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -135,7 +135,15 @@ CREATE TABLE IF NOT EXISTS `bars_bar` (
   PRIMARY KEY (`id`),
   KEY `theme_id_refs_id_6a053be6` (`theme_id`),
   KEY `creator_id_refs_id_89339927` (`creator_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `bars_bar`
+--
+
+INSERT INTO `bars_bar` (`id`, `slug`, `name`, `address`, `coordinates`, `phone`, `approval`, `disapproval`, `picture`, `creator_id`, `theme_id`) VALUES
+(1, 'le-beho', 'Le Beho', '8 place Sainte-Opportune 75001 PARIS', '', '01-53-40-81-56; 06-66-19-46-82', 0, 0, '', 1, 1),
+(2, 'guiness-tavern', 'Guinness Tavern', '31 rue des Lombards 75001 PARIS', '', '01-42-33-26-45', 0, 0, '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -180,7 +188,26 @@ CREATE TABLE IF NOT EXISTS `bars_theme` (
   `name` varchar(200) NOT NULL,
   `description` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+--
+-- Contenu de la table `bars_theme`
+--
+
+INSERT INTO `bars_theme` (`id`, `slug`, `name`, `description`) VALUES
+(1, 'bars-lounge', 'Bar Lounge', ''),
+(2, 'bars-concerts', 'Bar Concerts', ''),
+(3, 'bars-a-cocktails', 'Bar à Cocktail', ''),
+(4, 'bars-geek', 'Bar Geek', ''),
+(5, 'pubs', 'Pub', ''),
+(6, 'bars-sportifs', 'Bar Sportif', ''),
+(7, 'pubs-irlandais', 'Pub Irlandais', ''),
+(8, 'bar-a-bieres', 'Bar à Bières', ''),
+(9, 'bars-a-themes', 'Bar à Thèmes', ''),
+(10, 'bars-rock', 'Bar Rock', ''),
+(11, 'bars-brasserie', 'Bar Brasserie', ''),
+(12, 'bars-a-cocktails-et-tapas', 'Bar à Cocktails et Tapas', ''),
+(13, 'bars-a-cocktails-moléculaires', 'Bar à Cocktails Moléculaires', '');
 
 -- --------------------------------------------------------
 
@@ -297,7 +324,17 @@ CREATE TABLE IF NOT EXISTS `drinks_drinkbar` (
   PRIMARY KEY (`id`),
   KEY `bar_id_refs_id_6a0b1d41` (`bar_id`),
   KEY `drink_id_refs_id_ffaa485a` (`drink_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `drinks_drinkbar`
+--
+
+INSERT INTO `drinks_drinkbar` (`id`, `slug`, `price`, `price_happy_hour`, `drink_id`, `bar_id`) VALUES
+(1, '', 4, 3, 1, 1),
+(2, '', 3, 2.5, 2, 1),
+(3, '', 6, 4.5, 1, 2),
+(4, '', 5, 4.5, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -418,7 +455,14 @@ CREATE TABLE IF NOT EXISTS `users_customuser` (
   `type` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `users_customuser`
+--
+
+INSERT INTO `users_customuser` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`, `pseudo`, `avatar_url`, `type`) VALUES
+(1, 'admin', '0000-00-00 00:00:00', 1, 'drinkizy', '', '', '', 1, 1, '0000-00-00 00:00:00', 'drinkizy', '', '1');
 
 -- --------------------------------------------------------
 
