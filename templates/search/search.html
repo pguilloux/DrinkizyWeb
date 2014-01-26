@@ -2,23 +2,157 @@
 
 {% block content %}
 
-        {% if query %}
+<div class="main wrapper clearfix search-result">
+        <aside>
+            <h2>Affiner la recherche</h2>
+
+            <h3>Boissons</h3>
+            <ul>
+                <li>
+                    <input type="checkbox" id="test1">  
+                    <label for="test1">Bière</label>  
+                    <ul>
+                        <li>
+                            <input type="checkbox" id="test2">  
+                            <label for="test2">Bière</label>  
+                        </li>
+                        <li>
+                            <input type="checkbox" id="test3">  
+                            <label for="test3">Bière</label>  
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <input type="checkbox" id="test4">  
+                    <label for="test4">Spiritueux</label>  
+                </li>
+                <li>
+                    <input type="checkbox" id="test5">  
+                    <label for="test5">Cocktail</label>  
+                </li>
+            </ul>
+
+            <h3>Localisation</h3>
+
+            <input type="text" value="Où ? Adresse, Métro, Arr."/>
+
+            <input type="range" id="qualite-sommeil" name="qualite-sommeil" step="1" value="3" min="1" max="5" />
+
+            <h3>Thèmes</h3>
+
+            <ul>
+                <li>
+                    <input type="checkbox" id="test1">  
+                    <label for="test1">Bar à Cocktail</label>  
+                </li>
+                <li>
+                    <input type="checkbox" id="test4">  
+                    <label for="test4">Bar à bière</label>  
+                </li>
+                <li>
+                    <input type="checkbox" id="test5">  
+                    <label for="test5">Brasserie</label>  
+                </li>
+            </ul>
+
+            <h3>Happy Hour</h3>
+
+
+
+            <h3>Note</h3>
+        </aside>
+
+        <nav>
+            <ul>
+                <li class="selected"><a href="#">Liste</a></li>
+                <li><a href="#">Carte</a></li>
+            </ul>
+        </nav>
+
+        <article class="search-result-list">
+            <header>
+
+                <h5>1234 résultats</h5>
+
+                <label>Trier par </label>
+                <select>
+                    <option value="pertinence">Pertinence</option>
+                    <option value="prix">Prix</option>
+                    <option value="proximité">Proximité</option>
+                </select>
+
+            </header>
+            <section class="search-result-bar">
+             {% if query %}
             <h3>Results</h3>
             {% with objects=page.object_list %}
-         {{objects}}
-            
-            {% for result in objects %}
-                <p>
+   
+            <ul>
+                {% for result in objects %}
+
+                    
+                        <li>
+
+                            {% ifequal result.model_name 'bar' %}
+                                <figure>
+                                    <img src="../../static/medias/img/slider/image1.jpg" />
+                                </figure>
+                                <div class="search-result-right">
+                                    <h4> {{ result.object.name }} <span>Bar à Bière</span></h4>
+                                    <div class="search-result-info">
+                                        <p class="postAdress>">{{ result.object.address }}</p>
+                                        <p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span> <strong>321 avis</strong></p>
+                                    </div>
+                                    <div class="search-result-drinksMenu">
+                                        <ul>
+                                            <li>Leffe <span>5€</span></li>
+                                            <li>Leffe <span>5€</span></li>
+                                            <li>Leffe <span>5€</span></li>
+                                            <li>Leffe <span>5€</span></li>
+                                        </ul>
+                                        <h5><a href="#">voir <strong>plus</strong></a></h5>
+                                    </div>
+                                </div>
+                            
+                            {% else %}
+                                    <figure>
+                                        <img src="../../static/medias/img/slider/image1.jpg" />
+                                    </figure>
+                                    <div class="search-result-right">
+                                        <h4> {{ result.object.bar.name }} <span>Bar à Bière</span></h4>
+                                        <div class="search-result-info">
+                                            <p class="postAdress>">{{ result.object.bar.address }}</p>
+                                            <p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span> <strong>321 avis</strong></p>
+                                        </div>
+                                        <div class="search-result-drinksMenu">
+                                            <ul>
+                                                <li>Leffe <span>5€</span></li>
+                                                <li>kronenbourg <span>5€</span></li>
+                                                <li>Leffe <span>5€</span></li>
+                                                <li>Leffe <span>5€</span></li>
+                                            </ul>
+                                            <h5><a href="#">voir <strong>plus</strong></a></h5>
+                                        </div>
+                                    </div>
+                            {% endifequal %}
+
+
+                            
+                        </li>
+                        <div class="clearfix"></div>
+                   
+                   
+                        <!--p>
                     <a href="{{ result.object.get_absolute_url }}">
-                        {% ifequal result.model_name 'bar' %}
-                            {{ result.object.name }} {{ result.object.address }}
-                        {% else %}
-                            {{ result.object.bar.name }} {{ result.object.bar.address }} {{ result.object.price }}
-                        {% endifequal %}
-                    </a>
-                </p>
-                
-            {% endfor %}
+                    {% ifequal result.model_name 'bar' %}
+                        {{ result.object.name }} {{ result.object.address }}
+                    {% else %}
+                        {{ result.object.bar.name }} {{ result.object.bar.address }}
+                    {% endifequal %}
+                        </p-->      
+                {% endfor %}
+             </ul>
+>>>>>>> de5cac01b18aed2b83e826da3e437f1db6ff7d6b
             {% endwith %}
 
 {% comment %}
@@ -65,5 +199,27 @@
         {% else %}
             {# Show some example queries to run, maybe query syntax, something else? #}
         {% endif %}
+
+                
+
+            </section>
+
+            <footer>
+
+            </footer>
+        </article>
+
+        <article class="search-result-carte">
+        <h2> Carte</h2>
+        </article>
+        
+
+    <div class="clearfix"></div>
+
+
+
+</div> <!-- #main -->
+
+       
 
 {% endblock %}

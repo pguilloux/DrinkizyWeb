@@ -36,8 +36,13 @@ hr {
     padding: 0;
 }
 
+ul {
+    list-style: none;
+}
+
 a {
     text-decoration: none;
+    color: #000;
 }
 
 img {
@@ -67,7 +72,7 @@ textarea {
    ========================================================================== */
 
 body {
-    font: 16px/26px Helvetica, Helvetica Neue, Arial;
+    font: 16px/26px Ubuntu, Helvetica, Helvetica Neue, Arial;
 }
 
 .wrapper {
@@ -350,9 +355,153 @@ footer figure figcaption {
     font-family: 'Lobster', cursive;     
     height: 20px;
     width: 20px;
-    display: inline-block;
-    padding-left: 2px;
+    display: block;
+    padding-left: 4px;
+    padding-top : 3px;
+    margin-top: -2px;
+    margin-right: 6px;
+    float: left;
+}
+
+
+/* ==========================================================================
+   Result page
+   ========================================================================== */
+
+.search-result nav {
+    width: 66%;
+    float: left;
+    font-family: 'Lobster', cursive;
+    font-size: 2em;
+}
+.search-result nav li {
+    display: block;
+    width: 50%;
+    float: left;
+    text-align: center;
+    background-color: #F1F1F2;
+    height: 50px;
+    line-height: 50px;
+}
+.search-result nav li a {
+    display: block;
+
+}
+.search-result .selected a {
+    color: #F1B219;
+    background-color: #fff;
+}
+
+.search-result-bar ul {
+    padding-left: 0px;
+}
+.search-result-bar > ul > li:first-child{
+    margin-top: 10px;
+}
+.search-result-bar > ul > li {
+    margin-top: 50px;
+}
+.search-result-bar h4 {
+   font-family: 'Lobster', cursive;
+   font-size: 1.5em; 
+   margin: 5px 0px;
+}
+.search-result-bar h4 span {
+    background-color: #F1B219;
+    color: #fff;
+    font-weight: 300;
+    font-family: Ubuntu;
+    font-size: 0.7em;
+    padding: 2px 7px 3px 7px;
+    margin-left: 10px;
+}
+.search-result-bar figure {
+    height: 130px;
+    width: 18%;
+    overflow: hidden;
+    float: left;
     margin-right: 10px;
+}
+.search-result-bar .search-result-right {
+    float: left;
+    width: 80%
+}
+.search-result-bar figure img {
+    height: 130px;
+}
+.search-result-info p {
+    display: inline-block;
+    margin-top: 2px;
+}
+.search-result-info .rank span {
+    background-image: url("../medias/img/drinkizy_sprite.png");
+    background-position: -38px -57px;
+    height: 22px;
+    width: 22px;
+    display: inline-block;
+}
+
+.search-result-info .rank .full {
+   background-position: -11px -57px; 
+}
+.search-result-info strong { 
+    display: block; 
+    font-family: 'Lobster', cursive;
+    font-size: 1.2em;
+    text-align: right;
+}
+.search-result-info .rank {
+    float: right;
+}
+.search-result-info p:first-child:before {
+    content : "";
+    background-image: url("../medias/img/drinkizy_sprite.png");
+    background-position: -74px -57px;
+    height: 23px;
+    width: 15px;
+    display: block;
+    margin-top: 1px;
+    margin-right: 5px;
+    float: left;
+}
+.search-result-drinksMenu {
+
+}
+.search-result-drinksMenu ul {
+    background-color: #F1F1F2;
+    border-left: 5px solid #F5C82D;
+    padding: 5px 10px;
+    width: 60%;
+    height: 65px;
+    float: left;
+}
+.search-result-drinksMenu ul {
+    margin: 0;
+}
+.search-result-drinksMenu li {
+    width: 49%;
+    display: inline-block;
+}
+.search-result-drinksMenu li span {
+    float: right;
+    margin-right: 10px;
+}
+.search-result-drinksMenu h5 {
+    width: 10%;
+    height: 65px;
+    float: left;
+    background-color: #F5C82D;
+    margin: 0;
+    text-align: center;
+    padding-top: 11px;
+    line-height: 17px;
+}
+.search-result-drinksMenu h5 a {
+    color: #fff;
+    font-size: 1em;
+}
+.search-result-drinksMenu h5 strong {
+    font-size: 1.5em;
 }
 
 
@@ -447,14 +596,22 @@ footer figure figcaption {
     WIDE: Main
    ============ */
 
-    .main article:first-child {
+    .main article:first-child, .search-result article {
         float: left;
         width: 66%;
     }
 
     .main aside {
-        float: right;
         width: 32%;
+    }
+
+    .home aside {
+        float: right;
+    }
+
+    .search-result aside {
+        float: left;
+        color: #000;
     }
 }
 
