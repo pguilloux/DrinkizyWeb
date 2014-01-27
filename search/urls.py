@@ -8,11 +8,12 @@ from search.views import *
 # from django.contrib import admin
 # admin.autodiscover()
 
+sqs = SearchQuerySet()
 
 urlpatterns = patterns('',
     # Examples:
 
-    url(r'^search/$', FacetedSearchView(), 
+    url(r'^search/$', FacetedSearchView(searchqueryset=sqs), 
         name='search_all',
     ),
 

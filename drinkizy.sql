@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.4.10.1
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Dim 26 Janvier 2014 à 12:58
--- Version du serveur: 5.5.24-log
--- Version de PHP: 5.3.13
+-- Généré le : Dim 26 Janvier 2014 à 18:23
+-- Version du serveur: 5.5.20
+-- Version de PHP: 5.3.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -142,8 +142,8 @@ CREATE TABLE IF NOT EXISTS `bars_bar` (
 --
 
 INSERT INTO `bars_bar` (`id`, `slug`, `name`, `address`, `coordinates`, `phone`, `approval`, `disapproval`, `picture`, `creator_id`, `theme_id`) VALUES
-(1, 'le-beho', 'Le Beho', '8 place Sainte-Opportune 75001 PARIS', '', '01-53-40-81-56; 06-66-19-46-82', 0, 0, '', 1, 1),
-(2, 'guiness-tavern', 'Guinness Tavern', '31 rue des Lombards 75001 PARIS', '', '01-42-33-26-45', 0, 0, '', 1, 1);
+(1, 'le-beho', 'Le Beho', '8 place Sainte-Opportune 75001 PARIS', '', '01-53-40-81-56; 06-66-19-46-82', 0, 0, 'le-beho.jpg', 1, 1),
+(2, 'guinness-tavern', 'Guinness Tavern', '31 rue des Lombards 75001 PARIS', '', '01-42-33-26-45', 0, 0, 'guinness-tavern.jpg', 1, 2);
 
 -- --------------------------------------------------------
 

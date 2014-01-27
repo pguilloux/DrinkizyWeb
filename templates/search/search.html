@@ -72,7 +72,9 @@
         <article class="search-result-list">
             <header>
 
-                <h5>1234 résultats</h5>
+                {% if query %}
+                    <h5>{{page.object_list|length}} résultats</h5>
+                {% endif %}
 
                 <label>Trier par </label>
                 <select>
@@ -86,73 +88,21 @@
              {% if query %}
             <h3>Results</h3>
             {% with objects=page.object_list %}
-   
+
             <ul>
-                {% for result in objects %}
-
-                    
+                {% for result in objects|dictsort:"object.bar.name" %}
+                   
+                    {% ifchanged result.object.bar%}
                         <li>
-
-                            {% ifequal result.model_name 'bar' %}
-                                <figure>
-                                    <img src="../../static/medias/img/slider/image1.jpg" />
-                                </figure>
-                                <div class="search-result-right">
-                                    <h4> {{ result.object.name }} <span>Bar à Bière</span></h4>
-                                    <div class="search-result-info">
-                                        <p class="postAdress>">{{ result.object.address }}</p>
-                                        <p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span> <strong>321 avis</strong></p>
-                                    </div>
-                                    <div class="search-result-drinksMenu">
-                                        <ul>
-                                            <li>Leffe <span>5€</span></li>
-                                            <li>Leffe <span>5€</span></li>
-                                            <li>Leffe <span>5€</span></li>
-                                            <li>Leffe <span>5€</span></li>
-                                        </ul>
-                                        <h5><a href="#">voir <strong>plus</strong></a></h5>
-                                    </div>
-                                </div>
-                            
-                            {% else %}
-                                    <figure>
-                                        <img src="../../static/medias/img/slider/image1.jpg" />
-                                    </figure>
-                                    <div class="search-result-right">
-                                        <h4> {{ result.object.bar.name }} <span>Bar à Bière</span></h4>
-                                        <div class="search-result-info">
-                                            <p class="postAdress>">{{ result.object.bar.address }}</p>
-                                            <p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span> <strong>321 avis</strong></p>
-                                        </div>
-                                        <div class="search-result-drinksMenu">
-                                            <ul>
-                                                <li>Leffe <span>5€</span></li>
-                                                <li>kronenbourg <span>5€</span></li>
-                                                <li>Leffe <span>5€</span></li>
-                                                <li>Leffe <span>5€</span></li>
-                                            </ul>
-                                            <h5><a href="#">voir <strong>plus</strong></a></h5>
-                                        </div>
-                                    </div>
-                            {% endifequal %}
-
-
-                            
+                            {% with onebar=result.object.bar %}
+                                {% include "search/bar_in_list.html" %}
+                            {% endwith %}
                         </li>
                         <div class="clearfix"></div>
-                   
-                   
-                        <!--p>
-                    <a href="{{ result.object.get_absolute_url }}">
-                    {% ifequal result.model_name 'bar' %}
-                        {{ result.object.name }} {{ result.object.address }}
-                    {% else %}
-                        {{ result.object.bar.name }} {{ result.object.bar.address }}
-                    {% endifequal %}
-                        </p-->      
+                    {%endifchanged%}
+    
                 {% endfor %}
              </ul>
->>>>>>> de5cac01b18aed2b83e826da3e437f1db6ff7d6b
             {% endwith %}
 
 {% comment %}

@@ -13,7 +13,7 @@ class Bar(models.Model):
 	approval = models.IntegerField()
 	disapproval = models.IntegerField()
 
-	picture = models.ImageField(upload_to='img/')
+	picture = models.ImageField(upload_to='bars/')
 
 	creator = models.ForeignKey('users.CustomUser')
 	theme = models.ForeignKey('Theme')
@@ -21,8 +21,8 @@ class Bar(models.Model):
 	def __unicode__(self):
 		return "%s %s" % (self.name, self.address)
 
-	#def getImgUrl(self):
-	#	return "%s%s" % (settings.MEDIA_URL, self.picture)
+	def getImgUrl(self):
+		return "%s%s" % (settings.MEDIA_URL+'bars/', self.picture)
 
 
 DAYS_OF_WEEK = (
@@ -62,7 +62,7 @@ class Theme(models.Model):
 	description = models.CharField(max_length=200)
 
 	def __unicode__(self):
-		return "%s %s %s" % (self.title, self.year, self.synopsis)
+		return "%s" % (self.name)
 
 	#def getImgUrl(self):
 	#	return "%s%s" % (settings.MEDIA_URL, self.picture)
