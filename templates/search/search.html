@@ -105,17 +105,16 @@
              </ul>
             {% endwith %}
 
-{% comment %}
             <!-- Begin faceting. -->
-            <h2>By Author</h2>
+            <h2>By Theme</h2>
 
             <div>
                 <dl>
-                    {% if facets.fields.author %}
+                    {% if facets.fields.bar %}
                         <dt>Author</dt>
                         {# Provide only the top 5 authors #}
-                        {% for author in facets.fields.author|slice:":5" %}
-                            <dd><a href="{{ request.get_full_path }}&amp;selected_facets=author_exact:{{ author.0|urlencode }}">{{ author.0 }}</a> ({{ author.1 }})</dd>
+                        {% for bar in facets.fields.bar %}
+                            <dd><a href="{{ request.get_full_path }}&amp;selected_facets=bar_exact:{{ bar.0|urlencode }}">{{ bar.0 }}</a> ({{ bar.1 }})</dd>
                         {% endfor %}
                     {% else %}
                         <p>No author facets.</p>
@@ -123,20 +122,6 @@
                 </dl>
             </div>
             <!-- End faceting -->
-
-            <!-- Display results... -->
-            {% for result in results %}
-                <div class="search_result">
-                    <h3><a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></h3>
-
-                    <p>{{ result.object.body|truncatewords:80 }}</p>
-                </div>
-            {% empty %}
-                <p>Sorry, no results found.</p>
-            {% endfor %}
-
-{% endcomment %}
-
 
 
             {% if page.has_previous or page.has_next %}
