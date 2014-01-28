@@ -12,8 +12,6 @@ class FacetedSearchView(SearchView):
         else:
             extra['facets'] = self.results.facet_counts()
 
-        extra['number'] = 354
-
         return extra
 
 
