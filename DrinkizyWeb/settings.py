@@ -48,7 +48,7 @@ INSTALLED_APPS = (
 
     #added packages
     'south',
-    'haystack',
+    #'haystack',
 
     #apps
     'bars',
