@@ -1,0 +1,6 @@
+Vous pouvez dès maintenant :
+
+    vous connecter à l'interface d'administration en utilisant l'email : pguilloux53@hotmail.fr ;
+    vous connecter en FTP en utilisant l'adresse ftp.alwaysdata.com et le login : drinkizy ;
+    vous connecter en SSH en utilisant l'adresse ssh.alwaysdata.com et le login : drinkizy (vous devez au préalable activer votre compte dans l'interface d'administration) ;
+    accéder à votre site à l'adresse : http://drinkizy.alwaysdata.net/.

@@ -1,0 +1,4 @@
+alors tu dois créer un répertoire nommé modules à la racine de ton ftp. 
+et après tu fais la commande : 
+
+	PYTHONPATH=~/modules easy_install --install-dir ~/modules nomDuModule
