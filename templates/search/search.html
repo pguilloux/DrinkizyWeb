@@ -35,13 +35,8 @@
 
             <h3>Localisation</h3>
 
-            <input type="text" value="Où ? Adresse, Métro, Arr."/>
+            <input type="text" value="Où ? Adresse, Métro, Arr." class="inputLocalisation"/>
 
-            <p>
-              <label for="amount">Maximum price:</label>
-              <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
-            </p>
-             
             <div id="slider-range-min"></div>
 
 
@@ -191,21 +186,27 @@
 
 </div> <!-- #main -->
 
+    {% block scriptjs %}
+        
+        <script>
+          $(function() {
+            $( "#slider-range-min" ).slider({
+                range: "min",
+                value: 2,
+                min: 1,
+                max: 10,
+                slide: function( event, ui ) {
+                    $(this).find('.ui-slider-handle span').text(ui.value + " km" );
+                },
+                create: function(event, ui) {
+                    var v=$(this).slider('value');
+                    $(this).find('.ui-slider-handle').html("<span>" + v + " km"  + "</span>");
+                }
+            });
+          });
+        </script>
+    {% endblock scriptjs %}
 
-<script>
-  $(function() {
-    $( "#slider-range-min" ).slider({
-      range: "min",
-      value: 37,
-      min: 1,
-      max: 700,
-      slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.value );
-      }
-    });
-    $( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
-  });
-</script>
        
 
 {% endblock %}
