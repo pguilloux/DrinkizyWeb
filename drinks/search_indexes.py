@@ -9,9 +9,9 @@ class DrinkBarIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.EdgeNgramField(document=True, use_template=True)
     price = indexes.FloatField(model_attr='price', indexed=True, faceted=True)
     bar = indexes.CharField(use_template=True, faceted=True)
-    #theme = indexes.CharField(model_attr='bar.theme.name', faceted=True)
-    #category = indexes.CharField(model_attr='subcategory.category', faceted=True)
-    #subcategory = indexes.DateTimeField(model_attr='pub_date')
+    theme = indexes.CharField(model_attr='bar__theme__slug', faceted=True)
+    category = indexes.CharField(model_attr='drink__subcategory__category__slug', faceted=True)
+    subcategory = indexes.CharField(model_attr='drink__subcategory__slug', faceted=True)
 
     def get_model(self):
         return DrinkBar
