@@ -19,11 +19,14 @@ class DrinkBarIndex(indexes.SearchIndex, indexes.Indexable):
     def index_queryset(self, using=None):
         """Used when the entire index for model is updated."""
        	return self.get_model().objects#.filter(bar=Raw('SELECT DISTINCT bar_id FROM drinks_drinkbar WHERE 1'))#.order_by('bar__name')#.raw_search(self, 'SELECT * FROM drinks_drinkbar WHERE 1 GROUP BY bar_id')
-
-
          #return self.get_model().object.filter_or(content="wheelchair", content="vans")
         #.filter(organization_slug__in=organization_list) 
         #filter_or(content="wheelchair", content="vans")
+
+
+   # def prepare_bar(self, obj):
+    #    return [(cat.title) for cat in obj.categories.all()]
+        
         
        
 

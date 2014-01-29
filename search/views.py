@@ -1,5 +1,12 @@
 from haystack.views import FacetedSearchView
+from search.forms import MultiFacetedSearchForm
 
+from drinks.models import *
+from bars.models import *
+
+from django.shortcuts import render
+
+from django.shortcuts import render_to_response
 
 class MultiFacetedSearchView(FacetedSearchView):
     """
@@ -20,6 +27,18 @@ class MultiFacetedSearchView(FacetedSearchView):
     def __name__(self):
         return "MultiFacetedSearchView"
   
+
+    def get_context_data(self, **kwargs):
+        context = super(MultiFacetedSearchView, self).get_context_data(**kwargs)
+        #q = self.request.GET.get('q')
+        #if q:
+        context['categories'] = DrinkCategory.objects.all()
+        context['themes'] = Theme.objects.all()
+
+        return context
+
+
+
     def extra_context(self):
         '''
         Adds details about the facets applied
@@ -35,6 +54,4 @@ class MultiFacetedSearchView(FacetedSearchView):
                     'value' : facet[1].strip('"')
                 })
         return extra
-
-
 

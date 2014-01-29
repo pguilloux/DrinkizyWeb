@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from drinks.models import *
+from search.forms import MultiFacetedSearchForm
 
 import datetime
 from django.shortcuts import render_to_response
@@ -26,3 +27,6 @@ def subcategory(request, slug):
 def drink(request, slug): 
 	drink = Drink.objects.get(slug=slug)
 	return render_to_response('drinks/drink.html', {'drink' : drink})
+
+
+

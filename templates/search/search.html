@@ -8,6 +8,7 @@
 
             <h3>Boissons</h3>
             <ul>
+              
                 <li>
                     <input type="checkbox" id="test1">  
                     <label for="test1">Bière</label>  
@@ -68,6 +69,7 @@
                 <li><a href="#">Carte</a></li>
             </ul>
         </nav>
+    
 
         <article class="search-result-list">
             <header>
@@ -75,6 +77,11 @@
                 {% if query %}
                  <h5>  {{page.object_list|length}} résultats pour la recherche "{{query}}"</h5> 
                 {% endif %}
+
+                <form method="get" action=".">
+                    {{ form }}
+                    <input type="submit" value="Search">
+                </form>
 
                 <label>Trier par </label>
                 <select>
@@ -120,6 +127,18 @@
                         <p>No author facets.</p>
                     {% endif %}
                 </dl>
+
+                <dl>
+                    {% if facets.fields.price %}
+                        <dt>Author</dt>
+                        {# Provide only the top 5 authors #}
+                        {% for price in facets.fields.price %}
+                            <dd><a href="{{ request.get_full_path }}&amp;selected_facets=price_exact:{{ price.0|urlencode }}">{{ price.0 }}</a> ({{ price.1 }})</dd>
+                        {% endfor %}
+                    {% else %}
+                        <p>No author facets.</p>
+                    {% endif %}
+                </dl>
             </div>
             <!-- End faceting -->
 
@@ -131,11 +150,11 @@
                     {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
                 </div>
             {% endif %}
+ 
         {% else %}
             {# Show some example queries to run, maybe query syntax, something else? #}
         {% endif %}
 
-                
 
             </section>
 
