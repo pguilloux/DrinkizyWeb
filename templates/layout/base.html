@@ -12,21 +12,17 @@
 
         <link rel="stylesheet" href="../../static/css/normalize.min.css">
         <link rel="stylesheet" href="../../static/css/main.css">
+        <link href="../../static/css/ui-lightness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
 
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Aladin' rel='stylesheet' type='text/css'>
         
-
         <!-- SLIDER -->
         <link rel="stylesheet" type="text/css" href="./../static/css/demoSlider.css" />
         <link rel="stylesheet" type="text/css" href="./../static/css/styleSlider.css" />
 
-        <noscript>
-            <link rel="stylesheet" type="text/css" href="css/noscript.css" />
-        </noscript>
-
-        <script src="../../static/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+       
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -117,10 +113,7 @@
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script src="../../static/js/jquery.bxslider.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
-
-        <script src="js/main.js"></script>
+        <script src="../../static/js/jquery-ui-1.10.4.custom.min.js"></script>
 
         <script type="text/javascript" src="../../static/js/jquery.eislideshow.js"></script>
         <script type="text/javascript" src="../../static/js/jquery.easing.1.3.js"></script>
@@ -141,10 +134,9 @@
             g.src='//www.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
 
-            $(document).ready(function(){
-			  $('.bxslider').bxSlider();
-			});
             
         </script>
+
+        {% block scriptjs %}{% endblock scriptjs%}
     </body>
 </html>

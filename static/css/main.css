@@ -368,6 +368,31 @@ footer figure figcaption {
    Result page
    ========================================================================== */
 
+/* Search Localisation */
+.search-result .ui-slider-handle span {
+    position: relative;
+    top: -25px;
+    display : block;
+    width: 50px;
+    font-family: 'Lobster', cursive;
+    color: #F1B219;
+}
+.search-result .inputLocalisation {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+
+.search-result aside h2, .search-result aside h3 {
+    font-family: 'Lobster', cursive;
+    color: #F1B219;
+}
+
+.search-result aside ul {
+    padding-left: 15px;
+    margin: 0;
+}
+
 .search-result nav {
     width: 66%;
     float: left;
@@ -382,11 +407,74 @@ footer figure figcaption {
     background-color: #F1F1F2;
     height: 50px;
     line-height: 50px;
+    position: relative;
 }
 .search-result nav li a {
     display: block;
-
 }
+
+#curl, #cur2{
+    width:25px;
+    height:25px;
+    position:absolute;
+    top:0;
+    -webkit-transition: ease 0.8s;
+       -moz-transition: ease 0.8s;
+         -o-transition: ease 0.8s;
+        -ms-transition: ease 0.8s;
+            transition: ease 0.8s;
+}
+#curl {
+    left: 0;
+}
+#cur2 {
+    right: 0;
+}
+.result-backCorner {
+    overflow:hidden;
+    width:20px;
+    height:20px;
+    position:absolute;
+    top:0;
+    -webkit-transition: ease 0.8s;
+       -moz-transition: ease 0.8s;
+         -o-transition: ease 0.8s;
+        -ms-transition: ease 0.8s;
+            transition: ease 0.8s;
+}
+
+#code{
+    left:0;
+    background-image: url(../medias/img/cornerList.png);
+}
+#code2{
+    right:0;
+    background-image: url(../medias/img/cornerMap.png);
+    background-position: 100% 0%;
+    background-repeat: no-repeat no-repeat;
+}
+
+.search-result nav li:hover #code #curl, .search-result nav li:hover #code2 #cur2{
+    width:58px;
+    height:58px;
+    -webkit-transition: ease 0.8s;
+       -moz-transition: ease 0.8s;
+         -o-transition: ease 0.8s;
+        -ms-transition: ease 0.8s;
+            transition: ease 0.8s;
+}
+
+.search-result nav li:hover #code, .search-result nav li:hover #code2{
+    width:49px;
+    height:49px;
+    -webkit-transition: ease 0.8s;
+       -moz-transition: ease 0.8s;
+         -o-transition: ease 0.8s;
+        -ms-transition: ease 0.8s;
+            transition: ease 0.8s;
+} 
+
+
 .search-result .selected a {
     color: #F1B219;
     background-color: #fff;
@@ -464,9 +552,7 @@ footer figure figcaption {
     margin-right: 5px;
     float: left;
 }
-.search-result-drinksMenu {
 
-}
 .search-result-drinksMenu ul {
     background-color: #F1F1F2;
     border-left: 5px solid #F5C82D;
@@ -612,6 +698,7 @@ footer figure figcaption {
     .search-result aside {
         float: left;
         color: #000;
+        padding: 5px 20px;
     }
 }
 
