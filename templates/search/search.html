@@ -88,8 +88,9 @@
                  <h5>  {{page.object_list|length}} résultats pour la recherche "{{query}}"</h5> 
                 {% endif %}
 
-                <form method="get" action=".">
+                <form method="post" action=".">
                     {{ form }}
+                    {{ form.categories }}
                     <input type="submit" value="Search">
                 </form>
 
