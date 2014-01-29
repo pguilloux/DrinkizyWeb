@@ -1,32 +1,23 @@
 from django.conf.urls import patterns, include, url
 from drinks.views import *
-from haystack.forms import ModelSearchForm
+from search.forms import MultiFacetedSearchForm
 from haystack.query import SearchQuerySet
-from haystack.views import SearchView
+from search.views import MultiFacetedSearchView
 from search.views import *
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
-sqs = SearchQuerySet()
+sqs = SearchQuerySet().facet("bar")
 
-urlpatterns = patterns('',
-    # Examples:
+# urlpatterns = patterns('',
+#     url(r'^search/$', FacetedSearchView(searchqueryset=sqs), name='search_all'),
+# )
 
-    url(r'^search/$', FacetedSearchView(searchqueryset=sqs), 
-        name='search_all',
-    ),
 
-    # # url(r'^$', 'firstProject.views.home', name='home'),
-    # url(r'^firstProject/', include('firstProject.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+urlpatterns = patterns('haystack.views',
+    url(r'^search/$', MultiFacetedSearchView(form_class=MultiFacetedSearchForm, searchqueryset=sqs), name='haystack_search'),
 )
-
 
 # # Without threading...
 # urlpatterns += patterns('haystack.views',

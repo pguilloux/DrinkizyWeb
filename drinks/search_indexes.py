@@ -6,9 +6,10 @@ from haystack.query import SearchQuerySet, SQ
 from haystack.inputs import Raw
 
 class DrinkBarIndex(indexes.SearchIndex, indexes.Indexable):
-    text = indexes.NgramField(document=True, use_template=True)
-    price = indexes.FloatField(model_attr='price', indexed=True)
-    bar = indexes.CharField(model_attr='bar')
+    text = indexes.EdgeNgramField(document=True, use_template=True)
+    price = indexes.FloatField(model_attr='price', indexed=True, faceted=True)
+    bar = indexes.CharField(use_template=True, faceted=True)
+    #theme = indexes.CharField(model_attr='bar.theme.name', faceted=True)
     #category = indexes.CharField(model_attr='subcategory.category', faceted=True)
     #subcategory = indexes.DateTimeField(model_attr='pub_date')
 
