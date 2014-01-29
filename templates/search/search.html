@@ -37,7 +37,13 @@
 
             <input type="text" value="Où ? Adresse, Métro, Arr."/>
 
-            <input type="range" id="qualite-sommeil" name="qualite-sommeil" step="1" value="3" min="1" max="5" />
+            <p>
+              <label for="amount">Maximum price:</label>
+              <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+             
+            <div id="slider-range-min"></div>
+
 
             <h3>Thèmes</h3>
 
@@ -65,8 +71,17 @@
 
         <nav>
             <ul>
-                <li class="selected"><a href="#">Liste</a></li>
-                <li><a href="#">Carte</a></li>
+                <li class="selected"><a href="#">
+                    <div id="code" class="result-backCorner">
+                        <img id="curl" src="../../static/medias/img/cornerLeft.png">
+                    </div>
+                    Liste
+                </a></li>
+                <li><a href="#">Carte
+                    <div id="code2" class="result-backCorner">
+                        <img id="cur2" src="../../static/medias/img/cornerRight.png">
+                    </div>
+                </a></li>
             </ul>
         </nav>
     
@@ -101,9 +116,11 @@
                    
                     {% ifchanged result.object.bar%}
                         <li>
+
                             {% with onebar=result.object.bar %}
                                 {% include "search/bar_in_list.html" %}
                             {% endwith %}
+
                         </li>
                         <div class="clearfix"></div>
                     {%endifchanged%}
@@ -174,6 +191,21 @@
 
 </div> <!-- #main -->
 
+
+<script>
+  $(function() {
+    $( "#slider-range-min" ).slider({
+      range: "min",
+      value: 37,
+      min: 1,
+      max: 700,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.value );
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
+  });
+</script>
        
 
 {% endblock %}
