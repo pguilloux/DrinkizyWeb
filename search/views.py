@@ -34,11 +34,22 @@ class MultiFacetedSearchView(FacetedSearchView):
         context = super(MultiFacetedSearchView, self).get_context_data(**kwargs)
         #q = self.request.GET.get('q')
         #if q:
-        context['categories'] = DrinkCategory.objects.all()
-        context['themes'] = Theme.objects.all()
+        #context['categories'] = DrinkCategory.objects.all()
+        #context['themes'] = Theme.objects.all()
 
         return context
 
+    def get_query(self):
+
+        if self.form.is_valid():
+            #
+            # added the following two lines.
+            if not self.form.cleaned_data['q']:
+                self.form.cleaned_data['q'] = u'*'
+
+            return self.form.cleaned_data['q']
+
+        return ''
 
 
     def extra_context(self):

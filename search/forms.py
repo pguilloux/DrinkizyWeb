@@ -33,34 +33,39 @@ class MultiFacetedSearchForm(FacetedSearchForm):
 
     def search(self):
         sqs = super(MultiFacetedSearchForm, self).search()
-
+        
+        no_filter_selected = True
 
         if not self.is_valid():
             #return self.no_query_found()
+            sqs = SearchQuerySet()
+            return sqs
 
-            # Check to see if a start_date was chosen.
-            if self.cleaned_data['start_price']:
-                sqs = sqs.filter(price__gte=self.cleaned_data['start_price'])
-                logger.warning('tata')
-
-            # Check to see if an end_date was chosen.
-            if self.cleaned_data['end_price']:
-                sqs = sqs.filter(price__lte=self.cleaned_data['end_price'])
-
-            
-            if self.cleaned_data['categories']:
-                categories_utf8 = [category.encode("utf8") for category in self.cleaned_data['categories']]
-                sqs = sqs.filter(category__slug__in=categories_utf8)
+        # Check to see if a start_date was chosen.
+        if self.cleaned_data['start_price']:
+            sqs = sqs.filter(price__gte=self.cleaned_data['start_price'])
+            no_filter_selected = False
 
 
-            if self.cleaned_data['themes']:
-                themes_utf8 = [theme.encode("utf8") for theme in self.cleaned_data['themes']]
-                sqs = sqs.filter(theme__slug__in=themes_utf8)
+        # Check to see if an end_date was chosen.
+        if self.cleaned_data['end_price']:
+            sqs = sqs.filter(price__lte=self.cleaned_data['end_price'])
+            no_filter_selected = False
+
         
-        else:
-              if self.cleaned_data['themes']:
-                themes_utf8 = [theme.encode("utf8") for theme in self.cleaned_data['themes']]
-                sqs = SearchQuerySet().filter(theme__slug__in=themes_utf8)
+        if self.cleaned_data['categories']:
+            categories_utf8 = [category.encode("utf8") for category in self.cleaned_data['categories']]
+            sqs = sqs.filter(category__slug__in=categories_utf8)
+            no_filter_selected = False
+
+
+        if self.cleaned_data['themes']:
+            logger.warning(self.cleaned_data)
+            themes_utf8 = [theme.encode("utf8") for theme in self.cleaned_data['themes']]
+            sqs = sqs.filter(theme__slug__in=themes_utf8)
+            no_filter_selected = False
+        
+
             # logger.warning('tata1')
             # logger.warning(categories_utf8)
             # logger.warning('tata2')
@@ -77,6 +82,9 @@ class MultiFacetedSearchForm(FacetedSearchForm):
 
         #     if value:
         #         sqs = sqs.narrow(u'%s:"%s"' % (field, sqs.query.clean(value)))
+
+        if no_filter_selected:
+            sqs = SearchQuerySet()
 
         return sqs
 

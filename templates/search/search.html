@@ -61,7 +61,8 @@
             <header>
 
                 {% if query %}
-                 <h5>  {{page.object_list|length}} résultats pour la recherche "{{query}}"</h5> 
+
+                    <h5> {{page.object_list|length}} résultats pour la recherche "{{query}}"</h5> 
                 {% endif %}
 
                 <label>Trier par </label>
@@ -73,7 +74,7 @@
 
             </header>
             <section class="search-result-bar">
-             {% if query %}
+      
             <h3>Results</h3>
             {% with objects=page.object_list %}
 
@@ -133,7 +134,7 @@
                     {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
                 </div>
             {% endif %}
- 
+ {% comment %}
         {% else %}
             {% with objects=drinkbars %}
 
@@ -154,7 +155,8 @@
                 {% endfor %}
              </ul>
              {% endwith %}
-        {% endif %}
+{% endcomment %}
+    
 
 
             </section>
