@@ -599,6 +599,190 @@ footer figure figcaption {
     padding: 5px;
 }
 
+
+
+/* ==========================================================================
+   FICHE BAR
+   ========================================================================== */
+
+/* Structure */
+
+.bar-card aside { float: right;}
+.bar-card #slider { width: 68%; height: 250px; display: block;}
+
+
+/* Général */
+#bar-moreInfos  ul, #bar-comment ul { padding-left: 0;}
+#bar-moreInfos .bar-owner:before, #bar-moreInfos .bar-tel:before, #bar-moreInfos .bar-mail:before, #bar-moreInfos .bar-site:before, #bar-comment .bar-comment-author p:before, #bar-map .bar-adress:before, #bar-map .bar-metro:before {
+    content:""; 
+    display: block; 
+    float: left; 
+    background-image: url("../medias/img/drinkizy_sprite.png");
+    height: 21px;
+    width: 21px;
+    margin-right: 10px;
+}
+
+
+.bar-card .rank span {
+    background-image: url("../medias/img/drinkizy_sprite.png");
+    background-position: -38px -57px;
+    height: 22px;
+    width: 22px;
+    display: inline-block;
+}
+
+.bar-card .rank .full {
+   background-position: -11px -57px; 
+}
+.bar-card .rank strong { 
+    display: block; 
+    font-family: 'Lobster', cursive;
+    font-size: 1.2em;
+    /*text-align: right;*/
+}
+
+
+
+
+
+
+/* Navigation Menu */
+.bar-card nav ul { margin-left: 0; }
+.bar-card nav li { display: inline-block; width: 24%;text-align: center; font-family: 'Lobster', cursive; font-size: 1.4em; height: 40px;
+line-height: 35px;} 
+.bar-card nav li a { color: #000;}
+
+/* More Infos */
+#bar-moreInfos h3, #bar-drinkMenu h3, #bar-comment h3, #bar-map h3 {
+    font-family: 'Lobster', cursive;
+    color: #F1B219;
+    font-size: 1.5em; 
+    margin-bottom: 5px;  
+}
+#bar-moreInfos .bar-text {width: 80%; float:left;}
+#bar-moreInfos .bar-happyHour {font-family: 'Lobster', cursive; width: 20%; float: right; text-align: center;}
+#bar-moreInfos .bar-happyHour strong { font-size: 1.2em; color: #F1B219;display: block;}
+#bar-moreInfos .bar-happyHour span { font-size: 1.5em;}
+#bar-moreInfos  ul li {display: inline-block; padding-right: 20px;}
+#bar-moreInfos .bar-owner:before {
+    background-position: -97px -58px;   
+}
+#bar-moreInfos .bar-tel:before {
+    background-position: -97px -58px;   
+}
+#bar-moreInfos .bar-mail:before {
+    background-position: -124px -58px;  
+}
+#bar-moreInfos .bar-site:before {
+    background-position: -97px -58px;   
+}
+
+
+
+/* Carte des boissons */
+.bar-card .infoDrinks {
+    display: none;
+}
+.bar-card .menuCat {
+    border-left: 5px solid #F1B219; padding: 0; background-color: #F1F1F2; margin-bottom: 20px; width: 45%;
+}
+.bar-card .menuCat h4 {
+    margin: 10px 0 20px 20px;
+    font-family: 'Lobster', cursive;
+}
+.bar-card .menuCat p {
+    margin: 0;
+}
+.bar-card .menuCat h6{
+    float: left;
+    margin: 0;
+    width: 59%;
+    margin: 0 20px;
+    font-size: 0.8em;
+    color: #000;
+}
+.bar-card .menuCat h6 span {
+    float: right;   
+    font-family: 'Lobster', cursive;
+    color: #F1B219;
+}
+#container-barCard { margin-left: 20px;}
+.bar-card .menuCat > li {padding: 5px 20px; margin-top: 15px;}
+.bar-card .menuCat > li.selected { background-color: #FCFCFC;}
+
+.bar-card .infoDrinks-img {
+    width: 15%;
+}
+.bar-card .infoDrinks-img img {
+    height: 50px; width: 50px;
+    margin-right: 10px;
+}
+
+.bar-card .infoDrinks-text{
+    width: 50%;
+    line-height: 15px;
+    vertical-align: top;
+}
+.bar-card .infoDrinks-rank{
+    width: 33%;
+}
+.bar-card .infoDrinks-rank h5{
+    margin: 0;
+    font-family: Ubuntu;
+    font-weight: 300;
+    line-height: 14px;
+    text-align: center;
+}
+.bar-card .infoDrinks-rank h5 span { font-weight: bold;}
+.bar-card .infoDrinks-rank h5 strong {
+    font-family: 'Lobster', cursive; display: block; 
+}
+.bar-card .infoDrinks-rank .rank { text-align: center;}
+.bar-card .infoDrinks ul {
+    font-size: 0.8em; padding-left: 0;
+}
+.bar-card .infoDrinks li { display: inline-block;}
+
+
+
+
+/* Comment */
+#bar-comment h3 {margin-bottom: 20px;}
+#bar-comment ul { margin: 15px 20px;}
+#bar-comment .bar-comment-author { float: left; width: 20%;}
+#bar-comment .bar-comment-text {float: left; width: 80%}
+#bar-comment li { border-left: 5px solid #F1B219; padding: 15px; background-color: #F1F1F2; margin-bottom: 20px;}
+#bar-comment .bar-comment-author h4, #bar-comment p { margin: 0;}
+#bar-comment .bar-comment-author p:before {
+    background-position: -148px -58px;  
+    height: 20px;
+    width: 15px;
+}
+#bar-comment .bar-comment-text .rank {margin-top: 10px;}
+
+#bar-comment h5 {float: left; font-size: 1em; margin: 0 30px;}
+#bar-comment .rank { display: inline-block;}
+#bar-comment .rank strong { display: inline; margin-left: 15px;}
+.leaveComment { display: inline-block; color: #000; float: right; margin-right: 20px;}
+
+
+
+/* Map */
+#bar-map li { display: inline-block; margin-right: 20px;}
+#bar-map .bar-adress:before {
+    background-position: -74px -58px;
+    width: 14px;    
+} 
+#bar-map .bar-metro:before {
+    background-position: -171px -58px;  
+    height: 23px;
+    width: 21px;
+}
+
+
+
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */
