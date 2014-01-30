@@ -67,7 +67,7 @@ class MultiFacetedSearchView(FacetedSearchView):
                     'value' : facet[1].strip('"')
                 })
 
-        extra['drinkbars'] = SearchQuerySet()
+        #extra['drinkbars'] = SearchQuerySet()
        
         return extra
 

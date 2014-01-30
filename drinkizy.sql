@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.4.10.1
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 30 Janvier 2014 à 07:58
--- Version du serveur: 5.5.24-log
--- Version de PHP: 5.3.13
+-- Généré le : Jeu 30 Janvier 2014 à 22:08
+-- Version du serveur: 5.5.20
+-- Version de PHP: 5.3.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -324,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `drinks_drinkbar` (
   PRIMARY KEY (`id`),
   KEY `bar_id_refs_id_6a0b1d41` (`bar_id`),
   KEY `drink_id_refs_id_ffaa485a` (`drink_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `drinks_drinkbar`
@@ -334,7 +334,9 @@ INSERT INTO `drinks_drinkbar` (`id`, `slug`, `price`, `price_happy_hour`, `drink
 (1, '', 4, 3, 1, 1),
 (2, '', 3, 2.5, 2, 1),
 (3, '', 6, 4.5, 1, 2),
-(4, '', 5, 4.5, 2, 2);
+(4, '', 5, 4.5, 2, 2),
+(5, '', 3.5, 2.75, 5, 1),
+(6, '', 7.1, 6.2, 6, 2);
 
 -- --------------------------------------------------------
 
