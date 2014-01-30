@@ -1,10 +1,10 @@
 
 <figure>
 
-    <img src="{{onebar.getImgUrl}}" alt="">
+    <a href="{% url "bars.views.fiche_bar" onebar.slug %}"><img src="{{onebar.getImgUrl}}" alt=""></a>
 </figure>
 <div class="search-result-right">
-    <h4> {{ onebar.name }} <span> {{ onebar.theme }} </span></h4>
+    <h4><a href="{% url "bars.views.fiche_bar" onebar.slug %}">{{ onebar.name }}</a>  <span> {{ onebar.theme }} </span></h4>
     <div class="search-result-info">
         <p class="postAdress>">{{ onebar.address }}</p>
         <p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span> <strong>321 avis</strong></p>
