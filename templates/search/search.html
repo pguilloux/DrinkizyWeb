@@ -5,63 +5,37 @@
 <div class="main wrapper clearfix search-result">
         <aside>
             <h2>Affiner la recherche</h2>
+            <form method="get" action=".">
 
-            <h3>Boissons</h3>
-            <ul>
-              
-                <li>
-                    <input type="checkbox" id="test1">  
-                    <label for="test1">Bière</label>  
-                    <ul>
-                        <li>
-                            <input type="checkbox" id="test2">  
-                            <label for="test2">Bière</label>  
-                        </li>
-                        <li>
-                            <input type="checkbox" id="test3">  
-                            <label for="test3">Bière</label>  
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <input type="checkbox" id="test4">  
-                    <label for="test4">Spiritueux</label>  
-                </li>
-                <li>
-                    <input type="checkbox" id="test5">  
-                    <label for="test5">Cocktail</label>  
-                </li>
-            </ul>
+                {{ form.q }}
+                <input type="submit" value="Actualiser">
 
-            <h3>Localisation</h3>
+                <h3>Boissons</h3>
 
-            <input type="text" value="Où ? Adresse, Métro, Arr." class="inputLocalisation"/>
+                {{ form.categories }}
+                <input type="submit" value="Actualiser">
 
-            <div id="slider-range-min"></div>
+                <h3>Localisation</h3>
 
+                <input type="text" value="Où ? Adresse, Métro, Arr." class="inputLocalisation"/>
 
-            <h3>Thèmes</h3>
+                <div id="slider-range-min"></div>
 
-            <ul>
-                <li>
-                    <input type="checkbox" id="test1">  
-                    <label for="test1">Bar à Cocktail</label>  
-                </li>
-                <li>
-                    <input type="checkbox" id="test4">  
-                    <label for="test4">Bar à bière</label>  
-                </li>
-                <li>
-                    <input type="checkbox" id="test5">  
-                    <label for="test5">Brasserie</label>  
-                </li>
-            </ul>
+                
+                <h3>Thèmes</h3>
 
-            <h3>Happy Hour</h3>
+                {{ form.themes }}
+                <input type="submit" value="Actualiser">
+
+                <h3>Happy Hour</h3>
 
 
 
-            <h3>Note</h3>
+                <h3>Note</h3>
+
+                
+                
+            </form>
         </aside>
 
         <nav>
@@ -87,12 +61,6 @@
                 {% if query %}
                  <h5>  {{page.object_list|length}} résultats pour la recherche "{{query}}"</h5> 
                 {% endif %}
-
-                <form method="post" action=".">
-                    {{ form }}
-                    {{ form.categories }}
-                    <input type="submit" value="Search">
-                </form>
 
                 <label>Trier par </label>
                 <select>
@@ -126,30 +94,30 @@
             {% endwith %}
 
             <!-- Begin faceting. -->
-            <h2>By Theme</h2>
+
 
             <div>
                 <dl>
-                    {% if facets.fields.bar %}
-                        <dt>Author</dt>
+                    {% if facets.fields.theme %}
+                        <dt>Theme</dt>
                         {# Provide only the top 5 authors #}
-                        {% for bar in facets.fields.bar %}
-                            <dd><a href="{{ request.get_full_path }}&amp;selected_facets=bar_exact:{{ bar.0|urlencode }}">{{ bar.0 }}</a> ({{ bar.1 }})</dd>
+                        {% for theme in facets.fields.theme %}
+                            <dd><a href="{{ request.get_full_path }}&amp;selected_facets=theme_exact:{{ theme.0|urlencode }}">{{ theme.0 }}</a> ({{ theme.1 }})</dd>
                         {% endfor %}
                     {% else %}
-                        <p>No author facets.</p>
+                        <p>No theme facets.</p>
                     {% endif %}
                 </dl>
 
                 <dl>
-                    {% if facets.fields.price %}
-                        <dt>Author</dt>
+                    {% if facets.fields.category %}
+                        <dt>Category</dt>
                         {# Provide only the top 5 authors #}
-                        {% for price in facets.fields.price %}
-                            <dd><a href="{{ request.get_full_path }}&amp;selected_facets=price_exact:{{ price.0|urlencode }}">{{ price.0 }}</a> ({{ price.1 }})</dd>
+                        {% for category in facets.fields.category %}
+                            <dd><a href="{{ request.get_full_path }}&amp;selected_facets=category_exact:{{ category.0|urlencode }}">{{ category.0 }}</a> ({{ category.1 }})</dd>
                         {% endfor %}
                     {% else %}
-                        <p>No author facets.</p>
+                        <p>No category facets.</p>
                     {% endif %}
                 </dl>
             </div>
@@ -165,7 +133,25 @@
             {% endif %}
  
         {% else %}
-            {# Show some example queries to run, maybe query syntax, something else? #}
+            {% with objects=drinkbars %}
+
+            <ul>
+                {% for result in objects|dictsort:"object.bar.name" %}
+                   
+                    {% ifchanged result.object.bar%}
+                        <li>
+
+                            {% with onebar=result.object.bar %}
+                                {% include "search/bar_in_list.html" %}
+                            {% endwith %}
+
+                        </li>
+                        <div class="clearfix"></div>
+                    {%endifchanged%}
+    
+                {% endfor %}
+             </ul>
+             {% endwith %}
         {% endif %}
 
 

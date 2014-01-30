@@ -9,7 +9,7 @@ from search.views import *
 # from django.contrib import admin
 # admin.autodiscover()
 
-sqs = SearchQuerySet().facet("bar").facet("price")
+sqs = SearchQuerySet()#.facet("theme").facet("category")
 
 # urlpatterns = patterns('',
 #     url(r'^search/$', FacetedSearchView(searchqueryset=sqs), name='search_all'),
@@ -17,7 +17,8 @@ sqs = SearchQuerySet().facet("bar").facet("price")
 
 
 urlpatterns = patterns('search.views',
-    url(r'^search/$', MultiFacetedSearchView(form_class=MultiFacetedSearchForm, searchqueryset=sqs), name='haystack_search'),
+    url(r'^search/$', MultiFacetedSearchView(form_class=MultiFacetedSearchForm, searchqueryset=sqs), name='search'),
+    #url(r'^search/$', search, form_class= MultiFacetedSearchForm, searchqueryset=sqs, name='search'),
 )
 
 # # Without threading...

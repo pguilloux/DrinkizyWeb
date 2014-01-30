@@ -1,5 +1,6 @@
 from haystack.views import FacetedSearchView
 from search.forms import MultiFacetedSearchForm
+from haystack.query import SearchQuerySet
 
 from drinks.models import *
 from bars.models import *
@@ -13,6 +14,7 @@ class MultiFacetedSearchView(FacetedSearchView):
     Search view for multifaceted searches
     """
     template = 'search/search.html'
+
   
     def __call__(self, request, *args, **kwargs):
         """
@@ -53,5 +55,11 @@ class MultiFacetedSearchView(FacetedSearchView):
                     'facet': facet[0][:-6], # removing the _exact suffix that haystack uses for some reason
                     'value' : facet[1].strip('"')
                 })
+
+        extra['drinkbars'] = SearchQuerySet()
+       
         return extra
+
+
+
 
