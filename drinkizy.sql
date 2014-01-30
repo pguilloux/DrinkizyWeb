@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Dim 26 Janvier 2014 à 18:23
--- Version du serveur: 5.5.20
--- Version de PHP: 5.3.10
+-- Généré le: Jeu 30 Janvier 2014 à 07:58
+-- Version du serveur: 5.5.24-log
+-- Version de PHP: 5.3.13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -207,7 +207,7 @@ INSERT INTO `bars_theme` (`id`, `slug`, `name`, `description`) VALUES
 (10, 'bars-rock', 'Bar Rock', ''),
 (11, 'bars-brasserie', 'Bar Brasserie', ''),
 (12, 'bars-a-cocktails-et-tapas', 'Bar à Cocktails et Tapas', ''),
-(13, 'bars-a-cocktails-moléculaires', 'Bar à Cocktails Moléculaires', '');
+(13, 'bars-a-cocktails-moleculaires', 'Bar à Cocktails Moléculaires', '');
 
 -- --------------------------------------------------------
 
@@ -303,10 +303,10 @@ CREATE TABLE IF NOT EXISTS `drinks_drink` (
 INSERT INTO `drinks_drink` (`id`, `slug`, `name`, `description`, `approval`, `disapproval`, `subcategory_id`) VALUES
 (1, 'bloody-mary', 'Bloody-Mary', '', 0, 0, 10),
 (2, 'cosmopolitan', 'Cosmopolitan', '', 0, 0, 10),
-(3, 'daïquiri', 'Daïquiri', '', 0, 0, 10),
+(3, 'daiquiri', 'Daïquiri', '', 0, 0, 10),
 (4, 'mai-tai', 'Mai Tai', '', 0, 0, 10),
 (5, 'mojito', 'Mojito', '', 0, 0, 10),
-(6, 'piña-colada', 'Piña Colada', '', 0, 0, 10);
+(6, 'pina-colada', 'Piña Colada', '', 0, 0, 10);
 
 -- --------------------------------------------------------
 
@@ -356,10 +356,10 @@ CREATE TABLE IF NOT EXISTS `drinks_drinkcategory` (
 
 INSERT INTO `drinks_drinkcategory` (`id`, `slug`, `name`, `description`) VALUES
 (1, 'spiritueux', 'Spiritueux', ''),
-(2, 'bières', 'Bières', ''),
-(3, 'cocktails-alcoolisés', 'Cocktails Alcoolisés', ''),
-(4, 'boissons-lactées', 'Boissons Lactées', ''),
-(5, 'boissons-énergisantes', 'Boissons Energisantes', ''),
+(2, 'bieres', 'Bières', ''),
+(3, 'cocktails-alcoolises', 'Cocktails Alcoolisés', ''),
+(4, 'boissons-lactees', 'Boissons Lactées', ''),
+(5, 'boissons-energisantes', 'Boissons Energisantes', ''),
 (6, 'cocktails-sans-alcool', 'Cocktails Sans Alcool', ''),
 (7, 'jus', 'Jus', ''),
 (8, 'sodas', 'Sodas', ''),
@@ -390,12 +390,12 @@ INSERT INTO `drinks_drinksubcategory` (`id`, `slug`, `name`, `description`, `cat
 (2, 'vins', 'Vins', '', 1),
 (3, 'champagne', 'Champagne', '', 1),
 (4, 'blonde', 'Blonde', '', 2),
-(5, 'ambrée', 'Ambrée', '', 2),
+(5, 'ambree', 'Ambrée', '', 2),
 (6, 'brune', 'Brune', '', 2),
 (7, 'rousse', 'Rousse', '', 2),
-(8, 'aromatisée', 'Aromatisée', '', 2),
+(8, 'aromatisee', 'Aromatisée', '', 2),
 (9, 'blanche', 'Blanche', '', 2),
-(10, 'cocktails-apéritifs', 'Cocktails Apéritifs', '', 3),
+(10, 'cocktails-aperitifs', 'Cocktails Apéritifs', '', 3),
 (11, 'cocktails-digestifs', 'Cocktails Digestifs', '', 3),
 (12, 'long-drink', 'Long Drink', '', 3),
 (13, 'milk-shakes', 'Milk-Shakes', '', 4),
@@ -405,7 +405,7 @@ INSERT INTO `drinks_drinksubcategory` (`id`, `slug`, `name`, `description`, `cat
 (17, 'limonades', 'Limonades', '', 8),
 (18, 'diabolos', 'Diabolos', '', 8),
 (19, 'sirops', 'Sirops', '', 8),
-(20, 'cafés', 'Cafés', '', 9),
+(20, 'cafes', 'Cafés', '', 9),
 (21, 'tisanes', 'Tisanes', '', 9),
 (22, 'infusions', 'Infusions', '', 9);
 
