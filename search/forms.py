@@ -33,34 +33,34 @@ class MultiFacetedSearchForm(FacetedSearchForm):
 
     def search(self):
         sqs = super(MultiFacetedSearchForm, self).search()
-
+        
+        sqs = SearchQuerySet()
 
         if not self.is_valid():
             #return self.no_query_found()
+            return sqs
 
-            # Check to see if a start_date was chosen.
-            if self.cleaned_data['start_price']:
-                sqs = sqs.filter(price__gte=self.cleaned_data['start_price'])
-                logger.warning('tata')
-
-            # Check to see if an end_date was chosen.
-            if self.cleaned_data['end_price']:
-                sqs = sqs.filter(price__lte=self.cleaned_data['end_price'])
-
-            
-            if self.cleaned_data['categories']:
-                categories_utf8 = [category.encode("utf8") for category in self.cleaned_data['categories']]
-                sqs = sqs.filter(category__slug__in=categories_utf8)
+        # Check to see if a start_date was chosen.
+        if self.cleaned_data['start_price']:
+            sqs = sqs.filter(price__gte=self.cleaned_data['start_price'])
 
 
-            if self.cleaned_data['themes']:
-                themes_utf8 = [theme.encode("utf8") for theme in self.cleaned_data['themes']]
-                sqs = sqs.filter(theme__slug__in=themes_utf8)
+        # Check to see if an end_date was chosen.
+        if self.cleaned_data['end_price']:
+            sqs = sqs.filter(price__lte=self.cleaned_data['end_price'])
+
         
-        else:
-              if self.cleaned_data['themes']:
-                themes_utf8 = [theme.encode("utf8") for theme in self.cleaned_data['themes']]
-                sqs = SearchQuerySet().filter(theme__slug__in=themes_utf8)
+        if self.cleaned_data['categories']:
+            categories_utf8 = [category.encode("utf8") for category in self.cleaned_data['categories']]
+            sqs = sqs.filter(category__slug__in=categories_utf8)
+
+
+        if self.cleaned_data['themes']:
+            logger.warning(self.cleaned_data)
+            themes_utf8 = [theme.encode("utf8") for theme in self.cleaned_data['themes']]
+            sqs = sqs.filter(theme__slug__in=themes_utf8)
+        
+
             # logger.warning('tata1')
             # logger.warning(categories_utf8)
             # logger.warning('tata2')
