@@ -7,8 +7,13 @@
 		<header>
 			<ul>
 				<li>
-					<h4> Chez Momo <span> Bar lounge </span></h4>
-					<p class="postAdress>">1 rue de la patience 75001 Paris</p>
+					<h4> {{bar.name}} <span> {{bar.theme}}  </span></h4>
+					<p class="postAdress">{{bar.address}} </p>
+				</li>
+				<li class="boxValidateBar">
+				</li>
+				<li class="socialBox">
+
 				</li>
 				<li>
 					<p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span> <strong>321 avis</strong></p>
@@ -21,28 +26,42 @@
 			<h4>Top des boissons de <span>Chez Momo</span></h4>
 
 			<ul>
-				<li>Mojito</li>
-				<li>Mojito</li>
-				<li>Mojito</li>
+				<li><img src=""/><h6>Mojito</h6></li>
+				<li><img src=""/><h6>Mojito</h6></li>
+				<li><img src=""/><h6>Mojito</h6></li>
 			</ul>
 			
 		</aside>
 
-		<div id="slider"></div>
+		<div id="slider">
+			<img src="http://photos.mandarinoriental.com/is/image/MandarinOriental/tokyo-restaurant-mandarin-bar-01?$DetailBannerHeight$" />
+		</div>
 
 		<article>
 			<nav>
 				<ul>
-					<li>
+					<li class="selected">
+						<div class="peel-info code result-backCorner">
+                        	<img class="curl" src="../../static/medias/img/cornerLeft.png">
+                    	</div>
 						<a href="#moreInfos">Plus d'infos</a>
 					</li>
 					<li>
+						<div class="peel-menu code result-backCorner">
+                        	<img class="curl" src="../../static/medias/img/cornerLeft.png">
+                    	</div>
 						<a href="#drinkMenu">Carte des boissons</a>
 					</li>
 					<li>
+						<div class="peel-comment code result-backCorner">
+                        	<img class="curl" src="../../static/medias/img/cornerLeft.png">
+                    	</div>
 						<a href="#comment">Avis</a>
 					</li>
 					<li>
+						<div class="peel-map code result-backCorner">
+                        	<img class="curl" src="../../static/medias/img/cornerLeft.png">
+                    	</div>
 						<a href="#map">Plan</a>
 					</li>
 				</ul>
@@ -50,7 +69,7 @@
 
 			<div id="bar-moreInfos">
 				<h3><a name="moreInfos">Chez Momo</a></h3>
-				<p class="bar-text">Lorem ipsum balar os jfrgr efgr Lorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgr Lorem ipsum balar os jfrgr efgr</p>
+				<p class="bar-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at luctus diam. Sed hendrerit blandit neque, ut eleifend diam iaculis ut. Etiam aliquet augue at nisl aliquam pulvinar. Phasellus viverra suscipit massa sed mattis. Duis egestas rutrum lectus at porttitor. Praesent dignissim, metus nec lacinia vulputate, arcu magna cursus nibh, quis euismod nisl erat et nunc. Pellentesque nibh libero, gravida eu vehicula ut, aliquet quis enim. </p>
 				<p class="bar-happyHour"><strong>Happy Hour</strong> <span>16h - 22h</span></p>
 				<ul>
 					<Li class="bar-owner">Marcel Proust</li>

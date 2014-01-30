@@ -413,9 +413,9 @@ footer figure figcaption {
     display: block;
 }
 
-#curl, #cur2{
-    width:25px;
-    height:25px;
+#curl, #cur2, .curl{
+    width:5px;
+    height:5px;
     position:absolute;
     top:0;
     -webkit-transition: ease 0.8s;
@@ -424,7 +424,7 @@ footer figure figcaption {
         -ms-transition: ease 0.8s;
             transition: ease 0.8s;
 }
-#curl {
+#curl, .curl {
     left: 0;
 }
 #cur2 {
@@ -432,8 +432,8 @@ footer figure figcaption {
 }
 .result-backCorner {
     overflow:hidden;
-    width:20px;
-    height:20px;
+    width:0px;
+    height:0px;
     position:absolute;
     top:0;
     -webkit-transition: ease 0.8s;
@@ -443,9 +443,25 @@ footer figure figcaption {
             transition: ease 0.8s;
 }
 
-#code{
+#code, .code{
     left:0;
     background-image: url(../medias/img/cornerList.png);
+}
+.peel-info{
+    left:0;
+    background-image: url(../medias/img/cornerMap.png);
+}
+.peel-menu{
+    left:0;
+    background-image: url(../medias/img/cornerMap.png);
+}
+.peel-comment{
+    left:0;
+    background-image: url(../medias/img/cornerMap.png);
+}
+.peel-map{
+    left:0;
+    background-image: url(../medias/img/cornerMap.png);
 }
 #code2{
     right:0;
@@ -456,7 +472,7 @@ footer figure figcaption {
 .search-result #slider-range {
     margin-top: 50px;
 }
-.search-result nav li:hover #code #curl, .search-result nav li:hover #code2 #cur2{
+.search-result nav li:hover #code #curl, .search-result nav li:hover #code2 #cur2, .bar-card nav li:hover .code .curl{
     width:58px;
     height:58px;
     -webkit-transition: ease 0.8s;
@@ -466,7 +482,7 @@ footer figure figcaption {
             transition: ease 0.8s;
 }
 
-.search-result nav li:hover #code, .search-result nav li:hover #code2{
+.search-result nav li:hover #code, .search-result nav li:hover #code2, .bar-card nav li:hover .code  {
     width:49px;
     height:49px;
     -webkit-transition: ease 0.8s;
@@ -476,6 +492,13 @@ footer figure figcaption {
             transition: ease 0.8s;
 } 
 
+.search-result .selected #curl, .search-result .selected #cur2, .bar-card nav .selected .curl{
+    width:25px;
+    height:25px;
+}
+.search-result .selected .result-backCorner, .bar-card nav .selected .result-backCorner {
+    width: 20px; height: 20px;
+}
 
 .search-result .selected a {
     color: #F1B219;
@@ -491,12 +514,12 @@ footer figure figcaption {
 .search-result-bar > ul > li {
     margin-top: 50px;
 }
-.search-result-bar h4 {
+.search-result-bar h4, .bar-card header li h4 {
    font-family: 'Lobster', cursive;
    font-size: 1.5em; 
    margin: 5px 0px;
 }
-.search-result-bar h4 span {
+.search-result-bar h4 span, .bar-card header li h4 span {
     background-color: #F1B219;
     color: #fff;
     font-weight: 300;
@@ -608,12 +631,13 @@ footer figure figcaption {
 /* Structure */
 
 .bar-card aside { float: right;}
-.bar-card #slider { width: 68%; height: 250px; display: block;}
-
+.bar-card #slider { width: 66%; height: 270px; display: block; overflow: hidden}
+.bar-card article { margin-top: 40px;}
 
 /* Général */
-#bar-moreInfos  ul, #bar-comment ul { padding-left: 0;}
-#bar-moreInfos .bar-owner:before, #bar-moreInfos .bar-tel:before, #bar-moreInfos .bar-mail:before, #bar-moreInfos .bar-site:before, #bar-comment .bar-comment-author p:before, #bar-map .bar-adress:before, #bar-map .bar-metro:before {
+#bar-moreInfos  ul, #bar-comment ul { padding-left: 0; display: inline-block;}
+.bar-card header ul {padding-left: 0;}
+.bar-card header li .postAdress:before, #bar-moreInfos .bar-owner:before, #bar-moreInfos .bar-tel:before, #bar-moreInfos .bar-mail:before, #bar-moreInfos .bar-site:before, #bar-comment .bar-comment-author p:before, #bar-map .bar-adress:before, #bar-map .bar-metro:before {
     content:""; 
     display: block; 
     float: left; 
@@ -622,8 +646,6 @@ footer figure figcaption {
     width: 21px;
     margin-right: 10px;
 }
-
-
 .bar-card .rank span {
     background-image: url("../medias/img/drinkizy_sprite.png");
     background-position: -38px -57px;
@@ -631,7 +653,6 @@ footer figure figcaption {
     width: 22px;
     display: inline-block;
 }
-
 .bar-card .rank .full {
    background-position: -11px -57px; 
 }
@@ -644,17 +665,31 @@ footer figure figcaption {
 
 
 
+/* Header */
+.bar-card header li { display: inline-block; }
+.bar-card header li:first-child {width: 45%;}
+.bar-card header li:last-child { float: right;}
+.bar-card header li .postAdress:before {    background-position: -74px -58px;
+    width: 14px;   }
 
-
+/* Aside top des boissons */
+.bar-card aside {color:#000;border-left: 5px solid #F1B219; padding: 10px; margin-left: 20px; background-color: #F1F1F2; height: 270px;}
+.bar-card aside h4 {color: #000 !important; margin:0 ; padding: 0 20px;}
+.bar-card aside h4 span {color: #F1B219}
+.bar-card aside img {height: 50px;
+    margin-right: 10px;
+    width: 50px;}
+.bar-card aside h6 {display: inline-block; margin: 0; vertical-align: top; font-size: 1em;}
 
 /* Navigation Menu */
 .bar-card nav ul { margin-left: 0; }
-.bar-card nav li { display: inline-block; width: 24%;text-align: center; font-family: 'Lobster', cursive; font-size: 1.4em; height: 40px;
-line-height: 35px;} 
+.bar-card nav li { display: inline-block; width: 24%;text-align: center; font-family: 'Lobster', cursive; font-size: 1.5em; height: 50px;
+line-height: 46px; position: relative; background-color: #f2f2f2} 
 .bar-card nav li a { color: #000;}
 
+
 /* More Infos */
-#bar-moreInfos h3, #bar-drinkMenu h3, #bar-comment h3, #bar-map h3 {
+#bar-moreInfos h3, #bar-drinkMenu h3, #bar-comment h3, #bar-map h3, .bar-card aside h4 {
     font-family: 'Lobster', cursive;
     color: #F1B219;
     font-size: 1.5em; 
