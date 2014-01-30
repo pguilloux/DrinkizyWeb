@@ -453,7 +453,9 @@ footer figure figcaption {
     background-position: 100% 0%;
     background-repeat: no-repeat no-repeat;
 }
-
+.search-result #slider-range {
+    margin-top: 50px;
+}
 .search-result nav li:hover #code #curl, .search-result nav li:hover #code2 #cur2{
     width:58px;
     height:58px;

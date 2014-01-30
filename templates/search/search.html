@@ -30,6 +30,8 @@
                 <h3>Happy Hour</h3>
 
 
+                <div id="slider-range"></div>
+
 
                 <h3>Note</h3>
 
@@ -188,6 +190,29 @@
                 create: function(event, ui) {
                     var v=$(this).slider('value');
                     $(this).find('.ui-slider-handle').html("<span>" + v + " km"  + "</span>");
+                }
+            });
+
+            var values = ["14h", "14h30", "15h", "15h30", "16h", "16h30", "17h", "17h30", "18h", "18h30", "19h", "19h30", "20h", "20h30", "21h", "21h30", "22h", "22h30", "23h", "23h30","00h", "00h30","01h", "01h30","02h", "02h30","03h", "03h30","04h", "04h30"];
+             $( "#slider-range" ).slider({
+                range: true,
+                min: 0,
+                max: 30,
+                values: [ 4, 18 ],
+                slide: function( event, ui ) {  
+                    $(ui.handle).find("span").text(values[ui.value]);
+                },
+                create: function(event, ui) {
+                    $(this).find('.ui-slider-handle').each(function(index, element){
+                        if (index == 0) {
+                            $(this).addClass('first');
+                            $(this).html("<span> 16h </span>");
+                        }
+                        else {
+                            $(this).addClass('second');
+                            $(this).html("<span> 23h </span>");
+                        }
+                    })
                 }
             });
           });
