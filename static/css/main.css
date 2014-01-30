@@ -685,7 +685,7 @@ footer figure figcaption {
 .bar-card nav ul { margin-left: 0; }
 .bar-card nav li { display: inline-block; width: 24%;text-align: center; font-family: 'Lobster', cursive; font-size: 1.5em; height: 50px;
 line-height: 46px; position: relative; background-color: #f2f2f2} 
-.bar-card nav li a { color: #000;}
+.bar-card nav li a { color: #000; display: block}
 
 
 /* More Infos */
@@ -722,6 +722,7 @@ line-height: 46px; position: relative; background-color: #f2f2f2}
 .bar-card .menuCat {
     border-left: 5px solid #F1B219; padding: 0; background-color: #F1F1F2; margin-bottom: 20px; width: 45%;
 }
+.bar-card .menuCat ul {padding-left: 0;}
 .bar-card .menuCat h4 {
     margin: 10px 0 20px 20px;
     font-family: 'Lobster', cursive;
@@ -769,10 +770,7 @@ line-height: 46px; position: relative; background-color: #f2f2f2}
     line-height: 14px;
     text-align: center;
 }
-.bar-card .infoDrinks-rank h5 span { font-weight: bold;}
-.bar-card .infoDrinks-rank h5 strong {
-    font-family: 'Lobster', cursive; display: block; 
-}
+
 .bar-card .infoDrinks-rank .rank { text-align: center;}
 .bar-card .infoDrinks ul {
     font-size: 0.8em; padding-left: 0;

@@ -85,9 +85,7 @@
 
 					<ul class="menuCat menuCat-aperitif">
 						{% for drink in drinks_list %}
-						    <li>
 						    	<h4>{{ drink.grouper }}</h4>
-							    <ul>
 							        {% for item in drink.list %}
 							        	<li class="">
 							          		<a href="#">
@@ -102,7 +100,7 @@
 						                				{{ item.object.drink.description }}
 						                			</li>
 						                			<li class="infoDrinks-rank">
-						                				<h5>Notez le <span>{{ item.object.drink.name|lower }}</span> de <strong>{{ item.object.bar.name }}</strong></h5>
+						                				<h5>Notez le <strong>{{ item.object.drink.name|lower }}</strong> de <strong>{{ item.object.bar.name }}</strong></h5>
 								                		<p class="rank">
 								                			<span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span>
 								                		</p>
@@ -112,8 +110,6 @@
 						                	</div>
 							        	</li>
 							        {% endfor %}
-							    </ul>
-						    </li>
 						{% endfor %}
 					</ul>
 
