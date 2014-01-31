@@ -41,8 +41,16 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'users.CustomUser'
+#AUTH_USER_MODEL = 'users.CustomUser'
 
+ADMINS = (
+    #('Drinkizy', 'pguilloux53@gmail.com'),
+)
+
+
+MANAGERS = ADMINS
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Application definition
 
