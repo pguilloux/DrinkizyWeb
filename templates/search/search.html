@@ -1,8 +1,9 @@
 {% extends 'layout/base.html' %}
 
 {% block content %}
+    {% load staticfiles %}
 
-<div class="main wrapper clearfix search-result">
+    <div class="main wrapper clearfix search-result">
         <aside>
             <h2>Affiner la recherche</h2>
             <form method="get" action=".">
@@ -44,13 +45,13 @@
             <ul>
                 <li class="selected"><a href="#">
                     <div id="code" class="result-backCorner">
-                        <img id="curl" src="../../static/medias/img/cornerLeft.png">
+                        <img id="curl" src={% static "medias/img/cornerLeft.png" %}>
                     </div>
                     Liste
                 </a></li>
                 <li><a href="#">Carte
                     <div id="code2" class="result-backCorner">
-                        <img id="cur2" src="../../static/medias/img/cornerRight.png">
+                        <img id="cur2" src={% static "medias/img/cornerRight.png" %}>
                     </div>
                 </a></li>
             </ul>

@@ -1,8 +1,9 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
+	{% load staticfiles %}
 
-<div class="main wrapper clearfix bar-card">
+	<div class="main wrapper clearfix bar-card">
 
 		<header>
 			<ul>
@@ -39,25 +40,25 @@
 				<ul>
 					<li class="selected">
 						<div class="peel-info code result-backCorner">
-                        	<img class="curl" src="../../static/medias/img/cornerLeft.png">
+                        	<img class="curl" src={% static "medias/img/cornerLeft.png" %}>
                     	</div>
 						<a href="#moreInfos">Plus d'infos</a>
 					</li>
 					<li>
 						<div class="peel-menu code result-backCorner">
-                        	<img class="curl" src="../../static/medias/img/cornerLeft.png">
+                        	<img class="curl" src={% static "medias/img/cornerLeft.png" %}>
                     	</div>
 						<a href="#drinkMenu">Carte des boissons</a>
 					</li>
 					<li>
 						<div class="peel-comment code result-backCorner">
-                        	<img class="curl" src="../../static/medias/img/cornerLeft.png">
+                        	<img class="curl" src={% static "medias/img/cornerLeft.png" %}>
                     	</div>
 						<a href="#comment">Avis</a>
 					</li>
 					<li>
 						<div class="peel-map code result-backCorner">
-                        	<img class="curl" src="../../static/medias/img/cornerLeft.png">
+                        	<img class="curl" src={% static "medias/img/cornerLeft.png" %}>
                     	</div>
 						<a href="#map">Plan</a>
 					</li>
@@ -326,8 +327,8 @@
 	</div>
 
 	{% block scriptjs %}    
-        <script type="text/javascript" src="../../static/js/masonry.pkgd.min.js"></script>
-        <script type="text/javascript" src="../../static/js/fiche_bar.js"></script>
+        <script type="text/javascript" src={% static "js/masonry.pkgd.min.js" %}></script>
+        <script type="text/javascript" src={% static "js/fiche_bar.js" %}></script>
     {% endblock scriptjs %}
 
 {% endblock content %}

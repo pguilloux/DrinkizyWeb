@@ -1,6 +1,7 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
+	{% load staticfiles %}
 
 	<div class="main wrapper clearfix home">
 	           
@@ -10,14 +11,14 @@
 		        <div id="ei-slider" class="ei-slider">
                     <ul class="ei-slider-large">
 						<li>
-                            <img src="../../static/medias/img/images/large/image1.jpg" alt="image06"/>
+                            <img src={% static "medias/img/images/large/image1.jpg" %} alt="image06"/>
                             <div class="ei-title">
                                 <h2>Passionate</h2>
                                 <h3>Seeker</h3>
                             </div>
                         </li>
                         <li>
-                            <img src="../../static/medias/img/images/large/image1.jpg" alt="image01" />
+                            <img src={% static "medias/img/images/large/image1.jpg" %} alt="image01"/>
                             <div class="ei-title">
                                 <h2>Le Descartes</h2>
                                 <h3>Nouveau Partenaire</h3>
@@ -27,8 +28,8 @@
                     </ul><!-- ei-slider-large -->
                     <ul class="ei-slider-thumbs">
                         <li class="ei-slider-element">Current</li>
-						<li><a href="#">Slide 6</a><img src="../../static/medias/img/images/thumbs/6.jpg" alt="thumb06" /></li>
-                        <li><a href="#">Slide 1</a><img src="../../static/medias/img/images/thumbs/1.jpg" alt="thumb01" /></li>
+						<li><a href="#">Slide 6</a><img src={% static "medias/img/images/thumbs/6.jpg" %} alt="thumb06" /></li>
+                        <li><a href="#">Slide 1</a><img src={% static "medias/img/images/thumbs/1.jpg" %} alt="thumb01" /></li>
                     </ul><!-- ei-slider-thumbs -->
                 </div><!-- ei-slider -->
 		    </section>
@@ -36,7 +37,7 @@
 
 		<aside>
 			<figure>
-		    	<img src="../../static/medias/img/pub_appli_mobile.png" alt="Télécharger gratuitement notre application android"/>
+		    	<img src={% static "medias/img/pub_appli_mobile.png" %} alt="Télécharger gratuitement notre application android"/>
 		    </figure>
 
 		    <figure class="sponsoring">
@@ -53,7 +54,7 @@
 					<h5>Mes coups de coeur</h5>
 					<h6>par <a href="">Lauriane</a></h6>
 					<figure>
-						<div><img src="../../static/medias/img/slider/image1.jpg" height="100"/></div>
+						<div><img src={% static "medias/img/slider/image1.jpg" %} height="100"/></div>
 						<figcaption>
 							<ol>
 								<li>Bière</li>
@@ -68,7 +69,7 @@
 					<h5>Mes coups de coeur</h5>
 					<h6>par <a href="">Lauriane</a></h6>
 					<figure>
-						<div><img src="../../static/medias/img/slider/image1.jpg" height="100"/></div>
+						<div><img src={% static "medias/img/slider/image1.jpg" %} height="100"/></div>
 						<figcaption>
 							<ol>
 								<li>Bière</li>
@@ -83,23 +84,7 @@
 					<h5>Mes coups de coeur</h5>
 					<h6>par <a href="">Lauriane</a></h6>
 					<figure>
-						<div><img src="../../static/medias/img/slider/image1.jpg" height="100"/></div>
-						<figcaption>
-							<ol>
-								<li>Bière</li>
-								<li>Bière</li>
-								<li>Bière</li>
-							</ol>
-						</figcaption>
-					</figure>
-				</li>
-
-
-				<li>
-					<h5>Mes coups de coeur</h5>
-					<h6>par <a href="">Lauriane</a></h6>
-					<figure>
-						<div><img src="../../static/medias/img/slider/image1.jpg" height="100"/></div>
+						<div><img src={% static "medias/img/slider/image1.jpg" %} height="100"/></div>
 						<figcaption>
 							<ol>
 								<li>Bière</li>
@@ -115,7 +100,23 @@
 					<h5>Mes coups de coeur</h5>
 					<h6>par <a href="">Lauriane</a></h6>
 					<figure>
-						<div><img src="../../static/medias/img/slider/image1.jpg" height="100"/></div>
+						<div><img src={% static "medias/img/slider/image1.jpg" %} height="100"/></div>
+						<figcaption>
+							<ol>
+								<li>Bière</li>
+								<li>Bière</li>
+								<li>Bière</li>
+							</ol>
+						</figcaption>
+					</figure>
+				</li>
+
+
+				<li>
+					<h5>Mes coups de coeur</h5>
+					<h6>par <a href="">Lauriane</a></h6>
+					<figure>
+						<div><img src={% static "medias/img/slider/image1.jpg" %} height="100"/></div>
 						<figcaption>
 							<ol>
 								<li>Bière</li>
