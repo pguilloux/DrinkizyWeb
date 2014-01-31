@@ -1,6 +1,7 @@
 from django.db import models
 from DrinkizyWeb import settings
 from users.models import *
+from django.contrib.auth.models import User
 
 
 class Bar(models.Model):
@@ -16,6 +17,7 @@ class Bar(models.Model):
 	picture = models.ImageField(upload_to='bars/')
 
 	creator = models.ForeignKey('users.CustomUser')
+	#creator = models.ForeignKey('User')
 	theme = models.ForeignKey('Theme')
 
 	def __unicode__(self):

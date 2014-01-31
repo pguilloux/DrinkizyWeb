@@ -15,4 +15,4 @@ class CustomUser(AbstractUser):
 
 	#objects = BaseUserManager()
 	#USERNAME_FIELD  = 'pseudo'
-	REQUIRED_FIELDS = ['type']
+	#REQUIRED_FIELDS = ['type']
