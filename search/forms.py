@@ -83,7 +83,7 @@ class MultiFacetedSearchForm(FacetedSearchForm):
         #     if value:
         #         sqs = sqs.narrow(u'%s:"%s"' % (field, sqs.query.clean(value)))
 
-        if no_filter_selected:
+        if no_filter_selected and self.cleaned_data['q']=="*":
             sqs = SearchQuerySet()
 
         return sqs
