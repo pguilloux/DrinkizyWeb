@@ -1,7 +1,6 @@
 from django.shortcuts import render
 
 from drinks.models import *
-from search.forms import MultiFacetedSearchForm
 
 import datetime
 from django.shortcuts import render_to_response

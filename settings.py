@@ -22,13 +22,22 @@ PROJECT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),'../')
 #     },
 # }
 
+
 HAYSTACK_CONNECTIONS = {
     'default': {
-        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': 'http://127.0.0.1:9200/',
-        'INDEX_NAME': 'haystack',
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        # 'PATH': 'bottlenews.whoosh_index',
+        'PATH': os.path.join(PROJECT_PATH, 'public/whoosh_index/'),
     },
 }
+
+# HAYSTACK_CONNECTIONS = {
+#     'default': {
+#         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+#         'URL': 'http://127.0.0.1:9200/',
+#         'INDEX_NAME': 'haystack',
+#     },
+# }
 
 
 # Quick-start development settings - unsuitable for production

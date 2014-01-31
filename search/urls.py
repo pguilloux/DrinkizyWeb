@@ -1,9 +1,8 @@
 from django.conf.urls import patterns, include, url
 from drinks.views import *
-from search.forms import MultiFacetedSearchForm
+from search.forms import CustomSearchForm
 from haystack.query import SearchQuerySet
-from search.views import MultiFacetedSearchView
-from haystack.views import FacetedSearchView
+from search.views import CustomSearchView
 from search.views import *
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -17,7 +16,7 @@ sqs = SearchQuerySet()#.facet("theme").facet("category")
 
 
 urlpatterns = patterns('search.views',
-    url(r'^search/$', MultiFacetedSearchView(form_class=MultiFacetedSearchForm, searchqueryset=sqs), name='search'),
+    url(r'^search/$', CustomSearchView(form_class=CustomSearchForm, searchqueryset=sqs), name='search'),
     #url(r'^search/$', search, form_class= MultiFacetedSearchForm, searchqueryset=sqs, name='search'),
 )
 

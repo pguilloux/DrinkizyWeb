@@ -1,5 +1,5 @@
 from django import forms
-from haystack.forms import FacetedSearchForm
+from haystack.forms import SearchForm
 from drinks.models import *
 from django.forms.widgets import *
 from django.http import HttpResponse
@@ -19,7 +19,7 @@ def get_themes():
     return [(theme.slug, theme.name) for theme in themesList] 
 
 
-class MultiFacetedSearchForm(FacetedSearchForm):
+class CustomSearchForm(SearchForm):
    
     start_price = forms.FloatField(required=False)
     end_price = forms.FloatField(required=False)
@@ -28,17 +28,21 @@ class MultiFacetedSearchForm(FacetedSearchForm):
     themes = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_themes())
 
     def __init__(self, *args, **kwargs):
-        self.selected_facets = kwargs.pop("selected_facets", [])
-        super(MultiFacetedSearchForm, self).__init__(*args, **kwargs)
+        #self.selected_facets = kwargs.pop("selected_facets", [])
+        super(CustomSearchForm, self).__init__(*args, **kwargs)
 
     def search(self):
-        sqs = super(MultiFacetedSearchForm, self).search()
-        
+        sqs = super(CustomSearchForm, self).search()
+
+
         no_filter_selected = True
 
         if not self.is_valid():
             #return self.no_query_found()
-            sqs = SearchQuerySet()
+            sqs = SearchQuerySet().filter(price__gte=-1)
+
+            logger.warning(sqs)
+            logger.warning("toto")
             return sqs
 
         # Check to see if a start_date was chosen.
@@ -84,7 +88,13 @@ class MultiFacetedSearchForm(FacetedSearchForm):
         #         sqs = sqs.narrow(u'%s:"%s"' % (field, sqs.query.clean(value)))
 
         if no_filter_selected and self.cleaned_data['q']=="*":
-            sqs = SearchQuerySet()
+            sqs = sqs.filter(price__gte=-1)
 
+
+        
+        if not self.cleaned_data['q']:
+            sqs = sqs.filter(price__gte=-1)
+
+        logger.warning(sqs)
         return sqs
 
