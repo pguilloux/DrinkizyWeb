@@ -119,24 +119,31 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-STATIC_ROOT = '/home/www/DrinkizyWeb/static/' 
-
-STATIC_URL = '/static/'# if DEBUG else STATIC_URL = 'http://drinkizy.alwaysdata.net/static'
-
-MEDIA_ROOT = '/home/www/DrinkizyWeb/static/medias' 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = '/static/medias/'# if DEBUG else MEDIA_URL = 'http://drinkizy.alwaysdata.net/static/medias'
 
 
-# Additional locations of static files
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_PATH, 'static/'),
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+STATICFILES_FINDERS = (
+  "django.contrib.staticfiles.finders.FileSystemFinder",
+  "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 )
+STATIC_URL = "/static/"
+MEDIA_URL = "/static/medias/"
+STATIC_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "public", "static")
+MEDIA_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "public", "static", "medias")
+
+
+# STATIC_ROOT = '/home/www/DrinkizyWeb/public/static/' 
+# STATIC_URL = '/static/'# if DEBUG else STATIC_URL = 'http://drinkizy.alwaysdata.net/static'
+# MEDIA_ROOT = '/home/www/DrinkizyWeb/public/static/medias' 
+# MEDIA_URL = '/static/medias/'# if DEBUG else MEDIA_URL = 'http://drinkizy.alwaysdata.net/static/medias'
+
+
+# # Additional locations of static files
+# STATICFILES_DIRS = (
+#     os.path.join(PROJECT_PATH, 'static/'),
+#     # Put strings here, like "/home/html/static" or "C:/www/django/static".
+#     # Always use forward slashes, even on Windows.
+#     # Don't forget to use absolute paths, not relative paths.
+# )
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, 'templates'),
