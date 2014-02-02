@@ -8,23 +8,26 @@ class Bar(models.Model):
 	slug = models.SlugField(max_length=200)
 	name = models.CharField(max_length=200)
 	address = models.CharField(max_length=200)
-	coordinates = models.CharField(max_length=200)
-	phone = models.CharField(max_length=200)
+	phone = models.CharField(max_length=200, blank=True, null=True)
+	website = models.CharField(max_length=200, blank=True, null=True)
 
-	approval = models.IntegerField()
-	disapproval = models.IntegerField()
+	latitude = models.FloatField(blank=True, null=True)
+	longitude = models.FloatField(blank=True, null=True)
 
-	picture = models.ImageField(upload_to='bars/')
+	approval = models.IntegerField(default=0)
+	disapproval = models.IntegerField(default=0)
+
+	nb_pictures = models.IntegerField(default=0)
 
 	creator = models.ForeignKey('users.CustomUser')
-	#creator = models.ForeignKey('User')
+	
 	theme = models.ForeignKey('Theme')
 
 	def __unicode__(self):
 		return "%s %s" % (self.name, self.address)
 
 	def getImgUrl(self):
-		return "%s%s" % (settings.MEDIA_URL+'bars/', self.picture)
+		return "%s%s%s" % (settings.MEDIA_URL+'bars/', self.slug, '.jpg')
 
 
 DAYS_OF_WEEK = (
@@ -66,5 +69,21 @@ class Theme(models.Model):
 	def __unicode__(self):
 		return "%s" % (self.name)
 
-	#def getImgUrl(self):
-	#	return "%s%s" % (settings.MEDIA_URL, self.picture)
+
+
+ 
+
+class Station(models.Model):
+
+	name = models.CharField(max_length=200)
+	city = models.CharField(max_length=200)
+	district = models.CharField(max_length=200)
+	type = models.CharField(max_length=200)
+
+	latitude = models.FloatField(blank=True, null=True)
+	longitude = models.FloatField(blank=True, null=True)
+
+	lines_numbers = models.CharField(max_length=200)
+
+	def __unicode__(self):
+		return "%s" % (self.name)

@@ -1,12 +1,12 @@
 from django.conf.urls import patterns, include, url
-from bars.views import *
+from home.views import *
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^fiche_bar/(?P<slug>[\w-]+)/$', fiche_bar, name='fiche_bar'),
+    url(r'^$', home, name='home'),
     # url(r'^movies', movies, name='movies'),
     # url(r'^film/(?P<slug>[\w-]+)/$', movie_details, name='movie_details'),
     # url(r'^director/(?P<slug>[\w-]+)/$', director_details, name='director_details'),

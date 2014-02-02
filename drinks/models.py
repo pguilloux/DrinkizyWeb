@@ -6,10 +6,8 @@ class Drink(models.Model):
 	name = models.CharField(max_length=200)
 	description = models.CharField(max_length=2000)
 
-	approval = models.IntegerField()
-	disapproval = models.IntegerField()
-
 	subcategory = models.ForeignKey('DrinkSubCategory')
+	creator = models.ForeignKey('users.CustomUser', blank=True, null=True)
 
 	def __unicode__(self):
 		return "%s %s %s" % (self.name, self.description, self.subcategory)
@@ -37,13 +35,15 @@ class DrinkSubCategory(models.Model):
 
 
 class DrinkBar(models.Model):
-	slug = models.SlugField(max_length=200)
 
 	price = models.FloatField()
 	price_happy_hour = models.FloatField()
 
 	drink = models.ForeignKey('Drink')
 	bar = models.ForeignKey('bars.Bar')
+
+	approval = models.IntegerField(default=0)
+	disapproval = models.IntegerField(default=0)
 
 	def __unicode__(self):
 		return "%s %s %s" % (self.drink.name, self.bar.name, self.price)

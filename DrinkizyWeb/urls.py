@@ -5,6 +5,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
+    (r'', include('home.urls')),
     (r'', include('bars.urls')),
     (r'', include('drinks.urls')),
     (r'', include('search.urls')),

@@ -4,13 +4,6 @@ from bars.models import *
 from haystack.query import SearchQuerySet
 
 
-
-
-
-def home(request):
-	foo = "Hello spece di batard !"
-	return render_to_response('bars/home.html', {'foo': foo})
-
 def fiche_bar(request, slug): 
 	bar = Bar.objects.get(slug=slug)
 	drinks_in_bar = SearchQuerySet().filter(bar__slug=slug)
