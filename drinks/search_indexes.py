@@ -7,11 +7,13 @@ from haystack.inputs import Raw
 
 class DrinkBarIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.EdgeNgramField(document=True, use_template=True)
-    price = indexes.FloatField(model_attr='price', indexed=True, faceted=True)
-    bar = indexes.CharField(use_template=True, faceted=True)
-    theme = indexes.CharField(model_attr='bar__theme__slug', faceted=True)
-    category = indexes.CharField(model_attr='drink__subcategory__category__slug', faceted=True)
-    subcategory = indexes.CharField(model_attr='drink__subcategory__slug', faceted=True)
+    price = indexes.FloatField(model_attr='price', indexed=True)
+    bar = indexes.CharField(use_template=True)
+    address = indexes.CharField(model_attr='bar__address')
+    theme = indexes.CharField(model_attr='bar__theme__slug')
+    category = indexes.CharField(model_attr='drink__subcategory__category__slug')
+    subcategory = indexes.CharField(model_attr='drink__subcategory__slug')
+    name = indexes.CharField(model_attr='drink__name')
 
     def get_model(self):
         return DrinkBar

@@ -70,9 +70,6 @@ class Theme(models.Model):
 		return "%s" % (self.name)
 
 
-
- 
-
 class Station(models.Model):
 
 	name = models.CharField(max_length=200)

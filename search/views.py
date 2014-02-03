@@ -34,7 +34,15 @@ class CustomSearchView(SearchView):
         context = super(CustomSearchView, self).get_context_data(**kwargs)
         #q = self.request.GET.get('q')
         #if q:
-        #context['categories'] = DrinkCategory.objects.all()
+        if self.form.is_valid():
+            #
+            # added the following two lines.
+            if self.form.cleaned_data['localisation']:
+                context['localisation'] = self.form.cleaned_data['localisation']
+                if self.form.cleaned_data['distance']:
+                    #self.form.cleaned_data['q'] = u'*'
+                    context['distance'] = self.form.cleaned_data['distance']
+                       
         #context['themes'] = Theme.objects.all()
 
         return context

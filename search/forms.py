@@ -2,9 +2,10 @@ from django import forms
 from haystack.forms import SearchForm
 from drinks.models import *
 from django.forms.widgets import *
+from django.db.models import Q
 from django.http import HttpResponse
 from haystack.query import SearchQuerySet
-import logging
+import logging, operator
 
    
 logger = logging.getLogger(__name__)
@@ -18,6 +19,29 @@ def get_themes():
     themesList = Theme.objects.all()
     return [(theme.slug, theme.name) for theme in themesList] 
 
+DISTRICTS = [
+    ('75001', '1er'),
+    ('75002', '2eme'),
+    ('75003', '3eme'),
+    ('75004', '4eme'),
+    ('75005', '5eme'),
+    ('75006', '6eme'),
+    ('75007', '7eme'),
+    ('75008', '8eme'),
+    ('75009', '9eme'),
+    ('75010', '10eme'),
+    ('75011', '11eme'),
+    ('75012', '12eme'),
+    ('75013', '13eme'),
+    ('75014', '14eme'),
+    ('75015', '15eme'),
+    ('75016', '16eme'),
+    ('75017', '17eme'),
+    ('75018', '18eme'),
+    ('75019', '19eme'),
+    ('75020', '20eme'),
+]
+
 
 class CustomSearchForm(SearchForm):
    
@@ -26,6 +50,7 @@ class CustomSearchForm(SearchForm):
     categories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories())
     subcategories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories())
     themes = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_themes())
+    districts = forms.MultipleChoiceField(required=False, widget=SelectMultiple, choices=DISTRICTS)
 
     def __init__(self, *args, **kwargs):
         #self.selected_facets = kwargs.pop("selected_facets", [])
@@ -40,9 +65,6 @@ class CustomSearchForm(SearchForm):
         if not self.is_valid():
             #return self.no_query_found()
             sqs = SearchQuerySet().filter(price__gte=-1)
-
-            logger.warning(sqs)
-            logger.warning("toto")
             return sqs
 
         # Check to see if a start_date was chosen.
@@ -64,9 +86,15 @@ class CustomSearchForm(SearchForm):
 
 
         if self.cleaned_data['themes']:
-            logger.warning(self.cleaned_data)
             themes_utf8 = [theme.encode("utf8") for theme in self.cleaned_data['themes']]
             sqs = sqs.filter(theme__slug__in=themes_utf8)
+            no_filter_selected = False
+
+
+        if self.cleaned_data['districts']:
+            districts_utf8 = [district.encode("utf8") for district in self.cleaned_data['districts']]
+            logger.warning(districts_utf8)
+            sqs = sqs.filter(reduce(operator.or_, (Q(address__contains=district) for district in districts_utf8)))
             no_filter_selected = False
         
 

@@ -71,6 +71,7 @@ INSTALLED_APPS = (
     'haystack',
 
     #apps
+    'home',
     'bars',
     'drinks',
     'search',
