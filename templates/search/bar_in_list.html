@@ -7,7 +7,7 @@
     <h4><a href="{% url "bars.views.fiche_bar" onebar.slug %}">{{ onebar.name }}</a>  <span> {{ onebar.theme }} </span></h4>
     <div class="search-result-info">
         <p class="postAdress>">{{ onebar.address }}</p>
-        <p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span> <strong>321 avis</strong></p>
+        <p class="rank"><a href="{% url "bars.views.fiche_bar" onebar.slug %}#comment"><span class="">★</span> <span class="full">★</span> <span class="full">★</span> <span class="full">★</span> <span class="full">★</span> <strong>321 avis</strong></a></p>
     </div>
 
         <div class="search-result-drinksMenu">
@@ -27,7 +27,7 @@
             </ul>
             
 
-            <h5><a href="#">voir <strong>plus</strong></a></h5>
+            <h5><a href="{% url "bars.views.fiche_bar" onebar.slug %}#drinkMenu">voir <strong>plus</strong></a></h5>
         </div>
 
 

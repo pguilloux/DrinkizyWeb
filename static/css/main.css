@@ -435,7 +435,7 @@ footer figure figcaption {
     direction: rtl;
     margin: 0;  
 }
-.search-result .rank a {
+.search-result aside .rank a, .search-result .rank span {
     font-size: 25px;
     color: #F1F1F2;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
@@ -562,6 +562,16 @@ footer figure figcaption {
     background-color: #fff;
 }
 
+.search-result-list header h5 {
+    display: inline-block;
+    margin-top: 20px;
+}
+.search-result-list header label, .search-result-list header select {
+    float: right;
+    margin-top: 18px;
+}
+.search-result-list header label { margin-right: 10px;}
+
 .search-result-bar ul {
     padding-left: 0px;
 }
@@ -599,26 +609,26 @@ footer figure figcaption {
 .search-result-bar figure img {
     height: 130px;
 }
+.search-result-info {
+    height: 65px;
+    margin-bottom: 15px;
+}
 .search-result-info p {
     display: inline-block;
     margin-top: 2px;
 }
+.search-result-info .rank {
+    cursor: default;
+}
 .search-result-info .rank span {
-    background-image: url("../medias/img/drinkizy_sprite.png");
-    background-position: -38px -57px;
-    height: 22px;
-    width: 22px;
-    display: inline-block;
+    font-size: 25px;
 }
-
-.search-result-info .rank .full {
-   background-position: -11px -57px; 
-}
-.search-result-info strong { 
+.search-result-info a strong { 
     display: block; 
     font-family: 'Lobster', cursive;
     font-size: 1.2em;
     text-align: right;
+    direction: ltr;
 }
 .search-result-info .rank {
     float: right;
@@ -639,7 +649,7 @@ footer figure figcaption {
     background-color: #F1F1F2;
     border-left: 5px solid #F5C82D;
     padding: 5px 10px;
-    width: 60%;
+    width: 90%;
     height: 65px;
     float: left;
 }
@@ -671,6 +681,8 @@ footer figure figcaption {
 .search-result-drinksMenu h5 strong {
     font-size: 1.5em;
 }
+
+.search-result-carte { display: none}
 
 
 /* ==========================================================================
