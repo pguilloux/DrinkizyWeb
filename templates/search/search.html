@@ -9,34 +9,45 @@
             <form method="get" action=".">
 
                 {{ form.q }}
-                <input type="submit" value="Actualiser">
+                <input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
+                <div class="clearfix"></div>
 
-                <h3>Boissons</h3>
+                <h3><a href="#" class="easeInOut300ms">Boissons</a></h3>
+                <section>
+                    {{ form.categories }}
+                    <input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
+                    <div class="clearfix"></div>
+                </section>
 
-                {{ form.categories }}
-                <input type="submit" value="Actualiser">
+                <h3><a href="#" class="easeInOut300ms">Localisation</a></h3>
+                <section>
 
-                <h3>Localisation</h3>
-
-                <input type="text" value="Où ? Adresse, Métro, Arr." class="inputLocalisation"/>
+                    <input type="text" value="Où ? Adresse, Métro" class="inputLocalisation inputSearch-result"/>
                 
-                {{ form.districts }}
+                    {{ form.districts }}
 
-                <div id="slider-range-min"></div>
+                    <div id="slider-range-min"></div>
+                </section>
 
                 
-                <h3>Thèmes</h3>
+                <h3><a href="#" class="easeInOut300ms">Thèmes</a></h3>
+                <section>
+                    {{ form.themes }}
+                    <input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
+                    <div class="clearfix"></div>
+                </section>
 
-                {{ form.themes }}
-                <input type="submit" value="Actualiser">
+                <h3><a href="#" class="easeInOut300ms">Happy Hour</a></h3>
 
-                <h3>Happy Hour</h3>
-
-
-                <div id="slider-range"></div>
+                <section>
+                    <div id="slider-range"></div>
+                </section>
 
 
-                <h3>Note</h3>
+                <h3><a href="#" class="easeInOut300ms">Note</a></h3>
+                <section>
+                    <p class="rank"><a href="#" class="easeInOut300ms">★</a> <a href="#" class="easeInOut300ms">★</a> <a href="#" class="easeInOut300ms">★</a> <a href="#" class="easeInOut300ms">★</a> <a href="#" class="easeInOut300ms">★</a></p>
+                </section>
 
                 
                 
@@ -183,7 +194,7 @@
     {% block scriptjs %}
         
         <script>
-          $(function() {
+          $(document).ready(function() {
             $( "#slider-range-min" ).slider({
                 range: "min",
                 value: 2,
@@ -220,6 +231,15 @@
                     })
                 }
             });
+
+
+            $(".search-result form h3").click(function(e){
+
+                $(this).next("section").slideToggle(100);
+                e.preventDefault();
+            }); 
+
+
           });
         </script>
     {% endblock scriptjs %}

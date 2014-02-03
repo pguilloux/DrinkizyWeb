@@ -44,13 +44,13 @@ DISTRICTS = [
 
 
 class CustomSearchForm(SearchForm):
-   
+    q = forms.CharField(label='search', widget=forms.TextInput(attrs={'placeholder': 'Search', 'class':'inputSearch-result'}))
     start_price = forms.FloatField(required=False)
     end_price = forms.FloatField(required=False)
-    categories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories())
+    categories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories(), )
     subcategories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories())
     themes = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_themes())
-    districts = forms.MultipleChoiceField(required=False, widget=SelectMultiple, choices=DISTRICTS)
+    districts = forms.MultipleChoiceField(required=False, widget=SelectMultiple(attrs={'class':'inputSearch-result'}), choices=DISTRICTS)
 
     def __init__(self, *args, **kwargs):
         #self.selected_facets = kwargs.pop("selected_facets", [])
