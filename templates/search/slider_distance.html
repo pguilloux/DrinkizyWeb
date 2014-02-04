@@ -3,7 +3,7 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    
+    console.log("toggle");
     var type = $('<input type="range" />').attr('type');
     $('#{{ attrs.id }}').attr("readonly", true).hide();
     $('#{{ attrs.id }}-slider').slider({
