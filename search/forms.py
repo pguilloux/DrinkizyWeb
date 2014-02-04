@@ -86,16 +86,17 @@ class Slider(forms.RangeInput):
  
 
 class CustomSearchForm(SearchForm):
+
    
     distance = forms.IntegerField(required=False, widget=Slider(attrs={'id': 'slider-range-min'}))
+    q = forms.CharField(label='search', widget=forms.TextInput(attrs={'placeholder': 'Search', 'class':'inputSearch-result'}))
     start_price = forms.FloatField(required=False)
     end_price = forms.FloatField(required=False)
-    categories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories())
+    categories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories(), )
     subcategories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories())
     themes = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_themes())
-    districts = forms.MultipleChoiceField(required=False, widget=SelectMultiple, choices=DISTRICTS)
     stations = forms.ChoiceField(required=False, widget=Select, choices=get_stations_by_lines())
-
+    districts = forms.MultipleChoiceField(required=False, widget=SelectMultiple(attrs={'class':'inputSearch-result'}), choices=DISTRICTS)
 
 
     def __init__(self, *args, **kwargs):

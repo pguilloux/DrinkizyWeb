@@ -9,37 +9,46 @@
             <form method="get" action=".">
 
                 {{ form.q }}
-                <input type="submit" value="Actualiser">
+                <input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
+                <div class="clearfix"></div>
 
-                <h3>Boissons</h3>
+                <h3><a href="#" class="easeInOut300ms">Boissons</a></h3>
+                <section>
+                    {{ form.categories }}
+                    <input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
+                    <div class="clearfix"></div>
+                </section>
 
-                {{ form.categories }}
-                <input type="submit" value="Actualiser">
+                <h3><a href="#" class="easeInOut300ms">Localisation</a></h3>
+                <section>
 
-                <h3>Localisation</h3>
-
+                    <input type="text" placeholder="Où ? Adresse, Métro" class="inputLocalisation inputSearch-result"/>
                 
-                {{ form.districts }}
-                <input type="submit" value="Actualiser">
+                    {{ form.districts }}
 
-                {{ form.stations }}
+                    {{ form.stations }}
 
-                <input type="text" placeholder="Où ? Adresse, Métro, Arr." class="inputLocalisation"/>
+                    {{ form.distance }}
+                </section>
+   
+                <h3><a href="#" class="easeInOut300ms">Thèmes</a></h3>
+                <section>
+                    {{ form.themes }}
+                    <input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
+                    <div class="clearfix"></div>
+                </section>
 
-                {{ form.distance }}
-                
-                <h3>Thèmes</h3>
+                <h3><a href="#" class="easeInOut300ms">Happy Hour</a></h3>
 
-                {{ form.themes }}
-                <input type="submit" value="Actualiser">
-
-                <h3>Happy Hour</h3>
+                <section>
+                    <div id="slider-range"></div>
+                </section>
 
 
-                <div id="slider-range"></div>
-
-
-                <h3>Note</h3>
+                <h3><a href="#" class="easeInOut300ms">Note</a></h3>
+                <section>
+                    <p class="rank"><a href="#" class="easeInOut300ms">★</a> <a href="#" class="easeInOut300ms">★</a> <a href="#" class="easeInOut300ms">★</a> <a href="#" class="easeInOut300ms">★</a> <a href="#" class="easeInOut300ms">★</a></p>
+                </section>
 
                 
                 
@@ -71,12 +80,13 @@
                     <h5> {{page.object_list|length}} résultats pour la recherche "{{query}}"</h5> 
                 {% endif %}
 
-                <label>Trier par </label>
+               
                 <select>
                     <option value="pertinence">Pertinence</option>
                     <option value="prix">Prix</option>
                     <option value="proximité">Proximité</option>
                 </select>
+                <label>Trier par </label>
 
             </header>
             <section class="search-result-bar">
@@ -157,6 +167,15 @@
                     })
                 }
             });
+
+
+            $(".search-result form h3").click(function(e){
+
+                $(this).next("section").slideToggle(100);
+                e.preventDefault();
+            }); 
+
+
           });
         </script>
     {% endblock scriptjs %}

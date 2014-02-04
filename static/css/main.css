@@ -71,8 +71,8 @@ textarea {
    Author: Jonathan Verrecchia - verekia.com/initializr/responsive-template
    ========================================================================== */
 
-body {
-    font: 16px/26px Ubuntu, Helvetica, Helvetica Neue, Arial;
+body, html, button, input, select, textarea {
+    font-family: Ubuntu, Helvetica, Helvetica Neue, Arial;
 }
 
 .wrapper {
@@ -187,14 +187,15 @@ nav ul {
        -moz-border-radius: 5px;
             border-radius: 5px;
     border: 2px solid #fff;
-    background-color: #777777;
+    background-color: rgba(255, 255, 255, 0.20);
     height: 40px;
     width: 33.5%;
     color: #fff;
-    font-size: 12px;
+    font-size: 13px;
     padding-left: 10px;
-    margin-top: 12px;
+    margin-top: 15px;
     margin-right: 20px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2) inset, 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .wrapper_search label {
@@ -203,9 +204,8 @@ nav ul {
 }
 
 .wrapper_search input[type=submit] {
-    border: 0;
     font-size: 12px;
-    padding: 8px;
+    padding: 7px 7px 6px 7px;
     font-weight: bold;
 }
 
@@ -213,6 +213,12 @@ nav ul {
     background-color: #fff;
     color: #3C3C3B;
     margin: 0 0 0 40px;
+    border: 4px solid #FFFFFF;
+}
+
+.wrapper_search .moreSearch:hover {
+    background-color: transparent;
+    color:#fff;
 }
 
 .wrapper_search .goSearch {
@@ -222,6 +228,7 @@ nav ul {
     background-image: url("../medias/img/drinkizy_sprite.png");
     background-position: -11px -11px;
     margin: 0 20px;
+    border : none;
 }
 
 .buttonRadius {
@@ -229,9 +236,9 @@ nav ul {
            -moz-border-radius: 5px;
                 border-radius: 5px;
 
-    -webkit-box-shadow: 1px 1px 3px #636363;
-       -moz-box-shadow: 1px 1px 3px #636363;
-            box-shadow: 1px 1px 3px #636363;
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.20);
+       -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.20);
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.20);
 }
 
 
@@ -262,12 +269,14 @@ footer figure figcaption {
     background-image: url("../medias/img/drinkizy_sprite.png");
     background-position: -104px -12px;
     height: 30px;
+    display: inline-block;
 }
 .footer-tw {
     background-image: url("../medias/img/drinkizy_sprite.png");
     background-position: -58px -12px;
     height: 30px;
     width: 33px;
+    display: inline-block;
 }
 
 
@@ -282,6 +291,7 @@ footer figure figcaption {
 .home-topWeek {
     background: #F4F4F4;
     padding:10px;
+    display: none;
 }
 .home-topWeek h2 { margin-top: 0;}
 .home-topWeek > ul, .home-topWeek ol {
@@ -377,15 +387,62 @@ footer figure figcaption {
     font-family: 'Lobster', cursive;
     color: #F1B219;
 }
-.search-result .inputLocalisation {
-    margin-bottom: 30px;
+.search-result form {
+    width: 93%;
+}
+.search-result form section {
+    display: none;
+}
+.search-result .inputSearch-result {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background : transparent;
+    border: 2px solid #fff;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2) inset, 2px 2px 2px rgba(0, 0, 0, 0.2);
     width: 100%;
 }
 
+.search-result .submitSearch-result {
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    background : #F5C82D;
+    color: #fff;
+    font-weight: bold;
+    border: 4px solid #F5C82D;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    float: right;
+}
+.search-result .submitSearch-result:hover{
+    color: #F5C82D;
+    background: transparent;
+}
 
-.search-result aside h2, .search-result aside h3 {
+.search-result aside h2, .search-result aside h3 a {
     font-family: 'Lobster', cursive;
     color: #F1B219;
+}
+
+.search-result aside h3 a:hover {
+    margin-left: 10px;
+}
+.search-result section:last-child{
+    float: left;
+}
+.search-result .rank {
+    direction: rtl;
+    margin: 0;  
+}
+.search-result aside .rank a, .search-result .rank span {
+    font-size: 25px;
+    color: #F1F1F2;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+.search-result .rank .full, .search-result .rank a:hover, .search-result .rank a:hover ~ a,  
+.search-result .rank a:focus ~ a, .search-result .rank a:active ~ a  {
+    color: #F5C82D;
 }
 
 .search-result aside ul {
@@ -469,8 +526,8 @@ footer figure figcaption {
     background-position: 100% 0%;
     background-repeat: no-repeat no-repeat;
 }
-.search-result #slider-range {
-    margin-top: 50px;
+.search-result #slider-range, .search-result #slider-range-min {
+    margin-top: 30px;
 }
 .search-result nav li:hover #code #curl, .search-result nav li:hover #code2 #cur2, .bar-card nav li:hover .code .curl{
     width:58px;
@@ -504,6 +561,16 @@ footer figure figcaption {
     color: #F1B219;
     background-color: #fff;
 }
+
+.search-result-list header h5 {
+    display: inline-block;
+    margin-top: 20px;
+}
+.search-result-list header label, .search-result-list header select {
+    float: right;
+    margin-top: 18px;
+}
+.search-result-list header label { margin-right: 10px;}
 
 .search-result-bar ul {
     padding-left: 0px;
@@ -542,26 +609,26 @@ footer figure figcaption {
 .search-result-bar figure img {
     height: 130px;
 }
+.search-result-info {
+    height: 65px;
+    margin-bottom: 15px;
+}
 .search-result-info p {
     display: inline-block;
     margin-top: 2px;
 }
+.search-result-info .rank {
+    cursor: default;
+}
 .search-result-info .rank span {
-    background-image: url("../medias/img/drinkizy_sprite.png");
-    background-position: -38px -57px;
-    height: 22px;
-    width: 22px;
-    display: inline-block;
+    font-size: 25px;
 }
-
-.search-result-info .rank .full {
-   background-position: -11px -57px; 
-}
-.search-result-info strong { 
+.search-result-info a strong { 
     display: block; 
     font-family: 'Lobster', cursive;
     font-size: 1.2em;
     text-align: right;
+    direction: ltr;
 }
 .search-result-info .rank {
     float: right;
@@ -582,7 +649,7 @@ footer figure figcaption {
     background-color: #F1F1F2;
     border-left: 5px solid #F5C82D;
     padding: 5px 10px;
-    width: 60%;
+    width: 90%;
     height: 65px;
     float: left;
 }
@@ -614,14 +681,8 @@ footer figure figcaption {
 .search-result-drinksMenu h5 strong {
     font-size: 1.5em;
 }
-.search-result .inputLocalisation {
-    border-radius: 4px;
-    background : transparent;
-    border: 2px solid #fff;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.5) inset, 0px 2px 2px 0px rgba(0, 0, 0, 0.5);
-    padding: 5px;
-}
 
+.search-result-carte { display: none}
 
 
 /* ==========================================================================
@@ -830,25 +891,27 @@ line-height: 46px; position: relative; background-color: #f2f2f2}
         float: left;
         width: 27%;
         margin: 2% 1.7%;
-        padding: 5px 10px;
+        padding: 0px;
         margin-bottom: 0;
     }
 
-    .header-container nav .connect {
-        border: 4px solid #fff;
-        width: 129px;
-    }
-
-    .header-container nav .subscribe {
+    .header-container nav .buttonRadius {
         background-color: #fff;
         color: #F2B219;
         border: 4px solid #fff;
-        width: 110px;
+        width: 90px;
+    }
+    .header-container nav .connect {
+        width: 120px;
+    }
+    .header-container nav .buttonRadius:hover {
+        background-color: transparent;
+        color: #fff;
     }
 
     .header-container img {
-        margin: 5px 0;
-        width: 16%;
+        margin: 7px 0 -1px 0;
+        width: 18%;
     }
     
 
@@ -869,8 +932,10 @@ line-height: 46px; position: relative; background-color: #f2f2f2}
     .header-container nav ul li {
         display: inline;
         float: right;
-        margin: 8px 0 0 20px;
+        margin: 20px 0 0 20px;
     }
+
+
 
     .oldie nav a {
         margin: 0 0.7%;
@@ -1071,3 +1136,9 @@ line-height: 46px; position: relative; background-color: #f2f2f2}
         page-break-after: avoid;
     }
 }
+
+
+
+.easeInOut1s{ -webkit-transition: all 1s ease-in-out; -moz-transition: all 1s ease-in-out; -o-transition: all 1s ease-in-out; -ms-transition: all 1s ease-in-out; transition: all 1s ease-in-out; }
+.easeInOut500ms {-webkit-transition: all 500ms ease-in-out; -moz-transition: all 500ms ease-in-out; -o-transition: all 500ms ease-in-out; -ms-transition: all 500ms ease-in-out; transition: all 500ms ease-in-out;}
+.easeInOut300ms{ -webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; }
