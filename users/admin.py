@@ -1,3 +1,8 @@
 from django.contrib import admin
+from drinks.models import *
 
-# Register your models here.
+class CustomUserAdmin(admin.ModelAdmin):
+	model = CustomUser
+
+
+admin.site.register(CustomUser, CustomUserAdmin)

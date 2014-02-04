@@ -1,3 +1,8 @@
 from django.contrib import admin
+from home.models import *
 
-# Register your models here.
+class SliderAdmin(admin.ModelAdmin):
+	model = Slider
+
+
+admin.site.register(Slider, SliderAdmin)
