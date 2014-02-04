@@ -391,7 +391,7 @@ footer figure figcaption {
     width: 93%;
 }
 .search-result form section {
-    display: none;
+    display: block;
 }
 .search-result .inputSearch-result {
     padding: 5px;
@@ -431,17 +431,18 @@ footer figure figcaption {
 .search-result section:last-child{
     float: left;
 }
-.search-result .rank {
+.rankActive, .rankFix {
     direction: rtl;
     margin: 0;  
 }
-.search-result aside .rank a, .search-result .rank span {
+.rankActive a, .rankFix span {
     font-size: 25px;
     color: #F1F1F2;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    line-height: 10px;
 }
-.search-result .rank .full, .search-result .rank a:hover, .search-result .rank a:hover ~ a,  
-.search-result .rank a:focus ~ a, .search-result .rank a:active ~ a  {
+.rankActive .full, .rankActive a:hover, .rankActive a:hover ~ a,  
+.rankActive a:focus ~ a, .rankActive a:active ~ a, .rankFix .full {
     color: #F5C82D;
 }
 
@@ -506,15 +507,15 @@ footer figure figcaption {
 }
 .peel-info{
     left:0;
-    background-image: url(../medias/img/cornerMap.png);
+    background-image: url(../medias/img/cornerInfo.png);
 }
 .peel-menu{
     left:0;
-    background-image: url(../medias/img/cornerMap.png);
+    background-image: url(../medias/img/cornerMenu.png);
 }
 .peel-comment{
     left:0;
-    background-image: url(../medias/img/cornerMap.png);
+    background-image: url(../medias/img/cornerComment.png);
 }
 .peel-map{
     left:0;
@@ -584,7 +585,7 @@ footer figure figcaption {
 .search-result-bar h4, .bar-card header li h4 {
    font-family: 'Lobster', cursive;
    font-size: 1.5em; 
-   margin: 5px 0px;
+   margin: -7px 0 0 0;
 }
 .search-result-bar h4 span, .bar-card header li h4 span {
     background-color: #F1B219;
@@ -612,10 +613,11 @@ footer figure figcaption {
 .search-result-info {
     height: 65px;
     margin-bottom: 15px;
+    margin-top: 10px;
 }
-.search-result-info p {
+.search-result-info .postAdress {
     display: inline-block;
-    margin-top: 2px;
+    margin: 0;
 }
 .search-result-info .rank {
     cursor: default;
@@ -630,7 +632,7 @@ footer figure figcaption {
     text-align: right;
     direction: ltr;
 }
-.search-result-info .rank {
+.search-result-info .rankFix {
     float: right;
 }
 .search-result-info p:first-child:before {
@@ -707,20 +709,11 @@ footer figure figcaption {
     width: 21px;
     margin-right: 10px;
 }
-.bar-card .rank span {
-    background-image: url("../medias/img/drinkizy_sprite.png");
-    background-position: -38px -57px;
-    height: 22px;
-    width: 22px;
-    display: inline-block;
-}
-.bar-card .rank .full {
-   background-position: -11px -57px; 
-}
-.bar-card .rank strong { 
+.bar-card .rankFix strong { 
     display: block; 
     font-family: 'Lobster', cursive;
     font-size: 1.2em;
+    direction: ltr;
     /*text-align: right;*/
 }
 
@@ -745,7 +738,8 @@ footer figure figcaption {
 /* Navigation Menu */
 .bar-card nav ul { margin-left: 0; }
 .bar-card nav li { display: inline-block; width: 24%;text-align: center; font-family: 'Lobster', cursive; font-size: 1.5em; height: 50px;
-line-height: 46px; position: relative; background-color: #f2f2f2} 
+line-height: 46px; position: relative; background-color: rgba(0, 0, 0, 0.04)} 
+.bar-card nav li:hover { background-color: #fff;}
 .bar-card nav li a { color: #000; display: block}
 
 
@@ -765,13 +759,15 @@ line-height: 46px; position: relative; background-color: #f2f2f2}
     background-position: -97px -58px;   
 }
 #bar-moreInfos .bar-tel:before {
-    background-position: -97px -58px;   
+    background-position: -195px -58px;
+    width: 15px;   
 }
 #bar-moreInfos .bar-mail:before {
     background-position: -124px -58px;  
 }
 #bar-moreInfos .bar-site:before {
-    background-position: -97px -58px;   
+    background-position: -214px -58px;
+    width: 16px;   
 }
 
 
@@ -805,19 +801,12 @@ line-height: 46px; position: relative; background-color: #f2f2f2}
     color: #F1B219;
 }
 #container-barCard { margin-left: 20px;}
-.bar-card .menuCat > li {padding: 5px 20px; margin-top: 15px;}
+.bar-card .menuCat > li {padding: 5px 20px; margin: 15px 0;}
 .bar-card .menuCat > li.selected { background-color: #FCFCFC;}
 
-.bar-card .infoDrinks-img {
-    width: 15%;
-}
-.bar-card .infoDrinks-img img {
-    height: 50px; width: 50px;
-    margin-right: 10px;
-}
 
 .bar-card .infoDrinks-text{
-    width: 50%;
+    width: 66%;
     line-height: 15px;
     vertical-align: top;
 }
@@ -831,7 +820,19 @@ line-height: 46px; position: relative; background-color: #f2f2f2}
     line-height: 14px;
     text-align: center;
 }
-
+.bar-card .infoDrinks-rank p {
+    text-align: center;
+}
+.bar-card .infoDrinks-rank p a {
+    font-weight: bold;
+    font-size: 15px;
+}
+.bar-card .infoDrinks-rank p a:first-child {
+    color: #037f20; 
+}
+.bar-card .infoDrinks-rank p a:last-child {
+    color: #ff0000;
+}
 .bar-card .infoDrinks-rank .rank { text-align: center;}
 .bar-card .infoDrinks ul {
     font-size: 0.8em; padding-left: 0;
@@ -853,11 +854,11 @@ line-height: 46px; position: relative; background-color: #f2f2f2}
     height: 20px;
     width: 15px;
 }
-#bar-comment .bar-comment-text .rank {margin-top: 10px;}
+#bar-comment .bar-comment-text .rankFix {margin-top: 10px; float:left;}
 
 #bar-comment h5 {float: left; font-size: 1em; margin: 0 30px;}
-#bar-comment .rank { display: inline-block;}
-#bar-comment .rank strong { display: inline; margin-left: 15px;}
+#bar-comment .rankFix { display: inline-block;}
+#bar-comment .rankFix strong { display: inline-block; margin-left: 15px; direction: ltr;}
 .leaveComment { display: inline-block; color: #000; float: right; margin-right: 20px;}
 
 
@@ -873,6 +874,8 @@ line-height: 46px; position: relative; background-color: #f2f2f2}
     height: 23px;
     width: 21px;
 }
+
+  #map-canvas { height: 100% }
 
 
 

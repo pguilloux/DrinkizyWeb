@@ -16,19 +16,26 @@
 				<li class="socialBox">
 				</li>
 				<li>
-					<p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span> <strong>321 avis</strong></p>
+					<p class="rankFix">
+        			<span class="">★</span>
+        			<span class="">★</span>
+        			<span class=" full">★</span>
+        			<span class=" full">★</span>
+        			<span class=" full">★</span> 
+					<strong>321 avis</strong>
+        		</p>
 				</li>
 			</ul>
 
 		</header>
 
         <aside>
-			<h4>Top des boissons de <span>Chez Momo</span></h4>
+			<h4>Top des boissons de <span>{{bar.name}}</span></h4>
 
 			<ul>
-				<li><img src=""/><h6>Mojito</h6></li>
-				<li><img src=""/><h6>Mojito</h6></li>
-				<li><img src=""/><h6>Mojito</h6></li>
+				<li><h6>Mojito</h6></li>
+				<li><h6>Mojito</h6></li>
+				<li><h6>Mojito</h6></li>
 			</ul>
 			
 		</aside>
@@ -38,25 +45,25 @@
 		<article>
 			<nav>
 				<ul>
-					<li class="selected">
+					<li class="easeInOut300ms">
 						<div class="peel-info code result-backCorner">
                         	<img class="curl" src={% static "medias/img/cornerLeft.png" %}>
                     	</div>
 						<a href="#moreInfos">Plus d'infos</a>
 					</li>
-					<li>
+					<li class="easeInOut300ms">
 						<div class="peel-menu code result-backCorner">
                         	<img class="curl" src={% static "medias/img/cornerLeft.png" %}>
                     	</div>
 						<a href="#drinkMenu">Carte des boissons</a>
 					</li>
-					<li>
+					<li class="easeInOut300ms">
 						<div class="peel-comment code result-backCorner">
                         	<img class="curl" src={% static "medias/img/cornerLeft.png" %}>
                     	</div>
 						<a href="#comment">Avis</a>
 					</li>
-					<li>
+					<li class="easeInOut300ms">
 						<div class="peel-map code result-backCorner">
                         	<img class="curl" src={% static "medias/img/cornerLeft.png" %}>
                     	</div>
@@ -71,7 +78,7 @@
 				<p class="bar-text">{{ bar.description }}</p>
 				<p class="bar-happyHour"><strong>Happy Hour</strong> <span>16h - 22h</span></p>
 				<ul>
-					<Li class="bar-owner">Marcel Proust</li>
+					<!--Li class="bar-owner">Marcel Proust</li-->
 					<li class="bar-tel">{{bar.phone}}</li>
 					<li class="bar-mail">conctact@chezmomo.fr</li>
 					<li class="bar-site"><a target="_blank" href={{ bar.website }}>{{ bar.website }}</a></li>
@@ -91,19 +98,24 @@
 							        	<li class="">
 							          		<a href="#">
 							          			<h6>{{ item.object.drink.name }} <span>{{ item.object.price }} €</span></h6>
-							          			<p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span></p> 
+							          			<p class="rankActive">
+						                			<a href="#" class="easeInOut300ms">★</a>
+						                			<a href="#" class="easeInOut300ms">★</a>
+						                			<a href="#" class="easeInOut300ms full">★</a>
+						                			<a href="#" class="easeInOut300ms full">★</a>
+						                			<a href="#" class="easeInOut300ms full">★</a>
+						                		</p> 
 							          		</a>
 
 							          		<div class="infoDrinks">
 						                		<ul>
-						                			<li class="infoDrinks-img"><img src="" /></li>
 						                			<li class="infoDrinks-text">
 						                				{{ item.object.drink.description }}
 						                			</li>
 						                			<li class="infoDrinks-rank">
-						                				<h5>Notez le <strong>{{ item.object.drink.name|lower }}</strong> de <strong>{{ item.object.bar.name }}</strong></h5>
-								                		<p class="rank">
-								                			<span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span>
+						                				<h5>Valider <strong>{{ item.object.drink.name|lower }}</strong> de <strong>{{ item.object.bar.name }}</strong></h5>
+								                		<p>
+								                			<a href="">oui</a>	 <a href="">non</a>	
 								                		</p>
 						                			</li>
 						                		</ul>
@@ -114,154 +126,7 @@
 						{% endfor %}
 					</ul>
 
-
-
-{% comment %} 
-
-		            	<h4>Apéritifs</h4>
-		                <li class="">
-		                	<a href="#">
-		                		<h6>Mojito <span>2 €</span></h6>
-		                		<p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span></p>
-		                	</a>
-		                	<div class="infoDrinks">
-		                		
-		                		<ul>
-		                			<li class="infoDrinks-img"><img src="" /></li>
-		                			<li class="infoDrinks-text">
-		                				1/2 Vodka, jus d'ananas, jus de pamplemousse
-		                			</li>
-		                			<li class="infoDrinks-rank">
-		                				<h5>Notez le <span>mojito</span> de <strong>Chez Momo</strong></h5>
-				                		<p class="rank">
-				                			<span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span>
-				                		</p>
-		                			</li>
-		                		</ul>
-		             			
-		                	</div>
-		            	</li>
-		            	<li class="">
-		                	<a href="">
-		                		<h6>Mojito <span>2 €</span></h6>
-		                		<p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span></p>
-		                	</a>
-		                	<div class="infoDrinks">
-		                		
-		                		<ul>
-		                			<li class="infoDrinks-img"><img src="" /></li>
-		                			<li class="infoDrinks-text">
-		                				1/2 Vodka, jus d'ananas, jus de pamplemousse
-		                			</li>
-		                			<li class="infoDrinks-rank">
-		                				<h5>Notez le <span>mojito</span> de <strong>Chez Momo</strong></h5>
-				                		<p class="rank">
-				                			<span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span>
-				                		</p>
-		                			</li>
-		                		</ul>
-		             			
-		                	</div>
-		            	</li>
-		            </ul>
-
-		            <ul class="menuCat menuCat-spiritueux">
-		            	<h4>Spiritueux</h4>
-		                <li class="">
-		                	<a href="">
-		                		<h6>Mojito <span>2 €</span></h6>
-		                		<p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span></p>
-		                	</a>
-		                	<div class="infoDrinks">
-		                		
-		                		<ul>
-		                			<li class="infoDrinks-img"><img src="" /></li>
-		                			<li class="infoDrinks-text">
-		                				1/2 Vodka, jus d'ananas, jus de pamplemousse
-		                			</li>
-		                			<li class="infoDrinks-rank">
-		                				<h5>Notez le <span>mojito</span> de <strong>Chez Momo</strong></h5>
-				                		<p class="rank">
-				                			<span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span>
-				                		</p>
-		                			</li>
-		                		</ul>
-		             			
-		                	</div>
-		            	</li>
-		            	<li class="">
-		                	<a href="">
-		                		<h6>Mojito <span>2 €</span></h6>
-		                		<p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span></p>
-		                	</a>
-		                	<div class="infoDrinks">
-		                		
-		                		<ul>
-		                			<li class="infoDrinks-img"><img src="" /></li>
-		                			<li class="infoDrinks-text">
-		                				1/2 Vodka, jus d'ananas, jus de pamplemousse
-		                			</li>
-		                			<li class="infoDrinks-rank">
-		                				<h5>Notez le <span>mojito</span> de <strong>Chez Momo</strong></h5>
-				                		<p class="rank">
-				                			<span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span>
-				                		</p>
-		                			</li>
-		                		</ul>
-		             			
-		                	</div>
-		            	</li>
-		            	<li class="">
-		                	<a href="">
-		                		<h6>Mojito <span>2 €</span></h6>
-		                		<p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span></p>
-		                	</a>
-		                	<div class="infoDrinks">
-		                		
-		                		<ul>
-		                			<li class="infoDrinks-img"><img src="" /></li>
-		                			<li class="infoDrinks-text">
-		                				1/2 Vodka, jus d'ananas, jus de pamplemousse
-		                			</li>
-		                			<li class="infoDrinks-rank">
-		                				<h5>Notez le <span>mojito</span> de <strong>Chez Momo</strong></h5>
-				                		<p class="rank">
-				                			<span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span>
-				                		</p>
-		                			</li>
-		                		</ul>
-		             			
-		                	</div>
-		            	</li>
-		            </ul>
-
-		            <ul class="menuCat menuCat-aperitif">
-		            	<h4>Apéritifs</h4>
-		                <li class="">
-		                	<a href="">
-		                		<h6>Mojito <span>2 €</span></h6>
-		                		<p class="rank"><span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span></p>
-		                	</a>
-		                	<div class="infoDrinks">
-		                		
-		                		<ul>
-		                			<li class="infoDrinks-img"><img src="" /></li>
-		                			<li class="infoDrinks-text">
-		                				1/2 Vodka, jus d'ananas, jus de pamplemousse
-		                			</li>
-		                			<li class="infoDrinks-rank">
-		                				<h5>Notez le <span>mojito</span> de <strong>Chez Momo</strong></h5>
-				                		<p class="rank">
-				                			<span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span>
-				                		</p>
-		                			</li>
-		                		</ul>
-		             			
-		                	</div>
-		            	</li>
-		            </ul>
-		        </div>
-	{% endcomment %}            
+         
 	            <div class="clearfix"></div>
 			</div>
 
@@ -269,8 +134,13 @@
 				<h3><a name="comment">Avis</a></h3>
 
 				<h5>Note globale</h5>
-				<p class="rank">
-        			<span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span> <strong>321 avis</strong>
+				<p class="rankFix">
+					<strong>321 avis</strong>
+        			<span class="">★</span>
+        			<span class="">★</span>
+        			<span class=" full">★</span>
+        			<span class=" full">★</span>
+        			<span class=" full">★</span> 
         		</p>
 
         		<a href="#" class="leaveComment">Laisser un commentaire</a>
@@ -283,9 +153,13 @@
 						</div>
 						<div class="bar-comment-text">
 							<p>Lorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgr</p>
-							<p class="rank">
-	                			<span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span>
-	                		</p>
+							<p class="rankFix">
+	                			<span class="">★</span>
+	                			<span class="">★</span>
+	                			<span class=" full">★</span>
+	                			<span class=" full">★</span>
+	                			<span class=" full">★</span>
+	                		</p> 
 						</div>
 						<div class="clearfix"></div>
 					</li>
@@ -297,9 +171,13 @@
 						</div>
 						<div class="bar-comment-text">
 							<p>Lorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgr</p>
-							<p class="rank">
-	                			<span class="full"></span> <span class="full"></span> <span class="full"></span> <span class="full"></span> <span></span>
-	                		</p>
+							<p class="rankFix">
+	                			<span class="">★</span>
+	                			<span class="">★</span>
+	                			<span class=" full">★</span>
+	                			<span class=" full">★</span>
+	                			<span class=" full">★</span>
+	                		</p> 
 						</div>
 						<div class="clearfix"></div>
 					</li>
@@ -310,7 +188,7 @@
 
 			<div id="bar-map">
 				<h3><a name="map">Plan</a></h3>
-
+				<div id="map-canvas"/></div>
 				<ul>
 					<li class="bar-adress">{{ bar.address }}</li>
 					<li class="bar-metro">Cadet, Poissonnière</li>
@@ -329,6 +207,20 @@
 	{% block scriptjs %}    
         <script type="text/javascript" src={% static "js/masonry.pkgd.min.js" %}></script>
         <script type="text/javascript" src={% static "js/fiche_bar.js" %}></script>
+
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYdfpCP0VVQOXXf5nvoiwdHhbeI4drobE&sensor=true">
+	    </script>
+	    <script type="text/javascript">
+	      function initialize() {
+	        var mapOptions = {
+	          center: new google.maps.LatLng(-34.397, 150.644),
+	          zoom: 8
+	        };
+	        var map = new google.maps.Map(document.getElementById("map-canvas"),
+	            mapOptions);
+	      }
+	      google.maps.event.addDomListener(window, 'load', initialize);
+	    </script>
     {% endblock scriptjs %}
 
 {% endblock content %}
