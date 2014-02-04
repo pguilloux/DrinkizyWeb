@@ -391,7 +391,7 @@ footer figure figcaption {
     width: 93%;
 }
 .search-result form section {
-    display: none;
+    display: block;
 }
 .search-result .inputSearch-result {
     padding: 5px;
@@ -431,17 +431,17 @@ footer figure figcaption {
 .search-result section:last-child{
     float: left;
 }
-.search-result .rank {
+.rankActive, .rankFix {
     direction: rtl;
     margin: 0;  
 }
-.search-result aside .rank a, .search-result .rank span {
+.rankActive a, .rankFix span {
     font-size: 25px;
     color: #F1F1F2;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
-.search-result .rank .full, .search-result .rank a:hover, .search-result .rank a:hover ~ a,  
-.search-result .rank a:focus ~ a, .search-result .rank a:active ~ a  {
+.rankActive .full, .rankActive a:hover, .rankActive a:hover ~ a,  
+.rankActive a:focus ~ a, .rankActive a:active ~ a, .rankFix .full {
     color: #F5C82D;
 }
 
@@ -584,7 +584,7 @@ footer figure figcaption {
 .search-result-bar h4, .bar-card header li h4 {
    font-family: 'Lobster', cursive;
    font-size: 1.5em; 
-   margin: 5px 0px;
+   margin: -7px 0 0 0;
 }
 .search-result-bar h4 span, .bar-card header li h4 span {
     background-color: #F1B219;
@@ -613,9 +613,9 @@ footer figure figcaption {
     height: 65px;
     margin-bottom: 15px;
 }
-.search-result-info p {
+.search-result-info .postAdress {
     display: inline-block;
-    margin-top: 2px;
+    margin-top: 11px;
 }
 .search-result-info .rank {
     cursor: default;
@@ -630,7 +630,7 @@ footer figure figcaption {
     text-align: right;
     direction: ltr;
 }
-.search-result-info .rank {
+.search-result-info .rankFix {
     float: right;
 }
 .search-result-info p:first-child:before {
@@ -808,13 +808,6 @@ line-height: 46px; position: relative; background-color: #f2f2f2}
 .bar-card .menuCat > li {padding: 5px 20px; margin-top: 15px;}
 .bar-card .menuCat > li.selected { background-color: #FCFCFC;}
 
-.bar-card .infoDrinks-img {
-    width: 15%;
-}
-.bar-card .infoDrinks-img img {
-    height: 50px; width: 50px;
-    margin-right: 10px;
-}
 
 .bar-card .infoDrinks-text{
     width: 50%;

@@ -95,7 +95,7 @@ class CustomSearchForm(SearchForm):
     categories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories(), )
     subcategories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories())
     themes = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_themes())
-    stations = forms.ChoiceField(required=False, widget=Select, choices=get_stations_by_lines())
+    stations = forms.ChoiceField(required=False, widget=Select(attrs={'class':'inputSearch-result'}), choices=get_stations_by_lines())
     districts = forms.MultipleChoiceField(required=False, widget=SelectMultiple(attrs={'class':'inputSearch-result'}), choices=DISTRICTS)
 
 
