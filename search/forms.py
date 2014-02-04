@@ -154,7 +154,9 @@ class CustomSearchForm(SearchForm):
             sqs = sqs.filter(reduce(operator.or_, (Q(address__contains=district) for district in districts_utf8)))
             no_filter_selected = False
 
-
+        if no_filter_selected and self.cleaned_data['q']=="*":
+            sqs = sqs.filter(price__gte=-1)
+            
         if self.cleaned_data['station']:
             if self.cleaned_data['distance']:
 
@@ -174,14 +176,13 @@ class CustomSearchForm(SearchForm):
                         sqs = sqs.exclude(bar__name__exact=bar.name)
                     else:
                         self.bar_distances[bar.name] = distance
-            no_filter_selected = False
+                no_filter_selected = False
 
 
             # logger.warning('tata1')
             # logger.warning(categories_utf8)
             # logger.warning('tata2')
-        if no_filter_selected and self.cleaned_data['q']=="*":
-            sqs = sqs.filter(price__gte=-1)
+        
         
         if not self.cleaned_data['q']:
             sqs = sqs.filter(price__gte=-1)
