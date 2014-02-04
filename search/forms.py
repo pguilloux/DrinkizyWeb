@@ -75,7 +75,7 @@ class Slider(forms.RangeInput):
 
     class Media:
         js = (
-            'https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js',
+            '..'+settings.STATIC_URL+'js/jquery.min.js',
             '..'+settings.STATIC_URL+'js/jquery-ui-1.10.4.custom.min.js',
         )
         css = {
@@ -89,7 +89,7 @@ class CustomSearchForm(SearchForm):
 
    
     distance = forms.IntegerField(required=False, widget=Slider(attrs={'id': 'slider-range-min'}))
-    q = forms.CharField(label='search', widget=forms.TextInput(attrs={'placeholder': 'Search', 'class':'inputSearch-result'}))
+    q = forms.CharField(required=False, label='search', widget=forms.TextInput(attrs={'placeholder': 'Search', 'class':'inputSearch-result'}))
     start_price = forms.FloatField(required=False)
     end_price = forms.FloatField(required=False)
     categories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories(), )

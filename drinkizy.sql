@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Mar 04 Février 2014 à 00:40
--- Version du serveur: 5.5.20
--- Version de PHP: 5.3.10
+-- Généré le: Mar 04 Février 2014 à 11:14
+-- Version du serveur: 5.5.24-log
+-- Version de PHP: 5.3.13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -131,15 +131,16 @@ CREATE TABLE IF NOT EXISTS `bars_bar` (
   `slug` varchar(200) NOT NULL,
   `name` varchar(200) NOT NULL,
   `address` varchar(200) NOT NULL,
-  `phone` varchar(200),
+  `phone` varchar(200) DEFAULT NULL,
   `approval` int(11) NOT NULL,
   `disapproval` int(11) NOT NULL,
   `creator_id` int(11) NOT NULL,
   `theme_id` int(11) NOT NULL,
-  `website` varchar(200),
+  `website` varchar(200) DEFAULT NULL,
   `nb_pictures` int(11) NOT NULL,
-  `latitude` double,
-  `longitude` double,
+  `latitude` double DEFAULT NULL,
+  `longitude` double DEFAULT NULL,
+  `mail` varchar(200),
   PRIMARY KEY (`id`),
   KEY `theme_id_refs_id_6a053be6` (`theme_id`),
   KEY `creator_id_refs_id_89339927` (`creator_id`)
@@ -149,12 +150,12 @@ CREATE TABLE IF NOT EXISTS `bars_bar` (
 -- Contenu de la table `bars_bar`
 --
 
-INSERT INTO `bars_bar` (`id`, `slug`, `name`, `address`, `phone`, `approval`, `disapproval`, `creator_id`, `theme_id`, `website`, `nb_pictures`, `latitude`, `longitude`) VALUES
-(1, 'le-beho', 'Le Beho', '8 place Sainte-Opportune 75001 PARIS', '01-53-40-81-56; 06-66-19-46-82', 0, 0, 1, 1, 'http://www.lebeho.fr', 1, 48.859788, 2.347328),
-(2, 'guinness-tavern', 'Guinness Tavern', '31 rue des Lombards 75001 PARIS', '01-42-33-26-45', 0, 0, 1, 2, 'http://www.guinness-tavern.com', 1, 48.859929, 2.348517),
-(3, 'la-fine-mousse', 'La Fine Mousse', '6 avenue Jean Aicard 75011 PARIS', '09-80-45-94-64', 0, 0, 1, 8, 'http://www.lafinemousse.fr', 1, 48.865032, 2.381778),
-(4, 'nimporte-quoi', 'N''importe quoi', '16 rue du Roule 75001 PARIS', '01-40-26-29-71', 0, 0, 1, 3, 'http://www.nimportequoi.fr', 1, 48.860925, 2.343863),
-(5, 'le-dernier-bar-avant-la-fin-du-monde', 'Le dernier bar avant la fin du monde', '19 avenue Victoria 75001 PARIS', '01-53-00-98-95', 0, 0, 1, 4, 'http://www.dernierbar.com', 1, 48.857953, 2.346277);
+INSERT INTO `bars_bar` (`id`, `slug`, `name`, `address`, `phone`, `approval`, `disapproval`, `creator_id`, `theme_id`, `website`, `nb_pictures`, `latitude`, `longitude`, `mail`) VALUES
+(1, 'le-beho', 'Le Beho', '8 place Sainte-Opportune 75001 PARIS', '01-53-40-81-56; 06-66-19-46-82', 0, 0, 1, 1, 'http://www.lebeho.fr', 1, 48.859788, 2.347328, NULL),
+(2, 'guinness-tavern', 'Guinness Tavern', '31 rue des Lombards 75001 PARIS', '01-42-33-26-45', 0, 0, 1, 2, 'http://www.guinness-tavern.com', 1, 48.859929, 2.348517, NULL),
+(3, 'la-fine-mousse', 'La Fine Mousse', '6 avenue Jean Aicard 75011 PARIS', '09-80-45-94-64', 0, 0, 1, 8, 'http://www.lafinemousse.fr', 1, 48.865032, 2.381778, NULL),
+(4, 'nimporte-quoi', 'N''importe quoi', '16 rue du Roule 75001 PARIS', '01-40-26-29-71', 0, 0, 1, 3, 'http://www.nimportequoi.fr', 1, 48.860925, 2.343863, NULL),
+(5, 'le-dernier-bar-avant-la-fin-du-monde', 'Le dernier bar avant la fin du monde', '19 avenue Victoria 75001 PARIS', '01-53-00-98-95', 0, 0, 1, 4, 'http://www.dernierbar.com', 1, 48.857953, 2.346277, NULL);
 
 -- --------------------------------------------------------
 
@@ -817,7 +818,7 @@ CREATE TABLE IF NOT EXISTS `drinks_drink` (
   `name` varchar(200) NOT NULL,
   `description` varchar(2000) NOT NULL,
   `subcategory_id` int(11) NOT NULL,
-  `creator_id` int(11),
+  `creator_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `subcategory_id_refs_id_57c0f03b` (`subcategory_id`),
   KEY `drinks_drink_ad376f8d` (`creator_id`)
@@ -972,7 +973,7 @@ CREATE TABLE IF NOT EXISTS `south_migrationhistory` (
   `migration` varchar(255) NOT NULL,
   `applied` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `south_migrationhistory`
@@ -987,7 +988,8 @@ INSERT INTO `south_migrationhistory` (`id`, `app_name`, `migration`, `applied`) 
 (6, 'bars', '0004_auto__chg_field_bar_website__chg_field_bar_phone', '2014-02-02 19:03:36'),
 (7, 'bars', '0005_auto__add_station__del_field_bar_lat__del_field_bar_lon__add_field_bar', '2014-02-02 21:03:16'),
 (8, 'home', '0001_initial', '2014-02-02 21:21:02'),
-(9, 'drinks', '0002_auto__del_field_drinkbar_slug__add_field_drinkbar_approval__add_field_', '2014-02-02 22:27:49');
+(9, 'drinks', '0002_auto__del_field_drinkbar_slug__add_field_drinkbar_approval__add_field_', '2014-02-02 22:27:49'),
+(10, 'bars', '0006_auto__add_field_bar_mail', '2014-02-04 11:12:51');
 
 -- --------------------------------------------------------
 

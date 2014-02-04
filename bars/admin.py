@@ -13,8 +13,11 @@ class OpeningHoursBarAdmin(admin.ModelAdmin):
 class ThemeAdmin(admin.ModelAdmin):
 	model = Theme
 
+class StationAdmin(admin.ModelAdmin):
+	model = Station
 
 admin.site.register(Bar, BarAdmin)
 admin.site.register(OpeningHours, OpeningHoursAdmin)
 admin.site.register(OpeningHoursBar, OpeningHoursBarAdmin)
 admin.site.register(Theme, ThemeAdmin)
+admin.site.register(Station, StationAdmin)

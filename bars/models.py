@@ -10,6 +10,7 @@ class Bar(models.Model):
 	address = models.CharField(max_length=200)
 	phone = models.CharField(max_length=200, blank=True, null=True)
 	website = models.CharField(max_length=200, blank=True, null=True)
+	mail = models.CharField(max_length=200, blank=True, null=True)
 
 	latitude = models.FloatField(blank=True, null=True)
 	longitude = models.FloatField(blank=True, null=True)
