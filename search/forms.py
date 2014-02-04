@@ -75,7 +75,7 @@ class Slider(forms.RangeInput):
 
     class Media:
         js = (
-            'https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js',
+            '..'+settings.STATIC_URL+'js/jquery.min.js',
             '..'+settings.STATIC_URL+'js/jquery-ui-1.10.4.custom.min.js',
         )
         css = {
