@@ -7,8 +7,13 @@ from django.http import HttpResponse
 from haystack.query import SearchQuerySet
 import logging, operator
 
+import floppyforms as forms
+
    
 logger = logging.getLogger(__name__)
+
+TRANSPORT_LINES = ['1', '2', '3', '3B', '4', '5', '6', '7', '7B', '8', '9', '10',
+ '11', '12', '13', '14', 'A', 'B', 'C', 'D', 'E', 'T1', 'T2', 'T3A', 'T3B']
 
 
 def get_categories():
@@ -18,6 +23,23 @@ def get_categories():
 def get_themes():
     themesList = Theme.objects.all()
     return [(theme.slug, theme.name) for theme in themesList] 
+
+def get_stations():
+    stationsList = Station.objects.all()
+    return [(station.name, station.name) for station in stationsList] 
+
+def get_stations_by_lines():
+    stationsList = Station.objects.all()
+    #return [(station.name, line+"-"+station.name) for line in TRANSPORT_LINES for station in stationsList if line in station.get_lines()]
+    stations_by_lines = []
+
+    for line in TRANSPORT_LINES:
+        for station in stationsList:
+            if line in station.get_lines():
+                stations_by_lines.append((station.name, line+"-"+station.name))
+
+    return stations_by_lines
+
 
 DISTRICTS = [
     ('75001', '1er'),
@@ -43,18 +65,53 @@ DISTRICTS = [
 ]
 
 
+
+
+class Slider(forms.RangeInput):
+    min = 0
+    max = 1500
+    step = 50
+    template_name = '../templates/search/slider_distance.html'
+
+    class Media:
+        js = (
+            'https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js',
+            '..'+settings.STATIC_URL+'js/jquery-ui-1.10.4.custom.min.js',
+        )
+        css = {
+            'all': (
+                '..'+settings.STATIC_URL+'css/ui-lightness/jquery-ui-1.10.4.custom.css',
+            )
+        }
+ 
+
 class CustomSearchForm(SearchForm):
    
+    distance = forms.IntegerField(required=False, widget=Slider(attrs={'id': 'slider-range-min'}))
     start_price = forms.FloatField(required=False)
     end_price = forms.FloatField(required=False)
     categories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories())
     subcategories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories())
     themes = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_themes())
     districts = forms.MultipleChoiceField(required=False, widget=SelectMultiple, choices=DISTRICTS)
+    stations = forms.ChoiceField(required=False, widget=Select, choices=get_stations_by_lines())
+
+
 
     def __init__(self, *args, **kwargs):
         #self.selected_facets = kwargs.pop("selected_facets", [])
         super(CustomSearchForm, self).__init__(*args, **kwargs)
+
+
+    def clean_num(self):
+        num = self.cleaned_data['distance']
+        if not 5 <= num <= 20:
+            raise forms.ValidationError("Enter a value between 5 and 20")
+
+        if not num % 5 == 0:
+            raise forms.ValidationError("Enter a multiple of 5")
+        return num
+
 
     def search(self):
         sqs = super(CustomSearchForm, self).search()
@@ -83,6 +140,7 @@ class CustomSearchForm(SearchForm):
             categories_utf8 = [category.encode("utf8") for category in self.cleaned_data['categories']]
             sqs = sqs.filter(category__slug__in=categories_utf8)
             no_filter_selected = False
+            logger.warning('tata1')
 
 
         if self.cleaned_data['themes']:
@@ -93,8 +151,11 @@ class CustomSearchForm(SearchForm):
 
         if self.cleaned_data['districts']:
             districts_utf8 = [district.encode("utf8") for district in self.cleaned_data['districts']]
-            logger.warning(districts_utf8)
             sqs = sqs.filter(reduce(operator.or_, (Q(address__contains=district) for district in districts_utf8)))
+            no_filter_selected = False
+
+        if self.cleaned_data['distance']:
+            logger.warning(self.cleaned_data['distance'])
             no_filter_selected = False
         
 

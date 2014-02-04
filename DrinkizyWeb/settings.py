@@ -65,6 +65,7 @@ INSTALLED_APPS = (
     #added packages
     'south',
     'haystack',
+    'floppyforms',
 
     #apps
     'home',

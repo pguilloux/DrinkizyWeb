@@ -42,8 +42,8 @@ class CustomSearchView(SearchView):
                 if self.form.cleaned_data['distance']:
                     #self.form.cleaned_data['q'] = u'*'
                     context['distance'] = self.form.cleaned_data['distance']
-                       
-        #context['themes'] = Theme.objects.all()
+
+        #context['stations'] = Station.objects.all()
 
         return context
 

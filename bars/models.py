@@ -84,3 +84,6 @@ class Station(models.Model):
 
 	def __unicode__(self):
 		return "%s" % (self.name)
+
+	def get_lines(self):
+		return self.lines_numbers.split(", ")

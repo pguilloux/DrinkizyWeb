@@ -18,12 +18,15 @@
 
                 <h3>Localisation</h3>
 
-                <input type="text" value="Où ? Adresse, Métro, Arr." class="inputLocalisation"/>
                 
                 {{ form.districts }}
+                <input type="submit" value="Actualiser">
 
-                <div id="slider-range-min"></div>
+                {{ form.stations }}
 
+                <input type="text" placeholder="Où ? Adresse, Métro, Arr." class="inputLocalisation"/>
+
+                {{ form.distance }}
                 
                 <h3>Thèmes</h3>
 
@@ -98,37 +101,7 @@
                 {% endfor %}
              </ul>
             {% endwith %}
-{% comment %}
-            <!-- Begin faceting. -->
 
-
-            <div>
-                <dl>
-                    {% if facets.fields.theme %}
-                        <dt>Theme</dt>
-                        {# Provide only the top 5 authors #}
-                        {% for theme in facets.fields.theme %}
-                            <dd><a href="{{ request.get_full_path }}&amp;selected_facets=theme_exact:{{ theme.0|urlencode }}">{{ theme.0 }}</a> ({{ theme.1 }})</dd>
-                        {% endfor %}
-                    {% else %}
-                        <p>No theme facets.</p>
-                    {% endif %}
-                </dl>
-
-                <dl>
-                    {% if facets.fields.category %}
-                        <dt>Category</dt>
-                        {# Provide only the top 5 authors #}
-                        {% for category in facets.fields.category %}
-                            <dd><a href="{{ request.get_full_path }}&amp;selected_facets=category_exact:{{ category.0|urlencode }}">{{ category.0 }}</a> ({{ category.1 }})</dd>
-                        {% endfor %}
-                    {% else %}
-                        <p>No category facets.</p>
-                    {% endif %}
-                </dl>
-            </div>
-            <!-- End faceting -->
-{% endcomment %}
 
             {% if page.has_previous or page.has_next %}
                 <div>
@@ -137,30 +110,7 @@
                     {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
                 </div>
             {% endif %}
- {% comment %}
-        {% else %}
-            {% with objects=drinkbars %}
-
-            <ul>
-                {% for result in objects|dictsort:"object.bar.name" %}
-                   
-                    {% ifchanged result.object.bar%}
-                        <li>
-
-                            {% with onebar=result.object.bar %}
-                                {% include "search/bar_in_list.html" %}
-                            {% endwith %}
-
-                        </li>
-                        <div class="clearfix"></div>
-                    {%endifchanged%}
-    
-                {% endfor %}
-             </ul>
-             {% endwith %}
-{% endcomment %}
-    
-
+ 
 
             </section>
 
@@ -183,29 +133,16 @@
     {% block scriptjs %}
         
         <script>
-          $(function() {
-            $( "#slider-range-min" ).slider({
-                range: "min",
-                value: 2,
-                min: 1,
-                max: 10,
-                slide: function( event, ui ) {
-                    $(this).find('.ui-slider-handle span').text(ui.value + " km" );
-                },
-                create: function(event, ui) {
-                    var v=$(this).slider('value');
-                    $(this).find('.ui-slider-handle').html("<span>" + v + " km"  + "</span>");
-                }
-            });
+          $(document).ready(function() {
 
-            var values = ["14h", "14h30", "15h", "15h30", "16h", "16h30", "17h", "17h30", "18h", "18h30", "19h", "19h30", "20h", "20h30", "21h", "21h30", "22h", "22h30", "23h", "23h30","00h", "00h30","01h", "01h30","02h", "02h30","03h", "03h30","04h", "04h30"];
+            var hour_values = ["14h", "14h30", "15h", "15h30", "16h", "16h30", "17h", "17h30", "18h", "18h30", "19h", "19h30", "20h", "20h30", "21h", "21h30", "22h", "22h30", "23h", "23h30","00h", "00h30","01h", "01h30","02h", "02h30","03h", "03h30","04h", "04h30"];
              $( "#slider-range" ).slider({
                 range: true,
                 min: 0,
                 max: 30,
                 values: [ 4, 18 ],
                 slide: function( event, ui ) {  
-                    $(ui.handle).find("span").text(values[ui.value]);
+                    $(ui.handle).find("span").text(hour_values[ui.value]);
                 },
                 create: function(event, ui) {
                     $(this).find('.ui-slider-handle').each(function(index, element){
