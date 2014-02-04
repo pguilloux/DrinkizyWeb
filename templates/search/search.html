@@ -29,6 +29,7 @@
                     {{ form.stations }}
 
                     {{ form.distance }}
+                    
                 </section>
    
                 <h3><a href="#" class="easeInOut300ms">Thèmes</a></h3>
@@ -168,10 +169,10 @@
                 }
             });
 
-
+            
             $(".search-result form h3").click(function(e){
 
-                $(this).next("section").slideToggle(100);
+                $(this).next("section").slideToggle(1000);
                 e.preventDefault();
             }); 
 
