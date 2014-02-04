@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class Bar(models.Model):
 	slug = models.SlugField(max_length=200)
 	name = models.CharField(max_length=200)
+	description = models.CharField(max_length=200, blank=True, null=True)
 	address = models.CharField(max_length=200)
 	phone = models.CharField(max_length=200, blank=True, null=True)
 	website = models.CharField(max_length=200, blank=True, null=True)

@@ -8,6 +8,8 @@ from haystack.query import SearchQuerySet
 import logging, operator
 
 import floppyforms as forms
+import simplejson, urllib
+
 
    
 logger = logging.getLogger(__name__)
@@ -95,8 +97,12 @@ class CustomSearchForm(SearchForm):
     categories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories(), )
     subcategories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories())
     themes = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_themes())
-    stations = forms.ChoiceField(required=False, widget=Select, choices=get_stations_by_lines())
+    station = forms.ChoiceField(required=False, widget=Select, choices=get_stations_by_lines())
     districts = forms.MultipleChoiceField(required=False, widget=SelectMultiple(attrs={'class':'inputSearch-result'}), choices=DISTRICTS)
+
+    bar_distances = {}
+
+
 
 
     def __init__(self, *args, **kwargs):
@@ -104,15 +110,8 @@ class CustomSearchForm(SearchForm):
         super(CustomSearchForm, self).__init__(*args, **kwargs)
 
 
-    def clean_num(self):
-        num = self.cleaned_data['distance']
-        if not 5 <= num <= 20:
-            raise forms.ValidationError("Enter a value between 5 and 20")
-
-        if not num % 5 == 0:
-            raise forms.ValidationError("Enter a multiple of 5")
-        return num
-
+    def get_bar_distances(self):
+        return self.bar_distances
 
     def search(self):
         sqs = super(CustomSearchForm, self).search()
@@ -155,36 +154,40 @@ class CustomSearchForm(SearchForm):
             sqs = sqs.filter(reduce(operator.or_, (Q(address__contains=district) for district in districts_utf8)))
             no_filter_selected = False
 
-        if self.cleaned_data['distance']:
-            logger.warning(self.cleaned_data['distance'])
-            no_filter_selected = False
-        
-
-            # logger.warning('tata1')
-            # logger.warning(categories_utf8)
-            # logger.warning('tata2')
-
-
-        # We need to process each facet to ensure that the field name and the
-        # value are quoted correctly and separately:
-
-        # for facet in self.selected_facets:
-        #     if ":" not in facet:
-        #         continue
-
-        #     field, value = facet.split(":", 1)
-
-        #     if value:
-        #         sqs = sqs.narrow(u'%s:"%s"' % (field, sqs.query.clean(value)))
 
         if no_filter_selected and self.cleaned_data['q']=="*":
             sqs = sqs.filter(price__gte=-1)
 
 
+        if self.cleaned_data['station']:
+            if self.cleaned_data['distance']:
+
+                bars_query_results = [result.object.bar.name for result in sqs]
+                bars = Bar.objects.filter(name__in=bars_query_results)
+
+                orig_coord = Station.objects.filter(name__exact=self.cleaned_data['station'])
+
+                for bar in bars:
+
+                    dest_coord = bar.latitude, bar.longitude
+                    url = "http://maps.googleapis.com/maps/api/distancematrix/json?origins={0}&destinations={1}&mode=walking&language=en-EN&sensor=false".format(str(orig_coord),str(dest_coord))
+                    result= simplejson.load(urllib.urlopen(url))
+                    distance = result['rows'][0]['elements'][0]['distance']['value']
+
+                    if(distance>self.cleaned_data['distance']):
+                        sqs = sqs.exclude(bar__name__exact=bar.name)
+                    else:
+                        self.bar_distances[bar.name] = distance
+
+
+            # logger.warning('tata1')
+            # logger.warning(categories_utf8)
+            # logger.warning('tata2')
+
         
         if not self.cleaned_data['q']:
             sqs = sqs.filter(price__gte=-1)
 
-        logger.warning(sqs)
+       
         return sqs
 

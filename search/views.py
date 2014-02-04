@@ -5,16 +5,19 @@ from haystack.query import SearchQuerySet
 from drinks.models import *
 from bars.models import *
 
+import logging
+
 from django.shortcuts import render
 
 from django.shortcuts import render_to_response
+
+logger = logging.getLogger(__name__)
 
 class CustomSearchView(SearchView):
     """
     Search view for multifaceted searches
     """
     template = 'search/search.html'
-
   
     def __call__(self, request, *args, **kwargs):
         """
@@ -22,7 +25,6 @@ class CustomSearchView(SearchView):
   
         Relies on internal, overridable methods to construct the response.
         """
-        
         return super(CustomSearchView, self).__call__(request, *args, **kwargs)
   
     @property
@@ -32,19 +34,6 @@ class CustomSearchView(SearchView):
 
     def get_context_data(self, **kwargs):
         context = super(CustomSearchView, self).get_context_data(**kwargs)
-        #q = self.request.GET.get('q')
-        #if q:
-        if self.form.is_valid():
-            #
-            # added the following two lines.
-            if self.form.cleaned_data['localisation']:
-                context['localisation'] = self.form.cleaned_data['localisation']
-                if self.form.cleaned_data['distance']:
-                    #self.form.cleaned_data['q'] = u'*'
-                    context['distance'] = self.form.cleaned_data['distance']
-
-        #context['stations'] = Station.objects.all()
-
         return context
 
     def get_query(self):
@@ -60,24 +49,18 @@ class CustomSearchView(SearchView):
         return ''
 
 
-    # def extra_context(self):
-    #     '''
-    #     Adds details about the facets applied
-    #     '''
-    #     extra = super(MultiFacetedSearchView, self).extra_context()
-  
-    #     if hasattr(self.form, 'cleaned_data') and 'selected_facets' in self.form.cleaned_data:
-    #         extra['facets_applied'] = []
-    #         for f in self.form.cleaned_data['selected_facets'].split("|"):
-    #             facet = f.split(":")
-    #             extra['facets_applied'].append({
-    #                 'facet': facet[0][:-6], # removing the _exact suffix that haystack uses for some reason
-    #                 'value' : facet[1].strip('"')
-    #             })
+    def extra_context(self):
+        '''
+        Adds details about the facets applied
+        '''
+        extra = super(CustomSearchView, self).extra_context()
+        
 
-    #     #extra['drinkbars'] = SearchQuerySet()
-       
-    #     return extra
+        if self.form.is_valid():
+            if self.form.cleaned_data['station']:
+                if self.form.cleaned_data['distance']:
+                    extra['bar_distances'] = self.form.get_bar_distances()
+        return extra
 
 
 

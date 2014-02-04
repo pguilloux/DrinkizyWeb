@@ -182,8 +182,12 @@ LOGGING = {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
-            },
+        },
         'search.forms': {
+            'handlers': ['console'],
+            'level': 'INFO'
+        },
+        'search.views': {
             'handlers': ['console'],
             'level': 'INFO'
         },
