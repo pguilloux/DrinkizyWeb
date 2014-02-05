@@ -6,7 +6,7 @@
 <div class="search-result-right">
     <h4><a href="{% url "bars.views.fiche_bar" onebar.slug %}">{{ onebar.name }}</a>  <span> {{ onebar.theme }} </span></h4>
     <div class="search-result-info">
-        <p class="postAdress>">{{ onebar.address }}</p>
+        <p class="postAdress">{{ onebar.address }}</p>
         {% load bar_distances_dict %}
         {% load division %}
         {% if bar_distances %}

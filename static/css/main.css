@@ -391,7 +391,10 @@ footer figure figcaption {
     width: 93%;
 }
 .search-result form section {
-    display: block;
+    display: none;
+}
+.search-result form section .rankActive {
+    margin-left: 12px;
 }
 .search-result .inputSearch-result {
     padding: 5px;
@@ -527,8 +530,8 @@ footer figure figcaption {
     background-position: 100% 0%;
     background-repeat: no-repeat no-repeat;
 }
-.search-result #slider-range, .search-result #slider-range-min {
-    margin-top: 30px;
+.search-result #slider-range, .search-result #slider-range-min-slider {
+    margin-top: 30px; margin-left: 12px;
 }
 .search-result nav li:hover #code #curl, .search-result nav li:hover #code2 #cur2, .bar-card nav li:hover .code .curl{
     width:58px;
@@ -615,9 +618,29 @@ footer figure figcaption {
     margin-bottom: 15px;
     margin-top: 10px;
 }
-.search-result-info .postAdress {
+.search-result-info .postAdress, .search-result-info .distance {
     display: inline-block;
     margin: 0;
+    width: 78%;
+    float: left;
+}
+.search-result-info .distance:before {
+    content : "";
+    background-image: url("../medias/img/drinkizy_sprite.png");
+    background-position: -171px -58px;
+    height: 23px;
+    width: 21px;
+    display: block;
+    float: left;
+}
+.search-result-info .distance:after {
+    content : "";
+    background-image: url("../medias/img/drinkizy_sprite.png");
+    background-position: -74px -57px;
+    height: 23px;
+    width: 15px;
+    display: block;
+    float: left;
 }
 .search-result-info .rank {
     cursor: default;
@@ -634,6 +657,8 @@ footer figure figcaption {
 }
 .search-result-info .rankFix {
     float: right;
+    width: 22%;
+    margin-top: -23px;
 }
 .search-result-info p:first-child:before {
     content : "";
