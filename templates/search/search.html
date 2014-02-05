@@ -13,7 +13,7 @@
                 <div class="clearfix"></div>
 
                 <h3><a href="#boissons" class="easeInOut300ms">Boissons</a><span class="easeInOut300ms"></span></h3>
-                <section>
+                <section class="search-cat-boisson">
                     {{ form.categories }}
 
                     {# {{ form.subcategories }} #}
@@ -214,6 +214,7 @@
                 
                 $(".search-result form h3").click(function(e){
                     $(this).next("section").slideToggle(300);
+                    $(this).find("span").toggleClass('search-chevron-down');
                     e.preventDefault();
                 }); 
 
@@ -235,7 +236,7 @@
             /************ BEGIN DISPLAY SUCATEGORIES ************/
                 $("input[name=categories]").each(function(index){
                     var category = $(this).val();
-                    var ul = "<ul id='for_category_"+index+"' class='subcategories'>";
+                    var ul = "<span class='easeInOut300ms'></span><ul id='for_category_"+index+"' class='subcategories'>";
                     {% for subcategory in form.subcategories.field.queryset %}
                         var current_category = "{{ subcategory.category.name }}"
                         var subcategory = "{{ subcategory.name }}"
@@ -257,6 +258,8 @@
                 $("input[name=categories]").change(function() {
 
                     var num_category = $(this).attr('id').match(/\d+/);
+
+                    $(this).parent().next("span").toggleClass('search-chevron-down');;
 
                     if($(this).is(':checked')){
                         $("#for_category_"+num_category).show();

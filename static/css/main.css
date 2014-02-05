@@ -427,7 +427,7 @@ footer figure figcaption {
     font-family: 'Lobster', cursive;
     color: #F1B219;
 }
-.search-result aside h3 span {
+.search-result aside h3 span, .search-result .search-cat-boisson > ul > li span {
     content: "";
     background-image: url("../medias/img/drinkizy_sprite.png");
     background-position: -239px -64px;
@@ -436,10 +436,21 @@ footer figure figcaption {
     display: inline-block;
     margin-left: 5px;
 }
-.search-result aside h3:hover span {
+.search-result aside h3:hover span, .search-chevron-down, .search-result .search-cat-boisson > ul > li:hover span {
     transform:rotate(90deg);
     -ms-transform:rotate(90deg); /* IE 9 */
     -webkit-transform:rotate(90deg); /* Safari and Chrome */
+    cursor: pointer;
+}
+.search-result .search-cat-boisson ul li {
+    margin: 5px 0;
+}
+.search-result .search-cat-boisson > ul > li span {
+    background-position: -254px -64px;
+    -webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out;
+}
+.search-result .search-cat-boisson > ul > li input {
+    margin-right: 9px;
 }
 .search-result section:last-child{
     float: left;
