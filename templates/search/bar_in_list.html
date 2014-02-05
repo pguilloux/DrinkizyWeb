@@ -12,7 +12,7 @@
         {% if bar_distances %}
             {% with distance=bar_distances|keyvalue:onebar.name %}
                 {% if distance < 1000 %}
-                    <p class="distance">{{ distance }} m</p>
+                    <p class="pDistance"><span class="distanceBefore"></span><span class="distance">{{ distance }} m</span><span class="distanceAfter"></span></p>
                 {% else %}
                     <h3 class="distance">{{ distance|divide:1000 }} km</h3>
                 {% endif %}
