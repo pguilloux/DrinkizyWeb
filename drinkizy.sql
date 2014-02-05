@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.4.10.1
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mar 04 Février 2014 à 11:14
--- Version du serveur: 5.5.24-log
--- Version de PHP: 5.3.13
+-- Généré le : Mer 05 Février 2014 à 11:52
+-- Version du serveur: 5.5.20
+-- Version de PHP: 5.3.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -140,7 +140,8 @@ CREATE TABLE IF NOT EXISTS `bars_bar` (
   `nb_pictures` int(11) NOT NULL,
   `latitude` double DEFAULT NULL,
   `longitude` double DEFAULT NULL,
-  `mail` varchar(200),
+  `mail` varchar(200) DEFAULT NULL,
+  `description` varchar(3000),
   PRIMARY KEY (`id`),
   KEY `theme_id_refs_id_6a053be6` (`theme_id`),
   KEY `creator_id_refs_id_89339927` (`creator_id`)
@@ -150,12 +151,12 @@ CREATE TABLE IF NOT EXISTS `bars_bar` (
 -- Contenu de la table `bars_bar`
 --
 
-INSERT INTO `bars_bar` (`id`, `slug`, `name`, `address`, `phone`, `approval`, `disapproval`, `creator_id`, `theme_id`, `website`, `nb_pictures`, `latitude`, `longitude`, `mail`) VALUES
-(1, 'le-beho', 'Le Beho', '8 place Sainte-Opportune 75001 PARIS', '01-53-40-81-56; 06-66-19-46-82', 0, 0, 1, 1, 'http://www.lebeho.fr', 1, 48.859788, 2.347328, NULL),
-(2, 'guinness-tavern', 'Guinness Tavern', '31 rue des Lombards 75001 PARIS', '01-42-33-26-45', 0, 0, 1, 2, 'http://www.guinness-tavern.com', 1, 48.859929, 2.348517, NULL),
-(3, 'la-fine-mousse', 'La Fine Mousse', '6 avenue Jean Aicard 75011 PARIS', '09-80-45-94-64', 0, 0, 1, 8, 'http://www.lafinemousse.fr', 1, 48.865032, 2.381778, NULL),
-(4, 'nimporte-quoi', 'N''importe quoi', '16 rue du Roule 75001 PARIS', '01-40-26-29-71', 0, 0, 1, 3, 'http://www.nimportequoi.fr', 1, 48.860925, 2.343863, NULL),
-(5, 'le-dernier-bar-avant-la-fin-du-monde', 'Le dernier bar avant la fin du monde', '19 avenue Victoria 75001 PARIS', '01-53-00-98-95', 0, 0, 1, 4, 'http://www.dernierbar.com', 1, 48.857953, 2.346277, NULL);
+INSERT INTO `bars_bar` (`id`, `slug`, `name`, `address`, `phone`, `approval`, `disapproval`, `creator_id`, `theme_id`, `website`, `nb_pictures`, `latitude`, `longitude`, `mail`, `description`) VALUES
+(1, 'le-beho', 'Le Beho', '8 place Sainte-Opportune 75001 PARIS', '01-53-40-81-56; 06-66-19-46-82', 0, 0, 1, 1, 'http://www.lebeho.fr', 1, 48.859788, 2.347328, '', 'Situé en plein coeur de Paris, dans le quartier du Châtelet, Le Bého, lounge et contemporain, vous accueille chaleureusement pour savourez vos déjeuners et vos dîners. Ouvert 6j/7 sauf le dimanche.'),
+(2, 'guinness-tavern', 'Guinness Tavern', '31 rue des Lombards 75001 PARIS', '01-42-33-26-45', 0, 0, 1, 2, 'http://www.guinness-tavern.com', 1, 48.859929, 2.348517, '', 'Pub pour sortir la nuit à Paris. Guinness Tavern c''est le temple du rock live à Paris.  En plein coeur du quartier des Halles au centre de Paris, il vous propose des soirées animées. Ouvert 7j/7.'),
+(3, 'la-fine-mousse', 'La Fine Mousse', '6 avenue Jean Aicard 75011 PARIS', '09-80-45-94-64', 0, 0, 1, 8, 'http://www.lafinemousse.fr', 1, 48.865032, 2.381778, '', 'La Fine Mousse est un bar à bières artisanales. Avec 20 pressions et plus de 150 bouteilles,ils offrent un cadre agréable et convivial pour venir découvrir des bières.  Ouvert toute la 7j/7.'),
+(4, 'nimporte-quoi', 'N''importe quoi', '16 rue du Roule 75001 PARIS', '01-40-26-29-71', 0, 0, 1, 3, 'http://www.nimportequoi.fr', 1, 48.860925, 2.343863, '', 'Le Bar N''IMPORTE QUOI (le NIQ pour les intimes) est un bar à cocktails rock’n’roll ouvert toute la nuit. Ouvert 6j/7 sauf le dimanche.'),
+(5, 'le-dernier-bar-avant-la-fin-du-monde', 'Le dernier bar avant la fin du monde', '19 avenue Victoria 75001 PARIS', '01-53-00-98-95', 0, 0, 1, 4, 'http://www.dernierbar.com', 1, 48.857953, 2.346277, '', 'Le Dernier Bar avant la Fin du Monde est le premier espace d’expression des cultures de l’imaginaire en plein cœur de Paris.  Ouvert 7j/7.');
 
 -- --------------------------------------------------------
 
@@ -705,7 +706,7 @@ CREATE TABLE IF NOT EXISTS `bars_theme` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `slug` varchar(200) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `description` varchar(200) NOT NULL,
+  `description` varchar(2000) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
@@ -746,7 +747,24 @@ CREATE TABLE IF NOT EXISTS `django_admin_log` (
   PRIMARY KEY (`id`),
   KEY `content_type_id_refs_id_93d2d1f8` (`content_type_id`),
   KEY `user_id_refs_id_ff9a36b6` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Contenu de la table `django_admin_log`
+--
+
+INSERT INTO `django_admin_log` (`id`, `action_time`, `user_id`, `content_type_id`, `object_id`, `object_repr`, `action_flag`, `change_message`) VALUES
+(1, '2014-02-04 21:13:51', 6, 14, '6', 'Severine', 2, 'Modifié username, email, pseudo et avatar_url.'),
+(2, '2014-02-05 10:09:03', 6, 6, '5', 'Le dernier bar avant la fin du monde 19 avenue Victoria 75001 PARIS', 2, 'Modifié description.'),
+(3, '2014-02-05 10:48:02', 6, 6, '5', 'Le dernier bar avant la fin du monde 19 avenue Victoria 75001 PARIS', 2, 'Modifié description.'),
+(4, '2014-02-05 10:52:06', 6, 6, '4', 'N''importe quoi 16 rue du Roule 75001 PARIS', 2, 'Modifié description.'),
+(5, '2014-02-05 10:53:44', 6, 6, '3', 'La Fine Mousse 6 avenue Jean Aicard 75011 PARIS', 2, 'Modifié description.'),
+(6, '2014-02-05 10:54:16', 6, 6, '5', 'Le dernier bar avant la fin du monde 19 avenue Victoria 75001 PARIS', 2, 'Modifié description.'),
+(7, '2014-02-05 10:55:12', 6, 6, '4', 'N''importe quoi 16 rue du Roule 75001 PARIS', 2, 'Modifié description.'),
+(8, '2014-02-05 11:01:06', 6, 6, '2', 'Guinness Tavern 31 rue des Lombards 75001 PARIS', 2, 'Modifié description.'),
+(9, '2014-02-05 11:06:37', 6, 6, '1', 'Le Beho 8 place Sainte-Opportune 75001 PARIS', 2, 'Modifié description.'),
+(10, '2014-02-05 11:29:46', 6, 10, '8', 'Chouffe Blonde Le Dernier Bar avant la Fin du Monde est le premier espace d’expression des cultures de l’imaginaire en plein cœur de Paris. On peut s’y installer pour lire, partager un verre, jouer, s', 2, 'Modifié description.'),
+(11, '2014-02-05 11:33:23', 6, 10, '8', 'Chouffe Blonde 1 Blonde Bières  ', 2, 'Modifié description.');
 
 -- --------------------------------------------------------
 
@@ -804,7 +822,14 @@ CREATE TABLE IF NOT EXISTS `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('hmwjaegirhect1xmwgdtgxqmrodyfhq7', 'NWRmODBkYTM4ZThkYTgyMjlhMTZiMDFjM2Q1NjUzZGI1YWMwYmE2Nzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6Mn0=', '2014-02-14 22:42:06');
+('2m9s06h6etdw388gmxabztet0jnlehk5', 'NDU2OTA5NmVjODNlZGY1YzNlZDE0ZDE3NzYzZDRkNWUwYzllMDdlMzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6NH0=', '2014-02-18 18:20:22'),
+('2yd0b9u8qja7p21j4xvr9vv2444g95jv', 'YzI4YWM1YjA5ZTVjOTA3ZmQ1Y2FjMzM3NzdjODA2MzNhZWRlOTU2ZDqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQSKAQN1Lg==', '2014-02-18 17:30:08'),
+('7ndk5i90xk3lziaip7vf6ol83fzp5oef', 'NDU2OTA5NmVjODNlZGY1YzNlZDE0ZDE3NzYzZDRkNWUwYzllMDdlMzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6NH0=', '2014-02-18 18:20:28'),
+('fp1gcy3p9um3oyumtea9ceddpvgc2akx', 'NWQxODUzZDJhY2QxNDY2MzMzY2JhODZkNDU2MzY2ZjU2MmM2ZTkxODp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6M30=', '2014-02-18 15:15:48'),
+('fpyfw2wnb8l4mjulm85hpc5maij1oqdx', 'N2M4ODdkNDJjYzFkMjAyMDNiNmQ5MTMyMTAxNWFhMzNmMTIyYWRkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6Nn0=', '2014-02-18 21:08:56'),
+('hmwjaegirhect1xmwgdtgxqmrodyfhq7', 'NWRmODBkYTM4ZThkYTgyMjlhMTZiMDFjM2Q1NjUzZGI1YWMwYmE2Nzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6Mn0=', '2014-02-14 22:42:06'),
+('lsukoo59ws4p99ovxmturvb1q0n6z32c', 'N2M4ODdkNDJjYzFkMjAyMDNiNmQ5MTMyMTAxNWFhMzNmMTIyYWRkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6Nn0=', '2014-02-19 11:29:00'),
+('x53c644mmpkvzymiw4tv1vcp071i7ipl', 'NWQxODUzZDJhY2QxNDY2MzMzY2JhODZkNDU2MzY2ZjU2MmM2ZTkxODp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6M30=', '2014-02-19 11:43:11');
 
 -- --------------------------------------------------------
 
@@ -816,7 +841,7 @@ CREATE TABLE IF NOT EXISTS `drinks_drink` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `slug` varchar(200) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `description` varchar(2000) NOT NULL,
+  `description` varchar(3000) NOT NULL,
   `subcategory_id` int(11) NOT NULL,
   `creator_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -836,7 +861,7 @@ INSERT INTO `drinks_drink` (`id`, `slug`, `name`, `description`, `subcategory_id
 (5, 'mojito', 'Mojito', '', 10, NULL),
 (6, 'pina-colada', 'Piña Colada', '', 10, NULL),
 (7, 'heineken', 'Heineken', '', 4, 1),
-(8, 'chouffe-blonde', 'Chouffe Blonde', '', 4, 1);
+(8, 'chouffe-blonde', 'Chouffe Blonde', '1', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -883,7 +908,7 @@ CREATE TABLE IF NOT EXISTS `drinks_drinkcategory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `slug` varchar(200) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `description` varchar(200) NOT NULL,
+  `description` varchar(2000) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
@@ -912,7 +937,7 @@ CREATE TABLE IF NOT EXISTS `drinks_drinksubcategory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `slug` varchar(200) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `description` varchar(200) NOT NULL,
+  `description` varchar(2000) NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id_refs_id_f7cf3b26` (`category_id`)
@@ -973,7 +998,7 @@ CREATE TABLE IF NOT EXISTS `south_migrationhistory` (
   `migration` varchar(255) NOT NULL,
   `applied` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Contenu de la table `south_migrationhistory`
@@ -989,7 +1014,10 @@ INSERT INTO `south_migrationhistory` (`id`, `app_name`, `migration`, `applied`) 
 (7, 'bars', '0005_auto__add_station__del_field_bar_lat__del_field_bar_lon__add_field_bar', '2014-02-02 21:03:16'),
 (8, 'home', '0001_initial', '2014-02-02 21:21:02'),
 (9, 'drinks', '0002_auto__del_field_drinkbar_slug__add_field_drinkbar_approval__add_field_', '2014-02-02 22:27:49'),
-(10, 'bars', '0006_auto__add_field_bar_mail', '2014-02-04 11:12:51');
+(10, 'bars', '0006_auto__add_field_bar_mail', '2014-02-04 11:12:51'),
+(11, 'bars', '0007_auto__add_field_bar_description', '2014-02-04 21:34:07'),
+(12, 'bars', '0008_auto__chg_field_theme_description__chg_field_bar_description', '2014-02-05 11:49:10'),
+(13, 'drinks', '0003_auto__chg_field_drinkcategory_description__chg_field_drink_description', '2014-02-05 11:49:17');
 
 -- --------------------------------------------------------
 
@@ -1014,7 +1042,7 @@ CREATE TABLE IF NOT EXISTS `users_customuser` (
   `type` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `users_customuser`
@@ -1022,7 +1050,11 @@ CREATE TABLE IF NOT EXISTS `users_customuser` (
 
 INSERT INTO `users_customuser` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`, `pseudo`, `avatar_url`, `type`) VALUES
 (1, 'admin', '0000-00-00 00:00:00', 1, 'drinkizy', '', '', '', 1, 1, '0000-00-00 00:00:00', 'drinkizy', '', '1'),
-(2, 'pbkdf2_sha256$12000$kGNtjCYPTrzF$JKz/mqegmPD/3TObo2f2ZP3zaNTqIRTmIEM7WEd9pyM=', '2014-01-31 22:42:06', 1, 'admin', '', '', 'pguilloux53@gmail.com', 1, 1, '2014-01-31 22:41:51', '', '', 'user');
+(2, 'pbkdf2_sha256$12000$kGNtjCYPTrzF$JKz/mqegmPD/3TObo2f2ZP3zaNTqIRTmIEM7WEd9pyM=', '2014-01-31 22:42:06', 1, 'admin', '', '', 'pguilloux53@gmail.com', 1, 1, '2014-01-31 22:41:51', '', '', 'user'),
+(3, 'pbkdf2_sha256$12000$fLYlIMRMhvTj$M6DtADPsYlZResi0hfa0ciCVyjvg4sKE/8jb9vWk1Fk=', '2014-02-05 11:43:11', 1, 'pguilloux', '', '', 'pguilloux53@gmail.com', 1, 1, '2014-02-04 15:12:31', '', '', 'user'),
+(4, 'pbkdf2_sha256$12000$oms4JrNuz5Kp$eSpTu4NqDmVtPa9NiDMPAZehYsvC86C1RNodBw/8qVc=', '2014-02-04 18:20:28', 1, 'Lauriane', '', '', 'lauriane.anthony@gmail.com', 1, 1, '2014-02-04 15:13:11', '', '', 'user'),
+(5, 'pbkdf2_sha256$12000$5ubx7jUBnjsc$fQCtL6Z1ePnVZadN9XjomUqF3CC8uO9xyjOpaqL5oxg=', '2014-02-04 18:20:01', 1, 'hugo', '', '', 'hugo.gresse@gmail.com', 1, 1, '2014-02-04 15:13:33', '', '', 'user'),
+(6, 'pbkdf2_sha256$12000$TTceWgQnguAJ$fyQkUTE8CD43gVOsNef57ItRXBRVbSaiFErRfc9/l/s=', '2014-02-05 11:29:00', 1, 'Severine', '', '', 'severine.guillo.itis@gmail.com', 1, 1, '2014-02-04 20:16:54', 'Severine', 'avatars/koala_tea_by_koala_tea_time-d4ufptb2.png', 'user');
 
 -- --------------------------------------------------------
 
