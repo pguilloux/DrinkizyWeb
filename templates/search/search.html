@@ -150,9 +150,10 @@
             var type = $('<input type="range" />').attr('type');
             $('#slider-range-min').attr("readonly", true).hide();
             $('#slider-range-min-slider').slider({
-                {% if value %}value: {{ value }},{% endif %}
+                {% if distance_setted %}value: {{ distance_setted }},{% endif %}
+                range: 'min',
                 min: 0,
-                max: 1500,
+                max: 2000,
                 step: 50,
                 slide: function(event, ui) {
 
@@ -168,27 +169,15 @@
                         $(this).find('.ui-slider-handle').html("<span>" +v+"m"+ "</span>");
                     else
                         $(this).find('.ui-slider-handle').html("<span>" +v/1000+"km"+ "</span>");
+                    {% if distance_setted %}
+                        $('#slider-range-min').val({{ distance_setted }});
+                    {% else %}
+                        $('#slider-range-min').val(0);
+                    {% endif %}
                     
-                    }
+                }
             });
 
-/*
-            metro      = document.getElementById('origin').value; // Le point départ
-            destination = document.getElementById('destination').value; // Le point d'arrivé
-            if(origin && destination){
-                var request = {
-                    origin      : origin,
-                    destination : destination,
-                    travelMode  : google.maps.DirectionsTravelMode.DRIVING // Mode de conduite
-                }
-                var directionsService = new google.maps.DirectionsService(); // Service de calcul d'itinéraire
-                directionsService.route(request, function(response, status){ // Envoie de la requête pour calculer le parcours
-                    if(status == google.maps.DirectionsStatus.OK){
-                        direction.setDirections(response); // Trace l'itinéraire sur la carte et les différentes étapes du parcours
-                    }
-                });
-            }
-*/
 
 
             var hour_values = ["14h", "14h30", "15h", "15h30", "16h", "16h30", "17h", "17h30", "18h", "18h30", "19h", "19h30", "20h", "20h30", "21h", "21h30", "22h", "22h30", "23h", "23h30","00h", "00h30","01h", "01h30","02h", "02h30","03h", "03h30","04h", "04h30"];

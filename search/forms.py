@@ -34,7 +34,7 @@ def get_stations_by_lines():
     stationsList = Station.objects.all()
     #return [(station.name, line+"-"+station.name) for line in TRANSPORT_LINES for station in stationsList if line in station.get_lines()]
     stations_by_lines = []
-
+    stations_by_lines.append(('', '---Station de Metro---'))
     for line in TRANSPORT_LINES:
         for station in stationsList:
             if line in station.get_lines():
@@ -44,26 +44,26 @@ def get_stations_by_lines():
 
 
 DISTRICTS = [
-    ('75001', '1er'),
-    ('75002', '2eme'),
-    ('75003', '3eme'),
-    ('75004', '4eme'),
-    ('75005', '5eme'),
-    ('75006', '6eme'),
-    ('75007', '7eme'),
-    ('75008', '8eme'),
-    ('75009', '9eme'),
-    ('75010', '10eme'),
-    ('75011', '11eme'),
-    ('75012', '12eme'),
-    ('75013', '13eme'),
-    ('75014', '14eme'),
-    ('75015', '15eme'),
-    ('75016', '16eme'),
-    ('75017', '17eme'),
-    ('75018', '18eme'),
-    ('75019', '19eme'),
-    ('75020', '20eme'),
+    ('75001', '1er arr.'),
+    ('75002', '2eme arr.'),
+    ('75003', '3eme arr.'),
+    ('75004', '4eme arr.'),
+    ('75005', '5eme arr.'),
+    ('75006', '6eme arr.'),
+    ('75007', '7eme arr.'),
+    ('75008', '8eme arr.'),
+    ('75009', '9eme arr.'),
+    ('75010', '10eme arr.'),
+    ('75011', '11eme arr.'),
+    ('75012', '12eme arr.'),
+    ('75013', '13eme arr.'),
+    ('75014', '14eme arr.'),
+    ('75015', '15eme arr.'),
+    ('75016', '16eme arr.'),
+    ('75017', '17eme arr.'),
+    ('75018', '18eme arr.'),
+    ('75019', '19eme arr.'),
+    ('75020', '20eme arr.'),
 ]
 
 
@@ -71,7 +71,7 @@ DISTRICTS = [
 
 class Slider(forms.RangeInput):
     min = 0
-    max = 1500
+    max = 2000
     step = 50
     template_name = '../templates/search/slider_distance.html'
 

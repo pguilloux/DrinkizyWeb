@@ -1,35 +1,3 @@
 {% include "floppyforms/input.html" %}
 <div id="{{ attrs.id }}-slider"></div>
- {% block scriptjs %}
-    <script type="text/javascript">
-      $(document).ready(function() {
-        console.log("toggle");
-        var type = $('<input type="range" />').attr('type');
-        $('#{{ attrs.id }}').attr("readonly", true).hide();
-        $('#{{ attrs.id }}-slider').slider({
-          {% if value %}value: {{ value }},{% endif %}
-          min: {{ attrs.min }},
-          max: {{ attrs.max }},
-          step: {{ attrs.step }},
-          slide: function(event, ui) {
-            console.log("tata");
-            if(ui.value < 1000)
-              $(this).find('.ui-slider-handle span').text(ui.value + "m" );
-            else
-              $(this).find('.ui-slider-handle span').text(ui.value/1000 + "km" );
-            $('#{{ attrs.id }}').val(ui.value);
-          },
-          create: function(event, ui) {
-            var v=$(this).slider('value');
-            if(v < 1000)
-              $(this).find('.ui-slider-handle').html("<span>" +v+"m"+ "</span>");
-            else
-              $(this).find('.ui-slider-handle').html("<span>" +v/1000+"km"+ "</span>");
-          
-          }
-        });
-        
-      });
 
-    </script>
-  {% endblock scriptjs %}
