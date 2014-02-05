@@ -21,7 +21,7 @@ class DrinkCategory(models.Model):
 	description = models.CharField(max_length=2000)
 
 	def __unicode__(self):
-		return "%s %s" % (self.name, self.description)
+		return "%s" % (self.name)
 
 
 class DrinkSubCategory(models.Model):
@@ -31,7 +31,7 @@ class DrinkSubCategory(models.Model):
 	category = models.ForeignKey('DrinkCategory')
 
 	def __unicode__(self):
-		return "%s %s %s" % (self.name, self.category, self.description)
+		return "%s" % (self.name)
 
 
 class DrinkBar(models.Model):

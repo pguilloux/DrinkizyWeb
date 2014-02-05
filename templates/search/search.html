@@ -15,6 +15,9 @@
                 <h3><a href="#boissons" class="easeInOut300ms">Boissons</a><span class="easeInOut300ms"></span></h3>
                 <section>
                     {{ form.categories }}
+
+                    {# {{ form.subcategories }} #}
+
                     <input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
                     <div class="clearfix"></div>
                 </section>
@@ -145,86 +148,131 @@
     {% block scriptjs %}
         
         <script>
-          $(document).ready(function() {
+            $(document).ready(function() {
 
-            var type = $('<input type="range" />').attr('type');
-            $('#slider-range-min').attr("readonly", true).hide();
-            $('#slider-range-min-slider').slider({
-                {% if distance_setted %}value: {{ distance_setted }},{% endif %}
-                range: 'min',
-                min: 0,
-                max: 2000,
-                step: 50,
-                slide: function(event, ui) {
+            /************ BEGIN DISTANCE RANGE ************/
 
-                    if(ui.value < 1000)
-                        $(this).find('.ui-slider-handle span').text(ui.value + "m" );
-                    else
-                        $(this).find('.ui-slider-handle span').text(ui.value/1000 + "km" );
-                    $('#slider-range-min').val(ui.value);
-                },
-                create: function(event, ui) {
-                    var v=$(this).slider('value');
-                    if(v < 1000)
-                        $(this).find('.ui-slider-handle').html("<span>" +v+"m"+ "</span>");
-                    else
-                        $(this).find('.ui-slider-handle').html("<span>" +v/1000+"km"+ "</span>");
-                    $('#slider-range-min').val({{ form.distance.value|default_if_none:0 }});
- 
+                var type = $('<input type="range" />').attr('type');
+                $('#slider-range-min').attr("readonly", true).hide();
+                $('#slider-range-min-slider').slider({
+                    {% if distance_setted %}value: {{ distance_setted }},{% endif %}
+                    range: 'min',
+                    min: 0,
+                    max: 2000,
+                    step: 50,
+                    slide: function(event, ui) {
+
+                        if(ui.value < 1000)
+                            $(this).find('.ui-slider-handle span').text(ui.value + "m" );
+                        else
+                            $(this).find('.ui-slider-handle span').text(ui.value/1000 + "km" );
+                        $('#slider-range-min').val(ui.value);
+                    },
+                    create: function(event, ui) {
+                        var v=$(this).slider('value');
+                        if(v < 1000)
+                            $(this).find('.ui-slider-handle').html("<span>" +v+"m"+ "</span>");
+                        else
+                            $(this).find('.ui-slider-handle').html("<span>" +v/1000+"km"+ "</span>");
+                        $('#slider-range-min').val({{ form.distance.value|default_if_none:0 }});
+     
+                        
+                    }
+                });
+
+            /************ END DISTANCE RANGE ************/
+
+
+            /************ BEGIN HAPPY-HOURS RANGE ************/
+
+                var hour_values = ["14h", "14h30", "15h", "15h30", "16h", "16h30", "17h", "17h30", "18h", "18h30", "19h", "19h30", "20h", "20h30", "21h", "21h30", "22h", "22h30", "23h", "23h30","00h", "00h30","01h", "01h30","02h", "02h30","03h", "03h30","04h", "04h30"];
+                 $( "#slider-range" ).slider({
+                    range: true,
+                    min: 0,
+                    max: 30,
+                    values: [ 4, 18 ],
+                    slide: function( event, ui ) {  
+                        $(ui.handle).find("span").text(hour_values[ui.value]);
+                    },
+                    create: function(event, ui) {
+                        $(this).find('.ui-slider-handle').each(function(index, element){
+                            if (index == 0) {
+                                $(this).addClass('first');
+                                $(this).html("<span> 16h </span>");
+                            }
+                            else {
+                                $(this).addClass('second');
+                                $(this).html("<span> 23h </span>");
+                            }
+                        })
+                    }
+                });
+
+            /************ END HAPPY-HOURS RANGE ************/
+
+            /************ BEGIN TOGGLE SECTIONS ************/
+                
+                $(".search-result form h3").click(function(e){
+                    $(this).next("section").slideToggle(300);
+                    e.preventDefault();
+                }); 
+
+
+                {% if form.categories.value %}
+                    $(".search-result form h3 a[href='#boissons']").parent().next("section").slideToggle(300);
+                {% endif %}
+
+                {% if form.districts.value or form.station.value or form.distance.value and form.distance.value != '0' %}
+                    $(".search-result form h3 a[href='#localisation']").parent().next("section").slideToggle(300);
+                {% endif %}
+
+                {% if form.themes.value %}
+                    $(".search-result form h3 a[href='#themes']").parent().next("section").slideToggle(300);
+                {% endif %}
+
+            /************ END TOGGLE SECTIONS ************/
+
+            /************ BEGIN DISPLAY SUCATEGORIES ************/
+                $("input[name=categories]").each(function(index){
+                    var category = $(this).val();
+                    var ul = "<ul id='for_category_"+index+"' class='subcategories'>";
+                    {% for subcategory in form.subcategories.field.queryset %}
+                        var current_category = "{{ subcategory.category.name }}"
+                        var subcategory = "{{ subcategory.name }}"
+                        console.log(category+"  "+current_category)
+                        if(category == current_category){
+                            var count = "{{ forloop.counter0 }}";
+                            console.log("toto "+count)
+                            var li = "<li><label for='id_subcategories_"+count+"'><input id='id_subcategories_"+count+"' type='checkbox' value='"+subcategory+"' name='subcategories'>"+subcategory+"</label></li>";
+                            ul = ul + li;
+                        }
+                    {% endfor %}
+                    $(this).parent().parent().append(ul);
+
+                });
+                $('.subcategories').hide();
+
+
+
+                $("input[name=categories]").change(function() {
+
+                    var num_category = $(this).attr('id').match(/\d+/);
+
+                    if($(this).is(':checked')){
+                        $("#for_category_"+num_category).show();
+                    }
+                    else{
+                        $("#for_category_"+num_category).hide();
+                    }
                     
-                }
+                });
+
+
+
+            /************ BEGIN DISPLAY SUCATEGORIES ************/
+
+
             });
-
-
-
-            var hour_values = ["14h", "14h30", "15h", "15h30", "16h", "16h30", "17h", "17h30", "18h", "18h30", "19h", "19h30", "20h", "20h30", "21h", "21h30", "22h", "22h30", "23h", "23h30","00h", "00h30","01h", "01h30","02h", "02h30","03h", "03h30","04h", "04h30"];
-             $( "#slider-range" ).slider({
-                range: true,
-                min: 0,
-                max: 30,
-                values: [ 4, 18 ],
-                slide: function( event, ui ) {  
-                    $(ui.handle).find("span").text(hour_values[ui.value]);
-                },
-                create: function(event, ui) {
-                    $(this).find('.ui-slider-handle').each(function(index, element){
-                        if (index == 0) {
-                            $(this).addClass('first');
-                            $(this).html("<span> 16h </span>");
-                        }
-                        else {
-                            $(this).addClass('second');
-                            $(this).html("<span> 23h </span>");
-                        }
-                    })
-                }
-            });
-
-            
-            $(".search-result form h3").click(function(e){
-                $(this).next("section").slideToggle(300);
-                e.preventDefault();
-            }); 
-
-
-            {% if form.categories.value %}
-                console.log('boissons');
-                $(".search-result form h3 a[href='#boissons']").parent().next("section").slideToggle(300);
-            {% endif %}
-
-            {% if form.districts.value or form.station.value or form.distance.value != '0' %}
-                var distance_value = {{ form.distance.value }}
-                console.log(distance_value);
-                $(".search-result form h3 a[href='#localisation']").parent().next("section").slideToggle(300);
-            {% endif %}
-
-            {% if form.themes.value %}
-                console.log('themes');
-                $(".search-result form h3 a[href='#themes']").parent().next("section").slideToggle(300);
-            {% endif %}
-
-
-          });
         </script>
     {% endblock scriptjs %}
 
