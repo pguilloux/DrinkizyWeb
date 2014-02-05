@@ -427,9 +427,19 @@ footer figure figcaption {
     font-family: 'Lobster', cursive;
     color: #F1B219;
 }
-
-.search-result aside h3 a:hover {
-    margin-left: 10px;
+.search-result aside h3 span {
+    content: "";
+    background-image: url("../medias/img/drinkizy_sprite.png");
+    background-position: -239px -64px;
+    height: 12px;
+    width: 8px;
+    display: inline-block;
+    margin-left: 5px;
+}
+.search-result aside h3:hover span {
+    transform:rotate(90deg);
+    -ms-transform:rotate(90deg); /* IE 9 */
+    -webkit-transform:rotate(90deg); /* Safari and Chrome */
 }
 .search-result section:last-child{
     float: left;
@@ -659,7 +669,7 @@ footer figure figcaption {
     display: block;
     margin-left: 5px;
 }
-.search-result-drinksMenu { float: left; width: 80%;  margin-left: 14px;}
+.search-result-drinksMenu { float: right; width: 80%;  margin-left: 14px;}
 .search-result-info .rank {
     cursor: default;
 }
@@ -676,7 +686,6 @@ footer figure figcaption {
 .search-result-info .rankFix {
     float: right;
     width: 22%;
-    margin-top: -34px;
 }
 .search-result-info p:first-child:before {
     content : "";
