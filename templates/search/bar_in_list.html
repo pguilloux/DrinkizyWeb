@@ -7,7 +7,12 @@
     <h4><a href="{% url "bars.views.fiche_bar" onebar.slug %}">{{ onebar.name }}</a>  <span> {{ onebar.theme }} </span></h4>
     <div class="search-result-info">
         <p class="postAdress">{{ onebar.address }}</p>
-        {% load bar_distances_dict %}
+        
+        <p class="rankFix"><a href="{% url "bars.views.fiche_bar" onebar.slug %}#comment"><span class="">★</span> <span class="full">★</span> <span class="full">★</span> <span class="full">★</span> <span class="full">★</span> <strong>321 avis</strong></a></p>
+    </div>
+</div>
+
+{% load bar_distances_dict %}
         {% load division %}
         {% if bar_distances %}
             {% with distance=bar_distances|keyvalue:onebar.name %}
@@ -18,30 +23,22 @@
                 {% endif %}
             {% endwith %}
         {% endif %}
-        <p class="rankFix"><a href="{% url "bars.views.fiche_bar" onebar.slug %}#comment"><span class="">★</span> <span class="full">★</span> <span class="full">★</span> <span class="full">★</span> <span class="full">★</span> <strong>321 avis</strong></a></p>
-    </div>
+<div class="search-result-drinksMenu"> 
+    <ul>
+        {% for result in objects %}
 
-        <div class="search-result-drinksMenu">
+            {% with drinkbar=result.object%}
 
-            
-            <ul>
-                {% for result in objects %}
+            {%ifequal drinkbar.bar.name onebar.name %}
+                <li>{{ drinkbar.drink.name }} : {{ drinkbar.price }}€</li>
+            {%endifequal%}
 
-                    {% with drinkbar=result.object%}
+            {%endwith%}
+        {% endfor %}
+    </ul>
 
-                    {%ifequal drinkbar.bar.name onebar.name %}
-                        <li>{{ drinkbar.drink.name }} : {{ drinkbar.price }}€</li>
-                    {%endifequal%}
-
-                    {%endwith%}
-                {% endfor %}
-            </ul>
-            
-
-            <h5><a href="{% url "bars.views.fiche_bar" onebar.slug %}#drinkMenu">voir <strong>plus</strong></a></h5>
-        </div>
-
-
+    <h5><a href="{% url "bars.views.fiche_bar" onebar.slug %}#drinkMenu">voir <strong>plus</strong></a></h5>
 </div>
+
 
 

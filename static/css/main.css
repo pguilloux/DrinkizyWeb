@@ -600,7 +600,7 @@ footer figure figcaption {
     margin-left: 10px;
 }
 .search-result-bar figure {
-    height: 130px;
+    height: 100px;
     width: 18%;
     overflow: hidden;
     float: left;
@@ -611,52 +611,55 @@ footer figure figcaption {
     width: 80%
 }
 .search-result-bar figure img {
-    height: 130px;
+    height: 100px;
 }
 .search-result-info {
     height: 65px;
     margin-bottom: 15px;
     margin-top: 10px;
 }
-.search-result-info .postAdress, .search-result-info .distance {
+.search-result-info .postAdress {
     display: inline-block;
     margin: 0;
     float: left;
 }
-.search-result-info .postAdress, .search-result-info .pDistance { 
+.search-result-info .postAdress { 
     width: 78%;
 }
 .search-result-info .postAdress {
     margin-bottom: 10px;
 }
-.search-result-info .pDistance {
+.search-result-bar ul li .pDistance {
     margin-top: 10px;
+    width: 25%;
 }
-.search-result-info .distance {
+.search-result-bar ul li .distance {
     border-bottom: 2px solid #F1B219;
     margin-top: -10px;
-    padding: 0 8px;
+    padding: 0 15px;
+    float: left;
 }
-.search-result-info .distanceBefore {
+.search-result-bar ul li .distanceBefore {
     content : "";
     background-image: url("../medias/img/drinkizy_sprite.png");
     background-position: -171px -58px;
     height: 23px;
     width: 21px;
-    display: block;
     float: left;
+    display: block;
     margin-right: 5px;
 }
-.search-result-info .distanceAfter {
+.search-result-bar ul li .distanceAfter {
     content : "";
     background-image: url("../medias/img/drinkizy_sprite.png");
     background-position: -74px -57px;
     height: 23px;
     width: 15px;
-    display: block;
     float: left;
+    display: block;
     margin-left: 5px;
 }
+.search-result-drinksMenu { float: left; width: 80%;  margin-left: 14px;}
 .search-result-info .rank {
     cursor: default;
 }
