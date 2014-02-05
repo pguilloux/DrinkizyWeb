@@ -4,7 +4,7 @@ from bars.models import *
 class Drink(models.Model):
 	slug = models.SlugField(max_length=200)
 	name = models.CharField(max_length=200)
-	description = models.CharField(max_length=2000)
+	description = models.CharField(max_length=3000)
 
 	subcategory = models.ForeignKey('DrinkSubCategory')
 	creator = models.ForeignKey('users.CustomUser', blank=True, null=True)
@@ -18,7 +18,7 @@ class Drink(models.Model):
 class DrinkCategory(models.Model):
 	slug = models.SlugField(max_length=200)
 	name = models.CharField(max_length=200)
-	description = models.CharField(max_length=200)
+	description = models.CharField(max_length=2000)
 
 	def __unicode__(self):
 		return "%s %s" % (self.name, self.description)
@@ -27,7 +27,7 @@ class DrinkCategory(models.Model):
 class DrinkSubCategory(models.Model):
 	slug = models.SlugField(max_length=200)
 	name = models.CharField(max_length=200)
-	description = models.CharField(max_length=200)
+	description = models.CharField(max_length=2000)
 	category = models.ForeignKey('DrinkCategory')
 
 	def __unicode__(self):
