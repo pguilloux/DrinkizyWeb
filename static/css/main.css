@@ -436,7 +436,7 @@ footer figure figcaption {
     display: inline-block;
     margin-left: 5px;
 }
-.search-result aside h3:hover span, .search-chevron-down, .search-result .search-cat-boisson > ul > li:hover span {
+.search-result aside h3:hover span, .search-chevron-down, .search-result .search-cat-boisson > ul > li span:hover  {
     transform:rotate(90deg);
     -ms-transform:rotate(90deg); /* IE 9 */
     -webkit-transform:rotate(90deg); /* Safari and Chrome */
