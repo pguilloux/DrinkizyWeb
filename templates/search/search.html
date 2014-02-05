@@ -12,14 +12,14 @@
                 <input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
                 <div class="clearfix"></div>
 
-                <h3><a href="#" class="easeInOut300ms">Boissons</a></h3>
+                <h3><a href="#boissons" class="easeInOut300ms">Boissons</a></h3>
                 <section>
                     {{ form.categories }}
                     <input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
                     <div class="clearfix"></div>
                 </section>
 
-                <h3><a href="#" class="easeInOut300ms">Localisation</a></h3>
+                <h3><a href="#localisation" class="easeInOut300ms">Localisation</a></h3>
                 <section>
 
                     <input type="text" placeholder="Où ? Adresse, Métro" class="inputLocalisation inputSearch-result"/>
@@ -33,21 +33,21 @@
                     <div class="clearfix"></div>
                 </section>
    
-                <h3><a href="#" class="easeInOut300ms">Thèmes</a></h3>
+                <h3><a href="#themes" class="easeInOut300ms">Thèmes</a></h3>
                 <section>
                     {{ form.themes }}
                     <input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
                     <div class="clearfix"></div>
                 </section>
 
-                <h3><a href="#" class="easeInOut300ms">Happy Hour</a></h3>
+                <h3><a href="#happyhour" class="easeInOut300ms">Happy Hour</a></h3>
 
                 <section>
                     <div id="slider-range"></div>
                 </section>
 
 
-                <h3><a href="#" class="easeInOut300ms">Note</a></h3>
+                <h3><a href="#note" class="easeInOut300ms">Note</a></h3>
                 <section>
                     <p class="rankActive"><a href="#" class="easeInOut300ms">★</a> <a href="#" class="easeInOut300ms">★</a> <a href="#" class="easeInOut300ms">★</a> <a href="#" class="easeInOut300ms">★</a> <a href="#" class="easeInOut300ms">★</a></p>
                 </section>
@@ -169,11 +169,8 @@
                         $(this).find('.ui-slider-handle').html("<span>" +v+"m"+ "</span>");
                     else
                         $(this).find('.ui-slider-handle').html("<span>" +v/1000+"km"+ "</span>");
-                    {% if distance_setted %}
-                        $('#slider-range-min').val({{ distance_setted }});
-                    {% else %}
-                        $('#slider-range-min').val(0);
-                    {% endif %}
+                    $('#slider-range-min').val({{ form.distance.value|default_if_none:0 }});
+ 
                     
                 }
             });
@@ -208,6 +205,23 @@
                 $(this).next("section").slideToggle(300);
                 e.preventDefault();
             }); 
+
+
+            {% if form.categories.value %}
+                console.log('boissons');
+                $(".search-result form h3 a[href='#boissons']").parent().next("section").slideToggle(300);
+            {% endif %}
+
+            {% if form.districts.value or form.station.value or form.distance.value != '0' %}
+                var distance_value = {{ form.distance.value }}
+                console.log(distance_value);
+                $(".search-result form h3 a[href='#localisation']").parent().next("section").slideToggle(300);
+            {% endif %}
+
+            {% if form.themes.value %}
+                console.log('themes');
+                $(".search-result form h3 a[href='#themes']").parent().next("section").slideToggle(300);
+            {% endif %}
 
 
           });
