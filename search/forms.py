@@ -18,10 +18,6 @@ TRANSPORT_LINES = ['1', '2', '3', '3B', '4', '5', '6', '7', '7B', '8', '9', '10'
  '11', '12', '13', '14', 'A', 'B', 'C', 'D', 'E', 'T1', 'T2', 'T3A', 'T3B']
 
 
-def get_categories():
-    categoriesList = DrinkCategory.objects.all()
-    return [(category.slug, category.name) for category in categoriesList] 
-
 def get_themes():
     themesList = Theme.objects.all()
     return [(theme.slug, theme.name) for theme in themesList] 
@@ -94,8 +90,8 @@ class CustomSearchForm(SearchForm):
     q = forms.CharField(required=False, label='search', widget=forms.TextInput(attrs={'placeholder': 'Search', 'class':'inputSearch-result'}))
     start_price = forms.FloatField(required=False)
     end_price = forms.FloatField(required=False)
-    categories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories(), )
-    subcategories = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_categories())
+    categories = forms.ModelMultipleChoiceField(required=False, queryset=DrinkCategory.objects.all(), widget=CheckboxSelectMultiple, to_field_name='name')
+    subcategories = forms.ModelMultipleChoiceField(required=False, queryset=DrinkSubCategory.objects.all(), widget=CheckboxSelectMultiple, to_field_name='name')
     themes = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_themes())
     station = forms.ChoiceField(required=False, widget=Select(attrs={'class':'inputSearch-result'}), choices=get_stations_by_lines())
     districts = forms.MultipleChoiceField(required=False, widget=SelectMultiple(attrs={'class':'inputSearch-result'}), choices=DISTRICTS)
@@ -137,10 +133,14 @@ class CustomSearchForm(SearchForm):
 
         
         if self.cleaned_data['categories']:
-            categories_utf8 = [category.encode("utf8") for category in self.cleaned_data['categories']]
-            sqs = sqs.filter(category__slug__in=categories_utf8)
+            categories_list = [category.slug for category in self.cleaned_data['categories']]
+            sqs = sqs.filter(category__slug__in=categories_list)
             no_filter_selected = False
-            logger.warning('tata1')
+
+        if self.cleaned_data['subcategories']:
+            subcategories_list = [subcategory.slug for subcategory in self.cleaned_data['subcategories']]
+            sqs = sqs.filter(subcategory__slug__in=subcategories_list)
+            no_filter_selected = False
 
 
         if self.cleaned_data['themes']:
