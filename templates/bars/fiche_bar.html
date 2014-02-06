@@ -17,20 +17,20 @@
 				</li>
 				<li>
 					<p class="rankFix">
-        			<span class="">★</span>
-        			<span class="">★</span>
-        			<span class=" full">★</span>
-        			<span class=" full">★</span>
-        			<span class=" full">★</span> 
+					<span class="">★</span>
+					<span class="">★</span>
+					<span class=" full">★</span>
+					<span class=" full">★</span>
+					<span class=" full">★</span> 
 					<strong>321 avis</strong>
-        		</p>
+				</p>
 				</li>
 			</ul>
 
 		</header>
 
-        <aside>
-			<h4>Top des boissons de <span>{{bar.name}}</span></h4>
+		<aside>
+			<h4>Top des boissons<span>{{bar.name}}</span></h4>
 
 			<ul>
 				<li><h6>Mojito</h6></li>
@@ -40,33 +40,33 @@
 			
 		</aside>
 
-		<div id="slider"><img src="{{bar.getImgUrl}}" alt=""></div>
+		<div id="slider"><img src="{{bar.getImgUrl}}" alt=""/></div>
 
 		<article>
 			<nav>
 				<ul>
 					<li class="easeInOut300ms">
 						<div class="peel-info code result-backCorner">
-                        	<img class="curl" src={% static "medias/img/cornerLeft.png" %}>
-                    	</div>
+							<img class="curl" src={% static "medias/img/cornerLeft.png" %}/>
+						</div>
 						<a href="#moreInfos">Plus d'infos</a>
 					</li>
 					<li class="easeInOut300ms">
 						<div class="peel-menu code result-backCorner">
-                        	<img class="curl" src={% static "medias/img/cornerLeft.png" %}>
-                    	</div>
+							<img class="curl" src={% static "medias/img/cornerLeft.png" %}/>
+						</div>
 						<a href="#drinkMenu">Carte des boissons</a>
 					</li>
 					<li class="easeInOut300ms">
 						<div class="peel-comment code result-backCorner">
-                        	<img class="curl" src={% static "medias/img/cornerLeft.png" %}>
-                    	</div>
+							<img class="curl" src={% static "medias/img/cornerLeft.png" %}/>
+						</div>
 						<a href="#comment">Avis</a>
 					</li>
 					<li class="easeInOut300ms">
 						<div class="peel-map code result-backCorner">
-                        	<img class="curl" src={% static "medias/img/cornerLeft.png" %}>
-                    	</div>
+							<img class="curl" src={% static "medias/img/cornerLeft.png" %}/>
+						</div>
 						<a href="#map">Plan</a>
 					</li>
 				</ul>
@@ -88,46 +88,46 @@
 			<div id="bar-drinkMenu">
 				<h3><a name="drinkMenu">Carte des Boissons</a></h3>
 				<div id="container-barCard" class="js-masonry" data-masonry-options='{ "columnWidth": 100, "itemSelector": ".menuCat" }'>
-		            
+					
 					{% regroup drinks_in_bar by subcategory as drinks_list %}
 
 					<ul class="menuCat menuCat-aperitif">
 						{% for drink in drinks_list %}
-						    	<h4>{{ drink.grouper }}</h4>
-							        {% for item in drink.list %}
-							        	<li class="">
-							          		<a href="#">
-							          			<h6>{{ item.object.drink.name }} <span>{{ item.object.price }} €</span></h6>
-							          			<p class="rankActive">
-						                			<a href="#" class="easeInOut300ms">★</a>
-						                			<a href="#" class="easeInOut300ms">★</a>
-						                			<a href="#" class="easeInOut300ms full">★</a>
-						                			<a href="#" class="easeInOut300ms full">★</a>
-						                			<a href="#" class="easeInOut300ms full">★</a>
-						                		</p> 
-							          		</a>
+								<h4>{{ drink.grouper }}</h4>
+									{% for item in drink.list %}
+										<li class="">
+											<a href="#">
+												<h6>{{ item.object.drink.name }} <span>{{ item.object.price }} €</span></h6>
+												<p class="rankActive">
+													<a href="#" class="easeInOut300ms">★</a>
+													<a href="#" class="easeInOut300ms">★</a>
+													<a href="#" class="easeInOut300ms full">★</a>
+													<a href="#" class="easeInOut300ms full">★</a>
+													<a href="#" class="easeInOut300ms full">★</a>
+												</p> 
+											</a>
 
-							          		<div class="infoDrinks">
-						                		<ul>
-						                			<li class="infoDrinks-text">
-						                				{{ item.object.drink.description }}
-						                			</li>
-						                			<li class="infoDrinks-rank">
-						                				<h5>Valider <strong>{{ item.object.drink.name|lower }}</strong> de <strong>{{ item.object.bar.name }}</strong></h5>
-								                		<p>
-								                			<a href="">oui</a>	 <a href="">non</a>	
-								                		</p>
-						                			</li>
-						                		</ul>
-						             			
-						                	</div>
-							        	</li>
-							        {% endfor %}
+											<div class="infoDrinks">
+												<ul>
+													<li class="infoDrinks-text">
+														{{ item.object.drink.description }}
+													</li>
+													<li class="infoDrinks-rank">
+														<h5>Valider <strong>{{ item.object.drink.name|lower }}</strong> de <strong>{{ item.object.bar.name }}</strong></h5>
+														<p>
+															<a href="">oui</a>	 <a href="">non</a>	
+														</p>
+													</li>
+												</ul>
+												
+											</div>
+										</li>
+									{% endfor %}
 						{% endfor %}
 					</ul>
 
-         
-	            <div class="clearfix"></div>
+		 		</div>
+				<div class="clearfix"></div>
 			</div>
 
 			<div id="bar-comment" >
@@ -136,14 +136,14 @@
 				<h5>Note globale</h5>
 				<p class="rankFix">
 					<strong>321 avis</strong>
-        			<span class="">★</span>
-        			<span class="">★</span>
-        			<span class=" full">★</span>
-        			<span class=" full">★</span>
-        			<span class=" full">★</span> 
-        		</p>
+					<span class="">★</span>
+					<span class="">★</span>
+					<span class=" full">★</span>
+					<span class=" full">★</span>
+					<span class=" full">★</span> 
+				</p>
 
-        		<a href="#" class="leaveComment">Laisser un commentaire</a>
+				<a href="#" class="leaveComment">Laisser un commentaire</a>
 
 				<ul>
 					<li>
@@ -154,12 +154,12 @@
 						<div class="bar-comment-text">
 							<p>Lorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgr</p>
 							<p class="rankFix">
-	                			<span class="">★</span>
-	                			<span class="">★</span>
-	                			<span class=" full">★</span>
-	                			<span class=" full">★</span>
-	                			<span class=" full">★</span>
-	                		</p> 
+								<span class="">★</span>
+								<span class="">★</span>
+								<span class=" full">★</span>
+								<span class=" full">★</span>
+								<span class=" full">★</span>
+							</p> 
 						</div>
 						<div class="clearfix"></div>
 					</li>
@@ -172,12 +172,12 @@
 						<div class="bar-comment-text">
 							<p>Lorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgr</p>
 							<p class="rankFix">
-	                			<span class="">★</span>
-	                			<span class="">★</span>
-	                			<span class=" full">★</span>
-	                			<span class=" full">★</span>
-	                			<span class=" full">★</span>
-	                		</p> 
+								<span class="">★</span>
+								<span class="">★</span>
+								<span class=" full">★</span>
+								<span class=" full">★</span>
+								<span class=" full">★</span>
+							</p> 
 						</div>
 						<div class="clearfix"></div>
 					</li>
@@ -188,10 +188,10 @@
 
 			<div id="bar-map">
 				<h3><a name="map">Plan</a></h3>
-				<div id="map-canvas"/></div>
+				<div id="map-canvas"></div>
 				<ul>
 					<li class="bar-adress">{{ bar.address }}</li>
-					<li class="bar-metro">Cadet, Poissonnière</li>
+					<li class="bar-metro">Cadet, Poissonnière {{ bar.longitude }}</li>
 				</ul>
 			</div>
 					
@@ -204,23 +204,20 @@
 		<div class="clearfix"></div>
 	</div>
 
-	{% block scriptjs %}    
-        <script type="text/javascript" src={% static "js/masonry.pkgd.min.js" %}></script>
-        <script type="text/javascript" src={% static "js/fiche_bar.js" %}></script>
-
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYdfpCP0VVQOXXf5nvoiwdHhbeI4drobE&sensor=true">
-	    </script>
-	    <script type="text/javascript">
-	      function initialize() {
-	        var mapOptions = {
-	          center: new google.maps.LatLng(-34.397, 150.644),
-	          zoom: 8
-	        };
-	        var map = new google.maps.Map(document.getElementById("map-canvas"),
-	            mapOptions);
-	      }
-	      google.maps.event.addDomListener(window, 'load', initialize);
-	    </script>
-    {% endblock scriptjs %}
 
 {% endblock content %}
+	
+{% block scriptjs %}    
+	<script type="text/javascript" src={% static "js/masonry.pkgd.min.js" %}></script>
+	<script type="text/javascript" src={% static "js/fiche_bar.js" %}></script>
+
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYdfpCP0VVQOXXf5nvoiwdHhbeI4drobE&sensor=true">
+	</script>
+	<script>
+		$(document).ready(function(){
+    		google.maps.event.addDomListener(window, 'load', initialize(48.859788, 2.347328));
+		});
+
+	</script>
+{% endblock %}
+
