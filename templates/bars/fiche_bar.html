@@ -80,7 +80,9 @@
 				<ul>
 					<!--Li class="bar-owner">Marcel Proust</li-->
 					<li class="bar-tel">{{bar.phone}}</li>
-					<li class="bar-mail">conctact@chezmomo.fr</li>
+					{% if bar.mail%}
+					<li class="bar-mail">{{bar.mail}}</li>
+					{% endif %}
 					<li class="bar-site"><a target="_blank" href={{ bar.website }}>{{ bar.website }}</a></li>
 				</ul>
 			</div>
@@ -191,7 +193,7 @@
 				<div id="map-canvas"></div>
 				<ul>
 					<li class="bar-adress">{{ bar.address }}</li>
-					<li class="bar-metro">Cadet, Poissonnière {{ bar.longitude }}</li>
+					<!--li class="bar-metro"></li-->
 				</ul>
 			</div>
 					
@@ -215,7 +217,9 @@
 	</script>
 	<script>
 		$(document).ready(function(){
-    		google.maps.event.addDomListener(window, 'load', initialize(48.859788, 2.347328));
+			var longitude = "{{ bar.longitude }}".replace(",", ".");
+			var latitude = "{{ bar.latitude }}".replace(",", ".");
+    		google.maps.event.addDomListener(window, 'load', initialize(latitude, longitude, "{{ bar.name }}"));
 		});
 
 	</script>

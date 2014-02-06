@@ -400,7 +400,7 @@ footer figure figcaption {
     padding: 5px;
     margin-bottom: 10px;
     border-radius: 4px;
-    background : transparent;
+    background : #fff;
     border: 2px solid #fff;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2) inset, 2px 2px 2px rgba(0, 0, 0, 0.2);
     width: 100%;
@@ -758,8 +758,10 @@ footer figure figcaption {
 
 .bar-card aside { float: right;}
 .bar-card #slider { width: 66%; height: 270px; display: block; overflow: hidden}
+.bar-card #slider img {min-width: 100%; min-height: 100%}
 .bar-card article { margin-top: 40px;}
-
+#bar-moreInfos, #bar-drinkMenu, #bar-comment , #bar-map {padding :15px; margin-top: 10px;}
+#bar-moreInfos, #bar-comment {background-color: rgba(0,0,0,0.02)}
 /* Général */
 #bar-moreInfos  ul, #bar-comment ul { padding-left: 0; display: inline-block;}
 .bar-card header ul {padding-left: 0;}
@@ -791,18 +793,18 @@ footer figure figcaption {
 
 /* Aside top des boissons */
 .bar-card aside {color:#000;border-left: 5px solid #F1B219; padding: 10px; margin-left: 20px; background-color: #F1F1F2; height: 270px;}
-.bar-card aside h4 {color: #000 !important; margin:0 ; padding: 0 20px;}
+.bar-card aside h4 {color: #000 !important; margin:0 ; padding: 0 20px; text-align: center;}
 .bar-card aside h4 span {color: #F1B219; display: block;}
 .bar-card aside img {height: 50px;
     margin-right: 10px;
     width: 50px;}
-.bar-card aside h6 {display: inline-block; margin: 0; vertical-align: top; font-size: 1em;}
+.bar-card aside h6 {display: inline-block; margin: 0; vertical-align: top; font-size: 1.2em; margin: 10px 0;}
 
 /* Navigation Menu */
 .bar-card nav ul { margin-left: 0; }
-.bar-card nav li { display: inline-block; width: 24%;text-align: center; font-family: 'Lobster', cursive; font-size: 1.5em; height: 50px;
+.bar-card nav li { display: inline-block; width: 24.73%;text-align: center; font-family: 'Lobster', cursive; font-size: 1.5em; height: 50px;
 line-height: 46px; position: relative; background-color: rgba(0, 0, 0, 0.04)} 
-.bar-card nav li:hover { background-color: #fff;}
+.bar-card nav li:hover { background-color: rgba(0, 0, 0, 0.02);}
 .bar-card nav li a { color: #000; display: block}
 
 
@@ -846,6 +848,7 @@ line-height: 46px; position: relative; background-color: rgba(0, 0, 0, 0.04)}
 .bar-card .menuCat h4 {
     margin: 10px 0 20px 20px;
     font-family: 'Lobster', cursive;
+    font-size: 1.4em;
 }
 .bar-card .menuCat p {
     margin: 0;
@@ -855,7 +858,7 @@ line-height: 46px; position: relative; background-color: rgba(0, 0, 0, 0.04)}
     margin: 0;
     width: 59%;
     margin: 0 20px;
-    font-size: 0.8em;
+    font-size: 1em;
     color: #000;
 }
 .bar-card .menuCat h6 span {
@@ -882,6 +885,7 @@ line-height: 46px; position: relative; background-color: rgba(0, 0, 0, 0.04)}
     font-weight: 300;
     line-height: 14px;
     text-align: center;
+    font-size: 1em;
 }
 .bar-card .infoDrinks-rank p {
     text-align: center;
@@ -1054,7 +1058,9 @@ line-height: 46px; position: relative; background-color: rgba(0, 0, 0, 0.04)}
     .search-result aside {
         float: left;
         color: #000;
+        margin-right: 20px;
         padding: 5px 20px;
+        background-color: rgba(0,0,0, 0.02);
     }
 }
 
