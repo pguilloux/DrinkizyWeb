@@ -33,4 +33,16 @@ $(document).ready(function(){
 
 		e.preventDefault();
 	})
+
+	
 });
+
+
+
+function initialize(long, lat) {
+    var mapOptions = {
+      center: new google.maps.LatLng(long, lat),
+      zoom: 18
+    };
+    var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+}
