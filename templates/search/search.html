@@ -258,7 +258,7 @@
                 $('.subcategories').hide();
 
                 /* Unhide and check the subcategories which were params for the results */
-                
+
 
                 /* Display subcategories when category chevron is clicked */
                 $("ul#id_categories li span").click(function() {
@@ -283,9 +283,8 @@
 
                 /* Uncheck category if subcategory is unchecked */
                 $("input[name=subcategories]").change(function() {
-                    var num_category = $(this).attr('id').match(/\d+/);
+                    var num_category = $(this).parent().parent().parent().attr('id').match(/\d+/);
                     if(!$(this).is(':checked')){
-                        console.log($("label[for='id_categories_"+num_category+"'] input"));
                         $("label[for='id_categories_"+num_category+"'] input").prop('checked', false);
                     }
                 });
