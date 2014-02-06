@@ -240,6 +240,7 @@
             /************ END TOGGLE SECTIONS ************/
 
             /************ BEGIN DISPLAY SUCATEGORIES ************/
+                /* Create all subcategories checkbox and hide them */
                 $("input[name=categories]").each(function(index){
                     var category = $(this).val();
                     var ul = "<span class='easeInOut300ms'></span><ul id='for_category_"+index+"' class='subcategories'>";
@@ -253,22 +254,22 @@
                         }
                     {% endfor %}
                     $(this).parent().parent().append(ul);
-
                 });
                 $('.subcategories').hide();
 
+                /* Unhide and check the subcategories which were params for the results */
+                
 
+                /* Display subcategories when category chevron is clicked */
                 $("ul#id_categories li span").click(function() {
                     var num_category = $(this).prev().attr('for').match(/\d+/);
                     $(this).toggleClass('search-chevron-down');
                     $("#for_category_"+num_category).toggle(); 
                 });
 
-
+                /* (un)Check all subcategories when category is (un)checked */
                 $("input[name=categories]").change(function() {
                     var num_category = $(this).attr('id').match(/\d+/);
-
-                   
                     if($(this).is(':checked')){
                         $("#for_category_"+num_category).find("li").each(function(index){
                             $(this).find(">:first-child").find(">:first-child").prop('checked', true);
@@ -278,15 +279,11 @@
                             $(this).find(">:first-child").find(">:first-child").prop('checked', false);
                         });
                     }
-                    
-                    
                 });
 
-
+                /* Uncheck category if subcategory is unchecked */
                 $("input[name=subcategories]").change(function() {
                     var num_category = $(this).attr('id').match(/\d+/);
-
-                    console.log("change");
                     if(!$(this).is(':checked')){
                         console.log($("label[for='id_categories_"+num_category+"'] input"));
                         $("label[for='id_categories_"+num_category+"'] input").prop('checked', false);
