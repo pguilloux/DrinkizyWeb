@@ -40,26 +40,26 @@ def get_stations_by_lines():
 
 
 DISTRICTS = [
-    ('75001', '1er arr.'),
-    ('75002', '2eme arr.'),
-    ('75003', '3eme arr.'),
-    ('75004', '4eme arr.'),
-    ('75005', '5eme arr.'),
-    ('75006', '6eme arr.'),
-    ('75007', '7eme arr.'),
-    ('75008', '8eme arr.'),
-    ('75009', '9eme arr.'),
-    ('75010', '10eme arr.'),
-    ('75011', '11eme arr.'),
-    ('75012', '12eme arr.'),
-    ('75013', '13eme arr.'),
-    ('75014', '14eme arr.'),
-    ('75015', '15eme arr.'),
-    ('75016', '16eme arr.'),
-    ('75017', '17eme arr.'),
-    ('75018', '18eme arr.'),
-    ('75019', '19eme arr.'),
-    ('75020', '20eme arr.'),
+    ('75001', '1er'),
+    ('75002', '2e'),
+    ('75003', '3e'),
+    ('75004', '4e'),
+    ('75005', '5e'),
+    ('75006', '6e'),
+    ('75007', '7e'),
+    ('75008', '8e'),
+    ('75009', '9e'),
+    ('75010', '10e'),
+    ('75011', '11e'),
+    ('75012', '12e'),
+    ('75013', '13e'),
+    ('75014', '14e'),
+    ('75015', '15e'),
+    ('75016', '16e'),
+    ('75017', '17e'),
+    ('75018', '18e'),
+    ('75019', '19e'),
+    ('75020', '20e'),
 ]
 
 
@@ -94,7 +94,7 @@ class CustomSearchForm(SearchForm):
     subcategories = forms.ModelMultipleChoiceField(required=False, queryset=DrinkSubCategory.objects.all(), widget=CheckboxSelectMultiple, to_field_name='name')
     themes = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_themes())
     station = forms.ChoiceField(required=False, widget=Select(attrs={'class':'inputSearch-result'}), choices=get_stations_by_lines())
-    districts = forms.MultipleChoiceField(required=False, widget=SelectMultiple(attrs={'class':'inputSearch-result'}), choices=DISTRICTS)
+    districts = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=DISTRICTS)
 
     bar_distances = {}
 
@@ -180,8 +180,13 @@ class CustomSearchForm(SearchForm):
                         self.bar_distances[bar.name] = distance
                 no_filter_selected = False
 
+                # foursquareUrl = "https://api.foursquare.com/v2/venues/search?near=Paris&categoryId=4d4b7105d754a06376d81259&oauth_token=GRXPRZGMJCONKHAQKDSQUAPTPKAIFP4OGQXE12RPWGWSALNT&v=20140209"
+                # foursquareResult= simplejson.load(urllib.urlopen(foursquareUrl))
+                # import json
+                # with open('foursquareResult.txt', 'w') as outfile:
+                #     json.dump(foursquareResult, outfile)
+                # logger.warning(foursquareResult)
 
-             
             # logger.warning('tata1')
             # logger.warning(categories_utf8)
             # logger.warning('tata2')
