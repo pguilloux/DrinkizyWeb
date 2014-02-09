@@ -163,13 +163,15 @@ class CustomSearchForm(SearchForm):
                 bars_query_results = [result.object.bar.name for result in sqs]
                 bars = Bar.objects.filter(name__in=bars_query_results)
 
-                orig_coord = Station.objects.filter(name__exact=self.cleaned_data['station'])
+                chosen_station = Station.objects.filter(name__exact=self.cleaned_data['station'])
+                orig_coord = chosen_station[0].latitude, chosen_station[0].longitude
 
                 for bar in bars:
 
                     dest_coord = bar.latitude, bar.longitude
                     url = "http://maps.googleapis.com/maps/api/distancematrix/json?origins={0}&destinations={1}&mode=walking&language=en-EN&sensor=false".format(str(orig_coord),str(dest_coord))
                     result= simplejson.load(urllib.urlopen(url))
+                    
                     distance = result['rows'][0]['elements'][0]['distance']['value']
 
                     if(distance>self.cleaned_data['distance']):
@@ -179,6 +181,7 @@ class CustomSearchForm(SearchForm):
                 no_filter_selected = False
 
 
+             
             # logger.warning('tata1')
             # logger.warning(categories_utf8)
             # logger.warning('tata2')
