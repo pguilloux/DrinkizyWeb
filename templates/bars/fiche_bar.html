@@ -8,7 +8,7 @@
 		<header>
 			<ul>
 				<li>
-					<h4> {{bar.name}} <span> {{bar.theme}}  </span></h4>
+					<h4> {{bar.name}} <span> <a href="{% url 'bars.views.bars_for_theme' bar.theme.slug %}">{{ bar.theme.name }}</a>  </span></h4>
 					<p class="postAdress">{{bar.address}} </p>
 				</li>
 				<li class="boxValidateBar">

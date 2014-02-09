@@ -1,0 +1,56 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+    {% load staticfiles %}
+    <div class="main wrapper clearfix search-result">
+        <aside>
+            <h2>Autres thèmes de bars</h2>
+
+            <ul>
+                {% for theme in themes|dictsort:"name" %}
+                    <li>
+                        <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a>
+                    </li>
+                    <div class="clearfix"></div>
+                {% endfor %}
+
+             </ul>
+            
+        </aside>
+
+        <article class="search-result-list">
+            <header>
+                <h1> {{ theme.name }} </h1> 
+            </header>
+
+            <section class="search-result-bar">
+      
+                <ul>
+                    {% with objects=bars_for_theme %}
+                    {% for result in bars_for_theme|dictsort:"object.bar.name" %}
+                   
+                        {% ifchanged result.object.bar%}
+                            <li>
+                                {% with onebar=result.object.bar %}
+                                    {% include "search/bar_in_list.html" %}
+                                {% endwith %}
+                            </li>
+                            <div class="clearfix"></div>
+                        {%endifchanged%}
+    
+                    {% endfor %}
+                    {% endwith %}
+                 </ul>
+
+
+            </section>
+
+            <footer>
+
+            </footer>
+        </article>
+
+        <div class="clearfix"></div>
+    </div> <!-- #main -->
+
+{% endblock %}

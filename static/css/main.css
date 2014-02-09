@@ -618,7 +618,7 @@ footer figure figcaption {
    font-size: 1.5em; 
    margin: -7px 0 0 0;
 }
-.search-result-bar h4 span, .bar-card header li h4 span {
+.search-result-bar h4 span a, .bar-card header li h4 span a{
     background-color: #F1B219;
     color: #fff;
     font-weight: 300;

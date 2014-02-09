@@ -1,14 +1,14 @@
 
 <figure>
 
-    <a href="{% url "bars.views.fiche_bar" onebar.slug %}"><img src="{{onebar.getImgUrl}}" alt=""></a>
+    <a href="{% url 'bars.views.fiche_bar' onebar.slug %}"><img src="{{onebar.getImgUrl}}" alt=""></a>
 </figure>
 <div class="search-result-right">
-    <h4><a href="{% url "bars.views.fiche_bar" onebar.slug %}">{{ onebar.name }}</a>  <span> {{ onebar.theme }} </span></h4>
+    <h4><a href="{% url 'bars.views.fiche_bar' onebar.slug %}">{{ onebar.name }}</a>  <span> <a href="{% url 'bars.views.bars_for_theme' onebar.theme.slug %}">{{ onebar.theme.name }}</a> </span></h4>
     <div class="search-result-info">
         <p class="postAdress">{{ onebar.address }}</p>
         
-        <p class="rankFix"><a href="{% url "bars.views.fiche_bar" onebar.slug %}#comment"><span class="">★</span> <span class="full">★</span> <span class="full">★</span> <span class="full">★</span> <span class="full">★</span> <strong>321 avis</strong></a></p>
+        <p class="rankFix"><a href="{% url 'bars.views.fiche_bar' onebar.slug %}#comment"><span class="">★</span> <span class="full">★</span> <span class="full">★</span> <span class="full">★</span> <span class="full">★</span> <strong>321 avis</strong></a></p>
     </div>
 </div>
 
@@ -37,7 +37,7 @@
         {% endfor %}
     </ul>
 
-    <h5><a href="{% url "bars.views.fiche_bar" onebar.slug %}#drinkMenu">voir <strong>plus</strong></a></h5>
+    <h5><a href="{% url 'bars.views.fiche_bar' onebar.slug %}#drinkMenu">voir <strong>plus</strong></a></h5>
 </div>
 
 
