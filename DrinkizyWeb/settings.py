@@ -67,6 +67,7 @@ INSTALLED_APPS = (
     'south',
     'haystack',
     'floppyforms',
+    'endless_pagination',
 
     #apps
     'home',

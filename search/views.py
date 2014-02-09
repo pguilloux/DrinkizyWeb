@@ -25,6 +25,7 @@ class CustomSearchView(SearchView):
   
         Relies on internal, overridable methods to construct the response.
         """
+
         return super(CustomSearchView, self).__call__(request, *args, **kwargs)
   
     @property

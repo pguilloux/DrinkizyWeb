@@ -99,32 +99,28 @@
             <h3>Résultats</h3>
             {% with objects=page.object_list %}
 
+
+            {% load endless %}
             <ul>
-                {% for result in objects|dictsort:"object.bar.name" %}
-                   
-                    {% ifchanged result.object.bar%}
-                        <li>
+            {% paginate objects %}
+            {% for result in objects|dictsort:"object.bar.name" %}
+                {% ifchanged result.object.bar%}
+                    <li>
+                        {% with onebar=result.object.bar %}
+                           {% include "search/bar_in_list.html" %}
+                        {% endwith %}
+                    </li>
+                    <div class="clearfix"></div>
+                {%endifchanged%}
+            {% endfor %}
+            </ul>
+            {% show_pages %}
 
-                            {% with onebar=result.object.bar %}
-                                {% include "search/bar_in_list.html" %}
-                            {% endwith %}
 
-                        </li>
-                        <div class="clearfix"></div>
-                    {%endifchanged%}
-    
-                {% endfor %}
-             </ul>
             {% endwith %}
 
 
-            {% if page.has_previous or page.has_next %}
-                <div>
-                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
-                    |
-                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
-                </div>
-            {% endif %}
+
  
 
             </section>
