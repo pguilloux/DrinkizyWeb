@@ -8,8 +8,8 @@ from bars.models import *
 import logging
 
 from django.shortcuts import render
-
 from django.shortcuts import render_to_response
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +25,7 @@ class CustomSearchView(SearchView):
   
         Relies on internal, overridable methods to construct the response.
         """
-
+        #paginator = Paginator(SearchQuerySet(), 25)
         return super(CustomSearchView, self).__call__(request, *args, **kwargs)
   
     @property

@@ -20,6 +20,9 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 50
+#ENDLESS_PAGINATION_PER_PAGE = 10
+
 # HAYSTACK_CONNECTIONS = {
 #     'default': {
 #         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
@@ -67,7 +70,7 @@ INSTALLED_APPS = (
     'south',
     'haystack',
     'floppyforms',
-    'endless_pagination',
+    #'endless_pagination',
 
     #apps
     'home',

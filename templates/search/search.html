@@ -2,6 +2,7 @@
 
 {% block content %}
     {% load staticfiles %}
+    {% load bar_tags %}
 
     <div class="main wrapper clearfix search-result">
         <aside>
@@ -79,10 +80,10 @@
 
         <article class="search-result-list">
             <header>
-
+                
                 {% if query %}
-
-                    <h5> {{page.object_list|length}} résultats pour la recherche "{{query}}"</h5> 
+                
+                    <h5> {{page.object_list|nb_bars}} résultats pour la recherche "{{query}}"</h5> 
                 {% endif %}
 
                
@@ -99,10 +100,9 @@
             <h3>Résultats</h3>
             {% with objects=page.object_list %}
 
-
-            {% load endless %}
+            {#{% load endless %}#}
             <ul>
-            {% paginate objects %}
+           {# {% paginate objects %}#}
             {% for result in objects|dictsort:"object.bar.name" %}
                 {% ifchanged result.object.bar%}
                     <li>
@@ -114,7 +114,7 @@
                 {%endifchanged%}
             {% endfor %}
             </ul>
-            {% show_pages %}
+           {# {% show_pages %}#}
 
 
             {% endwith %}
