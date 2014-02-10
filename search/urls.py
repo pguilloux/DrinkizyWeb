@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from drinks.views import *
 from search.forms import CustomSearchForm
 from haystack.query import SearchQuerySet
-from search.views import CustomSearchView
+from search.views import *
 from search.views import *
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -17,7 +17,7 @@ sqs = SearchQuerySet()
 
 urlpatterns = patterns('search.views',
     url(r'^search/$', CustomSearchView(form_class=CustomSearchForm, searchqueryset=sqs), name='search'),
-    #url(r'^search/$', search, form_class= MultiFacetedSearchForm, searchqueryset=sqs, name='search'),
+    url(r'^search_bar$', BarSearchView(form_class=CustomSearchForm, searchqueryset=sqs), name='search_bar'),
 )
 
 # # Without threading...

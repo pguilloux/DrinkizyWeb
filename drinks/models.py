@@ -10,7 +10,7 @@ class Drink(models.Model):
 	creator = models.ForeignKey('users.CustomUser', blank=True, null=True)
 
 	def __unicode__(self):
-		return "%s %s %s" % (self.name, self.description, self.subcategory)
+		return "%s" % (self.name)
 
 	#def getImgUrl(self):
 	#	return "%s%s" % (settings.MEDIA_URL, self.picture)

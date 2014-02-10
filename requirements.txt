@@ -4,3 +4,4 @@ whoosh
 django-haystack
 pip install -U django-floppyforms
 pip install django-endless-pagination
+pip install django-autocomplete-light

@@ -71,6 +71,7 @@ INSTALLED_APPS = (
     'haystack',
     'floppyforms',
     #'endless_pagination',
+    'autocomplete_light',
 
     #apps
     'home',

@@ -10,6 +10,9 @@ import logging, operator
 import floppyforms as forms
 import simplejson, urllib
 
+import autocomplete_light
+autocomplete_light.autodiscover()
+
 
    
 logger = logging.getLogger(__name__)
@@ -87,7 +90,7 @@ class CustomSearchForm(SearchForm):
 
    
     distance = forms.IntegerField(required=False, widget=Slider(attrs={'id': 'slider-range-min'}))
-    q = forms.CharField(required=False, label='search', widget=forms.TextInput(attrs={'placeholder': 'Search', 'class':'inputSearch-result'}))
+    q = forms.CharField(required=False, label='search', widget=autocomplete_light.TextWidget('AutocompleteTaggableItems', attrs={'placeholder': 'Search', 'class':'inputSearch-result'}))
     start_price = forms.FloatField(required=False)
     end_price = forms.FloatField(required=False)
     categories = forms.ModelMultipleChoiceField(required=False, queryset=DrinkCategory.objects.all(), widget=CheckboxSelectMultiple, to_field_name='name')

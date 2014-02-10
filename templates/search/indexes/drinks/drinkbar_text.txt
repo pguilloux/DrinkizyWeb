@@ -2,3 +2,4 @@
 {{ object.drink.subcategory.name }}
 {{ object.drink.subcategory.category.name }}
 {{ object.bar.name }}
+{{ object.bar.theme.name }}

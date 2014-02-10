@@ -26,7 +26,7 @@ class Bar(models.Model):
 	theme = models.ForeignKey('Theme')
 
 	def __unicode__(self):
-		return "%s %s" % (self.name, self.address)
+		return "%s" % (self.name)
 
 	def getImgUrl(self):
 		return "%s%s%s" % (settings.MEDIA_URL+'bars/', self.slug, '.jpg')
