@@ -17,7 +17,7 @@ sqs = SearchQuerySet()
 
 urlpatterns = patterns('search.views',
     url(r'^search/$', CustomSearchView(form_class=CustomSearchForm, searchqueryset=sqs), name='search'),
-    url(r'^search_bar$', BarSearchView(form_class=CustomSearchForm, searchqueryset=sqs), name='search_bar'),
+    #url(r'^$', BarSearchView(form_class=CustomSearchForm, searchqueryset=sqs), name='search_bar'),
 )
 
 # # Without threading...

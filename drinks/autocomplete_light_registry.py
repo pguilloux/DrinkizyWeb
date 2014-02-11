@@ -22,4 +22,9 @@ class AutocompleteTaggableItems(autocomplete_light.AutocompleteGenericBase):
     )
 
 
-autocomplete_light.register(AutocompleteTaggableItems)
+autocomplete_light.register(AutocompleteTaggableItems,
+    autocomplete_js_attributes={
+        'minimum_characters': 0,
+        'placeholder': 'Quoi ? Boisson, Bar, Theme...',
+    }
+)
