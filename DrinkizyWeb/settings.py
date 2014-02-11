@@ -72,6 +72,7 @@ INSTALLED_APPS = (
     'floppyforms',
     #'endless_pagination',
     'autocomplete_light',
+    'tastypie',
 
     #apps
     'home',

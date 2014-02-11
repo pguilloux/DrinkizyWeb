@@ -3,8 +3,16 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 import autocomplete_light
 
+from tastypie.api import Api
+from bars.api import *
+
 autocomplete_light.autodiscover()
 admin.autodiscover()
+
+v1_api = Api(api_name='v1')
+v1_api.register(BarResource())
+v1_api.register(ThemeResource())
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -12,6 +20,8 @@ urlpatterns = patterns('',
     (r'', include('bars.urls')),
     (r'', include('drinks.urls')),
     (r'', include('search.urls')),
+
+    (r'^api/', include(v1_api.urls)),
     #(r'^search/', include('haystack.urls')),
     # url(r'^$', 'DrinkizyWeb.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
@@ -21,4 +31,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^autocomplete/', include('autocomplete_light.urls')),
+
+
 )

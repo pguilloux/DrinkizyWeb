@@ -5,3 +5,9 @@ django-haystack
 pip install -U django-floppyforms
 pip install django-endless-pagination
 pip install django-autocomplete-light
+
+
+tastypie :
+	python-mimeparse
+	dateutil
+	pip install django-tastypie
