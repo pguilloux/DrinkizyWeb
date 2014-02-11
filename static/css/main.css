@@ -397,7 +397,7 @@ footer figure figcaption {
     margin-left: 12px;
 }
 
-.search-result form #id_districts li{
+.search-result form .search-loc-boisson ul li{
     display: block;
     float: left;
     width: 25%;

@@ -25,7 +25,7 @@
                 </section>
 
                 <h3><a href="#localisation" class="easeInOut300ms">Localisation</a><span class="easeInOut300ms"></span></h3>
-                <section>
+                <section  class="search-loc-boisson">
 
                     <input type="text" placeholder="Où ? Adresse, Métro" class="inputLocalisation inputSearch-result"/>
                 
@@ -39,7 +39,7 @@
                 </section>
    
                 <h3><a href="#themes" class="easeInOut300ms">Thèmes</a><span class="easeInOut300ms"></span></h3>
-                <section>
+                <section class="search-themes-boisson">
                     {{ form.themes }}
                     <input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
                     <div class="clearfix"></div>
@@ -47,7 +47,7 @@
 
                 <h3><a href="#happyhour" class="easeInOut300ms">Happy Hour</a><span class="easeInOut300ms"></span></h3>
 
-                <section>
+                <section class="search-slider-boisson">
                     <div id="slider-range"></div>
                 </section>
 
@@ -258,7 +258,7 @@
 
 
                 /* Display subcategories when category chevron is clicked */
-                $("ul#id_categories li span").click(function() {
+                $(" .search-cat-boisson ul li span").click(function() {
                     var num_category = $(this).prev().attr('for').match(/\d+/);
                     $(this).toggleClass('search-chevron-down');
                     $("#for_category_"+num_category).toggle(); 
