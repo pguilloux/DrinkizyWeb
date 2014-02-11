@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django import forms
 from haystack.forms import SearchForm
 from drinks.models import *
@@ -89,15 +90,22 @@ class Slider(forms.RangeInput):
 class CustomSearchForm(SearchForm):
 
    
-    distance = forms.IntegerField(required=False, widget=Slider(attrs={'id': 'slider-range-min'}))
+    
     q = forms.CharField(required=False, label='search', widget=autocomplete_light.TextWidget('AutocompleteTaggableItems', attrs={'class':'inputSearch-result'}))
-    start_price = forms.FloatField(required=False)
-    end_price = forms.FloatField(required=False)
+
     categories = forms.ModelMultipleChoiceField(required=False, queryset=DrinkCategory.objects.all(), widget=CheckboxSelectMultiple, to_field_name='name')
     subcategories = forms.ModelMultipleChoiceField(required=False, queryset=DrinkSubCategory.objects.all(), widget=CheckboxSelectMultiple, to_field_name='name')
-    themes = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_themes())
-    station = forms.ChoiceField(required=False, widget=Select(attrs={'class':'inputSearch-result'}), choices=get_stations_by_lines())
+    
+    address = forms.CharField(required=False, label='search', widget=forms.TextInput(attrs={'placeholder':'Où ? Adresse, Rue...', 'class':'inputLocalisation inputSearch-result'}))
     districts = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=DISTRICTS)
+    station = forms.CharField(required=False, label='search', widget=autocomplete_light.TextWidget('StationAutocomplete', attrs={'class':'inputSearch-result'}))
+    distance = forms.IntegerField(required=False, widget=Slider(attrs={'id': 'slider-range-min'}))
+
+    themes = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_themes())
+
+    # start_price = forms.FloatField(required=False)
+    # end_price = forms.FloatField(required=False)
+    
 
     bar_distances = {}
 
@@ -123,16 +131,16 @@ class CustomSearchForm(SearchForm):
             sqs = SearchQuerySet().filter(price__gte=-1)
             return sqs
 
-        # Check to see if a start_date was chosen.
-        if self.cleaned_data['start_price']:
-            sqs = sqs.filter(price__gte=self.cleaned_data['start_price'])
-            no_filter_selected = False
+        # # Check to see if a start_date was chosen.
+        # if self.cleaned_data['start_price']:
+        #     sqs = sqs.filter(price__gte=self.cleaned_data['start_price'])
+        #     no_filter_selected = False
 
 
-        # Check to see if an end_date was chosen.
-        if self.cleaned_data['end_price']:
-            sqs = sqs.filter(price__lte=self.cleaned_data['end_price'])
-            no_filter_selected = False
+        # # Check to see if an end_date was chosen.
+        # if self.cleaned_data['end_price']:
+        #     sqs = sqs.filter(price__lte=self.cleaned_data['end_price'])
+        #     no_filter_selected = False
 
         
         if self.cleaned_data['categories']:
@@ -160,14 +168,28 @@ class CustomSearchForm(SearchForm):
         if no_filter_selected and self.cleaned_data['q']=="*":
             sqs = sqs.filter(price__gte=-1)
             
-        if self.cleaned_data['station']:
-            if self.cleaned_data['distance']:
+        if self.cleaned_data['station'] or self.cleaned_data['address']:
+            
+                orig_coord=""
+                distance_setted=0
 
                 bars_query_results = [result.object.bar.name for result in sqs]
                 bars = Bar.objects.filter(name__in=bars_query_results)
 
                 chosen_station = Station.objects.filter(name__exact=self.cleaned_data['station'])
-                orig_coord = chosen_station[0].latitude, chosen_station[0].longitude
+                if self.cleaned_data['station']:
+                    orig_coord = chosen_station[0].latitude, chosen_station[0].longitude
+                elif self.cleaned_data['address']:
+                    orig_coord = self.cleaned_data['address']
+
+                if self.cleaned_data['distance']:
+                    if self.cleaned_data['distance'] == 0:
+                        distance_setted = 1000
+                    else:
+                        distance_setted = self.cleaned_data['distance']
+                else:
+                    distance_setted = 1000
+
 
                 for bar in bars:
 
@@ -177,7 +199,7 @@ class CustomSearchForm(SearchForm):
                     
                     distance = result['rows'][0]['elements'][0]['distance']['value']
 
-                    if(distance>self.cleaned_data['distance']):
+                    if distance > distance_setted:
                         sqs = sqs.exclude(bar__name__exact=bar.name)
                     else:
                         self.bar_distances[bar.name] = distance
@@ -189,6 +211,7 @@ class CustomSearchForm(SearchForm):
                 # with open('foursquareResult.txt', 'w') as outfile:
                 #     json.dump(foursquareResult, outfile)
                 # logger.warning(foursquareResult)
+
 
             # logger.warning('tata1')
             # logger.warning(categories_utf8)

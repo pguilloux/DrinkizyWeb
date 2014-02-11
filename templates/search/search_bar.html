@@ -1,6 +1,6 @@
 <form method="get" action="/search">
 	{{ form.q }}
-	<input type="text" placeholder="Où ? Adresse, Métro, Arr."/>
+	{{ form.address }}
 	<input type="submit" value="" class="goSearch" />
 	<label>ou</label>
 	<input type="submit" value="Recherche affinée" class="moreSearch buttonRadius easeInOut300ms"/>
