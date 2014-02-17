@@ -91,12 +91,12 @@ class CustomSearchForm(SearchForm):
 
    
     
-    q = forms.CharField(required=False, label='search', widget=autocomplete_light.TextWidget('AutocompleteTaggableItems', attrs={'class':'inputSearch-result'}))
+    q = forms.CharField(required=False, label='search', widget=autocomplete_light.TextWidget('AutocompleteTaggableItems', attrs={'class':'inputSearch-result form-control'}))
 
     categories = forms.ModelMultipleChoiceField(required=False, queryset=DrinkCategory.objects.all(), widget=CheckboxSelectMultiple, to_field_name='name')
     subcategories = forms.ModelMultipleChoiceField(required=False, queryset=DrinkSubCategory.objects.all(), widget=CheckboxSelectMultiple, to_field_name='name')
     
-    address = forms.CharField(required=False, label='search', widget=forms.TextInput(attrs={'placeholder':'Où ? Adresse, Rue...', 'class':'inputLocalisation inputSearch-result'}))
+    address = forms.CharField(required=False, label='search', widget=forms.TextInput(attrs={'placeholder':'Où ? Adresse, Rue...', 'class':'inputLocalisation inputSearch-result form-control'}))
     districts = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=DISTRICTS)
     station = forms.CharField(required=False, label='search', widget=autocomplete_light.TextWidget('StationAutocomplete', attrs={'class':'inputSearch-result'}))
     distance = forms.IntegerField(required=False, widget=Slider(attrs={'id': 'slider-range-min'}))

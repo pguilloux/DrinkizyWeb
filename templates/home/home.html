@@ -3,138 +3,197 @@
 {% block content %}
 	{% load staticfiles %}
 
-	<div class="main wrapper clearfix home">
-	           
+		<div class="theme-band site-wrapper-inner">
+				<div class="cover-container">
+					<div class="inner cover">
+						<h1 class="cover-heading">Trouves le bar qui correspond à tes envies</h1>
+						<p class="lead">
+							<button type="button" class="concert-icon btn btn-primary"><span class="sprite"></span>Concert</button>
+							<button type="button" class="sport-icon btn btn-primary"><span class="sprite"></span>Sportif</button>
+							<button type="button" class="moleculaire-icon btn btn-primary"><span class="sprite"></span>Moléculaire</button>
+							<button type="button" class="lounge-icon btn btn-primary"><span class="sprite"></span>Lounge</button>
+							<button type="button" class="rock-icon btn btn-primary"><span class="sprite"></span>Rock</button>
+							<button type="button" class="pub-icon btn btn-primary"><span class="sprite"></span>Pub</button>
+							<button type="button" class="geek-icon btn btn-primary"><span class="sprite"></span>Geek</button>
+						</p>
+						
+						<a href="#" class="btn btn-link-underline">Plus de thèmes</a>
+						
+					</div>
+				</div>
+		</div>
 
-		<article>
-		    <section class="home-slider">
-		        <div id="ei-slider" class="ei-slider">
-                    <ul class="ei-slider-large">
-						<li>
-							<a href="#">
-	                            <img src={% static "medias/img/slider/image1.jpg" %} alt="image06"/>
-	                            <div class="ei-title">
-	                                <h2></h2>
-	                                <h3></h3>
-	                            </div>
-                            </a>
-                        </li>
-                        <li>
-                        	<a href="">
-	                            <img src={% static "medias/img/slider/image2.jpg" %} alt="image01"/>
-	                            <div class="ei-title">
-	                                <h2>Découvrez Le Descartes</h2>
-	                                <h3>Nouveau Partenaire Drinkizy</h3>
-	                            </div>
-                            </a>
-                        </li>
-                        
-                    </ul><!-- ei-slider-large -->
-                    <ul class="ei-slider-thumbs">
-                        <li class="ei-slider-element">Current</li>
-						<li><a href="#">Slide 6</a><img src={% static "medias/img/slider/thumbs/1.jpg" %} alt="thumb06" /></li>
-                        <li><a href="#">Slide 1</a><img src={% static "medias/img/slider/thumbs/2.jpg" %} alt="thumb01" /></li>
-                    </ul><!-- ei-slider-thumbs -->
-                </div><!-- ei-slider -->
-		    </section>
-		</article>
+		<div class="white-band list-bar-band site-wrapper-inner">
+			<div class="cover-container">
+				<div class="inner cover">
+					<h1 class="cover-heading">Bars populaires de Paris</h1>
+					
+					<div class="row">
+						<div class="col-xs-6 col-sm-3">
+							<div class="media media-grey">
+								<span class="pull-left">
+									9.9
+								</span>
+								<div class="media-body">
+									<h4 class="media-heading">
+										<a href="">Guinness Tavern</a>
+									</h4>
+									<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
+								</div>
+							</div>
+							<div class="thumbnail">
+								<img src="../static/medias/bars/aux-trois-escales.jpg" alt="...">
+							</div>
 
-		<aside>
-			<figure>
-		    	<img src={% static "medias/img/pub_appli_mobile.png" %} alt="Télécharger gratuitement notre application android"/>
-		    </figure>
+						</div>
+						<div class="col-xs-6 col-sm-3">
+							<div class="media media-grey">
+								<span class="pull-left" href="#">
+									9.9
+								</span>
+								<div class="media-body">
+									<h4 class="media-heading">
+										<a href="">Guinness Tavern</a>
+									</h4>
+									<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
+								</div>
+							</div>
+							<div class="thumbnail">
+								<img src="img/hannongbar_orange.jpg" alt="...">
+							</div>
+						</div>
 
-		    <figure class="sponsoring">
-		    	<p style="padding: 50px 0; color: #8C8C8C; background-color: #B2B2B1; text-align: center; letter-spacing: 10px;">ESPACE PUB</p>
-		    </figure>
-		</aside>
+						<!-- Add the extra clearfix for only the required viewport -->
+						<div class="clearfix visible-xs"></div>
 
-		<div class="clearfix"></div>
+						<div class="col-xs-6 col-sm-3">
+							<div class="media media-grey">
+								<span class="pull-left" href="#">
+									9.9
+								</span>
+								<div class="media-body">
+									<h4 class="media-heading">
+										<a href="">Guinness Tavern</a>
+									</h4>
+									<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
+								</div>
+							</div>
+							<div class="thumbnail">
+								<img src="img/hannongbar_orange.jpg" alt="...">
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-3">
+							<div class="media media-grey">
+								<span class="pull-left" href="#">
+									9.9
+								</span>
+								<div class="media-body">
+									<h4 class="media-heading">
+										<a href="">Guinness Tavern</a>
+									</h4>
+									<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
+								</div>
+							</div>
+							<div class="thumbnail">
+								<img src="img/hannongbar_orange.jpg" alt="...">
+							</div>
+						</div>
+					</div>
+					
+					<a href="#" class="btn btn-link-underline btn-link-underline-orange">Voir plus de bars</a>
+				</div>
+			</div>
+		</div>
 
-		<article class="home-topWeek">
-			<h2>Les Tops de la semaine</h2>
-			<ul>
-				<li>
-					<h5>Mes coups de coeur</h5>
-					<h6>par <a href="">Lauriane</a></h6>
-					<figure>
-						<div><img src={% static "medias/img/slider/image1.jpg" %} height="100"/></div>
-						<figcaption>
-							<ol>
-								<li>Bière</li>
-								<li>Bière</li>
-								<li>Bière</li>
-							</ol>
-						</figcaption>
-					</figure>
-				</li>
+		<div class="grey-band list-bar-band site-wrapper-inner">
+			<div class="cover-container">
+				<div class="inner cover">
+					<h1 class="cover-heading">"Place to be" à Paris</h1>
 
-				<li>
-					<h5>Mes coups de coeur</h5>
-					<h6>par <a href="">Lauriane</a></h6>
-					<figure>
-						<div><img src={% static "medias/img/slider/image1.jpg" %} height="100"/></div>
-						<figcaption>
-							<ol>
-								<li>Bière</li>
-								<li>Bière</li>
-								<li>Bière</li>
-							</ol>
-						</figcaption>
-					</figure>
-				</li>
+						<div class="row">
+							<div class="col-xs-6 col-sm-3">
+								<div class="media media-white">
+									<span class="pull-left" href="#">
+										9.9
+									</span>
+									<div class="media-body">
+										<h4 class="media-heading">
+											<a href="">Guinness Tavern</a>
+										</h4>
+										<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
+									</div>
+								</div>
+								<div class="thumbnail">
+									<img src="img/hannongbar_orange.jpg" alt="...">
+								</div>
 
-				<li>
-					<h5>Mes coups de coeur</h5>
-					<h6>par <a href="">Lauriane</a></h6>
-					<figure>
-						<div><img src={% static "medias/img/slider/image1.jpg" %} height="100"/></div>
-						<figcaption>
-							<ol>
-								<li>Bière</li>
-								<li>Bière</li>
-								<li>Bière</li>
-							</ol>
-						</figcaption>
-					</figure>
-				</li>
+							</div>
+							<div class="col-xs-6 col-sm-3">
+								<div class="media media-white">
+									<span class="pull-left" href="#">
+										9.9
+									</span>
+									<div class="media-body">
+										<h4 class="media-heading">
+											<a href="">Guinness Tavern</a>
+										</h4>
+										<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
+									</div>
+								</div>
+								<div class="thumbnail">
+									<img src="img/hannongbar_orange.jpg" alt="...">
+								</div>
+							</div>
 
+							<!-- Add the extra clearfix for only the required viewport -->
+							<div class="clearfix visible-xs"></div>
 
-				<li>
-					<h5>Mes coups de coeur</h5>
-					<h6>par <a href="">Lauriane</a></h6>
-					<figure>
-						<div><img src={% static "medias/img/slider/image1.jpg" %} height="100"/></div>
-						<figcaption>
-							<ol>
-								<li>Bière</li>
-								<li>Bière</li>
-								<li>Bière</li>
-							</ol>
-						</figcaption>
-					</figure>
-				</li>
+							<div class="col-xs-6 col-sm-3">
+								<div class="media media-white">
+									<span class="pull-left" href="#">
+										9.9
+									</span>
+									<div class="media-body">
+										<h4 class="media-heading">
+											<a href="">Guinness Tavern</a>
+										</h4>
+										<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
+									</div>
+								</div>
+								<div class="thumbnail">
+									<img src="img/hannongbar_orange.jpg" alt="...">
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-3">
+								<div class="media media-white">
+									<span class="pull-left" href="#">
+										9.9
+									</span>
+									<div class="media-body">
+										<h4 class="media-heading">
+											<a href="">Guinness Tavern</a>
+										</h4>
+										<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
+									</div>
+								</div>
+								<div class="thumbnail">
+									<img src="img/hannongbar_orange.jpg" alt="...">
+								</div>
+							</div>
+						</div>
+					<a href="#" class="btn btn-link-underline btn-link-underline-orange">Voir plus de bars</a>
 
+				</div>
+			</div>
+		</div>
 
-				<li>
-					<h5>Mes coups de coeur</h5>
-					<h6>par <a href="">Lauriane</a></h6>
-					<figure>
-						<div><img src={% static "medias/img/slider/image1.jpg" %} height="100"/></div>
-						<figcaption>
-							<ol>
-								<li>Bière</li>
-								<li>Bière</li>
-								<li>Bière</li>
-							</ol>
-						</figcaption>
-					</figure>
-				</li>
-			</ul>
-
-		</article>
-
-
-	</div> <!-- #main -->
+		<div class="white-band download-app-band site-wrapper-inner">
+			<div class="cover-container">
+				<div class="inner cover">
+					<p class="lead">Trouves ta boisson préférée partout où tu vas</p>
+					<button type="button" class="btn btn-primary btn-primary-orange btn-lg">Télécharger l'application sur <span>Google Play</span></button>
+				</div>
+			</div>
+		</div>
 
 {% endblock content %}

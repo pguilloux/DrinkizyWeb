@@ -1,44 +1,98 @@
 
-<figure>
+<div class="number col-md-1 col-sm-1 col-xs-1">1.</div>
+<div class="content-list col-md-11 col-sm-11 col-xs-11">
+	<div class="pull-left hidden-xs hidden-sm" href="#">
+		<a href="{% url 'bars.views.fiche_bar' onebar.slug %}">
+			<img class="media-object" src="{{onebar.getImgUrl}}" alt="...">
+		</a>
+		{% load bar_tags %}
+		{% load division %}
+		{% if bar_distances %}
+			{% with distance=bar_distances|keyvalue:onebar.name %}
+				{% if distance < 1000 %}
+					<p class="pDistance"><span class="distanceBefore"></span><span class="distance">{{ distance }} m</span><span class="distanceAfter"></span></p>
+				{% else %}
+					<h3 class="distance">{{ distance|divide:1000 }} km</h3>
+				{% endif %}
+			{% endwith %}
+		{% endif %}
+	</div>
+	<div class="media-body">
+		<h4 class="media-heading">
+			<span>9,4</span>
+			<a href="{% url 'bars.views.fiche_bar' onebar.slug %}">{{ onebar.name }}</a>
+		</h4>
+		<h6>
+			<a href="{% url 'bars.views.bars_for_theme' onebar.theme.slug %}">{{ onebar.theme.name }}</a>, <a href="">Concerts</a> 
+			<small>
+				<span class="glyphicon glyphicon glyphicon-euro fullEuros"></span> 
+				<span class="glyphicon glyphicon glyphicon-euro"></span> 
+				<span class="glyphicon glyphicon glyphicon-euro"></span>
+			</small>
+		</h6>
+		<h6><span class="glyphicon glyphicon glyphicon-map-marker"></span>{{ onebar.address }}</h6>
+		
+		<dl class="dl-horizontal">
+			{% for result in objects %}
 
-    <a href="{% url 'bars.views.fiche_bar' onebar.slug %}"><img src="{{onebar.getImgUrl}}" alt=""></a>
+				{% with drinkbar=result.object%}
+
+					{%ifequal drinkbar.bar.name onebar.name %}
+						<dt>{{ drinkbar.drink.name }} </dt>
+						<dd>{{ drinkbar.price }}€</dd>
+					{%endifequal%}
+
+				{%endwith%}
+			{% endfor %}
+			<a href="{% url 'bars.views.fiche_bar' onebar.slug %}#drinkMenu" class="btn btn-link-underline btn-link-underline-orange">Plus de boissons dans ce bar</a>
+		</dl>
+	</div>
+</div>
+
+
+
+{%comment %}
+<!--figure>
+
+	<a href="{% url 'bars.views.fiche_bar' onebar.slug %}"><img src="{{onebar.getImgUrl}}" alt=""></a>
 </figure>
 <div class="search-result-right">
-    <h4><a href="{% url 'bars.views.fiche_bar' onebar.slug %}">{{ onebar.name }}</a>  <span> <a href="{% url 'bars.views.bars_for_theme' onebar.theme.slug %}">{{ onebar.theme.name }}</a> </span></h4>
-    <div class="search-result-info">
-        <p class="postAdress">{{ onebar.address }}</p>
-        
-        <p class="rankFix"><a href="{% url 'bars.views.fiche_bar' onebar.slug %}#comment"><span class="">★</span> <span class="full">★</span> <span class="full">★</span> <span class="full">★</span> <span class="full">★</span> <strong>321 avis</strong></a></p>
-    </div>
+	<h4><a href="{% url 'bars.views.fiche_bar' onebar.slug %}">{{ onebar.name }}</a>  <span> <a href="{% url 'bars.views.bars_for_theme' onebar.theme.slug %}">{{ onebar.theme.name }}</a> </span></h4>
+	<div class="search-result-info">
+		<p class="postAdress">{{ onebar.address }}</p>
+		
+		<p class="rankFix"><a href="{% url 'bars.views.fiche_bar' onebar.slug %}#comment"><span class="">★</span> <span class="full">★</span> <span class="full">★</span> <span class="full">★</span> <span class="full">★</span> <strong>321 avis</strong></a></p>
+	</div>
 </div>
 
-{% load bar_tags %}
-        {% load division %}
-        {% if bar_distances %}
-            {% with distance=bar_distances|keyvalue:onebar.name %}
-                {% if distance < 1000 %}
-                    <p class="pDistance"><span class="distanceBefore"></span><span class="distance">{{ distance }} m</span><span class="distanceAfter"></span></p>
-                {% else %}
-                    <h3 class="distance">{{ distance|divide:1000 }} km</h3>
-                {% endif %}
-            {% endwith %}
-        {% endif %}
+		{% load bar_tags %}
+		{% load division %}
+		{% if bar_distances %}
+			{% with distance=bar_distances|keyvalue:onebar.name %}
+				{% if distance < 1000 %}
+					<p class="pDistance"><span class="distanceBefore"></span><span class="distance">{{ distance }} m</span><span class="distanceAfter"></span></p>
+				{% else %}
+					<h3 class="distance">{{ distance|divide:1000 }} km</h3>
+				{% endif %}
+			{% endwith %}
+		{% endif %}
 <div class="search-result-drinksMenu"> 
-    <ul>
-        {% for result in objects %}
+	<ul>
+		{% for result in objects %}
 
-            {% with drinkbar=result.object%}
+			{% with drinkbar=result.object%}
 
-            {%ifequal drinkbar.bar.name onebar.name %}
-                <li>{{ drinkbar.drink.name }} : {{ drinkbar.price }}€</li>
-            {%endifequal%}
+			{%ifequal drinkbar.bar.name onebar.name %}
+				<li>{{ drinkbar.drink.name }} : {{ drinkbar.price }}€</li>
+			{%endifequal%}
 
-            {%endwith%}
-        {% endfor %}
-    </ul>
+			{%endwith%}
+		{% endfor %}
+	</ul>
 
-    <h5><a href="{% url 'bars.views.fiche_bar' onebar.slug %}#drinkMenu">voir <strong>plus</strong></a></h5>
-</div>
+	<h5><a href="{% url 'bars.views.fiche_bar' onebar.slug %}#drinkMenu">voir <strong>plus</strong></a></h5>
+</div-->
 
+{%endcomment %}
 
 

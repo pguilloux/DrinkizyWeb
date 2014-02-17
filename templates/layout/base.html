@@ -3,149 +3,103 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
 
-        {% load staticfiles %}
-        <link href={% static "css/normalize.css" %} rel="stylesheet">
-        <link href={% static "css/main.css" %} rel="stylesheet">
-        <link href={% static "css/ui-lightness/jquery-ui-1.10.4.custom.css" %} rel="stylesheet">
+		{% load staticfiles %}
+		<link href={% static "css/bootstrap.min.css" %} rel="stylesheet">   
+		<link href={% static "css/bootstrap-theme.min.css" %} rel="stylesheet">   
+		<link href={% static "css/ui-lightness/jquery-ui-1.10.4.custom.css" %} rel="stylesheet">
+		<link href={% static "css/style.css" %} rel="stylesheet">  
 
-        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Aladin' rel='stylesheet' type='text/css'>
-        
-        <!-- SLIDER -->
-        <link rel="stylesheet" type="text/css" href={% static "css/demoSlider.css" %} />
-        <link rel="stylesheet" type="text/css" href={% static "css/styleSlider.css" %} />
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
 
 
+	   
+	</head>
+	<body>
+		<!--[if lt IE 7]>
+			<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+		<![endif]-->
 
-       
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
+		<!-- Fixed navbar -->
+		<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="{% url "home.views.home" %}"><img src="{% static "medias/img/drinkizy-logo-little.png" %}" height="44" /></a>
+					<h4>Paris <small><a href="#">Changer de ville</a></small></h4>
+					
+				</div>
+				<div class="navbar-collapse collapse">
+					{% load search_tags %}
+						{% get_search_bar %}
+					<ul class="nav navbar-nav navbar-right">
+						<li><button type="button" class="btn btn-primary">Se connecter</button></li>
+						<li><button type="button" class="btn btn-primary">S'inscrire</button></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
 
-        <div class="header-container">
-            <header class="wrapper clearfix">
-            	<a href="{% url "home.views.home" %}"><img src={% static "medias/img/drinkizy-logo-little.png" %} alt="Drinkizy"/></a>
-                <!--h1 class="title">Drinkizy</h1-->
-                <nav>
-                    <ul>
-                        <li><a href="#" class="subscribe buttonRadius easeInOut300ms">S'inscrire</a></li>
-                        <li><a href="#" class="connect buttonRadius easeInOut300ms">Se connecter</a></li>
-                    </ul>
-                </nav>
-            </header>
-            <header class="wrapper_search clearfix">
+		<div class="site-wrapper">
+		 
+
+				{% block content %}{% endblock content %}
+
+				
+		</div> <!-- #main-container -->
+
+			<div id="footer">
+				<div class="container">
+
+					<img src={% static "medias/img_design/drinkizy_icon.png" %} alt="Drinkizy icon"/>
+					<ul class="nav nav-pills">
+						<li class=""><a href="#">A propos</a></li>
+						<li><a href="#">Contact</a></li>
+						<li><a href="#">FAQ</a></li>
+						<li><a href="#">Plan du site</a></li>
+						<li><a href="#">Mentions légales</a></li>
+						<li><a href="#">Espace pro</a></li>
+					</ul>
+
+					<p>Drinkizy © 2014 - L'abus d'alcool est dangereux pour la santé</p>
+
+				</div>
+			</div>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script src={% static "js/jquery-ui-1.10.4.custom.min.js" %}></script>
+		<script src={% static "js/bootstrap.min.js" %}></script>
 
 
-                {% block header %}{% endblock header %}
-                
-                {% load search_tags %}
-                {% get_search_bar %}
-                
-           
-            </header>
-        </div>
+		<script type="text/javascript" src={% static "js/main.js" %}></script>
 
-        <div class="main-container">
-         
+		{% include 'autocomplete_light/static.html' %}
+		
 
-            	{% block content %}{% endblock content %}
 
-                
-        </div> <!-- #main-container -->
+		<script>
+			var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+			g.src='//www.google-analytics.com/ga.js';
+			s.parentNode.insertBefore(g,s)}(document,'script'));
 
-        <div class="footer-container">
-            <footer class="wrapper">
-                
-                <nav class="footer-about ">
-                	<h3>A propos</h3>
-                	<ul>
-                		<li><a href="#">Qui sommes-nous ?</a></li>
-                		<li><a href="#">Contactez-nous</a></li>
-                	</ul>
-                </nav>
+			
+		</script>
 
-                <nav class="footer-help">
-                	<h3>Aide</h3>
-                	<ul>
-                		<li><a href="#">FAQ</a></li>
-                		<li><a href="#">Plan du site</a></li>
-                	</ul>
-                </nav>
+		{% block scriptjs %}    
 
-                <nav class="footer-pro">
-                	<h3>Espace pro</h3>
-                	<ul>
-                		<li><a href="#">Espace tenants de bar</a></li>
-                		<li><a href="#">Partenariats</a></li>
-                	</ul>
-                </nav>
-
-                <nav class="footer-mobile">
-                	<h3>Mobile</h3>
-                	<ul>
-                		<li><a href="#">Google Play</a></li>
-                	</ul>
-                </nav>
-
-                <nav class="footer-follow">
-                	<h3>Suivez-nous</h3>
-                	<ul>
-                		<li><a href="#" class="footer-fb"></a></li>
-                		<li><a href="#" class="footer-tw"></a></li>
-                	</ul>
-                </nav>
-
-                <figure>
-                	<img src={% static "medias/img/drinkizy-logo-little.png" %} alt="Drinkizy"/>
-                	<figcaption>© 2014 Drinkizy</figcaption>
-                </figure>
-
-                <div class="clearfix"></div>
-            </footer>
-        </div>
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script src={% static "js/jquery-ui-1.10.4.custom.min.js" %}></script>
-
-        <script type="text/javascript" src={% static "js/jquery.eislideshow.js" %}></script>
-        <script type="text/javascript" src={% static "js/jquery.easing.1.3.js" %}></script>
-        <script type="text/javascript" src={% static "js/main.js" %}></script>
-
-        {% include 'autocomplete_light/static.html' %}
-        
-        <script type="text/javascript">
-            $(function() {
-                $('#ei-slider').eislideshow({
-                    animation           : 'center',
-                    autoplay            : true,
-                    slideshow_interval  : 3000,
-                    titlesFactor        : 0
-                });
-            });
-        </script>
-
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src='//www.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-
-            
-        </script>
-
-        {% block scriptjs %}    
-
-        {% endblock %}
-    
-    </body>
+		{% endblock %}
+	
+	</body>
 </html>
