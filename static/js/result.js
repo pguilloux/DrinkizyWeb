@@ -64,9 +64,13 @@ $(document).ready(function(){
 
 
 function initialize(locations) {
+
+	/* Déclaration de l'objet qui définira les limites de la map */ 
+   	var bounds = new google.maps.LatLngBounds();
+
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 6,
-		center: new google.maps.LatLng(47.4,1.6),
+		/*zoom: 6,
+		center: new google.maps.LatLng(47.4,1.6),*/
 		mapTypeControl: true,
 		mapTypeControlOptions: {
 			style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
@@ -86,10 +90,14 @@ function initialize(locations) {
 	var marker, i;
 
 	for (i = 0; i < locations.length; i++) {  
+		bounds.extend(locations[i][1]);
 		marker = new google.maps.Marker({
-		position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+		position: locations[i][1],
 		map: map
 	});
+
+	/* Ici, on ajuste le zoom de la map en fonction des limites  */ 
+   	map.fitBounds(bounds);
 
 	google.maps.event.addListener(marker, 'click', (function(marker, i) {
 		return function() {

@@ -294,7 +294,7 @@
 								var latitude = parseFloat("{{onebar.latitude}}".replace(",", "."));
 								var longitude = parseFloat("{{onebar.longitude}}".replace(",", "."));
 								console.log(latitude);
-								locations.push(['{{ onebar.name }}<br /><i>{{ onebar.address }}</i><br /><a href="{{ onebar.website }}">{{ onebar.website }}</a>', latitude,longitude]);
+								locations.push(['{{ onebar.name }}<br /><i>{{ onebar.address }}</i><br /><a href="{{ onebar.website }}">{{ onebar.website }}</a>', new google.maps.LatLng(latitude, longitude)]);
 
 							{% endwith %}
 						{%endifchanged%}
