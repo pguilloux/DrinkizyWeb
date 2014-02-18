@@ -19,7 +19,7 @@
 					<div class="clearfix"></div>
 				</section>
 
-				<!--ul>
+				 <!--ul>
 					<li class="checkbox">
 						<span class="glyphicon glyphicon-chevron-right"></span>
 						<label>
@@ -59,18 +59,7 @@
 
 				<h4>Thèmes</h4>
 
-				<ul>
-					<li class="checkbox">
-						<label>
-							<input type="checkbox" value=""> Bar à tapas
-						</label>
-					</li>
-					<li class="checkbox">
-						<label>
-							<input type="checkbox" value=""> Pub
-						</label>
-					</li>
-				</ul>
+				{{ form.themes }}
 
 				<h4>Localisation</h4>
 			</form>
@@ -293,24 +282,13 @@
 								
 								var latitude = parseFloat("{{onebar.latitude}}".replace(",", "."));
 								var longitude = parseFloat("{{onebar.longitude}}".replace(",", "."));
-								console.log(latitude);
+
 								locations.push(['{{ onebar.name }}<br /><i>{{ onebar.address }}</i><br /><a href="{{ onebar.website }}">{{ onebar.website }}</a>', new google.maps.LatLng(latitude, longitude)]);
 
 							{% endwith %}
 						{%endifchanged%}
 					{% endfor %}
 					{% endwith %}
-
-					// var locations = [
-					// 	['Jérôme <b>Blondel</b> et<br /> Catherine <b>Dessort</b><br /><i>4, rue Marché</i><br />80800 <b>Fouilloy</b><br /><a href="jerome.php">voir leur quartier de plus près</a>', 49.899275,2.499384, 5],
-					// 	['Laurent <b>Blondel</b> et<br /> Sabine <b>Blondel</b><br /><i>16, rue Manon Roland</i><br />59290 <b>Wasquehal</b><br /><a href="laurent.php">voir leur maison de plus près</a>', 50.684142,3.1360678, 4],
-					// 	['Noël <b>Blondel</b> et<br /> Anne Marie <b>Cordellier</b><br /><i>34, rue d\'Artois</i><br />80260 <b>Cardonnette</b><br /><a href="papy.php">voir leur maison de plus près</a>', 49.953802, 2.360237, 3],
-					// 	['Jean Luc <b>Blondel</b> et<br /> Catherine <b>Debia</b><br /><i>16, rue des Bouts d\'en Bas</i><br />77720 <b>Mormant</b><br /><a href="jl.php">voir leur maison de plus près</a>', 48.606369,2.886894, 2],
-					// 	['Patrice <b>Blondel</b> et<br /> Marie Alix <b>Terrot</b><br /><i>89, clos des Grands Ducs</i><br />74250 <b>Viuz en Sallaz</b>', 46.149513,6.410866, 1]
-					// ];
-					for(var i=0; i<locations.length; i++){
-						console.log(locations[i]);
-					}
 					
 					google.maps.event.addDomListener(window, 'load', initialize(locations));
 
@@ -399,21 +377,33 @@
 
 			/************ END TOGGLE SECTIONS ************/
 
-			/************ BEGIN DISPLAY SUCATEGORIES ************/
+
+			/************ BEGIN DISPLAY SUBCATEGORIES ************/
+
+				/* add class checkbox to li elements*/
+				$("ul#id_categories").addClass("checkboxes");
+				$("ul#id_themes").addClass("checkboxes");
+				$("ul#id_districts").addClass("checkboxes");
+				$("ul.checkboxes li").addClass("checkbox");
+
+
 				/* Create all subcategories checkbox and hide them */
 				$("input[name=categories]").each(function(index){
 					var category = $(this).val();
-					var ul = "<span class='easeInOut300ms'></span><ul id='for_category_"+index+"' class='subcategories'>";
+					var chevron_span = "<span class='glyphicon glyphicon-chevron-right'></span>";
+					var ul_subcat = "<ul id='for_category_"+index+"' class='subcategories'>";
 					{% for subcategory in form.subcategories.field.queryset %}
 						var current_category = "{{ subcategory.category.name }}"
 						var subcategory = "{{ subcategory.name }}"
 						if(category == current_category){
 							var count = "{{ forloop.counter0 }}";
-							var li = "<li class='checkbox'><label for='id_subcategories_"+count+"'><input id='id_subcategories_"+count+"' type='checkbox' value='"+subcategory+"' name='subcategories'>"+subcategory+"</label></li>";
-							ul = ul + li;
+							var li_subcat = "<li class='checkbox'><label for='id_subcategories_"+count+"'><input id='id_subcategories_"+count+"' type='checkbox' value='"+subcategory+"' name='subcategories'>"+subcategory+"</label></li>";
+							ul_subcat = ul_subcat + li_subcat;
 						}
 					{% endfor %}
-					$(this).parent().parent().append(ul);
+
+					$(this).parent().parent().prepend(chevron_span);
+					$(this).parent().parent().append(ul_subcat);
 				});
 				$('.subcategories').hide();
 
@@ -422,7 +412,7 @@
 
 				/* Display subcategories when category chevron is clicked */
 				$(" .search-cat-boisson ul li span").click(function() {
-					var num_category = $(this).prev().attr('for').match(/\d+/);
+					var num_category = $(this).next().attr('for').match(/\d+/);
 					$(this).toggleClass('search-chevron-down');
 					$("#for_category_"+num_category).toggle(); 
 				});
@@ -451,7 +441,7 @@
 
 
 
-			/************ END DISPLAY SUCATEGORIES ************/
+			/************ END DISPLAY SUBCATEGORIES ************/
 
 
 			});
