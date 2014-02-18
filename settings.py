@@ -32,6 +32,8 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 50
+
 # HAYSTACK_CONNECTIONS = {
 #     'default': {
 #         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
@@ -72,6 +74,9 @@ INSTALLED_APPS = (
     'south',
     'haystack',
     'floppyforms',
+    #'endless_pagination',
+    'autocomplete_light',
+    'tastypie',
 
     #apps
     'home',
