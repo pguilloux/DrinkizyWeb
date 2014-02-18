@@ -283,15 +283,38 @@
 		<script>
 			$(document).ready(function() {
 
-			var locations = [
-				['Jérôme <b>Blondel</b> et<br /> Catherine <b>Dessort</b><br /><i>4, rue Marché</i><br />80800 <b>Fouilloy</b><br /><a href="jerome.php">voir leur quartier de plus près</a>', 49.899275,2.499384, 5],
-				['Laurent <b>Blondel</b> et<br /> Sabine <b>Blondel</b><br /><i>16, rue Manon Roland</i><br />59290 <b>Wasquehal</b><br /><a href="laurent.php">voir leur maison de plus près</a>', 50.684142,3.1360678, 4],
-				['Noël <b>Blondel</b> et<br /> Anne Marie <b>Cordellier</b><br /><i>34, rue d\'Artois</i><br />80260 <b>Cardonnette</b><br /><a href="papy.php">voir leur maison de plus près</a>', 49.953802, 2.360237, 3],
-				['Jean Luc <b>Blondel</b> et<br /> Catherine <b>Debia</b><br /><i>16, rue des Bouts d\'en Bas</i><br />77720 <b>Mormant</b><br /><a href="jl.php">voir leur maison de plus près</a>', 48.606369,2.886894, 2],
-				['Patrice <b>Blondel</b> et<br /> Marie Alix <b>Terrot</b><br /><i>89, clos des Grands Ducs</i><br />74250 <b>Viuz en Sallaz</b>', 46.149513,6.410866, 1]
-			];
+				/************ BEGIN MAP ************/
+					var locations = [];
+					{% with objects=page.object_list %}
 
-			google.maps.event.addDomListener(window, 'load', initialize(locations));
+					{% for result in objects|dictsort:"object.bar.name" %}
+						{% ifchanged result.object.bar%}
+							{% with onebar=result.object.bar %}
+								
+								var latitude = parseFloat("{{onebar.latitude}}".replace(",", "."));
+								var longitude = parseFloat("{{onebar.longitude}}".replace(",", "."));
+								console.log(latitude);
+								locations.push(['{{ onebar.name }}<br /><i>{{ onebar.address }}</i><br /><a href="{{ onebar.website }}">{{ onebar.website }}</a>', latitude,longitude]);
+
+							{% endwith %}
+						{%endifchanged%}
+					{% endfor %}
+					{% endwith %}
+
+					// var locations = [
+					// 	['Jérôme <b>Blondel</b> et<br /> Catherine <b>Dessort</b><br /><i>4, rue Marché</i><br />80800 <b>Fouilloy</b><br /><a href="jerome.php">voir leur quartier de plus près</a>', 49.899275,2.499384, 5],
+					// 	['Laurent <b>Blondel</b> et<br /> Sabine <b>Blondel</b><br /><i>16, rue Manon Roland</i><br />59290 <b>Wasquehal</b><br /><a href="laurent.php">voir leur maison de plus près</a>', 50.684142,3.1360678, 4],
+					// 	['Noël <b>Blondel</b> et<br /> Anne Marie <b>Cordellier</b><br /><i>34, rue d\'Artois</i><br />80260 <b>Cardonnette</b><br /><a href="papy.php">voir leur maison de plus près</a>', 49.953802, 2.360237, 3],
+					// 	['Jean Luc <b>Blondel</b> et<br /> Catherine <b>Debia</b><br /><i>16, rue des Bouts d\'en Bas</i><br />77720 <b>Mormant</b><br /><a href="jl.php">voir leur maison de plus près</a>', 48.606369,2.886894, 2],
+					// 	['Patrice <b>Blondel</b> et<br /> Marie Alix <b>Terrot</b><br /><i>89, clos des Grands Ducs</i><br />74250 <b>Viuz en Sallaz</b>', 46.149513,6.410866, 1]
+					// ];
+					for(var i=0; i<locations.length; i++){
+						console.log(locations[i]);
+					}
+					
+					google.maps.event.addDomListener(window, 'load', initialize(locations));
+
+			/************ END MAP ************/
 
 			/************ BEGIN DISTANCE RANGE ************/
 

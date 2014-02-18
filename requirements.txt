@@ -1,7 +1,7 @@
-pil==1.1.7
-south==0.8.4
-whoosh
-django-haystack
+pip install pil==1.1.7
+pip install south==0.8.4
+pip install whoosh
+pip install django-haystack
 pip install -U django-floppyforms
 pip install django-endless-pagination
 pip install django-autocomplete-light
