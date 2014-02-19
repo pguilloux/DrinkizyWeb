@@ -68,7 +68,7 @@ function initialize(locations) {
 	/* Déclaration de l'objet qui définira les limites de la map */ 
    	var bounds = new google.maps.LatLngBounds();
 
-	var map = new google.maps.Map(document.getElementById('map'), {
+	var map = new google.maps.Map(document.getElementById('map-canvas'), {
 		/*zoom: 6,
 		center: new google.maps.LatLng(47.4,1.6),*/
 		mapTypeControl: true,
