@@ -413,11 +413,36 @@
 				});
 				$('.subcategories').hide();
 
+
+
 				/* Unhide and check the subcategories which were params for the results */
+				{% if subcategories_setted %}
+					var subcategories_setted = [];
+					console.log("{{ subcategories_setted }}");
+					{% for subcat in subcategories_setted %}
+						$("input[name=subcategories]").each(function(){
+							if($(this).val() == "{{ subcat.name }}"){
+								var num_category = $(this).parent().parent().parent().attr('id').match(/\d+/);
+
+								$(this).parent().parent().parent().parent().find("span.glyphicon").toggleClass('search-chevron-down');
+
+								if($("#for_category_"+num_category).is(":hidden"))
+									$("#for_category_"+num_category).toggle(); 
+
+								$(this).prop('checked', true);
+
+							}
+						});
+						// console.log("{{ subcat }}");
+						// var subcategories_setted = "{{ subcategories_setted }}";
+						// console.log(subcategories_setted[0]);
+					{% endfor %}
+				{% endif %}
+
 
 
 				/* Display subcategories when category chevron is clicked */
-				$(" .search-cat-boisson ul li span").click(function() {
+				$(".search-cat-boisson ul li span").click(function() {
 					var num_category = $(this).next().attr('for').match(/\d+/);
 					$(this).toggleClass('search-chevron-down');
 					$("#for_category_"+num_category).toggle(); 

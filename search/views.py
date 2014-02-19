@@ -61,6 +61,10 @@ class CustomSearchView(SearchView):
                 extra['bar_distances'] = self.form.get_bar_distances()
                 if self.form.cleaned_data['distance']:
                     extra['distance_setted'] = self.form.cleaned_data['distance']
+
+            if self.form.cleaned_data['subcategories']:
+                extra['subcategories_setted'] = self.form.cleaned_data['subcategories']
+
         return extra
 
 
