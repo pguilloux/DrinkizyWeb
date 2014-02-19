@@ -92,8 +92,9 @@ function initialize(locations) {
 	for (i = 0; i < locations.length; i++) {  
 		bounds.extend(locations[i][1]);
 		marker = new google.maps.Marker({
-		position: locations[i][1],
-		map: map
+			position: locations[i][1],
+			icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+(i+1)+'|FE6256|000000',
+			map: map
 	});
 
 	/* Ici, on ajuste le zoom de la map en fonction des limites  */ 

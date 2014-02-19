@@ -87,8 +87,8 @@
 
 			<ol>
 
-				{% with objects=page.object_list %}
 
+				{% with objects=page.object_list %}
 				{#{% load endless %}#}
 			  	{# {% paginate objects %}#}
 				{% for result in objects|dictsort:"object.bar.name" %}
@@ -101,9 +101,7 @@
 						<div class="clearfix"></div>
 					{%endifchanged%}
 				{% endfor %}
-			   {# {% show_pages %}#}
-
-
+			   	{# {% show_pages %}#}
 				{% endwith %}
 			</ol>
 
@@ -272,25 +270,33 @@
 		<script>
 			$(document).ready(function() {
 
-				/************ BEGIN MAP ************/
-					var locations = [];
-					{% with objects=page.object_list %}
+			/************ BEGIN MAP ************/
+				var locations = [];
+				{% with objects=page.object_list %}
 
-					{% for result in objects|dictsort:"object.bar.name" %}
-						{% ifchanged result.object.bar%}
-							{% with onebar=result.object.bar %}
-								
-								var latitude = parseFloat("{{onebar.latitude}}".replace(",", "."));
-								var longitude = parseFloat("{{onebar.longitude}}".replace(",", "."));
+				{% for result in objects|dictsort:"object.bar.name" %}
+					{% ifchanged result.object.bar%}
+						{% with onebar=result.object.bar %}
+							
+							var latitude = parseFloat("{{onebar.latitude}}".replace(",", "."));
+							var longitude = parseFloat("{{onebar.longitude}}".replace(",", "."));
 
-								locations.push(['{{ onebar.name }}<br /><i>{{ onebar.address }}</i><br /><a href="{{ onebar.website }}">{{ onebar.website }}</a>', new google.maps.LatLng(latitude, longitude)]);
+							locations.push(['{{ onebar.name }}<br /><i>{{ onebar.address }}</i><br /><a href="{{ onebar.website }}">{{ onebar.website }}</a>', new google.maps.LatLng(latitude, longitude)]);
 
-							{% endwith %}
-						{%endifchanged%}
-					{% endfor %}
-					{% endwith %}
-					
-					google.maps.event.addDomListener(window, 'load', initialize(locations));
+						{% endwith %}
+					{%endifchanged%}
+				{% endfor %}
+				{% endwith %}
+				
+				google.maps.event.addDomListener(window, 'load', initialize(locations));
+
+				/* Give the right numbers to bars in list, corresponding to map ones */
+				var number = 0;
+				$(".content-resultats-list-list li.media div.number").each(function(){
+					number += 1;
+					$(this).text(number+".");
+				});
+
 
 			/************ END MAP ************/
 
