@@ -19,49 +19,36 @@
 					<div class="clearfix"></div>
 				</section>
 
-				 <!--ul>
-					<li class="checkbox">
-						<span class="glyphicon glyphicon-chevron-right"></span>
-						<label>
-							<input type="checkbox" value=""> Cocktail
-						</label>
-
-						<ul>
-							<li class="checkbox">
-								<label>
-									<input type="checkbox" value=""> Cocktail
-								</label>
-							</li>
-							<li class="checkbox">
-								<label>
-									<input type="checkbox" value=""> Cocktail
-								</label>
-							</li>
-							<li class="checkbox">
-								<label>
-									<input type="checkbox" value=""> Cocktail
-								</label>
-							</li>
-						</ul>
-					</li>
-					<li class="checkbox">
-						<label>
-							<input type="checkbox" value=""> Cocktail
-						</label>
-					</li>
-					<li class="checkbox">
-						<label>
-							<input type="checkbox" value=""> Cocktail
-						</label>
-					</li>
-				</ul-->
-
-
 				<h4>Thèmes</h4>
+				<section class="search-theme">
+					{{ form.themes }}
 
-				{{ form.themes }}
+					<input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
+					<div class="clearfix"></div>
+				</section>
 
 				<h4>Localisation</h4>
+				<section class="search-loc-boisson">
+
+					<form id="loc-input-choice">
+						<input type="radio" name="loc-type" value="metro" checked>Métro
+						<input type="radio" name="loc-type" value="address" >Adresse
+					</form>
+
+					{{ form.address }}
+					{{ form.station }}
+
+					<div class="clearfix"></div>
+					
+
+					{{ form.districts }}
+					<div class="clearfix"></div>
+					
+					{{ form.distance }}
+					<div class="clearfix"></div>
+					<input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
+					<div class="clearfix"></div>
+				</section>
 			</form>
 		</div>
 	</div>
@@ -473,6 +460,15 @@
 
 
 			/************ END DISPLAY SUBCATEGORIES ************/
+
+
+			/************ BEGIN TOGGLE LOCALISATION INPUT ************/
+				$(".search-loc-boisson #id_address").toggle();
+				$("input[name=loc-type]").click(function() {
+					$(".search-loc-boisson .inputLocalisation").toggle();
+				});
+
+			/************ END TOGGLE LOCALISATION INPUT ************/
 
 
 			});

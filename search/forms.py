@@ -97,8 +97,8 @@ class CustomSearchForm(SearchForm):
     subcategories = forms.ModelMultipleChoiceField(required=False, queryset=DrinkSubCategory.objects.all(), widget=CheckboxSelectMultiple, to_field_name='name')
     
     address = forms.CharField(required=False, label='search', widget=forms.TextInput(attrs={'placeholder':'Où ? Adresse, Rue...', 'class':'inputLocalisation inputSearch-result form-control'}))
+    station = forms.CharField(required=False, label='search', widget=autocomplete_light.TextWidget('StationAutocomplete', attrs={'class':'inputLocalisation inputSearch-result form-control'}))
     districts = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=DISTRICTS)
-    station = forms.CharField(required=False, label='search', widget=autocomplete_light.TextWidget('StationAutocomplete', attrs={'class':'inputSearch-result'}))
     distance = forms.IntegerField(required=False, widget=Slider(attrs={'id': 'slider-range-min'}))
 
     themes = forms.MultipleChoiceField(required=False, widget=CheckboxSelectMultiple, choices=get_themes())
