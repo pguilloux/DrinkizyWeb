@@ -2,4 +2,6 @@
 {{ object.drink.subcategory.name }}
 {{ object.drink.subcategory.category.name }}
 {{ object.bar.name }}
-{{ object.bar.theme.name }}
+{% for theme in object.themes %}
+	{{ theme.name }}
+{% endfor %}

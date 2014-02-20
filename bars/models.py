@@ -3,6 +3,13 @@ from DrinkizyWeb import settings
 from users.models import *
 from django.contrib.auth.models import User
 
+class Theme(models.Model):
+	slug = models.SlugField(max_length=200)
+	name = models.CharField(max_length=200)
+	description = models.CharField(max_length=2000)
+
+	def __unicode__(self):
+		return "%s" % (self.name)
 
 class Bar(models.Model):
 	slug = models.SlugField(max_length=200)
@@ -22,14 +29,19 @@ class Bar(models.Model):
 	nb_pictures = models.IntegerField(default=0)
 
 	creator = models.ForeignKey('users.CustomUser')
-	
-	theme = models.ForeignKey('Theme')
+
+	themes = models.ManyToManyField(Theme)
 
 	def __unicode__(self):
 		return "%s" % (self.name)
 
 	def getImgUrl(self):
 		return "%s%s%s" % (settings.MEDIA_URL+'bars/', self.slug, '.jpg')
+
+	# def getThemes(self):
+	# 	barThemes = ThemeBar.objects.filter(bar__slug=self.slug)
+	# 	thems_of_bar = [themebar.theme for themebar in barThemes]
+	# 	return thems_of_bar
 
 
 DAYS_OF_WEEK = (
@@ -63,13 +75,14 @@ class OpeningHoursBar(models.Model):
 		return "%s %s %s" % (self.title, self.year, self)
 
 
-class Theme(models.Model):
-	slug = models.SlugField(max_length=200)
-	name = models.CharField(max_length=200)
-	description = models.CharField(max_length=2000)
 
-	def __unicode__(self):
-		return "%s" % (self.name)
+# class ThemeBar(models.Model):
+# 	bar = models.ForeignKey('Bar')
+# 	theme = models.ForeignKey('Theme')
+
+# 	def __unicode__(self):
+# 		return "%s - %s" % (self.bar.name, self.theme.name)
+
 
 
 class Station(models.Model):

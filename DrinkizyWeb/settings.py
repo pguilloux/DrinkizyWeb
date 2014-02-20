@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     'drinks',
     'search',
     'users',
+    #'ranks',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -194,6 +195,10 @@ LOGGING = {
             'level': 'INFO'
         },
         'search.views': {
+            'handlers': ['console'],
+            'level': 'INFO'
+        },
+        'drinks.search_indexes': {
             'handlers': ['console'],
             'level': 'INFO'
         },

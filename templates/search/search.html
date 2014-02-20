@@ -22,6 +22,7 @@
 				<h4>Thèmes</h4>
 				<section class="search-theme">
 					{{ form.themes }}
+					<a href="" id="themes-plus">Voir plus de Thèmes</a>
 
 					<input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
 					<div class="clearfix"></div>
@@ -31,17 +32,16 @@
 				<section class="search-loc-boisson">
 
 					<form id="loc-input-choice">
-						<input type="radio" name="loc-type" value="metro" checked>Métro
+						<input type="radio" name="loc-type" value="station" checked>Métro
 						<input type="radio" name="loc-type" value="address" >Adresse
+						<input type="radio" name="loc-type" value="districts" >Arr.
 					</form>
 
 					{{ form.address }}
 					{{ form.station }}
-
-					<div class="clearfix"></div>
-					
-
 					{{ form.districts }}
+					
+					
 					<div class="clearfix"></div>
 					
 					{{ form.distance }}
@@ -320,6 +320,28 @@
 			/************ END DISTANCE RANGE ************/
 
 
+			/************ BEGIN HIDE/UNHIDE THEMES ************/
+				$(".search-theme ul li").each(function(index){
+					if(index>5)
+						$(this).addClass("hidable-theme");
+				});
+				$(".search-theme ul li.hidable-theme").toggle();
+				$(".search-theme ul").addClass("themes-closed");
+
+				$("#themes-plus").click(function(){
+					if($(".search-theme ul").hasClass("themes-closed")){
+						$(".search-theme ul li.hidable-theme").css({display: "block"});
+						$(".search-theme ul").removeClass("themes-closed");
+					}else{
+						$(".search-theme ul li.hidable-theme").css({display: "none"});
+						$(".search-theme ul").addClass("themes-closed");
+					}
+					return false;
+				});
+				
+			/************ END HIDE/UNHIDE THEMES ************/
+
+
 			/************ BEGIN HAPPY-HOURS RANGE ************/
 
 				var hour_values = ["14h", "14h30", "15h", "15h30", "16h", "16h30", "17h", "17h30", "18h", "18h30", "19h", "19h30", "20h", "20h30", "21h", "21h30", "22h", "22h30", "23h", "23h30","00h", "00h30","01h", "01h30","02h", "02h30","03h", "03h30","04h", "04h30"];
@@ -463,9 +485,20 @@
 
 
 			/************ BEGIN TOGGLE LOCALISATION INPUT ************/
-				$(".search-loc-boisson #id_address").toggle();
+				$(".search-loc-boisson input[name=address]").hide();
+				$(".search-loc-boisson ul").addClass("inputLocalisation").attr("name", "districts").hide();
+
 				$("input[name=loc-type]").click(function() {
-					$(".search-loc-boisson .inputLocalisation").toggle();
+
+					$(".search-loc-boisson .inputLocalisation").hide();
+					if($(this).val() == "station")
+						$(".search-loc-boisson input[name=station]").show();
+					else if($(this).val() == "address")
+						$(".search-loc-boisson input[name=address]").show();
+					else if($(this).val() == "districts")
+						$(".search-loc-boisson ul[name=districts]").show();
+
+
 				});
 
 			/************ END TOGGLE LOCALISATION INPUT ************/

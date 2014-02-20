@@ -13,7 +13,7 @@ def fiche_bar(request, slug):
 def bars_for_theme(request, slug): 
 	theme = Theme.objects.get(slug=slug)
 	themes = Theme.objects.all()
-	bars_for_theme = SearchQuerySet().filter(theme__slug=slug)
+	bars_for_theme = SearchQuerySet().filter(themes=slug)
 	return render_to_response('bars/bars_for_theme.html', {'theme': theme, 'themes':themes, 'bars_for_theme': bars_for_theme})
 
 
