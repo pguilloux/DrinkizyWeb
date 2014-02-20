@@ -152,6 +152,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .content-resultats-filtres .yourlabs-autocomplete { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: static !important; width: 100%}
 .content-resultats-filtres form .search-loc-boisson ul li {display: block; float: left; width: 25%;}
 .content-resultats-filtres form .search-loc-boisson ul li:first-child {margin-top: -5px}
+.content-resultats-filtres form .search-theme a#themes-plus{display:block; color: #AAA; text-decoration: underline; margin-bottom:10px;}
 .content-resultats-list-button, .content-resultats-map-button {height: 100%; background: #f8f8f8; padding: 0;
 }
 .content-resultats-list-button a, .content-resultats-map-button a {width: 100%; display: block; color: #ccc;}
