@@ -6,7 +6,7 @@
 	{% load bar_tags %}
 
 
-	<div class="content-resultats-filtres col-md-2 col-sm-3 col-xs-4 easeInOut300ms">
+	<div class="content-resultats-filtres col-md-2 col-sm-3 col-xs-4 easeInOut300ms noWidth">
 		<div class="container-resultats-filtres">
 			<form method="get" action=".">
 				{{ form.q }}
@@ -53,7 +53,7 @@
 		</div>
 	</div>
 
-	<div class="content-resultats-list col-md-4 col-sm-5 col-xs-7 easeInOut300ms">
+	<div class="content-resultats-list col-md-6 col-sm-8 col-xs-11 easeInOut300ms">
 
 
 		<div class="content-resultats-list-button col-md-1 col-xs-1">
@@ -63,13 +63,13 @@
 		</div>
 		<div class="content-resultats-list-list col-md-11 col-xs-11">
 
-			 {% if query %}
+			{% if query %}
 				<h5> {{page.object_list|nb_bars}} résultats pour la recherche "{{query}}"</h5> 
 			{% endif %}
 			<h6>Trier par
-			<button type="button" class="btn btn-primary btn-primary-grey btn-sm">Pertinence</button>
-			<button type="button" class="btn btn-primary btn-primary-orange btn-sm">Popularité</button>
-			<button type="button" class="btn btn-primary btn-primary-grey btn-sm">Prix</button>
+				<button type="button" class="btn btn-primary btn-primary-grey btn-sm">Pertinence</button>
+				<button type="button" class="btn btn-primary btn-primary-orange btn-sm">Popularité</button>
+				<button type="button" class="btn btn-primary btn-primary-grey btn-sm">Prix</button>
 			</h6>
 
 			<ol>
@@ -104,7 +104,9 @@
 			</a>
 		</div>
 
-		<div id="map-canvas" style="width: 100%; height: 100%;"></div>
+		<div id="map-canvas" style="width: 100%; height: 100%;">
+			
+		</div>
 		
 	</div>
 {% comment %}
@@ -372,9 +374,9 @@
 			/************ BEGIN DISPLAY SUBCATEGORIES ************/
 
 				/* add class checkbox to li elements*/
-				$("ul#id_categories").addClass("checkboxes");
-				$("ul#id_themes").addClass("checkboxes");
-				$("ul#id_districts").addClass("checkboxes");
+				$(".search-cat-boisson ul").addClass("checkboxes");
+				$(".search-theme ul").addClass("checkboxes");
+				$(".search-loc-boisson ul").addClass("checkboxes");
 				$("ul.checkboxes li").addClass("checkbox");
 
 
@@ -468,6 +470,10 @@
 
 			/************ END TOGGLE LOCALISATION INPUT ************/
 
+
+			$('.content-resultats-filtres').removeClass('noWidth');
+			$('.content-resultats-list').removeClass('col-md-6 col-sm-8 col-xs-11').addClass('col-md-4 col-sm-5 col-xs-7');
+			$('.container-resultats-filtres').css('width', 'auto');
 
 			});
 		</script>

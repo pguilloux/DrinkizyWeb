@@ -1,4 +1,7 @@
+var map;
+
 $(document).ready(function(){
+
 
 	var mapOpen = false;
 
@@ -26,17 +29,19 @@ $(document).ready(function(){
 		$('.content-resultats-map').toggleClass('marginLess');
 
 		if ( $('.content-resultats-map').hasClass('marginLess') ) {
+			$('#map-canvas').show();
 			$('.content-resultats-map').removeClass('col-xs-1').addClass('col-xs-12');
 			$('.content-resultats-map-button').removeClass('col-xs-12').addClass('col-xs-1');
 
-			$('#map').css('width','91%');
+			$('#map-canvas').css('width','91%');
 			setTimeout(function(){google.maps.event.trigger(map, 'resize');},300);
 			
 			mapOpen = true;
 		} else {
+			$('#map-canvas').hide();
 			$('.content-resultats-map').removeClass('col-xs-12').addClass('col-xs-1');
 			$('.content-resultats-map-button').removeClass('col-xs-1').addClass('col-xs-12');
-			$('#map').css('width','100%');
+			$('#map-canvas').css('width','100%');
 			mapOpen = false;
 		}
 
@@ -44,7 +49,6 @@ $(document).ready(function(){
 	});
 
 	$( window ).resize(function() {
-		
 		if (mapOpen && $(window).width()>=768){
 			$('.content-resultats-map')
 				.toggleClass('marginLess')
@@ -52,10 +56,19 @@ $(document).ready(function(){
 			$('.content-resultats-map-button').removeClass('col-xs-1').addClass('col-xs-12');
 			$('#map').css('width','100%');
 			mapOpen = false;
+		} else if ( $(window).width()>=768 ) {
+			$('#map-canvas').show();
+		} else if ( $(window).width()<=768 ) {
+			$('#map-canvas').hide();
+			$('.content-resultats-filtres').addClass('noWidth');
+			$('.content-resultats-list').removeClass('col-md-4 col-sm-5 col-xs-7').addClass('col-md-6 col-sm-8 col-xs-11');
 		}
 	});
 
 
+	if ( $(window).width()<=768 ) {
+		$('#map-canvas').hide();
+	}
 
 
 
@@ -68,7 +81,7 @@ function initialize(locations) {
 	/* Déclaration de l'objet qui définira les limites de la map */ 
    	var bounds = new google.maps.LatLngBounds();
 
-	var map = new google.maps.Map(document.getElementById('map-canvas'), {
+	map = new google.maps.Map(document.getElementById('map-canvas'), {
 		/*zoom: 6,
 		center: new google.maps.LatLng(47.4,1.6),*/
 		mapTypeControl: true,
@@ -107,5 +120,6 @@ function initialize(locations) {
 		}
 		})(marker, i));
 	}
+
 };
 	
