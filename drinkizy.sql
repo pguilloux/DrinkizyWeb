@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Mer 05 Février 2014 à 11:52
+-- Généré le : Jeu 20 Février 2014 à 19:09
 -- Version du serveur: 5.5.20
 -- Version de PHP: 5.3.10
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `auth_permission` (
   `codename` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `content_type_id` (`content_type_id`,`codename`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=70 ;
 
 --
 -- Contenu de la table `auth_permission`
@@ -104,9 +104,6 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (34, 'Can add drink sub category', 12, 'add_drinksubcategory'),
 (35, 'Can change drink sub category', 12, 'change_drinksubcategory'),
 (36, 'Can delete drink sub category', 12, 'delete_drinksubcategory'),
-(37, 'Can add drink bar', 13, 'add_drinkbar'),
-(38, 'Can change drink bar', 13, 'change_drinkbar'),
-(39, 'Can delete drink bar', 13, 'delete_drinkbar'),
 (40, 'Can add user', 14, 'add_customuser'),
 (41, 'Can change user', 14, 'change_customuser'),
 (42, 'Can delete user', 14, 'delete_customuser'),
@@ -118,7 +115,22 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (48, 'Can delete station', 16, 'delete_station'),
 (49, 'Can add slider', 17, 'add_slider'),
 (50, 'Can change slider', 17, 'change_slider'),
-(51, 'Can delete slider', 17, 'delete_slider');
+(51, 'Can delete slider', 17, 'delete_slider'),
+(52, 'Can add rank drink', 18, 'add_rankdrink'),
+(53, 'Can change rank drink', 18, 'change_rankdrink'),
+(54, 'Can delete rank drink', 18, 'delete_rankdrink'),
+(55, 'Can add rank bar', 19, 'add_rankbar'),
+(56, 'Can change rank bar', 19, 'change_rankbar'),
+(57, 'Can delete rank bar', 19, 'delete_rankbar'),
+(58, 'Can add price bar', 20, 'add_pricebar'),
+(59, 'Can change price bar', 20, 'change_pricebar'),
+(60, 'Can delete price bar', 20, 'delete_pricebar'),
+(61, 'Can add theme bar', 21, 'add_themebar'),
+(62, 'Can change theme bar', 21, 'change_themebar'),
+(63, 'Can delete theme bar', 21, 'delete_themebar'),
+(67, 'Can add drink bar', 23, 'add_drinkbar'),
+(68, 'Can change drink bar', 23, 'change_drinkbar'),
+(69, 'Can delete drink bar', 23, 'delete_drinkbar');
 
 -- --------------------------------------------------------
 
@@ -135,28 +147,77 @@ CREATE TABLE IF NOT EXISTS `bars_bar` (
   `approval` int(11) NOT NULL,
   `disapproval` int(11) NOT NULL,
   `creator_id` int(11) NOT NULL,
-  `theme_id` int(11) NOT NULL,
   `website` varchar(200) DEFAULT NULL,
   `nb_pictures` int(11) NOT NULL,
   `latitude` double DEFAULT NULL,
   `longitude` double DEFAULT NULL,
   `mail` varchar(200) DEFAULT NULL,
-  `description` varchar(3000),
+  `description` varchar(3000) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `theme_id_refs_id_6a053be6` (`theme_id`),
   KEY `creator_id_refs_id_89339927` (`creator_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Contenu de la table `bars_bar`
 --
 
-INSERT INTO `bars_bar` (`id`, `slug`, `name`, `address`, `phone`, `approval`, `disapproval`, `creator_id`, `theme_id`, `website`, `nb_pictures`, `latitude`, `longitude`, `mail`, `description`) VALUES
-(1, 'le-beho', 'Le Beho', '8 place Sainte-Opportune 75001 PARIS', '01-53-40-81-56; 06-66-19-46-82', 0, 0, 1, 1, 'http://www.lebeho.fr', 1, 48.859788, 2.347328, '', 'Situé en plein coeur de Paris, dans le quartier du Châtelet, Le Bého, lounge et contemporain, vous accueille chaleureusement pour savourez vos déjeuners et vos dîners. Ouvert 6j/7 sauf le dimanche.'),
-(2, 'guinness-tavern', 'Guinness Tavern', '31 rue des Lombards 75001 PARIS', '01-42-33-26-45', 0, 0, 1, 2, 'http://www.guinness-tavern.com', 1, 48.859929, 2.348517, '', 'Pub pour sortir la nuit à Paris. Guinness Tavern c''est le temple du rock live à Paris.  En plein coeur du quartier des Halles au centre de Paris, il vous propose des soirées animées. Ouvert 7j/7.'),
-(3, 'la-fine-mousse', 'La Fine Mousse', '6 avenue Jean Aicard 75011 PARIS', '09-80-45-94-64', 0, 0, 1, 8, 'http://www.lafinemousse.fr', 1, 48.865032, 2.381778, '', 'La Fine Mousse est un bar à bières artisanales. Avec 20 pressions et plus de 150 bouteilles,ils offrent un cadre agréable et convivial pour venir découvrir des bières.  Ouvert toute la 7j/7.'),
-(4, 'nimporte-quoi', 'N''importe quoi', '16 rue du Roule 75001 PARIS', '01-40-26-29-71', 0, 0, 1, 3, 'http://www.nimportequoi.fr', 1, 48.860925, 2.343863, '', 'Le Bar N''IMPORTE QUOI (le NIQ pour les intimes) est un bar à cocktails rock’n’roll ouvert toute la nuit. Ouvert 6j/7 sauf le dimanche.'),
-(5, 'le-dernier-bar-avant-la-fin-du-monde', 'Le dernier bar avant la fin du monde', '19 avenue Victoria 75001 PARIS', '01-53-00-98-95', 0, 0, 1, 4, 'http://www.dernierbar.com', 1, 48.857953, 2.346277, '', 'Le Dernier Bar avant la Fin du Monde est le premier espace d’expression des cultures de l’imaginaire en plein cœur de Paris.  Ouvert 7j/7.');
+INSERT INTO `bars_bar` (`id`, `slug`, `name`, `address`, `phone`, `approval`, `disapproval`, `creator_id`, `website`, `nb_pictures`, `latitude`, `longitude`, `mail`, `description`) VALUES
+(1, 'le-beho', 'Le Beho', '8 place Sainte-Opportune 75001 PARIS', '01-53-40-81-56; 06-66-19-46-82', 0, 0, 1, 'http://www.lebeho.fr', 1, 48.859788, 2.347328, '', 'Situé en plein coeur de Paris, dans le quartier du Châtelet, Le Bého, lounge et contemporain,vous accueille chaleureusement pour savourez vos déjeuners et vos dîners.'),
+(2, 'guinness-tavern', 'Guinness Tavern', '31 rue des Lombards 75001 PARIS', '01-42-33-26-45', 0, 0, 1, 'http://www.guinness-tavern.com', 1, 48.859929, 2.348517, '', 'Pub pour sortir la nuit à Paris. Guinness Tavern c''est le temple du rock live à Paris. En plein coeur du quartier des Halles au centre de Paris, il vous propose des soirées animées. Ambiance chaude et musicale avec des groupes de rock qui déménagent.  Façade typique des pubs irlandais, 14 bières à la pression et service non stop pendant les heures d’ouverture.'),
+(3, 'la-fine-mousse', 'La Fine Mousse', '6 avenue Jean Aicard 75011 PARIS', '09-80-45-94-64', 0, 0, 1, 'http://www.lafinemousse.fr', 1, 48.865032, 2.381778, '', 'La Fine Mousse est un bar à bières artisanales situé dans le quartier d''Oberkampf (métro Saint-Maur/Ménilmontant). Avec 20 pressions et plus de 150 bouteilles, nous vous offrons un cadre agréable et convivial pour venir découvrir des bières de brasseurs-artisans français, belges et internationaux. Les petites faims seront comblées par nos délicieuses planches. '),
+(4, 'nimporte-quoi', 'N''importe quoi', '16 rue du Roule 75001 PARIS', '01-40-26-29-71', 0, 0, 1, 'http://www.nimportequoi.fr', 1, 48.860925, 2.343863, 'None', 'Le Bar N''IMPORTE QUOI (le NIQ pour les intimes) est un bar à cocktails rock’n’roll ouvert toute la nuit. Vous serez accueilli chaleureusement  et invités à faire la fête au bar du rez de chaussée dans une ambiance pub un peu déjantée, ou au bar du sous sol dans une ambiance musicale plus marquée. L’année est ponctuée de soirées délirantes : la semaine plage au mois de février, la sans –valentin, Noël en été , etc …'),
+(5, 'le-dernier-bar-avant-la-fin-du-monde', 'Le dernier bar avant la fin du monde', '19 avenue Victoria 75001 PARIS', '01-53-00-98-95', 0, 0, 1, 'http://www.dernierbar.com', 1, 48.857953, 2.346277, '', 'Le Dernier Bar avant la Fin du Monde est le premier espace d’expression des cultures de l’imaginaire en plein cœur de Paris. On peut s’y installer pour lire, partager un verre, jouer, se restaurer, partager sa passion pour les cultures de l’imaginaire.'),
+(6, 'le-piano-vache', 'Le piano vache', '8 rue Laplace 75005 PARIS', '01-46-33-75-03', 0, 0, 6, 'http://lepianovache.fr', 0, 48.8472362, 2.3477956, 'None', 'Le Piano Vache, c''est le bar où l''on vient pour boire des coups dans une ambiance authentique sur fond d''excellente musique ROCK (et Jazz le lundi) et ce depuis 1969 !'),
+(7, 'la-famille', 'La Famille', '41 rue des trois frères 75018 PARIS', '01-42-52-11-12', 0, 0, 7, '', 0, 48.885557, 2.3397463, '', 'La famille est avant tout un restaurant mais son bar, où les cocktails classiques flirtent avec des créations originales, vaut aussi le détour.'),
+(8, 'aux-trois-escales', 'Aux trois escales', '12 rue Quincampoix 75004 PARIS', '06-51-36-27-17', 0, 0, 7, 'http://aux3escales.com/', 0, 48.8592707, 2.3495064, '', 'Au centre de Paris historique, dans une petite rue et une grande porte en bois ancienne, une invitation au voyage entre L''orient et l''Amérique latine. Des cocktails et des tapas, musique latine, des personnes agréables : Bienvenue aux 3 Escales ... '),
+(9, 'l-harmonie-cafe', 'L''Harmonie café', '35 boulevard Magenta 75010 PARIS', '01-53-19-97-04', 0, 0, 7, '', 0, 48.8719393, 2.3596817, '', 'Situé à moins de 5 minutes de la place de la République, l''Harmonie café est LE café des mélomanes qui pourront s''éclater sur les lives du vendredi soir. Les autres jours, il constitue un point d''arrêt très chouette pour boire un coup entre amis. '),
+(10, 'aperock-cafe', 'Aperock café', '46 boulevard Voltaire 75011 PARIS', '01-48-06-46-66', 0, 0, 7, 'http://aperoc4.wix.com/aperockcafe', 0, 48.8632908, 2.3704882, '', 'Bar festif et convivial orienté Ride''n''Rock pour passer un bon moment entre potes.    Dans une ambiance délibérément  pop-rock, à 50m du Bataclan, petits concerts et grosses ambiances  garanties.'),
+(11, 'some-girls', 'Some Girls', '43 rue de Lappe 75011 PARIS', '01-48-06-40-33', 0, 0, 7, '', 0, 48.8532315, 2.3737397, '', 'Le Some girls est un bar dont le nom rend hommage aux Rolling Stones, groupe préféré du patron.  Ses points forts : une programmation musicale rock et le happy hour, qui dure jusqu''à 22h. '),
+(12, 'the-long-hop', 'The Long Hop', '25 rue Frédéric Sauton 75005 PARIS', '01-43-29-40-54', 0, 0, 6, 'http://www.the-long-hop.com', 0, 48.8505211, 2.349013, 'None', 'Pub anglais sur 3 niveaux le Long Hop est un lieu de rassemblement pour un grand nombre d''étudiants. Une immense terrasse extérieure, un happy hour quotidien, des soirées house, des concerts, les évènements sportifs en live... Situé en contrebas du quartier latin, l''établissement profite également d''un afflût de touristes incessants.'),
+(13, 'le-players', 'Le Players', '161 rue Montmartre 75002 PARIS', '01-40-26-92-00', 0, 0, 6, 'http://www.leplayers.com', 0, 48.8709916, 2.342702, 'None', 'Au Players, vous pouvez vous installer bien confortablement dans un Chesterfield, y siroter une bonne bière, suivre votre événement sportif favori sur l’un des 30 écrans HD, commander un bon gros burger quand vous avez faim, ou bien simplement quelques tapas par pure gourmandise, faire des rencontres, partager votre passion...'),
+(14, 'the-coolin-irish-club', 'The Coolin Irish Pub', '15 rue Clément 75006 PARIS', '01-44-07-00-92', 0, 0, 6, 'None', 0, 48.8523791, 2.3354044, 'None', 'Ce pub irlandais s''est très vite imposé dans le circuit anglo-saxon sur Paris. Il faut dire que son ambiance chaleureuse doit beaucoup au mobilier en bois et à son long bar sombre. De plus, tous les dimanches, pour accompagner votre bière, vous pourrez assister à un concert de musique celtique ou autre, de 17 h à 20 h.'),
+(15, 'downtown-cafe', 'Downtown Café', '46 rue Jean-Pierre Timbaud 75011 PARIS', '01-43-14-29-66', 0, 0, 6, 'www.downtowncafe.fr', 0, 48.8663035, 2.3722605, 'None', 'Le Downtown Café est l''un de ces spots parisiens où l''on se retrouve pour la convivialité, l''accueil et l''atmosphère positive qui règnent en maître. Question nourriture, on retrouve des planches de charcuterie ou des African Box qui contiennent les classiques de la cuisine ouest africaine et exotique.'),
+(16, 'kremlin-bar', 'Kremlin Bar', '6 rue André Antoine 75018 PARIS', '06-09-81-93-59', 0, 0, 6, 'None', 0, 48.8829369, 2.3375601, 'None', 'Le Kremlin bar est un bar à la décoration insolite, issue de l''ex-URSS, où vous aurez l''occasion de siroter des boissons typiques russes et plus de 45 sortes de vodka. '),
+(17, 'wos-bar', 'W.O.S Bar', '184 rue Saint-Jacques 75005 PARIS', '01-43-54-30-48', 0, 0, 6, 'http://wosbar.com/WordPress/', 0, 48.8461208, 2.3429594, 'None', 'Le W.O.S, comprenez “Wide Open Spaces”, se positionne en effet comme un “Fine Spirit Pub”. Bar international qui vous fera vous sentir comme à la maison d''où que vous soyez avec sa sélection de boissons qui viennent de partout dans le monde. ');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `bars_bar_themes`
+--
+
+CREATE TABLE IF NOT EXISTS `bars_bar_themes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bar_id` int(11) NOT NULL,
+  `theme_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `bars_bar_themes_bar_id_4ec70e06_uniq` (`bar_id`,`theme_id`),
+  KEY `bars_bar_themes_e69b476d` (`bar_id`),
+  KEY `bars_bar_themes_2dcf8fc0` (`theme_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+
+--
+-- Contenu de la table `bars_bar_themes`
+--
+
+INSERT INTO `bars_bar_themes` (`id`, `bar_id`, `theme_id`) VALUES
+(9, 1, 1),
+(12, 2, 2),
+(13, 2, 5),
+(11, 2, 8),
+(8, 3, 8),
+(14, 4, 3),
+(10, 5, 4),
+(3, 8, 12),
+(7, 9, 11),
+(1, 10, 2),
+(2, 10, 10),
+(15, 11, 5),
+(18, 12, 5),
+(16, 14, 5),
+(17, 14, 7),
+(6, 16, 9),
+(19, 17, 5);
 
 -- --------------------------------------------------------
 
@@ -747,7 +808,7 @@ CREATE TABLE IF NOT EXISTS `django_admin_log` (
   PRIMARY KEY (`id`),
   KEY `content_type_id_refs_id_93d2d1f8` (`content_type_id`),
   KEY `user_id_refs_id_ff9a36b6` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=84 ;
 
 --
 -- Contenu de la table `django_admin_log`
@@ -764,7 +825,67 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `user_id`, `content_type_id
 (8, '2014-02-05 11:01:06', 6, 6, '2', 'Guinness Tavern 31 rue des Lombards 75001 PARIS', 2, 'Modifié description.'),
 (9, '2014-02-05 11:06:37', 6, 6, '1', 'Le Beho 8 place Sainte-Opportune 75001 PARIS', 2, 'Modifié description.'),
 (10, '2014-02-05 11:29:46', 6, 10, '8', 'Chouffe Blonde Le Dernier Bar avant la Fin du Monde est le premier espace d’expression des cultures de l’imaginaire en plein cœur de Paris. On peut s’y installer pour lire, partager un verre, jouer, s', 2, 'Modifié description.'),
-(11, '2014-02-05 11:33:23', 6, 10, '8', 'Chouffe Blonde 1 Blonde Bières  ', 2, 'Modifié description.');
+(11, '2014-02-05 11:33:23', 6, 10, '8', 'Chouffe Blonde 1 Blonde Bières  ', 2, 'Modifié description.'),
+(12, '2014-02-06 10:42:49', 6, 6, '5', 'Le dernier bar avant la fin du monde 19 avenue Victoria 75001 PARIS', 2, 'Modifié description.'),
+(13, '2014-02-06 18:36:37', 6, 6, '5', 'Le dernier bar avant la fin du monde 19 avenue Victoria 75001 PARIS', 2, 'Modifié description.'),
+(14, '2014-02-06 18:37:16', 6, 6, '4', 'N''importe quoi 16 rue du Roule 75001 PARIS', 2, 'Modifié description.'),
+(15, '2014-02-06 18:38:39', 6, 6, '3', 'La Fine Mousse 6 avenue Jean Aicard 75011 PARIS', 2, 'Modifié description.'),
+(16, '2014-02-06 18:40:27', 6, 6, '2', 'Guinness Tavern 31 rue des Lombards 75001 PARIS', 2, 'Modifié description.'),
+(17, '2014-02-06 18:40:51', 6, 6, '1', 'Le Beho 8 place Sainte-Opportune 75001 PARIS', 2, 'Modifié description.'),
+(18, '2014-02-06 18:47:16', 6, 6, '6', 'Le piano vache 8 rue Laplace 75005 PARIS', 1, ''),
+(19, '2014-02-06 19:51:47', 7, 6, '7', 'La Famille 41 rue des trois frères 75018 PARIS', 1, ''),
+(20, '2014-02-06 19:55:09', 7, 6, '8', 'Aux trois escales 12 rue Quincampoix 75004 PARIS', 1, ''),
+(21, '2014-02-06 19:58:06', 7, 6, '9', 'L''Harmonie café 35 boulevard Magenta 75010 PARIS', 1, ''),
+(22, '2014-02-06 20:00:03', 7, 6, '10', 'Aperock café 46 boulevard Voltaire 75011 PARIS', 1, ''),
+(23, '2014-02-06 20:02:44', 7, 6, '11', 'Some Girls 43 rue de Lappe 75011 PARIS', 1, ''),
+(24, '2014-02-06 20:16:14', 6, 6, '12', 'The Long Hop 25 rue Frédéric Sauton 75005 PARIS', 1, ''),
+(25, '2014-02-06 20:19:05', 6, 6, '13', 'Le Players 161 rue Montmartre 75002 PARIS', 1, ''),
+(26, '2014-02-06 20:20:06', 7, 14, '7', 'Ornella', 2, 'Modifié username, pseudo, avatar_url et type.'),
+(27, '2014-02-06 20:21:46', 6, 6, '14', 'The Coolin Irish Pub 15 rue Clément 75006 PARIS', 1, ''),
+(28, '2014-02-06 20:22:52', 6, 6, '4', 'N''importe quoi 16 rue du Roule 75001 PARIS', 2, 'Modifié mail.'),
+(29, '2014-02-06 20:27:01', 6, 6, '15', 'Downtown Café 46 rue Jean-Pierre Timbaud 75011 PARIS', 1, ''),
+(30, '2014-02-06 20:31:49', 6, 6, '16', 'Kremlin Bar 6 rue André Antoine 75018 PARIS', 1, ''),
+(31, '2014-02-06 20:34:26', 6, 6, '17', 'W.O.S Bar 184 rue Saint-Jacques 75005 PARIS', 1, ''),
+(32, '2014-02-06 20:59:17', 7, 10, '11', 'Sex on the beach Le Sex on the beach est un cocktail alcoolisé à la pêche, orange et citron créé par le TGI Friday''s Cocktails Apéritifs', 1, ''),
+(33, '2014-02-06 20:59:53', 7, 10, '12', 'Tequila sunrise Le tequila sunrise est un cocktail à base de tequila. Cocktails Apéritifs', 1, ''),
+(34, '2014-02-06 21:00:54', 7, 10, '13', 'Whisky coca Le whisky coca est un cocktail à base de whisky et de coca Cocktails Apéritifs', 1, ''),
+(35, '2014-02-06 21:01:26', 7, 10, '14', 'White lady Le White Lady est un cocktail composé de gin, de triple sec et de jus de citrons verts. Cocktails Apéritifs', 1, ''),
+(36, '2014-02-06 21:05:05', 7, 10, '15', 'Hydromel L''hydromel est exclusivement une boisson fermentée, faite d''eau et de miel. Ambrée', 1, ''),
+(37, '2014-02-06 21:06:05', 7, 10, '16', 'Sambuca La sambuca est le nom dune liqueur italienne à base d''anis étoilé, créée dans la province de Rome, en 1851. Alcools Forts', 1, ''),
+(38, '2014-02-06 21:10:16', 7, 10, '17', 'Limoncello Le limoncello est une liqueur de citron de la péninsule de Sorrente Alcools Forts', 1, ''),
+(39, '2014-02-06 21:10:45', 7, 10, '18', 'Caïpirinha La caipirinha est un cocktail brésilien préparé à base de cachaça, de sucre de canne et de citron vert.  Cocktails Apéritifs', 1, ''),
+(40, '2014-02-06 21:11:56', 7, 10, '19', 'Malibu Malibu est une liqueur à base de rhum industriel, d''extraits de noix de coco et de sucre Alcools Forts', 1, ''),
+(41, '2014-02-06 21:13:12', 7, 10, '20', 'Amaretto L''amaretto est une boisson alcoolisée aux amandes originaire d''Italie Alcools Forts', 1, ''),
+(42, '2014-02-06 21:13:56', 6, 10, '1', 'Bloody-Mary Le Bloody Mary est un cocktail contenant de la vodka, du jus de tomate, et d''autres épices telles que la sauce Tabasco ou du sel au céleri. Cocktails Apéritifs', 2, 'Modifié description.'),
+(43, '2014-02-06 21:14:10', 6, 10, '2', 'Cosmopolitan Le Cosmopolitan est un cocktail à base de vodka, canneberge et citron vert Cocktails Apéritifs', 2, 'Modifié description.'),
+(44, '2014-02-06 21:14:25', 6, 10, '3', 'Daïquiri Le daïquiri est un cocktail dont les ingrédients principaux sont le rhum cubain, le jus de lime ou de citron vert et le sucre blanc de canne. Il aurait été créé par Ernest Hemingway. Cocktail', 2, 'Modifié description.'),
+(47, '2014-02-06 21:15:21', 6, 10, '4', 'Mai Tai Le Mai Tai est un cocktail à base de rhum, sucre, citron vert et sirop d''orgeat inventé en Californie par Victor Bergeron. Cocktails Apéritifs', 2, 'Modifié description.'),
+(49, '2014-02-06 21:15:45', 6, 10, '5', 'Mojito Le mojito est un cocktail à base de rhum, de citron vert et de feuilles de menthe fraîche, né à Cuba dans les années 1910 et inspiré du mint julep. Cocktails Apéritifs', 2, 'Modifié description.'),
+(50, '2014-02-06 21:16:01', 6, 10, '8', 'Chouffe Blonde La Chouffe est une bière blonde belge à triple fermentation, 8 % alc./vol. Son arôme est particulier, fleur d''oranger ou pomme acide. Elle fait partie des « blondes des Ardennes ». Blon', 2, 'Modifié description.'),
+(52, '2014-02-06 21:16:16', 6, 10, '7', 'Heineken Bière blonde éponyme de la marque. Blonde', 2, 'Modifié description.'),
+(53, '2014-02-06 21:17:02', 6, 10, '21', 'Vodka La vodka est une boisson alcoolisée incolore de 40 degrés d''origine russe. Alcools Forts', 1, ''),
+(54, '2014-02-06 21:17:42', 6, 10, '22', 'Calvados Le calvados est une boisson alcoolisée obtenue par distillation du cidre, originaire du département du même nom et plus généralement de Normandie. Alcools Forts', 1, ''),
+(55, '2014-02-06 21:18:33', 6, 10, '23', 'Café Le café est une boisson psychotrope obtenue à partir des graines du caféier, un arbuste du genre Coffea Cafés', 1, ''),
+(56, '2014-02-06 21:19:30', 6, 10, '24', 'Ginger Beer La bière de gingembre (en anglais, ginger beer) est aujourd''hui une boisson gazeuse non alcoolisée d''origine jamaïquaine où elle est produite depuis plusieurs siècles. Limonades', 1, ''),
+(57, '2014-02-06 21:21:09', 6, 10, '25', 'Cognac Le cognac est une eau-de-vie fine à base de raisin, produite dans une région délimitée centrée autour de Cognac. Alcools Forts', 1, ''),
+(66, '2014-02-20 16:17:20', 3, 21, '3', 'Aperock café - Bar Rock', 1, ''),
+(67, '2014-02-20 16:17:38', 3, 21, '4', 'Aperock café - Bar Concerts', 1, ''),
+(68, '2014-02-20 16:18:51', 3, 21, '5', 'Guinness Tavern - Bar à Bières', 1, ''),
+(69, '2014-02-20 16:18:59', 3, 21, '6', 'Guinness Tavern - Bar Concerts', 1, ''),
+(70, '2014-02-20 18:27:25', 3, 6, '10', 'Aperock café', 2, 'Modifié themes.'),
+(71, '2014-02-20 19:05:03', 3, 6, '8', 'Aux trois escales', 2, 'Modifié themes.'),
+(72, '2014-02-20 19:05:20', 3, 6, '2', 'Guinness Tavern', 2, 'Modifié themes.'),
+(73, '2014-02-20 19:05:35', 3, 6, '16', 'Kremlin Bar', 2, 'Modifié themes.'),
+(74, '2014-02-20 19:05:47', 3, 6, '9', 'L''Harmonie café', 2, 'Modifié themes.'),
+(75, '2014-02-20 19:06:02', 3, 6, '3', 'La Fine Mousse', 2, 'Modifié themes.'),
+(76, '2014-02-20 19:06:12', 3, 6, '1', 'Le Beho', 2, 'Modifié themes.'),
+(77, '2014-02-20 19:06:22', 3, 6, '5', 'Le dernier bar avant la fin du monde', 2, 'Modifié themes.'),
+(78, '2014-02-20 19:06:37', 3, 6, '2', 'Guinness Tavern', 2, 'Modifié themes.'),
+(79, '2014-02-20 19:06:46', 3, 6, '4', 'N''importe quoi', 2, 'Modifié themes.'),
+(80, '2014-02-20 19:06:57', 3, 6, '11', 'Some Girls', 2, 'Modifié themes.'),
+(81, '2014-02-20 19:07:19', 3, 6, '14', 'The Coolin Irish Pub', 2, 'Modifié themes.'),
+(82, '2014-02-20 19:07:30', 3, 6, '12', 'The Long Hop', 2, 'Modifié themes.'),
+(83, '2014-02-20 19:07:40', 3, 6, '17', 'W.O.S Bar', 2, 'Modifié themes.');
 
 -- --------------------------------------------------------
 
@@ -779,7 +900,7 @@ CREATE TABLE IF NOT EXISTS `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `app_label` (`app_label`,`model`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Contenu de la table `django_content_type`
@@ -798,11 +919,15 @@ INSERT INTO `django_content_type` (`id`, `name`, `app_label`, `model`) VALUES
 (10, 'drink', 'drinks', 'drink'),
 (11, 'drink category', 'drinks', 'drinkcategory'),
 (12, 'drink sub category', 'drinks', 'drinksubcategory'),
-(13, 'drink bar', 'drinks', 'drinkbar'),
 (14, 'user', 'users', 'customuser'),
 (15, 'migration history', 'south', 'migrationhistory'),
 (16, 'station', 'bars', 'station'),
-(17, 'slider', 'home', 'slider');
+(17, 'slider', 'home', 'slider'),
+(18, 'rank drink', 'ranks', 'rankdrink'),
+(19, 'rank bar', 'ranks', 'rankbar'),
+(20, 'price bar', 'ranks', 'pricebar'),
+(21, 'theme bar', 'bars', 'themebar'),
+(23, 'drink bar', 'drinks', 'drinkbar');
 
 -- --------------------------------------------------------
 
@@ -822,14 +947,19 @@ CREATE TABLE IF NOT EXISTS `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('18vdm1h6xiooapuqzd07xstsxt0w62i6', 'NWQxODUzZDJhY2QxNDY2MzMzY2JhODZkNDU2MzY2ZjU2MmM2ZTkxODp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6M30=', '2014-03-06 16:13:04'),
 ('2m9s06h6etdw388gmxabztet0jnlehk5', 'NDU2OTA5NmVjODNlZGY1YzNlZDE0ZDE3NzYzZDRkNWUwYzllMDdlMzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6NH0=', '2014-02-18 18:20:22'),
+('2s6jmijrt1kafw092e7zn7kddcwch0uq', 'NWQxODUzZDJhY2QxNDY2MzMzY2JhODZkNDU2MzY2ZjU2MmM2ZTkxODp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6M30=', '2014-02-19 12:08:36'),
 ('2yd0b9u8qja7p21j4xvr9vv2444g95jv', 'YzI4YWM1YjA5ZTVjOTA3ZmQ1Y2FjMzM3NzdjODA2MzNhZWRlOTU2ZDqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQSKAQN1Lg==', '2014-02-18 17:30:08'),
 ('7ndk5i90xk3lziaip7vf6ol83fzp5oef', 'NDU2OTA5NmVjODNlZGY1YzNlZDE0ZDE3NzYzZDRkNWUwYzllMDdlMzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6NH0=', '2014-02-18 18:20:28'),
+('a5ui73z0efllzqw39hpx2s2mys8mct7z', 'MmIwZDMxZjlmNmEwYTc2MGRmNzU4Y2YzNzVkODkzZDFkMDg1MTI3Njp7fQ==', '2014-02-21 05:34:47'),
 ('fp1gcy3p9um3oyumtea9ceddpvgc2akx', 'NWQxODUzZDJhY2QxNDY2MzMzY2JhODZkNDU2MzY2ZjU2MmM2ZTkxODp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6M30=', '2014-02-18 15:15:48'),
 ('fpyfw2wnb8l4mjulm85hpc5maij1oqdx', 'N2M4ODdkNDJjYzFkMjAyMDNiNmQ5MTMyMTAxNWFhMzNmMTIyYWRkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6Nn0=', '2014-02-18 21:08:56'),
 ('hmwjaegirhect1xmwgdtgxqmrodyfhq7', 'NWRmODBkYTM4ZThkYTgyMjlhMTZiMDFjM2Q1NjUzZGI1YWMwYmE2Nzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6Mn0=', '2014-02-14 22:42:06'),
+('kgtpqjvwca76uo6b17x4ecgh06yl8fgv', 'NWY4ZjQ3ODlmZTJjN2FjYTRjOTZkM2U0NjY3ZGM5ZWRkMDcxZTA0NDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6N30=', '2014-02-20 17:28:53'),
 ('lsukoo59ws4p99ovxmturvb1q0n6z32c', 'N2M4ODdkNDJjYzFkMjAyMDNiNmQ5MTMyMTAxNWFhMzNmMTIyYWRkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6Nn0=', '2014-02-19 11:29:00'),
-('x53c644mmpkvzymiw4tv1vcp071i7ipl', 'NWQxODUzZDJhY2QxNDY2MzMzY2JhODZkNDU2MzY2ZjU2MmM2ZTkxODp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6M30=', '2014-02-19 11:43:11');
+('mkskfqxin7pr24sx90zyumfyvv4fz5t4', 'N2M4ODdkNDJjYzFkMjAyMDNiNmQ5MTMyMTAxNWFhMzNmMTIyYWRkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6Nn0=', '2014-02-20 09:46:26'),
+('q4fljsmqkv5kt2u7nt6i385ysk70uorp', 'NDU2OTA5NmVjODNlZGY1YzNlZDE0ZDE3NzYzZDRkNWUwYzllMDdlMzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6NH0=', '2014-02-20 21:06:26');
 
 -- --------------------------------------------------------
 
@@ -847,21 +977,36 @@ CREATE TABLE IF NOT EXISTS `drinks_drink` (
   PRIMARY KEY (`id`),
   KEY `subcategory_id_refs_id_57c0f03b` (`subcategory_id`),
   KEY `drinks_drink_ad376f8d` (`creator_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Contenu de la table `drinks_drink`
 --
 
 INSERT INTO `drinks_drink` (`id`, `slug`, `name`, `description`, `subcategory_id`, `creator_id`) VALUES
-(1, 'bloody-mary', 'Bloody-Mary', '', 10, NULL),
-(2, 'cosmopolitan', 'Cosmopolitan', '', 10, NULL),
-(3, 'daiquiri', 'Daïquiri', '', 10, NULL),
-(4, 'mai-tai', 'Mai Tai', '', 10, NULL),
-(5, 'mojito', 'Mojito', '', 10, NULL),
+(1, 'bloody-mary', 'Bloody-Mary', 'Le Bloody Mary est un cocktail contenant de la vodka, du jus de tomate, et d''autres épices telles que la sauce Tabasco ou du sel au céleri.', 10, NULL),
+(2, 'cosmopolitan', 'Cosmopolitan', 'Le Cosmopolitan est un cocktail à base de vodka, canneberge et citron vert', 10, NULL),
+(3, 'daiquiri', 'Daïquiri', 'Le daïquiri est un cocktail dont les ingrédients principaux sont le rhum cubain, le jus de lime ou de citron vert et le sucre blanc de canne. Il aurait été créé par Ernest Hemingway.', 10, NULL),
+(4, 'mai-tai', 'Mai Tai', 'Le Mai Tai est un cocktail à base de rhum, sucre, citron vert et sirop d''orgeat inventé en Californie par Victor Bergeron.', 10, NULL),
+(5, 'mojito', 'Mojito', 'Le mojito est un cocktail à base de rhum, de citron vert et de feuilles de menthe fraîche, né à Cuba dans les années 1910 et inspiré du mint julep.', 10, NULL),
 (6, 'pina-colada', 'Piña Colada', '', 10, NULL),
-(7, 'heineken', 'Heineken', '', 4, 1),
-(8, 'chouffe-blonde', 'Chouffe Blonde', '1', 4, 1);
+(7, 'heineken', 'Heineken', 'Bière blonde éponyme de la marque.', 4, 1),
+(8, 'chouffe-blonde', 'Chouffe Blonde', 'La Chouffe est une bière blonde belge à triple fermentation, 8 % alc./vol. Son arôme est particulier, fleur d''oranger ou pomme acide. Elle fait partie des « blondes des Ardennes ».', 4, 1),
+(11, 'sex-on-the-beach', 'Sex on the beach', 'Le Sex on the beach est un cocktail alcoolisé à la pêche, orange et citron créé par le TGI Friday''s', 10, 7),
+(12, 'tequila-sunrise', 'Tequila sunrise', 'Le tequila sunrise est un cocktail à base de tequila.', 10, 7),
+(13, 'whisky-coca', 'Whisky coca', 'Le whisky coca est un cocktail à base de whisky et de coca', 10, 7),
+(14, 'white-lady', 'White lady', 'Le White Lady est un cocktail composé de gin, de triple sec et de jus de citrons verts.', 10, 7),
+(15, 'hydromel', 'Hydromel', 'L''hydromel est exclusivement une boisson fermentée, faite d''eau et de miel.', 5, 7),
+(16, 'sambuca', 'Sambuca', 'La sambuca est le nom dune liqueur italienne à base d''anis étoilé, créée dans la province de Rome, en 1851.', 1, 7),
+(17, 'limoncello', 'Limoncello', 'Le limoncello est une liqueur de citron de la péninsule de Sorrente', 1, 7),
+(18, 'caipirinha', 'Caïpirinha', 'La caipirinha est un cocktail brésilien préparé à base de cachaça, de sucre de canne et de citron vert. ', 10, 7),
+(19, 'malibu', 'Malibu', 'Malibu est une liqueur à base de rhum industriel, d''extraits de noix de coco et de sucre', 1, 7),
+(20, 'amaretto', 'Amaretto', 'L''amaretto est une boisson alcoolisée aux amandes originaire d''Italie', 1, 7),
+(21, 'vodka', 'Vodka', 'La vodka est une boisson alcoolisée incolore de 40 degrés d''origine russe.', 1, 6),
+(22, 'calvados', 'Calvados', 'Le calvados est une boisson alcoolisée obtenue par distillation du cidre, originaire du département du même nom et plus généralement de Normandie.', 1, 6),
+(23, 'cafe', 'Café', 'Le café est une boisson psychotrope obtenue à partir des graines du caféier, un arbuste du genre Coffea', 20, 6),
+(24, 'ginger-beer', 'Ginger Beer', 'La bière de gingembre (en anglais, ginger beer) est aujourd''hui une boisson gazeuse non alcoolisée d''origine jamaïquaine où elle est produite depuis plusieurs siècles.', 17, 6),
+(25, 'cognac', 'Cognac', 'Le cognac est une eau-de-vie fine à base de raisin, produite dans une région délimitée centrée autour de Cognac.', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -878,9 +1023,9 @@ CREATE TABLE IF NOT EXISTS `drinks_drinkbar` (
   `approval` int(11) NOT NULL,
   `disapproval` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `bar_id_refs_id_6a0b1d41` (`bar_id`),
-  KEY `drink_id_refs_id_ffaa485a` (`drink_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+  KEY `drinks_drinkbar_23501cfe` (`drink_id`),
+  KEY `drinks_drinkbar_e69b476d` (`bar_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Contenu de la table `drinks_drinkbar`
@@ -896,7 +1041,18 @@ INSERT INTO `drinks_drinkbar` (`id`, `price`, `price_happy_hour`, `drink_id`, `b
 (7, 5, 3.5, 7, 4, 0, 0),
 (8, 6.5, 5, 8, 3, 0, 0),
 (9, 4, 3.2, 7, 5, 0, 0),
-(10, 5.6, 4.2, 6, 5, 0, 0);
+(10, 5.6, 4.2, 6, 5, 0, 0),
+(11, 8, 5, 1, 8, 0, 0),
+(12, 8.5, 5, 12, 11, 0, 0),
+(13, 8, 5, 13, 14, 0, 0),
+(14, 10, 5, 12, 8, 0, 0),
+(15, 3.5, 2, 24, 5, 0, 0),
+(16, 7, 4.5, 4, 12, 0, 0),
+(17, 3, 2, 21, 16, 0, 0),
+(18, 5, 2.5, 8, 10, 0, 0),
+(19, 1.5, 1.5, 23, 9, 0, 0),
+(20, 6.5, 3, 15, 3, 0, 0),
+(21, 9, 7, 11, 17, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -989,6 +1145,54 @@ CREATE TABLE IF NOT EXISTS `home_slider` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `ranks_pricebar`
+--
+
+CREATE TABLE IF NOT EXISTS `ranks_pricebar` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bar_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `price` double NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ranks_pricebar_e69b476d` (`bar_id`),
+  KEY `ranks_pricebar_6340c63c` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ranks_rankbar`
+--
+
+CREATE TABLE IF NOT EXISTS `ranks_rankbar` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bar_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `rank` double NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ranks_rankbar_e69b476d` (`bar_id`),
+  KEY `ranks_rankbar_6340c63c` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ranks_rankdrink`
+--
+
+CREATE TABLE IF NOT EXISTS `ranks_rankdrink` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `drink_bar_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `rank` double NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ranks_rankdrink_392d1607` (`drink_bar_id`),
+  KEY `ranks_rankdrink_6340c63c` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `south_migrationhistory`
 --
 
@@ -998,7 +1202,7 @@ CREATE TABLE IF NOT EXISTS `south_migrationhistory` (
   `migration` varchar(255) NOT NULL,
   `applied` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Contenu de la table `south_migrationhistory`
@@ -1017,7 +1221,12 @@ INSERT INTO `south_migrationhistory` (`id`, `app_name`, `migration`, `applied`) 
 (10, 'bars', '0006_auto__add_field_bar_mail', '2014-02-04 11:12:51'),
 (11, 'bars', '0007_auto__add_field_bar_description', '2014-02-04 21:34:07'),
 (12, 'bars', '0008_auto__chg_field_theme_description__chg_field_bar_description', '2014-02-05 11:49:10'),
-(13, 'drinks', '0003_auto__chg_field_drinkcategory_description__chg_field_drink_description', '2014-02-05 11:49:17');
+(13, 'drinks', '0003_auto__chg_field_drinkcategory_description__chg_field_drink_description', '2014-02-05 11:49:17'),
+(14, 'ranks', '0001_initial', '2014-02-20 15:27:21'),
+(15, 'bars', '0009_auto__add_themebar__del_field_bar_theme', '2014-02-20 16:00:47'),
+(16, 'drinks', '0004_auto__del_drinkbar__add_drinkinbar', '2014-02-20 17:23:52'),
+(17, 'drinks', '0005_auto__del_drinkinbar__add_drinkbar', '2014-02-20 17:28:01'),
+(18, 'bars', '0010_auto__del_themebar', '2014-02-20 18:05:55');
 
 -- --------------------------------------------------------
 
@@ -1042,7 +1251,7 @@ CREATE TABLE IF NOT EXISTS `users_customuser` (
   `type` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `users_customuser`
@@ -1051,10 +1260,12 @@ CREATE TABLE IF NOT EXISTS `users_customuser` (
 INSERT INTO `users_customuser` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`, `pseudo`, `avatar_url`, `type`) VALUES
 (1, 'admin', '0000-00-00 00:00:00', 1, 'drinkizy', '', '', '', 1, 1, '0000-00-00 00:00:00', 'drinkizy', '', '1'),
 (2, 'pbkdf2_sha256$12000$kGNtjCYPTrzF$JKz/mqegmPD/3TObo2f2ZP3zaNTqIRTmIEM7WEd9pyM=', '2014-01-31 22:42:06', 1, 'admin', '', '', 'pguilloux53@gmail.com', 1, 1, '2014-01-31 22:41:51', '', '', 'user'),
-(3, 'pbkdf2_sha256$12000$fLYlIMRMhvTj$M6DtADPsYlZResi0hfa0ciCVyjvg4sKE/8jb9vWk1Fk=', '2014-02-05 11:43:11', 1, 'pguilloux', '', '', 'pguilloux53@gmail.com', 1, 1, '2014-02-04 15:12:31', '', '', 'user'),
-(4, 'pbkdf2_sha256$12000$oms4JrNuz5Kp$eSpTu4NqDmVtPa9NiDMPAZehYsvC86C1RNodBw/8qVc=', '2014-02-04 18:20:28', 1, 'Lauriane', '', '', 'lauriane.anthony@gmail.com', 1, 1, '2014-02-04 15:13:11', '', '', 'user'),
+(3, 'pbkdf2_sha256$12000$fLYlIMRMhvTj$M6DtADPsYlZResi0hfa0ciCVyjvg4sKE/8jb9vWk1Fk=', '2014-02-20 16:13:04', 1, 'pguilloux', '', '', 'pguilloux53@gmail.com', 1, 1, '2014-02-04 15:12:31', '', '', 'user'),
+(4, 'pbkdf2_sha256$12000$oms4JrNuz5Kp$eSpTu4NqDmVtPa9NiDMPAZehYsvC86C1RNodBw/8qVc=', '2014-02-06 21:06:26', 1, 'Lauriane', '', '', 'lauriane.anthony@gmail.com', 1, 1, '2014-02-04 15:13:11', '', '', 'user'),
 (5, 'pbkdf2_sha256$12000$5ubx7jUBnjsc$fQCtL6Z1ePnVZadN9XjomUqF3CC8uO9xyjOpaqL5oxg=', '2014-02-04 18:20:01', 1, 'hugo', '', '', 'hugo.gresse@gmail.com', 1, 1, '2014-02-04 15:13:33', '', '', 'user'),
-(6, 'pbkdf2_sha256$12000$TTceWgQnguAJ$fyQkUTE8CD43gVOsNef57ItRXBRVbSaiFErRfc9/l/s=', '2014-02-05 11:29:00', 1, 'Severine', '', '', 'severine.guillo.itis@gmail.com', 1, 1, '2014-02-04 20:16:54', 'Severine', 'avatars/koala_tea_by_koala_tea_time-d4ufptb2.png', 'user');
+(6, 'pbkdf2_sha256$12000$TTceWgQnguAJ$fyQkUTE8CD43gVOsNef57ItRXBRVbSaiFErRfc9/l/s=', '2014-02-06 09:46:26', 1, 'Severine', '', '', 'severine.guillo.itis@gmail.com', 1, 1, '2014-02-04 20:16:54', 'Severine', 'avatars/koala_tea_by_koala_tea_time-d4ufptb2.png', 'user'),
+(7, 'pbkdf2_sha256$12000$lFX3MwtaDdEp$Pfl9YxCm6UahBEMQE4ctlEwwUY0mdDUpqmfh4rDEJc8=', '2014-02-06 17:28:53', 1, 'Ornella', '', '', 'ne.moretti@gmail.com', 1, 1, '2014-02-05 12:08:04', 'Ornella', 'avatars/chouffe.png', 'drinkizy'),
+(8, 'pbkdf2_sha256$12000$G4tCyZNQX5Ag$7W/4FAVeOK8uWhm0JJGMwedT5IxI1ZOSjSdzM/5WWrs=', '2014-02-07 05:33:48', 1, 'niko', '', '', 'nikos021189@gmail.com', 1, 1, '2014-02-05 20:31:04', '', '', 'user');
 
 -- --------------------------------------------------------
 
@@ -1107,8 +1318,14 @@ ALTER TABLE `auth_permission`
 -- Contraintes pour la table `bars_bar`
 --
 ALTER TABLE `bars_bar`
-  ADD CONSTRAINT `creator_id_refs_id_89339927` FOREIGN KEY (`creator_id`) REFERENCES `users_customuser` (`id`),
-  ADD CONSTRAINT `theme_id_refs_id_6a053be6` FOREIGN KEY (`theme_id`) REFERENCES `bars_theme` (`id`);
+  ADD CONSTRAINT `creator_id_refs_id_89339927` FOREIGN KEY (`creator_id`) REFERENCES `users_customuser` (`id`);
+
+--
+-- Contraintes pour la table `bars_bar_themes`
+--
+ALTER TABLE `bars_bar_themes`
+  ADD CONSTRAINT `theme_id_refs_id_ca35011e` FOREIGN KEY (`theme_id`) REFERENCES `bars_theme` (`id`),
+  ADD CONSTRAINT `bar_id_refs_id_1d870f20` FOREIGN KEY (`bar_id`) REFERENCES `bars_bar` (`id`);
 
 --
 -- Contraintes pour la table `bars_openinghoursbar`
@@ -1143,6 +1360,27 @@ ALTER TABLE `drinks_drinkbar`
 --
 ALTER TABLE `drinks_drinksubcategory`
   ADD CONSTRAINT `category_id_refs_id_f7cf3b26` FOREIGN KEY (`category_id`) REFERENCES `drinks_drinkcategory` (`id`);
+
+--
+-- Contraintes pour la table `ranks_pricebar`
+--
+ALTER TABLE `ranks_pricebar`
+  ADD CONSTRAINT `user_id_refs_id_39a2060f` FOREIGN KEY (`user_id`) REFERENCES `users_customuser` (`id`),
+  ADD CONSTRAINT `bar_id_refs_id_414e7d9c` FOREIGN KEY (`bar_id`) REFERENCES `bars_bar` (`id`);
+
+--
+-- Contraintes pour la table `ranks_rankbar`
+--
+ALTER TABLE `ranks_rankbar`
+  ADD CONSTRAINT `user_id_refs_id_7c44820f` FOREIGN KEY (`user_id`) REFERENCES `users_customuser` (`id`),
+  ADD CONSTRAINT `bar_id_refs_id_58b1f004` FOREIGN KEY (`bar_id`) REFERENCES `bars_bar` (`id`);
+
+--
+-- Contraintes pour la table `ranks_rankdrink`
+--
+ALTER TABLE `ranks_rankdrink`
+  ADD CONSTRAINT `user_id_refs_id_05e448b1` FOREIGN KEY (`user_id`) REFERENCES `users_customuser` (`id`),
+  ADD CONSTRAINT `drink_bar_id_refs_id_1ed27901` FOREIGN KEY (`drink_bar_id`) REFERENCES `drinks_drinkbar` (`id`);
 
 --
 -- Contraintes pour la table `users_customuser_groups`

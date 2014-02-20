@@ -9,6 +9,8 @@ class Drink(models.Model):
 	subcategory = models.ForeignKey('DrinkSubCategory')
 	creator = models.ForeignKey('users.CustomUser', blank=True, null=True)
 
+	bars = models.ManyToManyField(Bar, through='DrinkBar')
+
 	def __unicode__(self):
 		return "%s" % (self.name)
 
@@ -39,7 +41,7 @@ class DrinkBar(models.Model):
 	price = models.FloatField()
 	price_happy_hour = models.FloatField()
 
-	drink = models.ForeignKey('Drink')
+	drink = models.ForeignKey('drinks.Drink')
 	bar = models.ForeignKey('bars.Bar')
 
 	approval = models.IntegerField(default=0)

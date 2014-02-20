@@ -155,9 +155,9 @@ class CustomSearchForm(SearchForm):
 
 
         if self.cleaned_data['themes']:
-            themes_utf8 = [theme.encode("utf8") for theme in self.cleaned_data['themes']]
-            sqs = sqs.filter(theme__slug__in=themes_utf8)
+            sqs = sqs.filter(themes__in=self.cleaned_data['themes'])
             no_filter_selected = False
+
 
 
         if self.cleaned_data['districts']:
