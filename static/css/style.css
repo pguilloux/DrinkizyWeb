@@ -20,7 +20,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 #wrap { height: 100%;}
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
-.site-wrapper { width: 100%; height: 100%; /* For at least Firefox */ min-height: 100%; }
+.site-wrapper { width: 100%; height: 100%; /* For at least Firefox */ min-height: 100%; display: table;}
 .site-wrapper-inner { vertical-align: top; }
 .cover-container { margin-left: auto; margin-right: auto; }
 
@@ -215,6 +215,21 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .fiche-bar-left-container .dl-horizontal dd a {color: #333;}
 .fiche-bar-left-container .dl-horizontal dd .dropdown-menu { left: 23%;}
 .fiche-bar-left-container .dl-horizontal dd .dropdown-menu li { padding: 0 5px; font-weight: 300;}
+
+.fiche-bar-comment .mediaContour { border-bottom: 2px solid #fff; margin-bottom: 10px; }
+.fiche-bar-comment textarea.form-control { min-height: 50px; height: 50px; width: 100%; max-width: 100%; margin-bottom: 3px;}
+.fiche-bar-comment .textareaCom { padding-right: 5px;}
+.fiche-bar-comment .buttonCom { padding-left: 5px;}
+.fiche-bar-comment ul { padding-left: 0; margin: 20px 0;}
+.fiche-bar-comment ul li {list-style: none;}
+.fiche-bar-comment ul li p { background-color: #fff; padding: 7px; margin: 0;}
+.fiche-bar-comment ul li h5 { color: #999999; font-weight: 300; padding-left: 7px;}
+.fiche-bar-comment ul li h5 strong {font-weight: 500;}
+
+#bar-drinkMenu .panel { border: none; }
+#bar-drinkMenu .panel-heading {background-color: transparent; background-image: none;}
+#bar-drinkMenu .panel-title span {}
+#bar-drinkMenu .panel-collapse { background-color: #f5F5F5; }
 /*
 *****
 	Footer

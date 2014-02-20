@@ -81,119 +81,107 @@
 					<button type="button" class="btn btn-primary btn-primary-orange">Non</button>
 				</div>
 
-				<div class="fiche-bar-left-container">
-					<h3><a name="comment">Avis</a></h3>
+				<div class="fiche-bar-left-container fiche-bar-comment">
+					<div class="mediaContour">
+						<div class="media">
+							<span class="pull-left">
+									<img src="{{bar.getImgUrl}}" alt="" height="50" width="50"/>
+							</span>
+							<div class="media-body">
+								<form class="row">
+									<div class="textareaCom col-xs-10">
+										<textarea class="form-control" rows="3"></textarea>
+									</div>
+									<div class="buttonCom col-xs-2">
+										<button type="button" class="btn btn-primary btn-primary-orange">Envoyer</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
 
-					<h5>Note globale</h5>
 					<p class="rankFix">
 						<strong>321 avis</strong>
-						<span class="">★</span>
-						<span class="">★</span>
-						<span class=" full">★</span>
-						<span class=" full">★</span>
-						<span class=" full">★</span> 
 					</p>
 
-					<a href="#" class="leaveComment">Laisser un commentaire</a>
-
 					<ul>
-						<li>
-							<div class="bar-comment-author">
-								<h4>Lauriane Anthony</h4>
-								<p>12/01/2014</p>
+						<li class="media">
+							<span class="pull-left">
+							<img src="{{bar.getImgUrl}}" alt="" height="50" width="50"/>
+							</span>
+							<div class="media-body">
+								<p>
+									 En plein coeur du quartier des Halles au centre de Paris, il vous propose des soirées animées. Ambiance chaude et musicale avec des groupes de rock qui déménagent. Façade typique des pubs irlandais, 14 bières à la pression et service non stop pendant les heur
+								</p>
+								<h5>par <strong>Lauriane</strong>, 18 février 2014</h5>
 							</div>
-							<div class="bar-comment-text">
-								<p>Lorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgr</p>
-								<p class="rankFix">
-									<span class="">★</span>
-									<span class="">★</span>
-									<span class=" full">★</span>
-									<span class=" full">★</span>
-									<span class=" full">★</span>
-								</p> 
+						</li>
+						<li class="media">
+							<span class="pull-left">
+							<img src="{{bar.getImgUrl}}" alt="" height="50" width="50"/>
+							</span>
+							<div class="media-body">
+								<p>
+									 En plein coeur du quartier des Halles au centre de Paris, il vous propose des soirées animées. Ambiance chaude et musicale avec des groupes de rock qui déménagent. Façade typique des pubs irlandais, 14 bières à la pression et service non stop pendant les heur
+								</p>
+								<h5>par <strong>Lauriane</strong>, 18 février 2014</h5>
 							</div>
-							<div class="clearfix"></div>
 						</li>
 
-						<li>
-							<div class="bar-comment-author">
-								<h4>Lauriane Anthony</h4>
-								<p>12/01/2014</p>
-							</div>
-							<div class="bar-comment-text">
-								<p>Lorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgr</p>
-								<p class="rankFix">
-									<span class="">★</span>
-									<span class="">★</span>
-									<span class=" full">★</span>
-									<span class=" full">★</span>
-									<span class=" full">★</span>
-								</p> 
-							</div>
-							<div class="clearfix"></div>
-						</li>
 
 					</ul>
 				</div>
 
 
 			</div>
-			<div class="content-secondary col-sm-4">
-
-				
+			<div class="content-secondary col-sm-4">	
 				<div id="bar-drinkMenu">
 					<h3><a name="drinkMenu">Carte des Boissons</a></h3>
-					<div id="container-barCard" class="js-masonry" data-masonry-options='{ "columnWidth": 100, "itemSelector": ".menuCat" }'>
-						
-						{% regroup drinks_in_bar by subcategory as drinks_list %}
 
-						<ul class="menuCat menuCat-aperitif">
-							{% for drink in drinks_list %}
-									<h4>{{ drink.grouper }}</h4>
-										{% for item in drink.list %}
-											<li class="">
-												<a href="#">
-													<h6>{{ item.object.drink.name }} <span>{{ item.object.price }} €</span></h6>
-													<p class="rankActive">
-														<a href="#" class="easeInOut300ms">★</a>
-														<a href="#" class="easeInOut300ms">★</a>
-														<a href="#" class="easeInOut300ms full">★</a>
-														<a href="#" class="easeInOut300ms full">★</a>
-														<a href="#" class="easeInOut300ms full">★</a>
-													</p> 
+					{% regroup drinks_in_bar by subcategory as drinks_list %}
+
+						{% for drink in drinks_list %}
+						<h4>{{ drink.grouper }}</h4>
+							<div class="panel-group" id="accordion">
+
+								{% for item in drink.list %}
+								
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{forloop.counter}}">
+													<strong>{{ item.object.drink.name }}</strong>
+													<span>{{ item.object.price }} €</span>
 												</a>
+											</h4>
+										</div>
+										<div id="collapse{{forloop.counter}}" class="panel-collapse collapse">
+											<div class="panel-body">
+												{{ item.object.drink.description }}
+											
+												<h5>Aider nous à modérer le site en validant l'existence de cette boison dans ce bar</h5>
+												
+												<button type="button" class="btn btn-primary btn-primary-orange">Oui</button>
+												<button type="button" class="btn btn-primary btn-primary-orange">Non</button>
+											</div>
+										</div>
+									</div>
 
-												<div class="infoDrinks">
-													<ul>
-														<li class="infoDrinks-text">
-															{{ item.object.drink.description }}
-														</li>
-														<li class="infoDrinks-rank">
-															<h5>Valider <strong>{{ item.object.drink.name|lower }}</strong> de <strong>{{ item.object.bar.name }}</strong></h5>
-															<p>
-																<a href="">oui</a>	 <a href="">non</a>	
-															</p>
-														</li>
-													</ul>
-													
-												</div>
-											</li>
-										{% endfor %}
-							{% endfor %}
+								{% endfor %}
+						
+							</div>
+						{% endfor %}
+
+					</div>
+
+					<div id="bar-map">
+						<h3><a name="map">Plan</a></h3>
+						<div id="map-canvas"></div>
+						<ul>
+							<li class="bar-adress">{{ bar.address }}</li>
+							<!--li class="bar-metro"></li-->
 						</ul>
-
-			 		</div>
-					<div class="clearfix"></div>
-				</div>
-
-				<div id="bar-map">
-					<h3><a name="map">Plan</a></h3>
-					<div id="map-canvas"></div>
-					<ul>
-						<li class="bar-adress">{{ bar.address }}</li>
-						<!--li class="bar-metro"></li-->
-					</ul>
-				</div>
+					</div>
 
 
 			</div>
@@ -213,7 +201,7 @@
 		$(document).ready(function(){
 			var longitude = "{{ bar.longitude }}".replace(",", ".");
 			var latitude = "{{ bar.latitude }}".replace(",", ".");
-    		google.maps.event.addDomListener(window, 'load', initialize(latitude, longitude, "{{ bar.name }}"));
+				google.maps.event.addDomListener(window, 'load', initialize(latitude, longitude, "{{ bar.name }}"));
 		});
 
 	</script>
