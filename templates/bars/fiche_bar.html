@@ -40,7 +40,9 @@
 							<h4 class="media-heading">
 								{{bar.name}}
 							</h4>
-							<h5><a href="{% url 'bars.views.bars_for_theme' bar.theme.slug %}">{{ bar.theme.name }}</a></h5>
+							{% for theme in bar.themes.all %}
+								<h5><a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a></h5>
+							{% endfor %}
 							<h6><span class="glyphicon glyphicon-map-marker"></span>{{bar.address}}</h6>
 						</div>
 					</div>
