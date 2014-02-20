@@ -62,7 +62,7 @@ $(document).ready(function(){
 			$('#map-canvas').hide();
 			$('.content-resultats-filtres').addClass('noWidth');
 			$('.content-resultats-list').removeClass('col-md-4 col-sm-5 col-xs-7').addClass('col-md-6 col-sm-8 col-xs-11');
-		}
+		} 
 	});
 
 

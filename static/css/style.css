@@ -265,7 +265,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 	.navbar-nav.navbar-right:last-child { margin-right: 0;}
 	.navbar .container { width: 99%}
 	.cover-container {width: 100%; }
-
+	.navbar-default .btn-primary { margin: 0 2px;}
 }
 
 /* Medium devices (desktops, 992px and up) */
