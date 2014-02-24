@@ -73,6 +73,7 @@ INSTALLED_APPS = (
     #'endless_pagination',
     'autocomplete_light',
     'tastypie',
+    'sorl.thumbnail',
 
     #apps
     'home',
@@ -164,6 +165,14 @@ TEMPLATE_DIRS = (
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
 )
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'cache_table',
+    }
+}
 
 LOGGING = {
     'version': 1,

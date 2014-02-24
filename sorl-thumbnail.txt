@@ -1,0 +1,12 @@
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'cache_table',
+    }
+}
+
+python manage.py createcachetable cache_table
+
+pip install Pillow
+
+pip install pgmagick

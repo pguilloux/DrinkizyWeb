@@ -9,7 +9,7 @@ class ThemeResource(ModelResource):
 
 
 class BarResource(ModelResource):
-	theme = fields.ForeignKey(ThemeResource, 'theme')
+	themes = fields.ToManyField(ThemeResource, 'themes')
 	class Meta:
 		queryset = Bar.objects.all()
 		resource_name = 'bar'
