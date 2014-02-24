@@ -40,9 +40,15 @@
 							<h4 class="media-heading">
 								{{bar.name}}
 							</h4>
-							{% for theme in bar.themes.all %}
-								<h5><a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a></h5>
-							{% endfor %}
+							<h5>
+								{% for theme in bar.themes.all %}
+                                    {% if forloop.last %}
+                                        <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a>
+                                    {% else %}
+                                        <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a>,
+                                    {% endif %}
+								{% endfor %}
+							</h5>
 							<h6><span class="glyphicon glyphicon-map-marker"></span>{{bar.address}}</h6>
 						</div>
 					</div>
@@ -70,7 +76,12 @@
 							<dt>Happy Hour : </dt>
 							<dd>18:00 - 22:00</dd>
 							<dt>Tarifs : </dt>
-							<dd>€ € €</dd>
+							<dd><small>
+								<span class="glyphicon glyphicon glyphicon-euro fullEuros"></span> 
+								<span class="glyphicon glyphicon glyphicon-euro"></span> 
+								<span class="glyphicon glyphicon glyphicon-euro"></span>
+								</small>
+							</dd>
 						</dl>
 					</div>
 
