@@ -24,7 +24,11 @@
 		</h4>
 		<h6>
 			{% for theme in onebar.themes.all %}
-				<a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a>
+                {% if forloop.last %}
+                    <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a>
+                {% else %}
+                    <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }},</a>
+                {% endif %}
 			{% endfor %}
 			<small>
 				<span class="glyphicon glyphicon glyphicon-euro fullEuros"></span> 
@@ -33,6 +37,19 @@
 			</small>
 		</h6>
 		<h6><span class="glyphicon glyphicon glyphicon-map-marker"></span>{{ onebar.address }}</h6>
+		<div class="distanceXsSm hidden-md hidden-lg">
+			{% load bar_tags %}
+			{% load division %}
+			{% if bar_distances %}
+				{% with distance=bar_distances|keyvalue:onebar.name %}
+					{% if distance < 1000 %}
+						<p class="pDistance"><span class="distanceBefore"></span><span class="distance">{{ distance }} m</span><span class="distanceAfter"></span></p>
+					{% else %}
+						<h3 class="distance">{{ distance|divide:1000 }} km</h3>
+					{% endif %}
+				{% endwith %}
+			{% endif %}
+		</div>
 		
 		<dl class="dl-horizontal">
 			{% for result in objects %}

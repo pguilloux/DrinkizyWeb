@@ -116,22 +116,23 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .theme-band .cover-container {text-align: center;}
 
 /* CSS specific for the band which regroup some bar */
+.list-bar-band { text-align: center;}
 .list-bar-band .media {text-align: left; height: 50px; }
 .list-bar-band .media.media-grey { background: #F2F2F2; }
 .list-bar-band .media.media-white { background: #fff; }
 .list-bar-band .media .pull-left { background: #F3C319; height: 100%; padding: 5px; line-height: 40px; margin-right: 3px; color: #fff;}
-.list-bar-band .media-body h4 { margin: 4px 0;}
+.list-bar-band .media-body h4 { margin: 4px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .list-bar-band .media-body h4 a { color: #F3C319;}
 .list-bar-band .media-body h6 {overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin: 5px 0; color: #333333;}
-.list-bar-band .media-body h6 a { color: #333333; }
+.list-bar-band .media-body h6 a { color: #333333; font-weight: 700; }
 .list-bar-band .media-body h6 small { font-size: 100%; color: #333333;}
 
 .list-bar-band .thumbnail { padding: 0; border: 0; border-radius: 0; box-shadow: none; height: 140px; overflow: hidden;}
 .list-bar-band .thumbnail>img { max-height: 100%; max-width: none;}
 
 /* CSS specific for the band to download our amazing application */
+.download-app-band { text-align: center;}
 .download-app-band p.lead { margin: 5px 0; font-size: 16px;}
-
 
 /*
 *****
@@ -177,7 +178,8 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .content-resultats-list .media-heading a { color: #000;}
 .content-resultats-list .media-heading span { background: #F3C319; color: #fff; font-size: 12px; padding: 2px; font-weight: 300; float: left; margin-right: 5px;}
 .content-resultats-list h6 a { color: #999;}
-.content-resultats-list h6 small span.fullEuros { color: #222;}
+.glyphicon-euro { color: #999; font-size: 10px; font-weight: 300}
+.fullEuros { color: #222;}
 .content-resultats-list-list .pull-left { margin-right: 10px;}
 .content-resultats-list-list .number,
 .content-resultats-list-list .content-list { padding: 0;}
@@ -186,9 +188,10 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .content-resultats-list-list .dl-horizontal dd { text-align: right; margin-left: 0;}
 .content-resultats-list-list .dl-horizontal a { font-size: 13px;}
 .content-resultats-list-list .media .pDistance {margin-top: 10px; width: 100%;}
-.content-resultats-list-list .media .pDistance .distanceBefore {background-image: url("../medias/img/drinkizy_sprite.png"); background-position: -171px -58px; content: ""; display: block; float: left; height: 23px; margin-right: 5px; width: 21px;}
-.content-resultats-list-list .media .pDistance .distance {border-bottom: 2px solid #F1B219; float: left; margin-top: -10px; padding: 0 15px;}
-.content-resultats-list-list .media .pDistance .distanceAfter {background-image: url("../medias/img/drinkizy_sprite.png"); background-position: -74px -57px; content: ""; display: block; float: left; height: 23px; margin-left: 5px; width: 15px;}
+.content-resultats-list-list .media .pDistance .distanceBefore {background-image: url("../medias/img/drinkizy_sprite.png"); background-position: -171px -58px; content: ""; display: block; float: left; height: 23px; margin-right: 1px; width: 21px;}
+.content-resultats-list-list .media .pDistance .distance {border-bottom: 2px solid #F1B219; float: left; margin-top: -10px; font-size: 11px; padding: 3px 1px}
+.content-resultats-list-list .media .pDistance .distanceAfter {background-image: url("../medias/img/drinkizy_sprite.png"); background-position: -74px -57px; content: ""; display: block; float: left; height: 23px; margin-left: 0px; width: 15px;}
+.content-resultats-list-list .distanceXsSm {display: inline-block;}
 .marginLess { margin-left: -91.7%; }
 .noWidth { width: 0; padding: 0;}
 
@@ -259,6 +262,15 @@ body {padding-top: 50px; font-family: Ubuntu;}
 
 /*
 *****
+	Theme page
+*****
+*/
+
+.grey-band.page-theme a {margin: 0 10px 20px 10px;}
+.grey-band.page-theme .lead { text-align: center;}
+.grey-band.page-theme h1 { padding-top: 10px;}
+/*
+*****
 	Footer
 *****
 */
@@ -323,3 +335,9 @@ body {padding-top: 50px; font-family: Ubuntu;}
 
 }
 
+.mapIconLabel {
+    font-size: 15px;
+    font-weight: bold;
+    color: red;
+    background-color: black;
+}
