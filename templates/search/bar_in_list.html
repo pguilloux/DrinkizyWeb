@@ -24,7 +24,7 @@
 		</h4>
 		<h6>
 			{% for theme in onebar.themes.all %}
-				<a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a>,
+				<a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a>
 			{% endfor %}
 			<small>
 				<span class="glyphicon glyphicon glyphicon-euro fullEuros"></span> 

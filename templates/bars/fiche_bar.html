@@ -46,7 +46,7 @@
 							<h6><span class="glyphicon glyphicon-map-marker"></span>{{bar.address}}</h6>
 						</div>
 					</div>
-					<p class="lead">{{ bar.description }}</p>
+					<p class="lead borderWhite">{{ bar.description }}</p>
 					<div class="row">
 						<dl class="dl-horizontal col-sm-6">
 							<dt>Téléphone : </dt>
@@ -73,127 +73,133 @@
 							<dd>€ € €</dd>
 						</dl>
 					</div>
+
+					<div class="row borderWhite markShare">
+						<div class="col-sm-8">
+							<span><strong>9,6</strong> /10</span>
+							<h4>134 personnes ont noté ce bar</h4>
+							<a href="">Note le à ton tour</a>
+						</div>
+						<div class="col-sm-4">
+							<h4>Partager ce bar</h4>
+							<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-type="button_count"></div>
+							<a href="https://twitter.com/share" class="twitter-share-button" data-lang="fr">Tweeter</a>
+						</div>
+					</div>
 				</div>
 
-				<div class="fiche-bar-left-container">
-					<p>Aidez-nous à modérer le site ne validant l'existence de ce bar</p>
+				<div class="fiche-bar-left-container helpModo">
+					<p>Aidez-nous à modérer le site en validant l'existence de ce bar</p>
 					<button type="button" class="btn btn-primary btn-primary-orange">Oui</button>
 					<button type="button" class="btn btn-primary btn-primary-orange">Non</button>
 				</div>
 
-				<div class="fiche-bar-left-container">
-					<h3><a name="comment">Avis</a></h3>
+				<div class="fiche-bar-left-container fiche-bar-comment">
+					<div class="mediaContour">
+						<div class="media">
+							<span class="pull-left">
+									<img src="{{bar.getImgUrl}}" alt="" height="50" width="50"/>
+							</span>
+							<div class="media-body">
+								<form class="row">
+									<div class="textareaCom col-xs-10">
+										<textarea class="form-control" rows="3"></textarea>
+									</div>
+									<div class="buttonCom col-xs-2">
+										<button type="button" class="btn btn-primary btn-primary-orange">Envoyer</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
 
-					<h5>Note globale</h5>
 					<p class="rankFix">
 						<strong>321 avis</strong>
-						<span class="">★</span>
-						<span class="">★</span>
-						<span class=" full">★</span>
-						<span class=" full">★</span>
-						<span class=" full">★</span> 
 					</p>
 
-					<a href="#" class="leaveComment">Laisser un commentaire</a>
-
 					<ul>
-						<li>
-							<div class="bar-comment-author">
-								<h4>Lauriane Anthony</h4>
-								<p>12/01/2014</p>
+						<li class="media">
+							<span class="pull-left">
+							<img src="{{bar.getImgUrl}}" alt="" height="50" width="50"/>
+							</span>
+							<div class="media-body">
+								<p>
+									 En plein coeur du quartier des Halles au centre de Paris, il vous propose des soirées animées. Ambiance chaude et musicale avec des groupes de rock qui déménagent. Façade typique des pubs irlandais, 14 bières à la pression et service non stop pendant les heur
+								</p>
+								<h5>par <strong>Lauriane</strong>, 18 février 2014</h5>
 							</div>
-							<div class="bar-comment-text">
-								<p>Lorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgr</p>
-								<p class="rankFix">
-									<span class="">★</span>
-									<span class="">★</span>
-									<span class=" full">★</span>
-									<span class=" full">★</span>
-									<span class=" full">★</span>
-								</p> 
+						</li>
+						<li class="media">
+							<span class="pull-left">
+							<img src="{{bar.getImgUrl}}" alt="" height="50" width="50"/>
+							</span>
+							<div class="media-body">
+								<p>
+									 En plein coeur du quartier des Halles au centre de Paris, il vous propose des soirées animées. Ambiance chaude et musicale avec des groupes de rock qui déménagent. Façade typique des pubs irlandais, 14 bières à la pression et service non stop pendant les heur
+								</p>
+								<h5>par <strong>Lauriane</strong>, 18 février 2014</h5>
 							</div>
-							<div class="clearfix"></div>
 						</li>
 
-						<li>
-							<div class="bar-comment-author">
-								<h4>Lauriane Anthony</h4>
-								<p>12/01/2014</p>
-							</div>
-							<div class="bar-comment-text">
-								<p>Lorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgrLorem ipsum balar os jfrgr efgr</p>
-								<p class="rankFix">
-									<span class="">★</span>
-									<span class="">★</span>
-									<span class=" full">★</span>
-									<span class=" full">★</span>
-									<span class=" full">★</span>
-								</p> 
-							</div>
-							<div class="clearfix"></div>
-						</li>
 
 					</ul>
 				</div>
 
 
 			</div>
-			<div class="content-secondary col-sm-4">
-
-				
+			<div class="content-secondary col-sm-4">	
 				<div id="bar-drinkMenu">
-					<h3><a name="drinkMenu">Carte des Boissons</a></h3>
-					<div id="container-barCard" class="js-masonry" data-masonry-options='{ "columnWidth": 100, "itemSelector": ".menuCat" }'>
-						
-						{% regroup drinks_in_bar by subcategory as drinks_list %}
+					<h2>Carte des Boissons</h2>
 
-						<ul class="menuCat menuCat-aperitif">
-							{% for drink in drinks_list %}
-									<h4>{{ drink.grouper }}</h4>
-										{% for item in drink.list %}
-											<li class="">
-												<a href="#">
-													<h6>{{ item.object.drink.name }} <span>{{ item.object.price }} €</span></h6>
-													<p class="rankActive">
+					{% regroup drinks_in_bar by subcategory as drinks_list %}
+
+						{% for drink in drinks_list %}
+						<h3>{{ drink.grouper }}</h3>
+							<div class="panel-group" id="accordion">
+								{% for item in drink.list %}
+								
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{forloop.parentloop.counter}}{{forloop.counter}}">
+													<strong class="">{{ item.object.drink.name }}</strong>
+													<span class="">{{ item.object.price }} €
+														<!--a href="#" class="easeInOut300ms">★</a>
 														<a href="#" class="easeInOut300ms">★</a>
 														<a href="#" class="easeInOut300ms">★</a>
-														<a href="#" class="easeInOut300ms full">★</a>
-														<a href="#" class="easeInOut300ms full">★</a>
-														<a href="#" class="easeInOut300ms full">★</a>
-													</p> 
+														<a href="#" class="easeInOut300ms">★</a>
+														<a href="#" class="easeInOut300ms">★</a-->
+													</span>
 												</a>
-
-												<div class="infoDrinks">
-													<ul>
-														<li class="infoDrinks-text">
-															{{ item.object.drink.description }}
-														</li>
-														<li class="infoDrinks-rank">
-															<h5>Valider <strong>{{ item.object.drink.name|lower }}</strong> de <strong>{{ item.object.bar.name }}</strong></h5>
-															<p>
-																<a href="">oui</a>	 <a href="">non</a>	
-															</p>
-														</li>
-													</ul>
-													
+											</h4>
+										</div>
+										<div id="collapse{{forloop.parentloop.counter}}{{forloop.counter}}" class="panel-collapse collapse">
+											<div class="panel-body">
+												<div>
+													<p>{{ item.object.drink.description }}</p>
+													<h4>{{ item.object.price }} € <span class="label label-default">Happy Hour</span></h4>
 												</div>
-											</li>
-										{% endfor %}
-							{% endfor %}
-						</ul>
+											
+												<div>
+													<h5>Aider nous à modérer le site en validant l'existence de cette boison dans ce bar</h5>
+												
+													<button type="button" class="btn btn-primary btn-primary-orange btn-xs">Oui</button>
+													<button type="button" class="btn btn-primary btn-primary-orange btn-xs">Non</button>
+												</div>
+											</div>
+										</div>
+									</div>
 
-			 		</div>
-					<div class="clearfix"></div>
-				</div>
+								{% endfor %}
+						
+							</div>
+						{% endfor %}
 
-				<div id="bar-map">
-					<h3><a name="map">Plan</a></h3>
-					<div id="map-canvas"></div>
-					<ul>
-						<li class="bar-adress">{{ bar.address }}</li>
-						<!--li class="bar-metro"></li-->
-					</ul>
-				</div>
+					</div>
+
+					<div id="bar-map">
+						<div id="map-canvas"></div>
+					</div>
 
 
 			</div>
@@ -204,7 +210,6 @@
 {% endblock content %}
 	
 {% block scriptjs %}    
-	<script type="text/javascript" src={% static "js/masonry.pkgd.min.js" %}></script>
 	<script type="text/javascript" src={% static "js/fiche_bar.js" %}></script>
 
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYdfpCP0VVQOXXf5nvoiwdHhbeI4drobE&sensor=true">
@@ -213,9 +218,23 @@
 		$(document).ready(function(){
 			var longitude = "{{ bar.longitude }}".replace(",", ".");
 			var latitude = "{{ bar.latitude }}".replace(",", ".");
-    		google.maps.event.addDomListener(window, 'load', initialize(latitude, longitude, "{{ bar.name }}"));
+				google.maps.event.addDomListener(window, 'load', initialize(latitude, longitude, "{{ bar.name }} {{ bar.address }}"));
 		});
 
+	</script>
+
+	<script>
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<script>
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 	</script>
 {% endblock %}
 

@@ -20,7 +20,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 #wrap { height: 100%;}
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
-.site-wrapper { width: 100%; height: 100%; /* For at least Firefox */ min-height: 100%; }
+.site-wrapper { width: 100%; height: 100%; /* For at least Firefox */ min-height: 100%; display: table;}
 .site-wrapper-inner { vertical-align: top; }
 .cover-container { margin-left: auto; margin-right: auto; }
 
@@ -153,8 +153,10 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .content-resultats-filtres form .search-loc-boisson ul li {display: block; float: left; width: 25%;}
 .content-resultats-filtres form .search-loc-boisson ul li:first-child {margin-top: -5px}
 .content-resultats-filtres form .search-theme a#themes-plus{display:block; color: #AAA; text-decoration: underline; margin-bottom:10px;}
-.content-resultats-list-button, .content-resultats-map-button {height: 100%; background: #f8f8f8; padding: 0;
-}
+.content-resultats-filtres #slider-range-min-slider {margin: 20px 0;}
+.content-resultats-filtres #slider-range-min-slider span { position: relative;top: -25px; display : block; width: 50px; font-family: 'Lobster', cursive; color: #F1B219; }
+.content-resultats-filtres #slider-range-min-slider a:hover {text-decoration: none;}
+.content-resultats-list-button, .content-resultats-map-button {height: 100%; background: #f8f8f8; padding: 0;}
 .content-resultats-list-button a, .content-resultats-map-button a {width: 100%; display: block; color: #ccc;}
 .content-resultats-list-button h5 {  white-space:nowrap; margin: 120px 2px 2px 2px;
 -webkit-transform:rotate(270deg);
@@ -170,7 +172,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 
 .content-resultats-list .media .pull-left a { height: 70px; width: 70px; overflow: hidden; display: block;}
 .content-resultats-list { padding: 0; }
-.content-resultats-list ol { padding-left: 0;}
+.content-resultats-list ol { padding-left: 0; margin-top: 30px}
 .content-resultats-list ol li { list-style-type: none; }
 .content-resultats-list .media-heading a { color: #000;}
 .content-resultats-list .media-heading span { background: #F3C319; color: #fff; font-size: 12px; padding: 2px; font-weight: 300; float: left; margin-right: 5px;}
@@ -200,7 +202,8 @@ body {padding-top: 50px; font-family: Ubuntu;}
 
 .fiche-bar.pull-left { width: 120px; }
 .fiche-bar-left-container { margin-bottom: 10px; padding-top: 20px; background-color: #f2f2f2; -moz-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.2); -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.2); -o-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.2); box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.2) }
-.fiche-bar-left-container p.lead { font-size: 12px; padding: 20px; border-top: 1px solid #fff; border-bottom: 1px solid #fff; }
+.fiche-bar-left-container p.lead { font-size: 12px; }
+.fiche-bar-left-container .borderWhite { padding: 20px; border-top: 1px solid #fff; border-bottom: 1px solid #fff;}
 .fiche-bar-left-container .media { margin: 0 20px 20px 20px;}
 .fiche-bar-left-container .media .media-heading { font-size: 30px; font-weight: 700;}
 .fiche-bar-left-container .media h5 { margin: 3px 0; }
@@ -213,6 +216,47 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .fiche-bar-left-container .dl-horizontal dd a {color: #333;}
 .fiche-bar-left-container .dl-horizontal dd .dropdown-menu { left: 23%;}
 .fiche-bar-left-container .dl-horizontal dd .dropdown-menu li { padding: 0 5px; font-weight: 300;}
+
+.fiche-bar-left-container .markShare h4 {margin: 0; font-size: 16px}
+.fiche-bar-left-container .markShare div:first-child span { background-color: #F3C319; color: rgba(255, 255, 255, 0.5); padding: 5px; font-size: 20px; font-weight: 500; float: left; }
+.fiche-bar-left-container .markShare div:first-child span strong { color: rgba(255, 255, 255, 1); font-weight: 500; }
+.fiche-bar-left-container .markShare div:first-child h4,
+.fiche-bar-left-container .markShare div:first-child a { margin-left: 10px; display: inline-block; width: 65%}
+.fiche-bar-left-container .markShare div:first-child a { color: #999;}
+
+.fiche-bar-left-container.helpModo { text-align: center;}
+.fiche-bar-left-container.helpModo button {margin-bottom: 20px;}
+
+.fiche-bar-comment .mediaContour { border-bottom: 2px solid #fff; margin-bottom: 10px; }
+.fiche-bar-comment textarea.form-control { min-height: 50px; height: 50px; width: 100%; max-width: 100%; margin-bottom: 3px;}
+.fiche-bar-comment .textareaCom { padding-right: 5px;}
+.fiche-bar-comment .buttonCom { padding-left: 5px;}
+.fiche-bar-comment .rankFix { margin-left: 20px; font-size: 20px}
+.fiche-bar-comment ul { padding-left: 0; margin: 20px 0;}
+.fiche-bar-comment ul li {list-style: none;}
+.fiche-bar-comment ul li p { background-color: #fff; padding: 7px; margin: 0;}
+.fiche-bar-comment ul li h5 { color: #999999; font-weight: 300; padding-left: 7px;}
+.fiche-bar-comment ul li h5 strong {font-weight: 500;}
+
+#bar-drinkMenu h2 { color: #F1B219; font-size: 26px;}
+#bar-drinkMenu h3 { padding-left: 15px; font-size: 20px;}
+#bar-drinkMenu .panel { border: none; box-shadow: none; }
+#bar-drinkMenu .panel-heading {background-color: transparent; background-image: none; padding: 4px 15px; }
+#bar-drinkMenu .panel-title a:hover { color: #999; text-decoration: none;}
+#bar-drinkMenu .panel-collapse { background-color: #f5F5F5; }
+#bar-drinkMenu .panel-title,
+#bar-drinkMenu .panel-title strong { font-weight: 300 }
+#bar-drinkMenu .panel-title strong,
+#bar-drinkMenu .panel-body p { width: 60%; display: inline-block;}
+#bar-drinkMenu .panel-body { border: none;}
+#bar-drinkMenu .panel-body p {font-size: 12px;}
+#bar-drinkMenu .panel-body h4 {display: inline-block; width: auto; vertical-align: top; font-size: 16px; background-color: #F3C319; padding: 4px; margin: 0; color: #fff; }
+#bar-drinkMenu .panel-body h4 .label { padding: 0; background-color: transparent; margin: 0; vertical-align: text-top;}
+#bar-drinkMenu .panel-body h5 { font-size: 11px; color: #999; margin: 0;}
+#bar-drinkMenu .panel-body div:last-child { text-align: center;}
+
+#bar-map #map-canvas { height: 300px; }
+
 /*
 *****
 	Footer
@@ -266,7 +310,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 	.navbar-nav.navbar-right:last-child { margin-right: 0;}
 	.navbar .container { width: 99%}
 	.cover-container {width: 100%; }
-
+	.navbar-default .btn-primary { margin: 0 2px;}
 }
 
 /* Medium devices (desktops, 992px and up) */
