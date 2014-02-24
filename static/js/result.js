@@ -76,14 +76,13 @@ $(document).ready(function(){
 });
 
 
+
 function initialize(locations) {
 
-	/* Déclaration de l'objet qui définira les limites de la map */ 
    	var bounds = new google.maps.LatLngBounds();
 
 	map = new google.maps.Map(document.getElementById('map-canvas'), {
-		/*zoom: 6,
-		center: new google.maps.LatLng(47.4,1.6),*/
+		
 		mapTypeControl: true,
 		mapTypeControlOptions: {
 			style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
@@ -104,22 +103,50 @@ function initialize(locations) {
 
 	for (i = 0; i < locations.length; i++) {  
 		bounds.extend(locations[i][1]);
-		marker = new google.maps.Marker({
+
+		var mapLabel = new MapLabel({
+          text: i+1,
+          position: locations[i][1]+10.5,
+          map: map,
+          fontSize: 35,
+          align: 'center'
+        });
+        mapLabel.set('position', locations[i][1]);
+
+        var marker = new google.maps.Marker({
+        	icon : '../../../static/medias/img_design/map-marker.png'
+        });
+        marker.bindTo('map', mapLabel);
+        marker.bindTo('position', mapLabel);
+        marker.setDraggable(true);
+		
+
+		/*marker = new google.maps.Marker({
 			position: locations[i][1],
 			icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+(i+1)+'|FE6256|000000',
-			map: map
-	});
+			map: map,
 
-	/* Ici, on ajuste le zoom de la map en fonction des limites  */ 
-   	map.fitBounds(bounds);
+		});
+		marker = new MarkerWithLabel({
+            map: map,
+            position: locations[i][1],
+            icon : '../../../static/medias/img_design/map-marker.png',
+            labelContent : i,
+            labelAnchor : new google.maps.Point(3, 30),     // e.g. new google.maps.Point(21, 10);
+            labelClass : "mapIconLabel",          // the CSS class for the label
+            labelInBackground : false
+        });*/
 
-	google.maps.event.addListener(marker, 'click', (function(marker, i) {
-		return function() {
-		  infowindow.setContent(locations[i][0]);
-		  infowindow.open(map, marker);
-		}
-		})(marker, i));
+	   	map.fitBounds(bounds);
+
+		google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			return function() {
+			  infowindow.setContent(locations[i][0]);
+			  infowindow.open(map, marker);
+			}
+			})(marker, i));
 	}
 
 };
+
 	

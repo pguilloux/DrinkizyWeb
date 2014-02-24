@@ -335,3 +335,9 @@ body {padding-top: 50px; font-family: Ubuntu;}
 
 }
 
+.mapIconLabel {
+    font-size: 15px;
+    font-weight: bold;
+    color: red;
+    background-color: black;
+}

@@ -16,7 +16,8 @@ function initialize(long, lat, name) {
     var marker = new google.maps.Marker({
 	    position: myLatlng,
 	    map: map,
-	    title: name
+	    title: name,
+  		icon: '../../../static/medias/img_design/map-marker.png'
 	});
 
     var infowindow = new google.maps.InfoWindow();
