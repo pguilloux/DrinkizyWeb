@@ -7,6 +7,7 @@ from home.views import *
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', home, name='home'),
+    url(r'^faq/$', faq, name='faq'),
     # url(r'^movies', movies, name='movies'),
     # url(r'^film/(?P<slug>[\w-]+)/$', movie_details, name='movie_details'),
     # url(r'^director/(?P<slug>[\w-]+)/$', director_details, name='director_details'),
