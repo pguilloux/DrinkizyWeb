@@ -5,6 +5,7 @@ import autocomplete_light
 
 from tastypie.api import Api
 from bars.api import *
+from drinks.api import *
 
 autocomplete_light.autodiscover()
 admin.autodiscover()
