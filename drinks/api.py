@@ -23,7 +23,7 @@ class DrinkResource(ModelResource):
 
  
 class DrinkBarResource(ModelResource):
-	bar = fields.ForeignKey(BarResource, 'bar', full=True)
+	bar = fields.ForeignKey(BarResource, 'bar')
 	drink = fields.ForeignKey(DrinkResource, 'drink', full=True)
 	class Meta:
 		queryset = DrinkBar.objects.all()
