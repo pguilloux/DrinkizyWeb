@@ -5,6 +5,8 @@ from tastypie.paginator import Paginator
 from tastypie.exceptions import BadRequest
 from tastypie.resources import ModelResource
 from tastypie.utils import trailing_slash
+from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
+
 from django.http import Http404
 from haystack.query import SearchQuerySet, EmptySearchQuerySet
 
@@ -22,3 +24,8 @@ class BarResource(ModelResource):
 	class Meta:
 		queryset = Bar.objects.all()
 		resource_name = 'bar'
+		filtering = {
+            'slug': ALL_WITH_RELATIONS,
+            #'user': ALL_WITH_RELATIONS,
+            #'created': ['exact', 'range', 'gt', 'gte', 'lt', 'lte'],
+        }

@@ -5,6 +5,8 @@ from tastypie.paginator import Paginator
 from tastypie.exceptions import BadRequest
 from tastypie.resources import ModelResource
 from tastypie.utils import trailing_slash
+from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
+
 from django.http import Http404
 from haystack.query import SearchQuerySet, EmptySearchQuerySet
 
@@ -22,11 +24,16 @@ class DrinkResource(ModelResource):
 
  
 class DrinkBarResource(ModelResource):
-	bar = fields.ForeignKey(BarResource, 'bar')
- 	drink = fields.ForeignKey(DrinkResource, 'drink')
+	bar = fields.ForeignKey(BarResource, 'bar', full=True)
+	drink = fields.ForeignKey(DrinkResource, 'drink', full=True)
 	class Meta:
 		queryset = DrinkBar.objects.all()
 		resource_name = 'drinkbar'
+		filtering = {
+            'bar': ALL_WITH_RELATIONS,
+            #'user': ALL_WITH_RELATIONS,
+            #'created': ['exact', 'range', 'gt', 'gte', 'lt', 'lte'],
+        }
 	 
 	# Custom search endpoint
 	def override_urls(self):
@@ -44,6 +51,7 @@ class DrinkBarResource(ModelResource):
 		self.throttle_check(request)
 		 
 		query = request.GET.get('q', None)
+		
 
 		if not query:
 			raise BadRequest('Please supply the search parameter (e.g. "/api/v1/drinkbar/search/?q=css")')
