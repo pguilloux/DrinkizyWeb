@@ -14,12 +14,25 @@ from bars.models import *
 from drinks.models import *
 from bars.api import *
 
-class DrinkResource(ModelResource):
 
+class DrinkCategoryResource(ModelResource):
+	class Meta:
+		queryset = DrinkCategory.objects.all()
+		resource_name = 'drink-category'
+ 
+
+class DrinkSubCategoryResource(ModelResource):
+	category = fields.ForeignKey(DrinkCategoryResource, 'category', full=True)
+	class Meta:
+		queryset = DrinkSubCategory.objects.all()
+		resource_name = 'drink-subcategory'
+
+
+class DrinkResource(ModelResource):
+	subcategory = fields.ForeignKey(DrinkSubCategoryResource, 'subcategory', full=True)
 	class Meta:
 		queryset = Drink.objects.all()
-		resource_name = 'Drink'
- 
+		resource_name = 'drink'
 
  
 class DrinkBarResource(ModelResource):
