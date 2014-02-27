@@ -1,29 +1,38 @@
 from tastypie import fields
-from tastypie.resources import ModelResource
+
+from django.conf.urls import patterns, url, include
 from tastypie.paginator import Paginator
 from tastypie.exceptions import BadRequest
+from tastypie.resources import ModelResource
 from tastypie.utils import trailing_slash
+from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 
 from django.http import Http404
 from haystack.query import SearchQuerySet, EmptySearchQuerySet
-from django.conf.urls import patterns, url, include
-from bars.api import *
+
+from bars.models import *
 from drinks.models import *
+from bars.api import *
 
 class DrinkResource(ModelResource):
 
 	class Meta:
 		queryset = Drink.objects.all()
 		resource_name = 'Drink'
-
+ 
 
  
 class DrinkBarResource(ModelResource):
-	bar = fields.ForeignKey(BarResource, 'bar')
- 	drink = fields.ForeignKey(DrinkResource, 'drink')
+	bar = fields.ForeignKey(BarResource, 'bar', full=True)
+	drink = fields.ForeignKey(DrinkResource, 'drink', full=True)
 	class Meta:
 		queryset = DrinkBar.objects.all()
 		resource_name = 'drinkbar'
+		filtering = {
+            'bar': ALL_WITH_RELATIONS,
+            #'user': ALL_WITH_RELATIONS,
+            #'created': ['exact', 'range', 'gt', 'gte', 'lt', 'lte'],
+        }
 	 
 	# Custom search endpoint
 	def override_urls(self):
@@ -64,4 +73,6 @@ class DrinkBarResource(ModelResource):
 		object_list['meta']['search_query'] = query
 		 
 		self.log_throttled_access(request)
+
 		return self.create_response(request, object_list)
+
