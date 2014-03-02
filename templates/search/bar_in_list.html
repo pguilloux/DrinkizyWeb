@@ -2,9 +2,14 @@
 <div class="number col-md-1 col-sm-1 col-xs-1"></div>
 <div class="content-list col-md-11 col-sm-11 col-xs-11">
 	<div class="pull-left hidden-xs hidden-sm" href="#">
+		{% load thumbnail %}
+		<img src="{{ onebar.getImgUrl|thumbnail_url:'small' }}" alt="">
+
+		{% comment %}
 		<a href="{% url 'bars.views.fiche_bar' onebar.slug %}">
 			<img class="media-object" src="{{onebar.getImgUrl}}" alt="...">
 		</a>
+		{% endcomment %}
 		{% load bar_tags %}
 		{% load division %}
 		{% if bar_distances %}
