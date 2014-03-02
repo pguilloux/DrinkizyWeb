@@ -146,8 +146,10 @@ STATICFILES_FINDERS = (
 )
 STATIC_URL = "/static/"
 MEDIA_URL = "/static/medias/"
-STATIC_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "public", "static")
-MEDIA_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "public", "static", "medias")
+STATIC_ROOT = os.path.join(PROJECT_PATH, "public", "static")
+#STATIC_ROOT = "/home/www/DrinkizyWeb/public/static"
+MEDIA_ROOT = os.path.join(PROJECT_PATH, "public", "static", "medias")
+#MEDIA_ROOT = "/home/www/DrinkizyWeb/public/static/medias"
 
 
 # STATIC_ROOT = '/home/www/DrinkizyWeb/public/static/' 
