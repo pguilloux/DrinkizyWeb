@@ -77,6 +77,7 @@ INSTALLED_APPS = (
     #'endless_pagination',
     'autocomplete_light',
     'tastypie',
+    'sorl.thumbnail',
 
     #apps
     'home',
@@ -173,6 +174,30 @@ TEMPLATE_DIRS = (
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
 )
+
+def get_cache(): 
+    import os 
+    try: 
+        os.environ['MEMCACHE_SERVERS'] = os.environ['MEMCACHIER_SERVERS'].replace(',', ';') 
+        os.environ['MEMCACHE_USERNAME'] = os.environ['MEMCACHIER_USERNAME'] 
+        os.environ['MEMCACHE_PASSWORD'] = os.environ['MEMCACHIER_PASSWORD'] 
+        return {
+            'default': {
+                'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache', 
+                'TIMEOUT': 500, 
+                'BINARY': True, 
+                'OPTIONS': { 'tcp_nodelay': True }
+            }
+        } 
+    except: 
+        return { 
+            'default': { 
+                'BACKEND': 'django.core.cache.backends.locmem.LocMemCache' 
+            } 
+        } 
+        CACHES = get_cache() 
+        SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer' 
+        SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 LOGGING = {
     'version': 1,

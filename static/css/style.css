@@ -171,7 +171,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .content-resultats-map  { background: rgba(0, 0, 0, 0.03); padding: 0; }
 .content-resultats-map #map-canvas img { max-width:none !important; }
 
-.content-resultats-list .media .pull-left a { height: 70px; width: 70px; overflow: hidden; display: block;}
+.content-resultats-list .media .pull-left a {overflow: hidden; display: block;}
 .content-resultats-list { padding: 0; }
 .content-resultats-list ol { padding-left: 0; margin-top: 30px}
 .content-resultats-list ol li { list-style-type: none; }

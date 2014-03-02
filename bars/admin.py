@@ -1,8 +1,13 @@
 from django.contrib import admin
 from drinks.models import *
 
+class BarImageInline(admin.TabularInline):
+    model = BarImage
+    extra = 3
+
 class BarAdmin(admin.ModelAdmin):
 	model = Bar
+	inlines = [ BarImageInline, ]
 
 class OpeningHoursAdmin(admin.ModelAdmin):
 	model = OpeningHours
@@ -15,6 +20,8 @@ class ThemeAdmin(admin.ModelAdmin):
 
 class StationAdmin(admin.ModelAdmin):
 	model = Station
+
+
 
 admin.site.register(Bar, BarAdmin)
 admin.site.register(OpeningHours, OpeningHoursAdmin)

@@ -26,8 +26,6 @@ class Bar(models.Model):
 	approval = models.IntegerField(default=0)
 	disapproval = models.IntegerField(default=0)
 
-	nb_pictures = models.IntegerField(default=0)
-
 	creator = models.ForeignKey('users.CustomUser')
 
 	themes = models.ManyToManyField(Theme)
@@ -38,10 +36,17 @@ class Bar(models.Model):
 	def getImgUrl(self):
 		return "%s%s%s" % (settings.MEDIA_URL+'bars/', self.slug, '.jpg')
 
+	def getImgUrlList(self):
+		return [image.image for image in self.images.all()]
+
 	# def getThemes(self):
 	# 	barThemes = ThemeBar.objects.filter(bar__slug=self.slug)
 	# 	thems_of_bar = [themebar.theme for themebar in barThemes]
 	# 	return thems_of_bar
+
+class BarImage(models.Model):
+    bar = models.ForeignKey(Bar, related_name='images')
+    image = models.ImageField(upload_to='bars/')
 
 
 DAYS_OF_WEEK = (

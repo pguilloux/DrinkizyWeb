@@ -73,8 +73,7 @@ INSTALLED_APPS = (
 	#'endless_pagination',
 	'autocomplete_light',
 	'tastypie',
-	#'sorl.thumbnail',
-	'easy_thumbnails',
+	'sorl.thumbnail',
 
 	#apps
 	'home',
@@ -146,14 +145,19 @@ STATIC_URL = '/static/'
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = '/static/medias/'
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'static/medias')
 
 
-# Additional locations of static files
 STATICFILES_DIRS = (
-	os.path.join(PROJECT_PATH, 'static/'),
-	# Put strings here, like "/home/html/static" or "C:/www/django/static".
-	# Always use forward slashes, even on Windows.
-	# Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_PATH, 'static/'),
+)
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 TEMPLATE_DIRS = (
@@ -167,29 +171,29 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 	'django.core.context_processors.request',
 )
 
-# def get_cache(): 
-# 	import os 
-# 	try: 
-# 		os.environ['MEMCACHE_SERVERS'] = os.environ['MEMCACHIER_SERVERS'].replace(',', ';') 
-# 		os.environ['MEMCACHE_USERNAME'] = os.environ['MEMCACHIER_USERNAME'] 
-# 		os.environ['MEMCACHE_PASSWORD'] = os.environ['MEMCACHIER_PASSWORD'] 
-# 		return {
-# 			'default': {
-# 				'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache', 
-# 				'TIMEOUT': 500, 
-# 				'BINARY': True, 
-# 				'OPTIONS': { 'tcp_nodelay': True } 
-# 			}
-# 		} 
-# 	except: 
-# 		return { 
-# 			'default': { 
-# 				'BACKEND': 'django.core.cache.backends.locmem.LocMemCache' 
-# 			} 
-# 		} 
-# 		CACHES = get_cache() 
-# 		SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer' 
-# 		SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+def get_cache(): 
+	import os 
+	try: 
+		os.environ['MEMCACHE_SERVERS'] = os.environ['MEMCACHIER_SERVERS'].replace(',', ';') 
+		os.environ['MEMCACHE_USERNAME'] = os.environ['MEMCACHIER_USERNAME'] 
+		os.environ['MEMCACHE_PASSWORD'] = os.environ['MEMCACHIER_PASSWORD'] 
+		return {
+			'default': {
+				'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache', 
+				'TIMEOUT': 500, 
+				'BINARY': True, 
+				'OPTIONS': { 'tcp_nodelay': True }
+			}
+		} 
+	except: 
+		return { 
+			'default': { 
+				'BACKEND': 'django.core.cache.backends.locmem.LocMemCache' 
+			} 
+		} 
+		CACHES = get_cache() 
+		SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer' 
+		SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 
 
