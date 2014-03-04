@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     (r'', include('drinks.urls')),
     (r'', include('search.urls')),
     (r'', include('portal.urls')),
+    (r'^comments/', include('django.contrib.comments.urls')),
 
     (r'^api/', include(v1_api.urls)),
     #(r'^search/', include('haystack.urls')),

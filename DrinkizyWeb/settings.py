@@ -50,6 +50,8 @@ ADMINS = (
 	#('Drinkizy', 'pguilloux53@gmail.com'),
 )
 
+SITE_ID = 1
+
 
 MANAGERS = ADMINS
 
@@ -65,6 +67,8 @@ INSTALLED_APPS = (
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
+	'django.contrib.sites',
+	'django.contrib.comments',
 
 	#added packages
 	'south',
