@@ -1,32 +1,29 @@
 from django.shortcuts import render
-
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 from drinks.models import *
 
 import datetime
-from django.shortcuts import render_to_response
+
 
 
 def categories(request):
 	categories = DrinkCategory.objects.all()
-	return render_to_response('drinks/categories.html', {'categories': categories})
+	return render_to_response('drinks/categories.html', {'categories': categories}, context_instance=RequestContext(request))
 
 
 def category(request, slug):
 	category = DrinkCategory.objects.get(slug=slug)
 	subcategories = category.drinksubcategory_set.all()
-	return render_to_response('drinks/drink_category.html', {'category': category, 'subcategories': subcategories})
+	return render_to_response('drinks/drink_category.html', {'category': category, 'subcategories': subcategories}, context_instance=RequestContext(request))
 
 
 def subcategory(request, slug): 
 	subcategory = DrinkSubCategory.objects.get(slug=slug)
 	drinks = subcategory.drink_set.all()
-	return render_to_response('drinks/drink_subcategory.html', {'subcategory' : subcategory, 'drinks' : drinks})
+	return render_to_response('drinks/drink_subcategory.html', {'subcategory' : subcategory, 'drinks' : drinks}, context_instance=RequestContext(request))
 
 
 def drink(request, slug): 
 	drink = Drink.objects.get(slug=slug)
-	return render_to_response('drinks/drink.html', {'drink' : drink})
-
-
-
-
+	return render_to_response('drinks/drink.html', {'drink' : drink}, context_instance=RequestContext(request))

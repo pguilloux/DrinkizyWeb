@@ -27,6 +27,7 @@ urlpatterns = patterns('',
     (r'', include('bars.urls')),
     (r'', include('drinks.urls')),
     (r'', include('search.urls')),
+    (r'', include('portal.urls')),
 
     (r'^api/', include(v1_api.urls)),
     #(r'^search/', include('haystack.urls')),
