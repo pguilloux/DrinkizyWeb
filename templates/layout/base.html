@@ -44,8 +44,10 @@
 					{% load search_tags %}
 						{% get_search_bar %}
 					{% if user.is_authenticated %}   
-						<a href="{% url 'portal' %}"><button type="button" class="btn btn-primary">Mon Compte</button></a>
-						<a href="{% url 'logout_view' %}"><button type="button" class="btn btn-primary">Déconnexion</button></a>
+						 <ul class="nav navbar-nav navbar-right">
+							<li><a href="{% url 'portal' %}"><button type="button" class="btn btn-primary">Mon Compte</button></a></li>
+							<li><a href="{% url 'logout_view' %}"><button type="button" class="btn btn-primary">Déconnexion</button></a></li>
+						</ul>
 					{% else %}
                         <ul class="nav navbar-nav navbar-right">
 							<li><a href="{% url 'django.contrib.auth.views.login' %}"><button type="button" class="btn btn-primary">Se connecter</button></a></li>
