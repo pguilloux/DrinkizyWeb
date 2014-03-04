@@ -20,47 +20,41 @@
 
 
                 <div class="row">
-                    {% with objects=bars_for_theme %}
-                    {% for result in bars_for_theme|dictsort:"object.bar.name" %}
-                   
-                        {% ifchanged result.object.bar%}
-                            <div class="col-xs-6 col-sm-3">
-                                {% with onebar=result.object.bar %}
-                                    <div class="media media-grey">
-                                        <span class="pull-left">
-                                            9.9
-                                        </span>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">
-                                                <a href="{% url 'bars.views.fiche_bar' onebar.slug %}">{{ onebar.name }}</a>
-                                            </h4>
-                                            <h6>
-                                                {% for theme in onebar.themes.all %}
-                                                    {% if forloop.last %}
-                                                        <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a>
-                                                    {% else %}
-                                                        <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a>,
-                                                    {% endif %}
-                                                {% endfor %}
-                                                <small>{{ onebar.address }}</small>
-                                            </h6>
-                                        </div>
+ 
+                    {% for bar in bars_for_theme|dictsort:"name" %}
+                        <div class="col-xs-6 col-sm-3">
+                                <div class="media media-grey">
+                                    <span class="pull-left">
+                                        9.9
+                                    </span>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <a href="{% url 'bars.views.fiche_bar' bar.slug %}">{{ bar.name }}</a>
+                                        </h4>
+                                        <h6>
+                                            {% for theme in bar.themes.all %}
+                                                {% if forloop.last %}
+                                                    <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a>
+                                                {% else %}
+                                                    <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a>,
+                                                {% endif %}
+                                            {% endfor %}
+                                            <small>{{ bar.address }}</small>
+                                        </h6>
                                     </div>
-                                    <a href="{% url 'bars.views.fiche_bar' onebar.slug %}" class="thumbnail">
-                                        <img src="{{onebar.getImgUrl}}" alt="{{ onebar.name }}">
-                                    </a>
-                                {% endwith %}
-                            </div>
-                        {%endifchanged%}
-    
+                                </div>
+                                <a href="{% url 'bars.views.fiche_bar' bar.slug %}" class="thumbnail">
+                                    <img src="{{bar.getImgUrl}}" alt="{{ bar.name }}">
+                                </a>
+                        </div>
                     {% endfor %}
-                    {% endwith %}
                 </div>
                 
 
-                {%comment %}
+                {% comment %}
                 <ul>
                     {% with objects=bars_for_theme %}
+                    
                     {% for result in bars_for_theme|dictsort:"object.bar.name" %}
                    
                         {% ifchanged result.object.bar%}
@@ -75,7 +69,7 @@
                     {% endfor %}
                     {% endwith %}
                  </ul>
-                {%endcomment %}
+                {% endcomment %}
 
         </div>
     </div>
