@@ -6,6 +6,14 @@
 
 <section>
 	<h2>Bienvenue, {{ user.username }}</h2>
+
+	{% load thumbnail %}
+	{% thumbnail user.avatar "70x70" crop="center" as im %}
+		<img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+	{% endthumbnail %}
+
+
+	<h2>Bienvenue, {{ user.avatar }}</h2>
 	<p>C'est la page principale de votre compte.</p>
 </section>
 

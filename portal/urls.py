@@ -5,6 +5,6 @@ urlpatterns = patterns('',
 
     # Main web portal entrance.
     #url(r'^$', portal_main_page, name='portal'),
-    url(r'^portal/', portal_main_page, name='portal'),
+    url(r'^compte/', portal_main_page, name='portal'),
 
 )
