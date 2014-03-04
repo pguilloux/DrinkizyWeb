@@ -10,7 +10,7 @@ TYPE_USER = (
 class CustomUser(AbstractUser):
 
 	pseudo = models.CharField(max_length=200)
-	avatar_url = models.ImageField(upload_to='avatars/')
+	avatar = models.ImageField(upload_to='avatars/', default='avatars/avatar_placeholder.jpg')
 	type = models.CharField(choices=TYPE_USER, max_length=20, default='user')
 
 	#objects = BaseUserManager()

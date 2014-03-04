@@ -240,6 +240,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .fiche-bar-comment ul li p { background-color: #fff; padding: 7px; margin: 0;}
 .fiche-bar-comment ul li h5 { color: #999999; font-weight: 300; padding-left: 7px;}
 .fiche-bar-comment ul li h5 strong {font-weight: 500;}
+.fiche-bar-comment input#id_honeypot {display:none;}
 
 #bar-drinkMenu h2 { color: #F1B219; font-size: 26px;}
 #bar-drinkMenu h3 { padding-left: 15px; font-size: 20px;}

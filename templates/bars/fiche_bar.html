@@ -104,7 +104,8 @@
 					<button type="button" class="btn btn-primary btn-primary-orange">Oui</button>
 					<button type="button" class="btn btn-primary btn-primary-orange">Non</button>
 				</div>
-
+				
+				{% load comments %}
 				<div class="fiche-bar-left-container fiche-bar-comment">
 					<div class="mediaContour">
 						<div class="media">
@@ -128,18 +129,42 @@
 						<strong>321 avis</strong>
 					</p>
 
+					{% if user.is_authenticated %}
+					    {% get_comment_form for bar as form %}
+					    <form action="{% comment_form_target %}" method="POST">
+					    {% csrf_token %}
+					    {{ form.comment }}
+					    {{ form.honeypot }}
+					    {{ form.content_type }}
+					    {{ form.object_pk }}
+					    {{ form.timestamp }}
+					    {{ form.security_hash }}
+					    <input type="hidden" name="next" value="{% url 'bars.views.fiche_bar' bar.slug %}" />
+					    <input type="submit" value="Add comment" id="id_submit" />
+					    </form>
+					{% else %}
+					    <p>Please <a href="{% url 'django.contrib.auth.views.login' %}">log in</a> to leave a comment.</p>
+					{% endif %}
+
 					<ul>
-						<li class="media">
-							<span class="pull-left">
-							<img src="{{bar.getImgUrl}}" alt="" height="50" width="50"/>
-							</span>
-							<div class="media-body">
-								<p>
-									 En plein coeur du quartier des Halles au centre de Paris, il vous propose des soirées animées. Ambiance chaude et musicale avec des groupes de rock qui déménagent. Façade typique des pubs irlandais, 14 bières à la pression et service non stop pendant les heur
-								</p>
-								<h5>par <strong>Lauriane</strong>, 18 février 2014</h5>
-							</div>
-						</li>
+						{% get_comment_list for bar as comment_list %}
+						{% for comment in comment_list %}
+							<li class="media">
+								<span class="pull-left">
+									{% load thumbnail %}
+										{% thumbnail comment.user.avatar "50x50" crop="center" as im %}
+											<img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+										{% endthumbnail %}
+										<img src="{{ comment.user.avatar }}" alt="" height="50" width="50"/>
+								</span>
+								<div class="media-body">
+									{{ comment.comment }}
+									<h5>par <strong>{{ comment.user_name }}</strong>, {{ comment.submit_date }}</h5>
+								</div>
+							</li>
+						{% endfor %}
+
+						
 						<li class="media">
 							<span class="pull-left">
 							<img src="{{bar.getImgUrl}}" alt="" height="50" width="50"/>
