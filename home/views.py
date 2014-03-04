@@ -45,11 +45,11 @@ def registration(request):
 					message = "Erreur : les e-mails ne correspondent pas."
 
 				else:
-					user = User.objects.create_user(pseudo, email, password)
+					user = CustomUser.objects.create_user(pseudo, email, password)
 					user.save()
-					message = "Utilisateur added"
+					#message = "Merci d'avoir créé votre compte"
 
-				#return HttpResponseRedirect('/') # Redirect after POST
+				return HttpResponseRedirect('/login') # Redirect after POST
 	else:
 		message = ""
 		form = RegistrationForm() # An unbound form
