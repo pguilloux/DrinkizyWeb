@@ -238,6 +238,10 @@ LOGGING = {
 			'handlers': ['console'],
 			'level': 'INFO'
 		},
+		'bars.api': {
+			'handlers': ['console'],
+			'level': 'INFO'
+		},
 
 	}
 }
