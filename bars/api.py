@@ -32,6 +32,10 @@ class ThemeResource(ModelResource):
 class BarResource(ModelResource):
 	images = fields.ToManyField(BarImageResource, 'images', full=True)
 	themes = fields.ToManyField(ThemeResource, 'themes', full=True)
+
+	has_distance = 0
+	distances = dict()
+
 	class Meta:
 		queryset = Bar.objects.all()
 		resource_name = 'bar'
@@ -42,14 +46,21 @@ class BarResource(ModelResource):
 			# 'distance': ALL_WITH_RELATIONS,
 		}
 
+	def dehydrate(self, bundle):
+		
+		if self.has_distance == 1:
+			bundle.data['distance'] = self.distances[bundle.data['slug']]
+
+		return bundle
+
 	def apply_sorting(self, objects, options=None):
 
 
-		if options and "distance" in options and "longitud" in options and "latitud" in options:
+		if options and "distance" in options and "long" in options and "lat" in options:
+			self.has_distance = 1
 			
-			
-			latitud = float(options['latitud'])
-			longitud = float(options['longitud'])
+			latitud = float(options['lat'])
+			longitud = float(options['long'])
 			orig_coord = latitud, longitud
 			
 			for bar in Bar.objects.all():
@@ -58,14 +69,12 @@ class BarResource(ModelResource):
 				
 				url = "http://maps.googleapis.com/maps/api/distancematrix/json?origins={0}&destinations={1}&mode=walking&language=en-EN&sensor=false".format(str(orig_coord),str(dest_coord))
 				result= simplejson.load(urllib.urlopen(url))
-				
-				distance = result['rows'][0]['elements'][0]['distance']['value']
+				dist = result['rows'][0]['elements'][0]['distance']['value']
 
-				if distance > int(options['distance']):
-					logger.warning('toto')
+				if dist > int(options['distance']):
 					objects = objects.exclude(name__exact=bar.name)
-				#else:
-					#self.bar_distances[bar.name] = distance
+				else:
+					self.distances[bar.slug] = dist
 
 			return objects
  
