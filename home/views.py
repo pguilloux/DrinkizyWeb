@@ -17,6 +17,9 @@ def home(request):
 def faq(request):
 	return render_to_response('home/faq.html', context_instance=RequestContext(request))
 
+def mentions(request):
+	return render_to_response('home/mentions.html', context_instance=RequestContext(request))
+
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')

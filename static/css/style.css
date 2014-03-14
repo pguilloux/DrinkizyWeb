@@ -64,6 +64,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .navbar-brand { padding: 2px 0 0 15px;}
 .navbar-default .btn-primary { margin: 0 5px;}
 .navbar-nav.navbar-right { line-height: 46px;}
+.navbar-nav.navbar-right a { padding-top: 8px; padding-bottom: 8px;}
 .navbar-form { padding: 0 5px 0 15px; }
 .navbar .glyphicon-search { font-size: 22px; color: #fff;}
 .navbar .glyphicon-search:hover { color:#fff;}
@@ -71,7 +72,11 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .navbar h4 {color:#fff; float:left; text-align: left; margin-left: 2px; text-shadow: none;}
 .navbar h4 small { display: block; font-style: italic; font-size: 11px; }
 
-
+.btn-group-navbar .media-object { display: inline-block;}
+.btn-group-navbar .dropdown-toggle {background:none; border: none; color: #fff; box-shadow: none; margin-top: 8px;}
+.btn-group-navbar .dropdown-toggle.btn-default:focus,
+.btn-group-navbar .dropdown-toggle.btn-default:hover { background: none; color: #fff;}
+.btn-group-navbar .btn-group.open .dropdown-toggle {box-shadow: none;}
 /*
 *****
 	Home Page
@@ -300,9 +305,25 @@ body {padding-top: 50px; font-family: Ubuntu;}
 *****
 */
 
-.login-page.cover-container { text-align: center; margin-top: 20px;}
-.login-page.cover-container input[type="password"], .login-page.cover-container input[type="text"] {width: 100%}
+.login-page.cover-container, .registration-page.cover-container { text-align: center; }
+.login-page.cover-container input[type="password"],
+.login-page.cover-container input[type="text"],
+.registration-page input[type="text"],
+.registration-page input[type="password"] {width: 100%}
+.registration-page .errorlist { list-style: none; text-align: left; padding-left: 0; color: #a94442;}
 
+/*
+*****
+	Page footer
+*****
+*/
+
+.footerPage .cover-container { width: 900px;}
+.footerPage .cover-container h1 { margin-top: 25px; font-size: 25px;}
+.footerPage .cover-container h4 { margin-top: 10px;}
+.footerPage .cover-container a { color:#f2B219;}
+
+.faq .panel, .faq .panel-heading { border: none; background: none;}
 /*
 *****
 	Transition

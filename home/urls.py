@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', home, name='home'),
     url(r'^faq/$', faq, name='faq'),
+    url(r'^mentions/$', mentions, name='mentions'),
 
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', logout_view, name='logout_view'),
