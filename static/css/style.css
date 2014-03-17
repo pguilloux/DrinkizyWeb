@@ -289,7 +289,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 */
 
 #footer { background-color: #666; text-align: center;}
-#footer ul.nav-pills { width: 50%; margin: 10px auto;}
+#footer ul.nav-pills { width: 41%; margin: 10px auto;}
 #footer .container img {margin: 20px 0 5px 0;}
 
 #footer .nav-pills > li.active > a,
@@ -381,7 +381,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 
 	.fiche-bar-left-container .dl-horizontal dd .dropdown-menu {left: 0;}
 	.navbar-collapse .theme-header {display: block;}
-	.login-page h1, .registration-page h1 { padding-left: 10px;}
+	.footerPage.theme-band h1 { padding-left: 10px;}
 	.footerPage .cover-container { width: auto;}
 }
 
