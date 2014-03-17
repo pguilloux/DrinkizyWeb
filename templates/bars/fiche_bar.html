@@ -225,6 +225,25 @@
 					<div id="bar-map">
 						<div id="map-canvas"></div>
 					</div>
+					
+					<div id="bar-sameThemeBars">
+						
+						<ol>
+							{% load bar_tags %}
+							{% for theme in bar.themes.all %}
+								{% get_bars_for_theme theme.slug as bars %}
+								{% for bar in bars|dictsort:"name" %}
+									<li class="media">
+										{{ theme.name }}
+					                    {% with onebar=bar %}
+										   {% include "search/bar_in_list.html" %}
+										{% endwith %}
+									</li>
+				                {% endfor %}
+				            {% endfor %}
+						</ol>
+					</div>
+					
 
 
 			</div>
