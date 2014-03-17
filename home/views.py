@@ -20,6 +20,15 @@ def faq(request):
 def mentions(request):
 	return render_to_response('home/mentions.html', context_instance=RequestContext(request))
 
+def apropos(request):
+	return render_to_response('home/apropos.html', context_instance=RequestContext(request))
+
+def pro(request):
+	return render_to_response('home/pro.html', context_instance=RequestContext(request))
+
+def contact(request):
+	return render_to_response('home/contact.html', context_instance=RequestContext(request))
+
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
