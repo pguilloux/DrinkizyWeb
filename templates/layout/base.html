@@ -43,11 +43,27 @@
 				<div class="navbar-collapse collapse">
 					{% load search_tags %}
 						{% get_search_bar %}
+
+						<div class="btn-group btn-group-navbar nav navbar-nav theme-header">
+						  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						   <span class="caret"></span> Thèmes
+						  </button>
+						  <ul class="dropdown-menu" role="menu">
+						  	 {% for theme in themes|dictsort:"name" %}
+			                    <li><a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a></li>
+			                {% endfor %}
+						    <li><a href=""><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+						    <li class="divider"></li>
+						    <li><a href=""><span class="glyphicon glyphicon-remove"></span> Déconnexion</a></li>
+						  </ul>
+						</div>
 					{% if user.is_authenticated %}   
 						{% comment %} <ul class="nav navbar-nav navbar-right">
 							<li><a href="{% url 'portal' %}"><button type="button" class="btn btn-primary">Mon Compte</button></a></li>
 							<li><a href="{% url 'logout_view' %}"><button type="button" class="btn btn-primary">Déconnexion</button></a></li>
 						</ul> {% endcomment %}
+
+						
 
 						<div class="btn-group btn-group-navbar nav navbar-nav navbar-right">
 						  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -74,7 +90,7 @@
 		</div>
 
 		<div class="site-wrapper">
-		 
+
 			{% block content %}{% endblock content %}
 
 				
