@@ -209,16 +209,15 @@ LOGGING = {
             '()': 'django.utils.log.RequireDebugFalse'
         }
     },
-
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         },
-     'console':{
+        'console':{
             'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
+            'class': 'logging.StreamHandler'
         },
     },
     'loggers': {
@@ -227,5 +226,26 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+        'search.forms': {
+            'handlers': ['console'],
+            'level': 'INFO'
+        },
+        'search.views': {
+            'handlers': ['console'],
+            'level': 'INFO'
+        },
+        'drinks.search_indexes': {
+            'handlers': ['console'],
+            'level': 'INFO'
+        },
+        'drinks.api': {
+            'handlers': ['console'],
+            'level': 'INFO'
+        },
+        'bars.api': {
+            'handlers': ['console'],
+            'level': 'INFO'
+        },
+
     }
 }
