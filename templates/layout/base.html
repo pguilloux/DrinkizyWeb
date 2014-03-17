@@ -43,11 +43,26 @@
 				<div class="navbar-collapse collapse">
 					{% load search_tags %}
 						{% get_search_bar %}
+
+						<div class="btn-group btn-group-navbar nav navbar-nav theme-header">
+						  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						   <span class="caret"></span> Thèmes
+						  </button>
+						  <ul class="dropdown-menu" role="menu">
+						  	{% load bar_tags %}
+							{% get_themes as themes %}
+							{% for theme in themes|dictsort:"name" %}
+			                    <li><a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a></li>
+			                {% endfor %}
+						  </ul>
+						</div>
 					{% if user.is_authenticated %}   
 						{% comment %} <ul class="nav navbar-nav navbar-right">
 							<li><a href="{% url 'portal' %}"><button type="button" class="btn btn-primary">Mon Compte</button></a></li>
 							<li><a href="{% url 'logout_view' %}"><button type="button" class="btn btn-primary">Déconnexion</button></a></li>
 						</ul> {% endcomment %}
+
+						
 
 						<div class="btn-group btn-group-navbar nav navbar-nav navbar-right">
 						  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -74,7 +89,7 @@
 		</div>
 
 		<div class="site-wrapper">
-		 
+
 			{% block content %}{% endblock content %}
 
 				
@@ -82,17 +97,13 @@
 
 		<div id="footer">
 			<div class="container">
-				{% load bar_tags %}
-				{% get_themes as themes %}
-				{% for theme in themes|dictsort:"name" %}
-                    <a href="{% url 'bars.views.bars_for_theme' theme.slug %}" type="button" class="concert-icon btn btn-primary btn-primary-orange">{{ theme.name }}</a>
-                {% endfor %}
+				
 				<img src={% static "medias/img_design/drinkizy_icon.png" %} alt="Drinkizy icon"/>
 				<ul class="nav nav-pills">
 					<li class=""><a href="{% url "home.views.apropos" %}">A propos</a></li>
 					<li><a href="{% url "home.views.contact" %}">Contact</a></li>
 					<li><a href="{% url "home.views.faq" %}">FAQ</a></li>
-					<li><a href="#">Plan du site</a></li>
+					<!--li><a href="#">Plan du site</a></li-->
 					<li><a href="{% url "home.views.mentions" %}">Mentions légales</a></li>
 					<li><a href="{% url "home.views.pro" %}">Espace pro</a></li>
 				</ul>
