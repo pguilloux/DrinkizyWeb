@@ -1,4 +1,5 @@
 from django import template
+from bars.models import *
 
 register = template.Library()
 
@@ -13,3 +14,7 @@ def nb_bars(dict):
 		if result.object.bar not in bars:
 			bars.append(result.object.bar)
 	return len(bars)
+
+@register.assignment_tag
+def get_themes():
+	return Theme.objects.all()
