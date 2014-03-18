@@ -47,10 +47,14 @@
 					<p class="lead borderWhite">{{ bar.description }}</p>
 					<div class="row">
 						<dl class="dl-horizontal col-sm-6">
-							<dt>Téléphone : </dt>
-							<dd>{{bar.phone}}</dd>
-							<dt>Site web : </dt>
-							<dd><a href="{{bar.website}}">{{bar.website}}</a></dd>
+							{% if bar.phone %}
+								<dt>Téléphone : </dt>
+								<dd>{{bar.phone}}</dd>
+							{% endif %}
+							{% if bar.website %}
+								<dt>Site web : </dt>
+								<dd><a href="{{bar.website}}">{{bar.website}}</a></dd>
+							{% endif %}
 							{% if bar.mail %}
 								<dt>Email : </dt>
 								<dd>{{bar.mail}}</dd>
@@ -176,7 +180,7 @@
 
 			</div>
 			<div class="content-secondary col-sm-4">	
-				<div id="bar-drinkMenu">
+				<div id="bar-drinkMenu" class="content-secondary-div">
 					<h2>Carte des Boissons</h2>
 				
 					{% regroup drinks_in_bar by drink.subcategory as drinks_list %}
@@ -222,29 +226,63 @@
 							</div>
 						{% endfor %}
 
-					</div>
+				</div>
 
-					<div id="bar-map">
-						<div id="map-canvas"></div>
-					</div>
+				<div id="bar-map" class="content-secondary-div">
+					<div id="map-canvas"></div>
+				</div>
+				
+				<div id="bar-sameThemeBars" class="content-resultats-list content-secondary-div">
 					
-					<div id="bar-sameThemeBars">
-						
-						<ol>
-							{% load bar_tags %}
-							{% for theme in bar.themes.all %}
-								{% get_bars_for_theme theme.slug as bars %}
-								{% for bar in bars|dictsort:"name" %}
-									<li class="media">
-										{{ theme.name }}
-					                    {% with onebar=bar %}
-										   {% include "search/bar_in_list.html" %}
-										{% endwith %}
-									</li>
-				                {% endfor %}
-				            {% endfor %}
-						</ol>
-					</div>
+					<h5>Vous allez aimer ...</h5>
+					<ul>
+						{% load bar_tags %}
+						{% for theme in bar.themes.all %}
+							{% get_bars_for_theme theme.slug as bars %}
+							{% for bar in bars|dictsort:"name" %}
+								<li class="media">
+				                    {% with onebar=bar %}
+
+				                    <div class="content-list content-resultats-list-list">
+										<div class="pull-left" href="#">
+											{% load thumbnail %}
+												{% thumbnail onebar.getImgUrlList.0 "70x70" crop="center" as im %}
+												<a href="{% url 'bars.views.fiche_bar' onebar.slug %}">
+												    <img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+												</a>
+												{% endthumbnail %}
+											
+											{% load bar_tags %}
+										</div>
+										<div class="media-body">
+											<h4 class="media-heading">
+												<span>9,4</span>
+												<a href="{% url 'bars.views.fiche_bar' onebar.slug %}">{{ onebar.name }}</a>
+											</h4>
+											<h6>
+												{% for theme in onebar.themes.all %}
+									                {% if forloop.last %}
+									                    <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a>
+									                {% else %}
+									                    <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }},</a>
+									                {% endif %}
+												{% endfor %}
+												<small>
+													<span class="glyphicon glyphicon glyphicon-euro fullEuros"></span> 
+													<span class="glyphicon glyphicon glyphicon-euro"></span> 
+													<span class="glyphicon glyphicon glyphicon-euro"></span>
+												</small>
+											</h6>
+											<h6>{{ onebar.address }}</h6>
+											
+										</div>
+									</div>
+									{% endwith %}
+								</li>
+			                {% endfor %}
+			            {% endfor %}
+					</ul>
+				</div>
 					
 
 

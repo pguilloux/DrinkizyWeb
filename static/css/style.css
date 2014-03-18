@@ -251,6 +251,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .fiche-bar-comment ul li h5 { color: #999999; font-weight: 300; padding-left: 7px;}
 .fiche-bar-comment ul li h5 strong {font-weight: 500;}
 .fiche-bar-comment input#id_honeypot {display:none;}
+.fiche-bar-comment a { color: #F1B219; font-weight: bold;}
 
 #bar-drinkMenu h2 { color: #F1B219; font-size: 26px;}
 #bar-drinkMenu h3 { padding-left: 15px; font-size: 20px;}
@@ -270,6 +271,12 @@ body {padding-top: 50px; font-family: Ubuntu;}
 #bar-drinkMenu .panel-body div:last-child { text-align: center;}
 
 #bar-map #map-canvas { height: 300px; }
+
+.content-secondary-div { border-bottom: 1px solid #f2f2f2; padding-bottom: 10px; margin-bottom: 10px}
+#bar-sameThemeBars { padding: 0 10px;}
+#bar-sameThemeBars h5 { margin-top: 20px; font-weight: bold;}
+#bar-sameThemeBars ul { padding-left: 0; list-style: none; margin-top: 20px;}
+#bar-sameThemeBars a {color:#999;}
 
 /*
 *****
