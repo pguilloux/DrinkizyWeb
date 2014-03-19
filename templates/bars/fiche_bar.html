@@ -74,19 +74,23 @@
 							<dt>Happy Hour : </dt>
 							<dd>18:00 - 22:00</dd>
 							<dt>Tarifs : </dt>
+							{% with average_price=bar.getAveragePrice %}
 							<dd><small>
 								<span class="glyphicon glyphicon glyphicon-euro {% if average_price > 0.5 %}fullEuros{% endif %}"></span> 
 								<span class="glyphicon glyphicon glyphicon-euro {% if average_price > 1.5 %}fullEuros{% endif %}"></span> 
 								<span class="glyphicon glyphicon glyphicon-euro {% if average_price > 2.5 %}fullEuros{% endif %}"></span>
 								</small>
 							</dd>
+							{% endwith %}
 						</dl>
 					</div>
 
 					<div class="row borderWhite markShare">
 						<div class="col-sm-8">
+							{% with average_rank=bar.getAverageRank %}
 							<span><strong>{% if average_rank > 0 %}{{ average_rank|floatformat:1 }}{% else %} - {% endif %}</strong> /10</span>
-							<h4>{{ ranks.count }} personnes ont noté ce bar</h4>
+							{% endwith %}
+							<h4>{{ bar.getRanksNumber }} personnes ont noté ce bar</h4>
 							<a href="">Note le à ton tour</a>
 						</div>
 						<div class="col-sm-4">
@@ -257,7 +261,9 @@
 										</div>
 										<div class="media-body">
 											<h4 class="media-heading">
-												<span>9,4</span>
+												{% with average_rank=bar.getAverageRank %}
+												<span>{% if average_rank > 0 %}{{ average_rank|floatformat:1 }}{% else %} - {% endif %}</span>
+												{% endwith %}
 												<a href="{% url 'bars.views.fiche_bar' onebar.slug %}">{{ onebar.name }}</a>
 											</h4>
 											<h6>
@@ -268,11 +274,14 @@
 									                    <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }},</a>
 									                {% endif %}
 												{% endfor %}
+												{% with average_price=bar.getAveragePrice %}
 												<small>
-													<span class="glyphicon glyphicon glyphicon-euro fullEuros"></span> 
-													<span class="glyphicon glyphicon glyphicon-euro"></span> 
-													<span class="glyphicon glyphicon glyphicon-euro"></span>
+													<span class="glyphicon glyphicon glyphicon-euro {% if average_price > 0.5 %}fullEuros{% endif %}"></span> 
+													<span class="glyphicon glyphicon glyphicon-euro {% if average_price > 1.5 %}fullEuros{% endif %}"></span> 
+													<span class="glyphicon glyphicon glyphicon-euro {% if average_price > 2.5 %}fullEuros{% endif %}"></span>
 												</small>
+												{% endwith %}
+												
 											</h6>
 											<h6>{{ onebar.address }}</h6>
 											

@@ -7,12 +7,26 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
 from users.models import CustomUser
+from bars.models import *
 from home.forms import *
 from django.contrib.auth import logout
 
+import logging, operator
+logger = logging.getLogger(__name__)
+
+from operator import itemgetter, attrgetter
+
 def home(request):
-	foo = "Resultat de la methode home de home.views"
-	return render_to_response('home/home.html', {'foo': foo}, context_instance=RequestContext(request))
+	bars = Bar.objects.all()
+
+	bars_ranks = []
+	for bar in bars:
+		bars_ranks.append((bar, bar.getAverageRank()))
+
+	ordered_bars_ranks = sorted(bars_ranks, key=itemgetter(1), reverse=True)[:4]
+
+
+	return render_to_response('home/home.html', {'famous_bars': ordered_bars_ranks}, context_instance=RequestContext(request))
 
 def faq(request):
 	return render_to_response('home/faq.html', context_instance=RequestContext(request))

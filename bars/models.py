@@ -2,6 +2,7 @@ from django.db import models
 from DrinkizyWeb import settings
 from users.models import *
 from django.contrib.auth.models import User
+from django.core.validators import *
 
 class Theme(models.Model):
 	slug = models.SlugField(max_length=200)
@@ -38,6 +39,30 @@ class Bar(models.Model):
 
 	def getImgUrlList(self):
 		return [image.image for image in self.images.all()]
+
+	def getRanksNumber(self):
+		ranks = RankBar.objects.filter(bar__slug=self.slug)
+		return ranks.__len__()
+
+	def getAverageRank(self):
+		ranks = RankBar.objects.filter(bar__slug=self.slug)
+		if ranks.__len__() > 0:
+			ranks_sum = 0
+			for rank in ranks:
+				ranks_sum += rank.rank
+			return ranks_sum/ranks.__len__()
+		else:
+			return 0
+
+	def getAveragePrice(self):
+		prices = PriceBar.objects.filter(bar__slug=self.slug)
+		if prices.__len__() > 0:
+			prices_sum = 0
+			for price in prices:
+				prices_sum += price.price
+			return prices_sum/prices.__len__()
+		else:
+			return 0
 
 	# def getThemes(self):
 	# 	barThemes = ThemeBar.objects.filter(bar__slug=self.slug)
@@ -107,3 +132,25 @@ class Station(models.Model):
 
 	def get_lines(self):
 		return self.lines_numbers.split(", ")
+
+
+class RankBar(models.Model):
+
+	bar = models.ForeignKey('Bar')
+	user = models.ForeignKey('users.CustomUser')
+
+	rank = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
+
+	def __unicode__(self):
+		return "%f %s" % (self.rank, self.user.pseudo)
+
+
+class PriceBar(models.Model):
+
+	bar = models.ForeignKey('Bar')
+	user = models.ForeignKey('users.CustomUser')
+
+	price = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(3.0)])
+
+	def __unicode__(self):
+		return "%f %s" % (self.price, self.user.pseudo)

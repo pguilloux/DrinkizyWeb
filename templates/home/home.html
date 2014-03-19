@@ -27,77 +27,47 @@
 			<div class="cover-container">
 				<div class="inner cover">
 					<h1 class="cover-heading">Bars populaires de Paris</h1>
-					
+
 					<div class="row">
-						<div class="col-xs-6 col-sm-3">
-							<div class="media media-grey">
-								<span class="pull-left">
-									9.9
-								</span>
-								<div class="media-body">
-									<h4 class="media-heading">
-										<a href="">Guinness Tavern</a>
-									</h4>
-									<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
-								</div>
-							</div>
-							<div class="thumbnail">
-								<img src="../static/medias/bars/aux-trois-escales.jpg" alt="...">
-							</div>
+						{% for famous_bar_and_rank in famous_bars %}
+							{% with famous_bar=famous_bar_and_rank.0 %}
+							{% with famous_bar_rank=famous_bar_and_rank.1 %}
+							<div class="col-xs-6 col-sm-3">
+								<div class="media media-grey">
+									<span class="pull-left">
+										{% if famous_bar_rank > 0 %}{{ famous_bar_rank|floatformat:1 }}{% else %} - {% endif %}
+									</span>
+									<div class="media-body">
+										<h4 class="media-heading">
+											<a href="{% url 'bars.views.fiche_bar' famous_bar.slug %}">{{ famous_bar.name }}</a>
+										</h4>
 
-						</div>
-						<div class="col-xs-6 col-sm-3">
-							<div class="media media-grey">
-								<span class="pull-left" href="#">
-									9.9
-								</span>
-								<div class="media-body">
-									<h4 class="media-heading">
-										<a href="">Guinness Tavern</a>
-									</h4>
-									<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
-								</div>
-							</div>
-							<div class="thumbnail">
-								<img src="img/hannongbar_orange.jpg" alt="...">
-							</div>
-						</div>
+										<h6>
+											{% for theme in famous_bar.themes.all %}
+								                {% if forloop.last %}
+								                    <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a>
+								                {% else %}
+								                    <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }},</a>
+								                {% endif %}
+											{% endfor %} 
 
-						<!-- Add the extra clearfix for only the required viewport -->
-						<div class="clearfix visible-xs"></div>
+											<small>{{ famous_bar.address }}</small></h>
+									</div>
+								</div>
+								<div class="thumbnail">
+									{% load thumbnail %}
+									{% thumbnail famous_bar.getImgUrlList.0 "270x140" crop="center" as im %}
+									<a href="{% url 'bars.views.fiche_bar' famous_bar.slug %}">
+									    <img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+									</a>
+									{% endthumbnail %}
+								</div>
 
-						<div class="col-xs-6 col-sm-3">
-							<div class="media media-grey">
-								<span class="pull-left" href="#">
-									9.9
-								</span>
-								<div class="media-body">
-									<h4 class="media-heading">
-										<a href="">Guinness Tavern</a>
-									</h4>
-									<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
-								</div>
 							</div>
-							<div class="thumbnail">
-								<img src="img/hannongbar_orange.jpg" alt="...">
-							</div>
-						</div>
-						<div class="col-xs-6 col-sm-3">
-							<div class="media media-grey">
-								<span class="pull-left" href="#">
-									9.9
-								</span>
-								<div class="media-body">
-									<h4 class="media-heading">
-										<a href="">Guinness Tavern</a>
-									</h4>
-									<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
-								</div>
-							</div>
-							<div class="thumbnail">
-								<img src="img/hannongbar_orange.jpg" alt="...">
-							</div>
-						</div>
+							{% endwith %}
+							{% endwith %}
+						{% endfor %}
+						
 					</div>
 					
 					<a href="search/?q=&address=" class="btn btn-link-underline btn-link-underline-orange">Voir plus de bars</a>
