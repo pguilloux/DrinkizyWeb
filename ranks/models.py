@@ -31,7 +31,7 @@ class PriceBar(models.Model):
 	bar = models.ForeignKey('bars.Bar')
 	user = models.ForeignKey('users.CustomUser')
 
-	price = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(4.0)])
+	price = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(3.0)])
 
 	def __unicode__(self):
 		return "%f %s" % (self.price, self.user.pseudo)

@@ -75,9 +75,9 @@
 							<dd>18:00 - 22:00</dd>
 							<dt>Tarifs : </dt>
 							<dd><small>
-								<span class="glyphicon glyphicon glyphicon-euro fullEuros"></span> 
-								<span class="glyphicon glyphicon glyphicon-euro"></span> 
-								<span class="glyphicon glyphicon glyphicon-euro"></span>
+								<span class="glyphicon glyphicon glyphicon-euro {% if average_price > 0.5 %}fullEuros{% endif %}"></span> 
+								<span class="glyphicon glyphicon glyphicon-euro {% if average_price > 1.5 %}fullEuros{% endif %}"></span> 
+								<span class="glyphicon glyphicon glyphicon-euro {% if average_price > 2.5 %}fullEuros{% endif %}"></span>
 								</small>
 							</dd>
 						</dl>
