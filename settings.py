@@ -50,13 +50,15 @@ HAYSTACK_SEARCH_RESULTS_PER_PAGE = 50
 SECRET_KEY = 'l4-wx$kslzg136iihbgzlsrmmcb3#(s245t#9ehyijqfxjaqx7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ['drinkizy.alwaysdata.net']
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+SITE_ID = 1
 
 
 # Application definition
@@ -69,6 +71,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.comments',
 
     #added packages
     'south',
