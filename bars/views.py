@@ -3,13 +3,19 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from bars.models import *
 from drinks.models import *
+from ranks.models import *
 from haystack.query import SearchQuerySet
 
 
 def fiche_bar(request, slug): 
 	bar = Bar.objects.get(slug=slug)
 	drinks_in_bar = DrinkBar.objects.filter(bar__slug=slug)
-	return render_to_response('bars/fiche_bar.html', {'bar': bar, 'drinks_in_bar': drinks_in_bar}, context_instance=RequestContext(request))
+	ranks = RankBar.objects.filter(bar__slug=slug)
+	ranks_sum = 0
+	for rank in ranks:
+		ranks_sum += rank.rank
+	average_rank = ranks_sum/ranks.__len__()
+	return render_to_response('bars/fiche_bar.html', {'bar': bar, 'drinks_in_bar': drinks_in_bar, 'ranks': ranks, 'average_rank': average_rank}, context_instance=RequestContext(request))
 
 
 def bars_for_theme(request, slug): 

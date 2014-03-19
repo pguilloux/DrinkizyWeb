@@ -12,7 +12,7 @@ class RankDrink(models.Model):
 	rank = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
 
 	def __unicode__(self):
-		return "%s %s %s" % (self.title, self.year, self)
+		return "%f %s" % (self.rank, self.user.pseudo)
 
 
 class RankBar(models.Model):
@@ -23,7 +23,7 @@ class RankBar(models.Model):
 	rank = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
 
 	def __unicode__(self):
-		return "%s %s %s" % (self.title, self.year, self)
+		return "%f %s" % (self.rank, self.user.pseudo)
 
 
 class PriceBar(models.Model):
@@ -34,4 +34,4 @@ class PriceBar(models.Model):
 	price = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(4.0)])
 
 	def __unicode__(self):
-		return "%s %s %s" % (self.title, self.year, self)
+		return "%f %s" % (self.price, self.user.pseudo)
