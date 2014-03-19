@@ -23,7 +23,8 @@
 	</div>
 	<div class="media-body">
 		<h4 class="media-heading">
-			<span>9,4</span>
+			{% get_average_rank onebar.slug as average_rank %}
+			<span><strong>{% if average_rank > 0 %}{{ average_rank|floatformat:1 }}{% else %} - {% endif %}</strong> /10</span>
 			<a href="{% url 'bars.views.fiche_bar' onebar.slug %}">{{ onebar.name }}</a>
 		</h4>
 		<h6>

@@ -85,7 +85,7 @@
 
 					<div class="row borderWhite markShare">
 						<div class="col-sm-8">
-							<span><strong>{{ average_rank|floatformat:1 }}</strong> /10</span>
+							<span><strong>{% if average_rank > 0 %}{{ average_rank|floatformat:1 }}{% else %} - {% endif %}</strong> /10</span>
 							<h4>{{ ranks.count }} personnes ont noté ce bar</h4>
 							<a href="">Note le à ton tour</a>
 						</div>
