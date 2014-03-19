@@ -154,13 +154,14 @@
 						</div>
 					</div>
 
+					{% get_comment_list for bar as comment_list %}
+					{% get_comment_count for bar as comment_count %}
 					<p class="rankFix">
-						<strong>321 avis</strong>
+						<strong>{{ comment_count }} commentaire{% if comment_count > 1 %}s{% endif %}</strong>
 					</p>
 
 					<ul>
-						{% get_comment_list for bar as comment_list %}
-						{% for comment in comment_list %}
+						{% for comment in comment_list reversed %}
 							<li class="media">
 								<span class="pull-left">
 									{% load thumbnail %}
