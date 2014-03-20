@@ -291,6 +291,17 @@ body {padding-top: 50px; font-family: Ubuntu;}
 
 /*
 *****
+	Profil page
+*****
+*/
+.cover-container.profil { margin-top: 20px;}
+#profil-page h4 small { color: #f2B219; font-size: 16px; font-weight: bold;}
+#profil-info h2 { font-size: 24px; color: #999;}
+#profil-info dt { width: auto;}
+#profil-info dd { margin-left: 0; padding-left: 50px;}
+
+/*
+*****
 	Footer
 *****
 */

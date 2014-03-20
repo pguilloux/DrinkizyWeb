@@ -43,9 +43,14 @@
                                         </h6>
                                     </div>
                                 </div>
-                                <a href="{% url 'bars.views.fiche_bar' bar.slug %}" class="thumbnail">
-                                    <img src="{{bar.getImgUrl}}" alt="{{ bar.name }}">
-                                </a>
+                                <div class="thumbnail">
+                                    {% load thumbnail %}
+                                    {% thumbnail bar.getImgUrlList.0 "270x140" crop="center" as im %}
+                                    <a href="{% url 'bars.views.fiche_bar' bar.slug %}">
+                                        <img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                    </a>
+                                    {% endthumbnail %}
+                                </div>
                         </div>
                     {% endfor %}
                 </div>
