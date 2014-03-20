@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.comments.models import Comment
 
 TYPE_USER = (
     ('drinkizy', 'Drinkizy'),
@@ -16,3 +17,7 @@ class CustomUser(AbstractUser):
 	#objects = BaseUserManager()
 	#USERNAME_FIELD  = 'pseudo'
 	#REQUIRED_FIELDS = ['type']
+
+	def getComments(self):
+		comments = Comment.objects.filter(user__pseudo=self.pseudo)	
+		return comments

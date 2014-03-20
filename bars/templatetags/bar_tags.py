@@ -22,3 +22,8 @@ def get_themes():
 @register.assignment_tag
 def get_bars_for_theme(theme_slug):
 	return Bar.objects.filter(themes__slug=theme_slug).order_by('?')[:1]
+
+
+@register.assignment_tag
+def get_bar_with_pk(pk):
+	return Bar.objects.get(pk=pk)
