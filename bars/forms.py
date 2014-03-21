@@ -9,7 +9,5 @@ import logging, operator
  
 logger = logging.getLogger(__name__)
 
-class RankBarForm(forms.ModelForm):
-    class Meta:
-        model = RankBar
-        fields = ['rank']
+class RankBarForm(forms.Form):
+    rank = forms.FloatField()
