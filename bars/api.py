@@ -12,6 +12,7 @@ from haystack.query import SearchQuerySet, EmptySearchQuerySet
 
 from bars.models import *
 from drinks.models import *
+from django.contrib.comments.models import Comment
 
 import simplejson, urllib
 
@@ -27,6 +28,18 @@ class ThemeResource(ModelResource):
 	class Meta:
 		queryset = Theme.objects.all()
 		resource_name = 'theme'
+
+
+class CommentResource(ModelResource):
+	class Meta:
+		queryset = Comment.objects.all()
+		resource_name = 'comment'
+		filtering = {
+			'object_pk': ALL_WITH_RELATIONS,
+			# 'user': ALL_WITH_RELATIONS,
+			# 'created': ['exact', 'range', 'gt', 'gte', 'lt', 'lte'],
+			# 'distance': ALL_WITH_RELATIONS,
+		}
 
 
 class BarResource(ModelResource):
