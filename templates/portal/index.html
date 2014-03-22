@@ -33,6 +33,7 @@
 					
 				</div>
 				{% load bar_tags %}
+				{{user.getCommentsCount}}
 				{% for comment in user.getComments reversed %}
 
 				<div class="fiche-bar-left-container fiche-bar-comment">
@@ -47,7 +48,7 @@
 								</span>
 								<div class="media-body">
 									{{ comment.comment }}
-									{% get_bar_with_pk comment.pk  as bar %}
+									{% get_bar_with_pk comment.object_pk  as bar %}
 									<h5>dans <strong><a href="{% url 'bars.views.fiche_bar' bar.slug %}">{{ bar.name }}</a></strong>, {{ comment.submit_date }}</h5>
 								</div>
 							</li>
