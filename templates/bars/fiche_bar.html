@@ -7,19 +7,6 @@
 
 			<div class="content-main col-sm-8">
 
-				<div class="row fiche-bar-thumbnail">
-					{% load thumbnail %}
-					{% for image in bar.getImgUrlList %}
-						<div class="col-xs-6 col-md-3">
-						{% thumbnail image "195x110" crop="center" as im %}
-						    <a href="{% static "medias/" %}{{ image }}" class="group3" title="{{bar.name}}">
-						    	<img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-						    </a>
-						{% endthumbnail %}
-						</div>
-					{% endfor %}
-				</div>
-
 				<div class="fiche-bar-left-container">
 					<div class="media">
 						<span class="pull-left fiche-bar">
@@ -115,6 +102,19 @@
 							<a href="https://twitter.com/share" data-url="http://drinkizy.alwaysdata.net{{request.path}}" data-via="Drinkizy" data-text="#drinkizy" class="twitter-share-button" data-lang="fr">Tweeter</a>
 						</div>
 					</div>
+				</div>
+
+				<div class="row fiche-bar-thumbnail">
+					{% load thumbnail %}
+					{% for image in bar.getImgUrlList %}
+						<div class="col-xs-6 col-md-3">
+						{% thumbnail image "195x110" crop="center" as im %}
+						    <a href="{% static "medias/" %}{{ image }}" class="group3" title="{{bar.name}}">
+						    	<img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+						    </a>
+						{% endthumbnail %}
+						</div>
+					{% endfor %}
 				</div>
 
 				<div class="fiche-bar-left-container helpModo">

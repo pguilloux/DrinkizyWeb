@@ -33,7 +33,6 @@
 					
 				</div>
 				{% load bar_tags %}
-				{% for comment in user.getComments reversed %}
 
 				<div class="fiche-bar-left-container fiche-bar-comment">
 					<p class="rankFix">
@@ -41,6 +40,7 @@
 					</p>
 
 					<ul>
+						{% for comment in user.getComments reversed %}
 							<li class="media">
 								<span class="pull-left">
 											<img class="media-object" src="" width="" height="">
@@ -51,9 +51,10 @@
 									<h5>dans <strong><a href="{% url 'bars.views.fiche_bar' bar.slug %}">{{ bar.name }}</a></strong>, {{ comment.submit_date }}</h5>
 								</div>
 							</li>
+						{% endfor %}
 					</ul>
 				</div>
-				{% endfor %}
+				
 
 				{% comment %}
 				{% load comments %}

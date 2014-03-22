@@ -15,16 +15,16 @@
 				<section class="search-cat-boisson">
 					{{ form.categories }}
 
-					<input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
+					<input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms btn btn-primary btn-primary-orange btn-sm">
 					<div class="clearfix"></div>
 				</section>
 
 				<h4>Thèmes</h4>
 				<section class="search-theme">
 					{{ form.themes }}
-					<a href="" id="themes-plus">Voir plus de Thèmes</a>
+					<a href="" id="themes-plus">Voir plus de Thèmes <span class='glyphicon glyphicon-chevron-down'></span></a>
 
-					<input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
+					<input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms btn btn-primary btn-primary-orange btn-sm">
 					<div class="clearfix"></div>
 				</section>
 
@@ -46,7 +46,7 @@
 					
 					{{ form.distance }}
 					<div class="clearfix"></div>
-					<input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
+					<input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms btn btn-primary btn-primary-orange btn-sm">
 					<div class="clearfix"></div>
 				</section>
 			</form>
@@ -336,9 +336,11 @@
 					if($(".search-theme ul").hasClass("themes-closed")){
 						$(".search-theme ul li.hidable-theme").css({display: "block"});
 						$(".search-theme ul").removeClass("themes-closed");
+						$(this).html("Moins de Thèmes <span class='glyphicon glyphicon-chevron-up'></span>");
 					}else{
 						$(".search-theme ul li.hidable-theme").css({display: "none"});
 						$(".search-theme ul").addClass("themes-closed");
+						$(this).html("Voir plus de Thèmes <span class='glyphicon glyphicon-chevron-down'></span>");
 					}
 					return false;
 				});
@@ -459,6 +461,7 @@
 					var num_category = $(this).next().attr('for').match(/\d+/);
 					$(this).toggleClass('search-chevron-down');
 					$("#for_category_"+num_category).toggle(); 
+					$(this).toggleClass('arrowDown');
 				});
 
 				/* (un)Check all subcategories when category is (un)checked */
