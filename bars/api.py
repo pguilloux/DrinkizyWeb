@@ -12,6 +12,7 @@ from haystack.query import SearchQuerySet, EmptySearchQuerySet
 
 from bars.models import *
 from drinks.models import *
+from users.api import *
 from django.contrib.comments.models import Comment
 
 import simplejson, urllib
@@ -31,6 +32,8 @@ class ThemeResource(ModelResource):
 
 
 class CommentResource(ModelResource):
+	user = fields.ToOneField(CustomUserResource, 'user', full=True)
+
 	class Meta:
 		queryset = Comment.objects.all()
 		resource_name = 'comment'
