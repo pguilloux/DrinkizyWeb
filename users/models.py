@@ -19,5 +19,9 @@ class CustomUser(AbstractUser):
 	#REQUIRED_FIELDS = ['type']
 
 	def getComments(self):
-		comments = Comment.objects.filter(user__pseudo=self.pseudo)	
+		comments = Comment.objects.filter(user__pk=self.pk)	
 		return comments
+
+	def getCommentsCount(self):
+		comments = Comment.objects.filter(user__pk=self.pk)	
+		return comments.__len__()

@@ -6,21 +6,32 @@ from bars.forms import *
 from drinks.models import *
 from haystack.query import SearchQuerySet
 
+import logging, operator
+logger = logging.getLogger(__name__)
 
 def fiche_bar(request, slug): 
 	bar = Bar.objects.get(slug=slug)
+	user = request.user
 	drinks_in_bar = DrinkBar.objects.filter(bar__slug=slug)
+	current_rank_of_user = RankBar.objects.filter(user=user).filter(bar=bar)
 
 	if request.method == 'POST':
 		rank_form = RankBarForm(request.POST) # A form bound to the POST data
-
+		logger.warning("post rank form")
 		if rank_form.is_valid(): # All validation rules pass
-			rank = rank_form.save()
+			logger.warning("rank form is valid")
+			rank = rank_form.cleaned_data['rank']
+			if not current_rank_of_user:
+				logger.warning("new rank")
+				new_rank = RankBar.objects.create(bar=bar, user=user, rank=rank).save()
+			else:
+				logger.warning("current rank exists")
+				RankBar.objects.filter(user=user, bar=bar).update(rank=rank)
 
 	else:
 		rank_form = RankBarForm() # An unbound form
 
-	return render_to_response('bars/fiche_bar.html', {'bar': bar, 'drinks_in_bar': drinks_in_bar}, context_instance=RequestContext(request))
+	return render_to_response('bars/fiche_bar.html', {'rank_form': rank_form, 'bar': bar, 'drinks_in_bar': drinks_in_bar, 'current_rank_of_user': current_rank_of_user}, context_instance=RequestContext(request))
 
 
 def bars_for_theme(request, slug): 

@@ -249,6 +249,10 @@ LOGGING = {
 			'handlers': ['console'],
 			'level': 'INFO'
 		},
+		'bars.views': {
+			'handlers': ['console'],
+			'level': 'INFO'
+		},
 
 	}
 }
