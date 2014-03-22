@@ -15,7 +15,7 @@
 						<span class="pull-left fiche-bar">
 						{% load thumbnail %}
 							{% thumbnail user.avatar "100x100" crop="center" as im %}
-							    <img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+								<img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
 							{% endthumbnail %}
 						</span>
 						<div class="media-body">
@@ -43,12 +43,18 @@
 					<ul>
 						{% for comment in user.getComments reversed %}
 							<li class="media">
+								{% get_bar_with_pk comment.object_pk  as bar %}
 								<span class="pull-left">
-											<img class="media-object" src="" width="" height="">
+									{% load thumbnail %}
+									{% thumbnail bar.getImgUrlList.0 "50x50" crop="center" as im %}
+										<a href="{% url 'bars.views.fiche_bar' bar.slug %}">
+											<img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+										</a>
+									{% endthumbnail %}
 								</span>
 								<div class="media-body">
 									{{ comment.comment }}
-									{% get_bar_with_pk comment.object_pk  as bar %}
+									
 									<h5>dans <strong><a href="{% url 'bars.views.fiche_bar' bar.slug %}">{{ bar.name }}</a></strong>, {{ comment.submit_date }}</h5>
 								</div>
 							</li>

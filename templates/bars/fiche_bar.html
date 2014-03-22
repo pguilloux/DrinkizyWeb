@@ -44,7 +44,7 @@
 							{% endif %}
 							{% if bar.mail %}
 								<dt>Email : </dt>
-								<dd>{{bar.mail}}</dd>
+								<dd><a href="mailto:{{bar.mail}}">{{bar.mail}}</a></dd>
 							{% endif %}
 						</dl>
 						<dl class="dl-horizontal col-sm-6">
@@ -93,7 +93,7 @@
 
 
 							
-							<h4>{{ bar.getRanksNumber }} personnes ont noté ce bar</h4>
+							<h4>{{ bar.getRanksNumber }} personne{% if bar.getRanksNumber > 1 %}s ont {% else %} a {% endif %}noté ce bar</h4>
 							<a href="">Note le à ton tour</a>
 						</div>
 						<div class="col-sm-4">
