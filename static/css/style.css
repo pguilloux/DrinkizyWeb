@@ -160,7 +160,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .content-resultats-filtres form .search-loc-boisson ul li {display: block; float: left; width: 25%;}
 .content-resultats-filtres form .search-loc-boisson ul li:first-child {margin-top: -5px}
 .content-resultats-filtres form .search-theme a {text-decoration:none; }
-.content-resultats-filtres form .search-theme a#themes-plus{display:block; color: #AAA; margin-bottom:10px;}
+.content-resultats-filtres form .search-theme a#themes-plus{display:block; color: #AAA; margin-bottom:10px; margin-left: 24px;}
 .content-resultats-filtres form .search-theme a#themes-plus span {position: relative; top: 3px;transition:All 0.4s ease;
 -webkit-transition:All 0.4s ease;
 -moz-transition:All 0.4s ease;
@@ -178,8 +178,9 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .content-resultats-filtres .arrowDown {-webkit-transform:rotate(90deg);
 	-moz-transform:rotate(90deg);
 	-o-transform: rotate(90deg);}
-
 .content-resultats-filtres .search-loc-boisson .inputLocalisation { margin-top: 10px;}
+.content-resultats-filtres .search-loc-boisson input[type=radio] { margin: 0 4px 0 8px;}
+.content-resultats-filtres .submitSearch-result { margin-bottom: 10px; float: right; margin-right: 15px;}
 
 .content-resultats-list-button, .content-resultats-map-button {height: 100%; background: #f8f8f8; padding: 0;}
 .content-resultats-list-button a, .content-resultats-map-button a {width: 100%; display: block; color: #ccc;}
@@ -187,7 +188,6 @@ body {padding-top: 50px; font-family: Ubuntu;}
 -webkit-transform:rotate(270deg);
 	-moz-transform:rotate(270deg);
 	-o-transform: rotate(270deg);}
-
 .content-resultats-map-button h5 {  white-space:nowrap; margin: 22px 2px 2px 2px;
 -webkit-transform:rotate(90deg);
 	-moz-transform:rotate(90deg);
@@ -312,7 +312,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 	Profil page
 *****
 */
-.cover-container.profil { margin-top: 20px;}
+.profil .content-secondary { margin-top: 20px;}
 #profil-page h4 small { color: #f2B219; font-size: 16px; font-weight: bold;}
 #profil-info h2 { font-size: 24px; color: #999;}
 #profil-info dt { width: auto;}
