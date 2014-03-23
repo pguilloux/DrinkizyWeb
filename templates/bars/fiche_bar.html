@@ -73,29 +73,46 @@
 						</dl>
 					</div>
 
-					<div class="row borderWhite markShare">
+					<div class="row borderWhite markShare" id="accordionRank">
 						<div class="col-sm-8">
 							{% with average_rank=bar.getAverageRank %}
 							<span class="{% if average_rank < 6 %}markBackGrey{%else%}markBackOrange{%endif%}"><strong>{% if average_rank > 0 %}{{ average_rank|floatformat:1 }}{% else %} - {% endif %}</strong> /10</span>
-							{% endwith %}
+							{% endwith %}						
+							<h4>{{ bar.getRanksNumber }} personne{% if bar.getRanksNumber > 1 %}s ont {% else %} a {% endif %}noté ce bar</h4>
+							<a data-toggle="collapse" data-parent="#accordionRank" href="#collapse1"id="addNoteButton">Note le à ton tour</a>
 
 
-							{{current_rank_of_user}}
-							<div align="center">
+							{% comment %}{{current_rank_of_user}} {% endcomment %}
+							<div id="collapse1" class="panel-collapse collapse text-center">
 							    <tr>
 							        <form method="POST"> 
 							            {% csrf_token %} 
-							            <h5>Note:</h5>
+							            <h5>Note le bar entre 0 et 10</h5>
 							            {{ rank_form.rank }}
-							            <input type="submit" value="submit">
+							            <input type="submit" value="Voter" class="btn btn-primary btn-primary-orange btn-sm">
 							        </form>
 							    </tr>
 							</div>
 
-
-							
-							<h4>{{ bar.getRanksNumber }} personne{% if bar.getRanksNumber > 1 %}s ont {% else %} a {% endif %}noté ce bar</h4>
-							<a href="">Note le à ton tour</a>
+							<!--div class="panel-group" id="accordion">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+													<strong class="">gthyj</strong>
+												</a>
+											</h4>
+										</div>
+										<div id="collapse1" class="panel-collapse collapse">
+											<div class="panel-body">
+												<div>
+													<h4> € <span class="label label-default">Happy Hour</span></h4>
+												</div>
+											
+											</div>
+										</div>
+									</div>
+							</div-->
 						</div>
 						<div class="col-sm-4">
 							<h4>Partager ce bar</h4>
@@ -338,6 +355,11 @@
 				google.maps.event.addDomListener(window, 'load', initialize(latitude, longitude, "{{ bar.name }} {{ bar.address }}"));
 
 			$(".group3").colorbox({rel:'group3', transition:"none", width: '100%', height:'100%'});
+
+			/*$('#addNoteButton').click(function() {
+				$('#addNote').slideToggle();
+				return false;
+			});*/
 
 		});
 

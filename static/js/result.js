@@ -108,7 +108,7 @@ function initialize(locations) {
           text: i+1,
           position: locations[i][1]+10.5,
           map: map,
-          fontSize: 35,
+          fontSize: 30,
           align: 'center'
         });
         mapLabel.set('position', locations[i][1]);
