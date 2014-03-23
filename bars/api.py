@@ -51,6 +51,7 @@ class BarResource(ModelResource):
 
 	has_distance = 0
 	distances = dict()
+	ranks = dict()
 
 	class Meta:
 		queryset = Bar.objects.all()
@@ -64,6 +65,8 @@ class BarResource(ModelResource):
 
 	def dehydrate(self, bundle):
 		
+		bundle.data['rank'] = self.ranks[bundle.data['slug']]
+
 		if self.has_distance == 1:
 			bundle.data['distance'] = self.distances[bundle.data['slug']]
 
@@ -71,6 +74,11 @@ class BarResource(ModelResource):
 
 	def apply_sorting(self, objects, options=None):
 
+		for bar in Bar.objects.all():
+			if bar.getRanksNumber() == 0:
+				self.ranks[bar.slug] = -1
+			else:
+				self.ranks[bar.slug] = bar.getAverageRank()
 
 		if options and "distance" in options and "long" in options and "lat" in options:
 			self.has_distance = 1
