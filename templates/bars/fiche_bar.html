@@ -1,4 +1,5 @@
 {% extends "layout/base.html" %}
+{% block title %}{{bar.name}}{% endblock %}
 
 {% block content %}
 	{% load staticfiles %}
@@ -318,6 +319,8 @@
 
 
 {% endblock content %}
+
+
 	
 {% block scriptjs %}    
 	<script src={% static "js/jquery.colorbox.js" %} type="text/javascript" charset="utf-8" async defer></script>

@@ -6,11 +6,12 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title></title>
+		<title>{% block title %}Drinkizy{% endblock %}</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
 
 		{% load staticfiles %}
+		<link rel="shortcut icon" type="image/x-icon" href={% static "medias/img_design/drinkizy.ico" %}>
 		<link href={% static "css/bootstrap.min.css" %} rel="stylesheet">   
 		<link href={% static "css/bootstrap-theme.min.css" %} rel="stylesheet">   
 		<link href={% static "css/ui-lightness/jquery-ui-1.10.4.custom.css" %} rel="stylesheet">
