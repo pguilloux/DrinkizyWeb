@@ -17,16 +17,15 @@ def fiche_bar(request, slug):
 
 	if request.method == 'POST':
 		rank_form = RankBarForm(request.POST) # A form bound to the POST data
-		logger.warning("post rank form")
+
 		if rank_form.is_valid(): # All validation rules pass
-			logger.warning("rank form is valid")
+
 			rank = rank_form.cleaned_data['rank']
-			if not current_rank_of_user:
-				logger.warning("new rank")
-				new_rank = RankBar.objects.create(bar=bar, user=user, rank=rank).save()
-			else:
-				logger.warning("current rank exists")
-				RankBar.objects.filter(user=user, bar=bar).update(rank=rank)
+			if rank >= 0 and rank <= 10:
+				if not current_rank_of_user:
+					new_rank = RankBar.objects.create(bar=bar, user=user, rank=rank).save()
+				else:
+					RankBar.objects.filter(user=user, bar=bar).update(rank=rank)
 
 	else:
 		rank_form = RankBarForm() # An unbound form
