@@ -249,7 +249,9 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .fiche-bar-left-container .dl-horizontal dd .dropdown-menu li { padding: 0 5px; font-weight: 300;}
 
 .fiche-bar-left-container .markShare h4 {margin: 0; font-size: 16px}
-.fiche-bar-left-container .markShare div:first-child span { background-color: #F3C319; color: rgba(255, 255, 255, 0.5); padding: 5px; font-size: 20px; font-weight: 500; float: left; }
+.fiche-bar-left-container .markShare div:first-child span {  color: rgba(255, 255, 255, 0.5); padding: 5px; font-size: 20px; font-weight: 500; float: left; }
+.fiche-bar-left-container .markShare span.markBackGrey { background-color: #999999 }
+.fiche-bar-left-container .markShare span.markBackOrange {background-color: #F3C319;}
 .fiche-bar-left-container .markShare div:first-child span strong { color: rgba(255, 255, 255, 1); font-weight: 500; }
 .fiche-bar-left-container .markShare div:first-child h4,
 .fiche-bar-left-container .markShare div:first-child a { margin-left: 10px; display: inline-block; width: 65%}

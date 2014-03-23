@@ -75,7 +75,7 @@
 					<div class="row borderWhite markShare">
 						<div class="col-sm-8">
 							{% with average_rank=bar.getAverageRank %}
-							<span><strong>{% if average_rank > 0 %}{{ average_rank|floatformat:1 }}{% else %} - {% endif %}</strong> /10</span>
+							<span class="{% if average_rank < 6 %}markBackGrey{%else%}markBackOrange{%endif%}"><strong>{% if average_rank > 0 %}{{ average_rank|floatformat:1 }}{% else %} - {% endif %}</strong> /10</span>
 							{% endwith %}
 
 
