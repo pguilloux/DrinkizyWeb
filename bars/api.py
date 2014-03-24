@@ -29,6 +29,11 @@ class ThemeResource(ModelResource):
 	class Meta:
 		queryset = Theme.objects.all()
 		resource_name = 'theme'
+		filtering = {
+			'slug': ALL_WITH_RELATIONS,
+			# 'created': ['exact', 'range', 'gt', 'gte', 'lt', 'lte'],
+			# 'distance': ALL_WITH_RELATIONS,
+		}
 
 
 class CommentResource(ModelResource):
@@ -58,7 +63,7 @@ class BarResource(ModelResource):
 		resource_name = 'bar'
 		filtering = {
 			'slug': ALL_WITH_RELATIONS,
-			# 'user': ALL_WITH_RELATIONS,
+			'themes': ALL_WITH_RELATIONS,
 			# 'created': ['exact', 'range', 'gt', 'gte', 'lt', 'lte'],
 			# 'distance': ALL_WITH_RELATIONS,
 		}
