@@ -69,8 +69,12 @@ class BarResource(ModelResource):
 		}
 
 	def dehydrate(self, bundle):
-		
-		bundle.data['rank'] = self.ranks[bundle.data['slug']]
+
+		bar = bundle.obj
+		if bar.getRanksNumber() == 0:
+			bundle.data['rank'] = -1
+		else:
+			bundle.data['rank'] = bar.getAverageRank()
 
 		if self.has_distance == 1:
 			bundle.data['distance'] = self.distances[bundle.data['slug']]
@@ -78,7 +82,7 @@ class BarResource(ModelResource):
 		return bundle
 
 	def apply_sorting(self, objects, options=None):
-
+		logger.warning("tata")
 		for bar in Bar.objects.all():
 			if bar.getRanksNumber() == 0:
 				self.ranks[bar.slug] = -1

@@ -47,11 +47,18 @@ class DrinkBarResource(ModelResource):
             #'created': ['exact', 'range', 'gt', 'gte', 'lt', 'lte'],
         }
 	 
-	# Custom search endpoint
-	def override_urls(self):
+    # Custom search endpoint
+	def prepend_urls(self):
 		return [
 			url(r"^(?P<resource_name>%s)/search/?$" % (self._meta.resource_name), self.wrap_view('get_search'), name="api_get_search"),
 		]
+
+
+	# # Custom search endpoint
+	# def override_urls(self):
+	# 	return [
+	# 		url(r"^(?P<resource_name>%s)/search/?$" % (self._meta.resource_name), self.wrap_view('get_search'), name="api_get_search"),
+	# 	]
 	 
 	def get_search(self, request, **kwargs):
 		'''
