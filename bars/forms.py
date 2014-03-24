@@ -10,4 +10,4 @@ import logging, operator
 logger = logging.getLogger(__name__)
 
 class RankBarForm(forms.Form):
-    rank = forms.FloatField()
+    rank = forms.FloatField(min_value=0, max_value=10)
