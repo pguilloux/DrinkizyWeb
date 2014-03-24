@@ -50,9 +50,9 @@ HAYSTACK_SEARCH_RESULTS_PER_PAGE = 50
 SECRET_KEY = 'l4-wx$kslzg136iihbgzlsrmmcb3#(s245t#9ehyijqfxjaqx7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['drinkizy.alwaysdata.net']
 

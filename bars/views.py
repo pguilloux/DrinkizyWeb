@@ -13,7 +13,7 @@ def fiche_bar(request, slug):
 	bar = Bar.objects.get(slug=slug)
 	user = request.user
 	drinks_in_bar = DrinkBar.objects.filter(bar__slug=slug)
-	current_rank_of_user = RankBar.objects.filter(user=user).filter(bar=bar)
+	current_rank_of_user = RankBar.objects.filter(user__pk=user.pk, bar=bar)
 
 	if request.method == 'POST':
 		rank_form = RankBarForm(request.POST) # A form bound to the POST data
