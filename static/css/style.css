@@ -431,6 +431,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 
 	.fiche-bar-left-container .dl-horizontal dd .dropdown-menu {left: 0;}
 	.navbar-collapse .theme-header {display: block;}
+	.theme-header, .navbar-right {font-weight: 300;}
 	.footerPage.theme-band h1 { padding-left: 10px;}
 	.footerPage .cover-container { width: auto;}
 }
