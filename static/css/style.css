@@ -231,8 +231,10 @@ body {padding-top: 50px; font-family: Ubuntu;}
 	Fiche Bar Page
 *****
 */
+.fiche-bar-thumbnail { margin-left: 0;}
 .fiche-bar-thumbnail a { margin-bottom: 0;}
-.fiche-bar-thumbnail img { margin: 5px;}
+/*.fiche-bar-thumbnail img { margin: 5px;}*/
+.fiche-bar-thumbnail > div { padding: 0;}
 .fiche-bar-thumbnail > div:first-child img{ margin-left: 0;}
 .fiche-bar-thumbnail > div:last-child img{ margin-right: 0;}
 

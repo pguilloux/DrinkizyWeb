@@ -126,7 +126,7 @@
 					{% load thumbnail %}
 					{% for image in bar.getImgUrlList %}
 						<div class="col-xs-6 col-md-3">
-						{% thumbnail image "195x110" crop="center" as im %}
+						{% thumbnail image "180x110" crop="center" as im %}
 						    <a href="{% static "medias/" %}{{ image }}" class="group3" title="{{bar.name}}">
 						    	<img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
 						    </a>
