@@ -18,6 +18,15 @@
 								<img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
 							{% endthumbnail %}
 						</span>
+
+						<form method="POST" action="." enctype="multipart/form-data">{% csrf_token %}
+							{{profile_form}}
+							<input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
+							<div class="clearfix"></div>
+						</form>
+
+
+
 						<div class="media-body">
 							<h4 class="media-heading">
 								{{ user.username }} 
