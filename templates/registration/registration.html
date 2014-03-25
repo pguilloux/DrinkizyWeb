@@ -1,49 +1,53 @@
 {% extends "layout/base.html" %}
+{% block title %}Inscription à Drinkizy{% endblock title %}
 
 {% block title %}Drinkizy - S'inscrire{% endblock title %}
 
 {% block content %}
 
-
+	<div class="theme-band site-wrapper-inner footerPage contact">
+        <div class="cover-container">
+        <h1 class="cover-heading">S'inscrire</h1>
+        </div>
+    </div>
 	<div class="site-wrapper-inner footerPage">
 		<div class="registration-page cover-container">
-			<h1 class="cover-heading">S'inscrire</h1>
 
-				<div class="col-md-offset-2 col-sm-8">
+				<div class="col-md-offset-2 col-sm-8 col-xs-12">
 					<form method="post" action="." class="form-horizontal" role="form">
 						<div class="form-group">
 							{% csrf_token %}
-							<label for="id_pseudo" class="col-sm-4 control-label">Pseudo</label>
-							<div class="col-sm-8">
+							<label for="id_pseudo" class="col-sm-4 col-xs-4 control-label">Pseudo</label>
+							<div class="col-sm-8 col-xs-8">
 								{{ form.pseudo }}
 								{{ form.pseudo.errors }}
 							</div>
 							
 						</div>
 						<div class="form-group">
-							<label for="id_email" class="col-sm-4 control-label">Email</label>
-							<div class="col-sm-8">
+							<label for="id_email" class="col-sm-4 col-xs-4 control-label">Email</label>
+							<div class="col-sm-8 col-xs-8">
 								{{ form.email }}
 								{{ form.email.errors }}
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="id_emailConfirmation" class="col-sm-4 control-label">Confirmation de l'email</label>
-							<div class="col-sm-8">
+							<label for="id_emailConfirmation" class="col-sm-4 col-xs-4 control-label">Confirmation de l'email</label>
+							<div class="col-sm-8 col-xs-8">
 								{{ form.emailConfirmation }}
 								{{ form.emailConfirmation.errors }}
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="id_password" class="col-sm-4 control-label">Mot de passe</label>
-							<div class="col-sm-8">
+							<label for="id_password" class="col-sm-4 col-xs-4 control-label">Mot de passe</label>
+							<div class="col-sm-8 col-xs-8">
 								{{ form.password }}
 								{{ form.password.errors }}
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="id_passwordConfirmation" class="col-sm-4 control-label">Confirmation du mot de passe</label>
-							<div class="col-sm-8">
+							<label for="id_passwordConfirmation" class="col-sm-4 col-xs-4 control-label">Confirmation du mot de passe</label>
+							<div class="col-sm-8 col-xs-8">
 								{{ form.passwordConfirmation }}
 								{{ form.passwordConfirmation.errors }}
 							</div>

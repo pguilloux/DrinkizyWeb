@@ -85,7 +85,6 @@ INSTALLED_APPS = (
 	'drinks',
 	'search',
 	'users',
-	#'ranks',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -243,6 +242,14 @@ LOGGING = {
 			'level': 'INFO'
 		},
 		'bars.api': {
+			'handlers': ['console'],
+			'level': 'INFO'
+		},
+		'home.views': {
+			'handlers': ['console'],
+			'level': 'INFO'
+		},
+		'bars.views': {
 			'handlers': ['console'],
 			'level': 'INFO'
 		},

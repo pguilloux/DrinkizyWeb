@@ -12,8 +12,10 @@ admin.autodiscover()
 
 v1_api = Api(api_name='v1')
 
+v1_api.register(CustomUserResource())
 v1_api.register(ThemeResource())
 v1_api.register(BarImageResource())
+v1_api.register(CommentResource())
 v1_api.register(BarResource())
 v1_api.register(DrinkCategoryResource())
 v1_api.register(DrinkSubCategoryResource())

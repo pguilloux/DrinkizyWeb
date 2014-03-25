@@ -1,29 +1,134 @@
 {% extends "layout/base.html" %}
 
-{% block title %}GESTION USER{% endblock title %}
+{% block title %}{{ user.username }} sur Drinkizy{% endblock title %}
 
 {% block content %}
 
+	{% load staticfiles %}
+
 	<div class="site-wrapper-inner">
-		<div class="cover-container">
-			<section>
-				<h2>Bienvenue, {{ user.username }}</h2>
+		<div class="cover-container profil">
 
-				{% load thumbnail %}
-				{% thumbnail user.avatar "70x70" crop="center" as im %}
-					<img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-				{% endthumbnail %}
+			<div class="content-main  col-sm-8">
+
+				
+				<div id="profil-page" class="fiche-bar-left-container">
+					<div class="media">
+						<span class="pull-left fiche-bar">
+						{% load thumbnail %}
+							{% thumbnail user.avatar "100x100" crop="center" as im %}
+								<img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+							{% endthumbnail %}
+						</span>
+
+						<form method="POST" action="." enctype="multipart/form-data">{% csrf_token %}
+							{{profile_form}}
+							<input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
+							<div class="clearfix"></div>
+						</form>
 
 
-				<h2>Bienvenue, {{ user.avatar }}</h2>
-				<p>C'est la page principale de votre compte.</p>
-			</section>
 
-			<section>
-				<h2>Que voulez-vous faire aujourd'hui ?</h2>
-				<p><a href="" title="">Modifier mon profil</a></p>
-				<p><a href="/logout/" title="">Déconnectez vous</a></p>
-			</section>
+						<div class="media-body">
+							<h4 class="media-heading">
+								{{ user.username }} 
+								{% if user.type == drinkizy or user.is_staff == 1 %}
+									<small>Drinkizy Staff</small>
+								{% elif user.type == bar %}
+									<small>Tenant de bar</small>
+								{% endif %}
+							</h4>
+							<h6>Inscrit depuis le {{ user.date_joined|date:"d M Y" }}</h6>
+						</div>
+					</div>
+					
+				</div>
+				{% load bar_tags %}
+				
+
+				<div class="fiche-bar-left-container fiche-bar-comment">
+					<p class="rankFix">
+						<strong>{{user.getCommentsCount}} commentaire{% if user.getCommentsCount > 1 %}s{% endif %}</strong>
+					</p>
+
+					<ul>
+						{% for comment in user.getComments reversed %}
+							<li class="media">
+								{% get_bar_with_pk comment.object_pk  as bar %}
+								<span class="pull-left">
+									{% load thumbnail %}
+									{% thumbnail bar.getImgUrlList.0 "50x50" crop="center" as im %}
+										<a href="{% url 'bars.views.fiche_bar' bar.slug %}">
+											<img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+										</a>
+									{% endthumbnail %}
+								</span>
+								<div class="media-body">
+									{{ comment.comment }}
+									
+									<h5>dans <strong><a href="{% url 'bars.views.fiche_bar' bar.slug %}">{{ bar.name }}</a></strong>, {{ comment.submit_date }}</h5>
+								</div>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+				
+
+				{% comment %}
+				{% load comments %}
+				<div class="fiche-bar-left-container fiche-bar-comment">
+
+					{% get_comment_list for bar as comment_list %}
+					{% get_comment_count for bar as comment_count %}
+					<p class="rankFix">
+						<strong>{{ comment_count }} commentaire{% if comment_count > 1 %}s{% endif %}</strong>
+					</p>
+
+					<ul>
+						{% for comment in comment_list reversed %}
+							<li class="media">
+								<span class="pull-left">
+									{% load thumbnail %}
+										{% thumbnail comment.user.avatar "50x50" crop="center" as im %}
+											<img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+										{% endthumbnail %}
+								</span>
+								<div class="media-body">
+									{{ comment.comment }}
+									<h5>par <strong>{{ comment.user_name }}</strong>, {{ comment.submit_date }}</h5>
+								</div>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+				{% endcomment %}
+
+			</div>
+			<div class="content-secondary col-sm-4">	
+				<a href="/logout/" title="" class="btn btn-primary btn-primary-orange"><span class="glyphicon glyphicon-remove"></span> Déconnexion</a>
+				<div id="profil-info" class="content-secondary-div">
+					<h2>Informations</h2>
+						<dl class="dl-horizontal">
+							{% if user.phone %}
+								<dt>Téléphone : </dt>
+								<dd>{{bar.phone}}</dd>
+							{% endif %}
+							{% if user.website %}
+								<dt>Site web : </dt>
+								<dd><a href="{{bar.website}}">{{bar.website}}</a></dd>
+							{% endif %}
+							{% if user.email %}
+								<dt>Email : </dt>
+								<dd>{{user.email}}</dd>
+							{% endif %}
+						</dl>
+
+				</div>
+
+				
+
+
+			</div>
 		</div>
 	</div>
 

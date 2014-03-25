@@ -8,43 +8,31 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'RankDrink'
-        db.create_table(u'ranks_rankdrink', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('drink_bar', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['drinks.DrinkBar'])),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['users.CustomUser'])),
-            ('rank', self.gf('django.db.models.fields.FloatField')()),
-        ))
-        db.send_create_signal(u'ranks', ['RankDrink'])
-
-        # Adding model 'RankBar'
-        db.create_table(u'ranks_rankbar', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('bar', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['bars.Bar'])),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['users.CustomUser'])),
-            ('rank', self.gf('django.db.models.fields.FloatField')()),
-        ))
-        db.send_create_signal(u'ranks', ['RankBar'])
-
         # Adding model 'PriceBar'
-        db.create_table(u'ranks_pricebar', (
+        db.create_table(u'bars_pricebar', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('bar', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['bars.Bar'])),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['users.CustomUser'])),
             ('price', self.gf('django.db.models.fields.FloatField')()),
         ))
-        db.send_create_signal(u'ranks', ['PriceBar'])
+        db.send_create_signal(u'bars', ['PriceBar'])
+
+        # Adding model 'RankBar'
+        db.create_table(u'bars_rankbar', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('bar', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['bars.Bar'])),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['users.CustomUser'])),
+            ('rank', self.gf('django.db.models.fields.FloatField')()),
+        ))
+        db.send_create_signal(u'bars', ['RankBar'])
 
 
     def backwards(self, orm):
-        # Deleting model 'RankDrink'
-        db.delete_table(u'ranks_rankdrink')
+        # Deleting model 'PriceBar'
+        db.delete_table(u'bars_pricebar')
 
         # Deleting model 'RankBar'
-        db.delete_table(u'ranks_rankbar')
-
-        # Deleting model 'PriceBar'
-        db.delete_table(u'ranks_pricebar')
+        db.delete_table(u'bars_rankbar')
 
 
     models = {
@@ -73,11 +61,56 @@ class Migration(SchemaMigration):
             'longitude': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
             'mail': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'nb_pictures': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'phone': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '200'}),
-            'theme': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['bars.Theme']"}),
+            'themes': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['bars.Theme']", 'symmetrical': 'False'}),
             'website': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
+        },
+        u'bars.barimage': {
+            'Meta': {'object_name': 'BarImage'},
+            'bar': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'images'", 'to': u"orm['bars.Bar']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'})
+        },
+        u'bars.openinghours': {
+            'Meta': {'object_name': 'OpeningHours'},
+            'day': ('django.db.models.fields.IntegerField', [], {}),
+            'end_happy_hour': ('django.db.models.fields.IntegerField', [], {}),
+            'end_hour': ('django.db.models.fields.IntegerField', [], {}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'start_happy_hour': ('django.db.models.fields.IntegerField', [], {}),
+            'start_hour': ('django.db.models.fields.IntegerField', [], {})
+        },
+        u'bars.openinghoursbar': {
+            'Meta': {'object_name': 'OpeningHoursBar'},
+            'bar': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['bars.Bar']"}),
+            'hours': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['bars.OpeningHours']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
+        },
+        u'bars.pricebar': {
+            'Meta': {'object_name': 'PriceBar'},
+            'bar': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['bars.Bar']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'price': ('django.db.models.fields.FloatField', [], {}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['users.CustomUser']"})
+        },
+        u'bars.rankbar': {
+            'Meta': {'object_name': 'RankBar'},
+            'bar': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['bars.Bar']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'rank': ('django.db.models.fields.FloatField', [], {}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['users.CustomUser']"})
+        },
+        u'bars.station': {
+            'Meta': {'object_name': 'Station'},
+            'city': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'district': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'latitude': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'lines_numbers': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'longitude': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'type': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         },
         u'bars.theme': {
             'Meta': {'object_name': 'Theme'},
@@ -93,64 +126,9 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'drinks.drink': {
-            'Meta': {'object_name': 'Drink'},
-            'creator': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['users.CustomUser']", 'null': 'True', 'blank': 'True'}),
-            'description': ('django.db.models.fields.CharField', [], {'max_length': '3000'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '200'}),
-            'subcategory': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['drinks.DrinkSubCategory']"})
-        },
-        u'drinks.drinkbar': {
-            'Meta': {'object_name': 'DrinkBar'},
-            'approval': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            'bar': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['bars.Bar']"}),
-            'disapproval': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            'drink': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['drinks.Drink']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'price': ('django.db.models.fields.FloatField', [], {}),
-            'price_happy_hour': ('django.db.models.fields.FloatField', [], {})
-        },
-        u'drinks.drinkcategory': {
-            'Meta': {'object_name': 'DrinkCategory'},
-            'description': ('django.db.models.fields.CharField', [], {'max_length': '2000'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '200'})
-        },
-        u'drinks.drinksubcategory': {
-            'Meta': {'object_name': 'DrinkSubCategory'},
-            'category': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['drinks.DrinkCategory']"}),
-            'description': ('django.db.models.fields.CharField', [], {'max_length': '2000'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '200'})
-        },
-        u'ranks.pricebar': {
-            'Meta': {'object_name': 'PriceBar'},
-            'bar': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['bars.Bar']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'price': ('django.db.models.fields.FloatField', [], {}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['users.CustomUser']"})
-        },
-        u'ranks.rankbar': {
-            'Meta': {'object_name': 'RankBar'},
-            'bar': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['bars.Bar']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'rank': ('django.db.models.fields.FloatField', [], {}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['users.CustomUser']"})
-        },
-        u'ranks.rankdrink': {
-            'Meta': {'object_name': 'RankDrink'},
-            'drink_bar': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['drinks.DrinkBar']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'rank': ('django.db.models.fields.FloatField', [], {}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['users.CustomUser']"})
-        },
         u'users.customuser': {
             'Meta': {'object_name': 'CustomUser'},
-            'avatar_url': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
+            'avatar': ('django.db.models.fields.files.ImageField', [], {'default': "'avatars/avatar_placeholder.jpg'", 'max_length': '100'}),
             'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
@@ -169,4 +147,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['ranks']
+    complete_apps = ['bars']

@@ -6,7 +6,7 @@ from bars.views import *
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^fiche_bar/(?P<slug>[\w-]+)/$', fiche_bar, name='fiche_bar'),
+    url(r'^bar/(?P<slug>[\w-]+)/$', fiche_bar, name='fiche_bar'),
     url(r'^theme/(?P<slug>[\w-]+)/$', bars_for_theme, name='bars_for_theme'),
     # url(r'^movies', movies, name='movies'),
     # url(r'^film/(?P<slug>[\w-]+)/$', movie_details, name='movie_details'),

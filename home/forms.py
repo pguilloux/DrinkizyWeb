@@ -2,6 +2,8 @@
 from django import forms
 from drinks.models import *
 from django.forms.widgets import *
+
+from bars.models import *
 import logging, operator
 
  

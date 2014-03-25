@@ -23,8 +23,10 @@
 	</div>
 	<div class="media-body">
 		<h4 class="media-heading">
-			<span>9,4</span>
+			{% with rank=onebar.getAverageRank %}
+			<span><strong>{% if rank > 0 %}{{ rank|floatformat:1 }}{% else %} - {% endif %}</strong> /10</span>
 			<a href="{% url 'bars.views.fiche_bar' onebar.slug %}">{{ onebar.name }}</a>
+			{% endwith %}
 		</h4>
 		<h6>
 			{% for theme in onebar.themes.all %}
@@ -34,11 +36,13 @@
                     <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }},</a>
                 {% endif %}
 			{% endfor %}
+			{% with average_price=onebar.getAveragePrice %}
 			<small>
-				<span class="glyphicon glyphicon glyphicon-euro fullEuros"></span> 
-				<span class="glyphicon glyphicon glyphicon-euro"></span> 
-				<span class="glyphicon glyphicon glyphicon-euro"></span>
+				<span class="glyphicon glyphicon glyphicon-euro {% if average_price > 0.5 %}fullEuros{% endif %}"></span> 
+				<span class="glyphicon glyphicon glyphicon-euro {% if average_price > 1.5 %}fullEuros{% endif %}"></span> 
+				<span class="glyphicon glyphicon glyphicon-euro {% if average_price > 2.5 %}fullEuros{% endif %}"></span>
 			</small>
+			{% endwith %}
 		</h6>
 		<h6><span class="glyphicon glyphicon glyphicon-map-marker"></span>{{ onebar.address }}</h6>
 		<div class="distanceXsSm hidden-md hidden-lg">

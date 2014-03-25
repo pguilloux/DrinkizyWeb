@@ -1,5 +1,6 @@
 from django.db import models
 from bars.models import *
+from django.core.validators import *
 
 class Drink(models.Model):
 	slug = models.SlugField(max_length=200)
@@ -49,3 +50,14 @@ class DrinkBar(models.Model):
 
 	def __unicode__(self):
 		return "%s %s %s" % (self.drink.name, self.bar.name, self.price)
+
+
+class RankDrink(models.Model):
+
+	drink_bar = models.ForeignKey('DrinkBar')
+	user = models.ForeignKey('users.CustomUser')
+
+	rank = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
+
+	def __unicode__(self):
+		return "%f %s" % (self.rank, self.user.pseudo)

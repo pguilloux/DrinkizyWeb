@@ -6,15 +6,18 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title></title>
+		<title>{% block title %}Drinkizy{% endblock %}</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
 
 		{% load staticfiles %}
+		<link rel="shortcut icon" type="image/x-icon" href={% static "medias/img_design/drinkizy.ico" %}>
 		<link href={% static "css/bootstrap.min.css" %} rel="stylesheet">   
 		<link href={% static "css/bootstrap-theme.min.css" %} rel="stylesheet">   
 		<link href={% static "css/ui-lightness/jquery-ui-1.10.4.custom.css" %} rel="stylesheet">
 		<link href={% static "css/style.css" %} rel="stylesheet">  
+
+		<link rel="stylesheet" href={% static "css/colorbox.css" %}>
 
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
 
@@ -43,11 +46,26 @@
 				<div class="navbar-collapse collapse">
 					{% load search_tags %}
 						{% get_search_bar %}
+
+						<div class="btn-group btn-group-navbar nav navbar-nav theme-header">
+						  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						   <span class="caret"></span> Thèmes
+						  </button>
+						  <ul class="dropdown-menu" role="menu">
+						  	{% load bar_tags %}
+							{% get_themes as themes %}
+							{% for theme in themes|dictsort:"name" %}
+			                    <li><a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a></li>
+			                {% endfor %}
+						  </ul>
+						</div>
 					{% if user.is_authenticated %}   
 						{% comment %} <ul class="nav navbar-nav navbar-right">
 							<li><a href="{% url 'portal' %}"><button type="button" class="btn btn-primary">Mon Compte</button></a></li>
 							<li><a href="{% url 'logout_view' %}"><button type="button" class="btn btn-primary">Déconnexion</button></a></li>
 						</ul> {% endcomment %}
+
+						
 
 						<div class="btn-group btn-group-navbar nav navbar-nav navbar-right">
 						  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -74,7 +92,6 @@
 		</div>
 
 		<div class="site-wrapper">
-		 
 
 			{% block content %}{% endblock content %}
 
@@ -83,15 +100,15 @@
 
 		<div id="footer">
 			<div class="container">
-
+				
 				<img src={% static "medias/img_design/drinkizy_icon.png" %} alt="Drinkizy icon"/>
 				<ul class="nav nav-pills">
-					<li class=""><a href="#">A propos</a></li>
-					<li><a href="#">Contact</a></li>
+					<li class=""><a href="{% url "home.views.apropos" %}">A propos</a></li>
+					<li><a href="{% url "home.views.contact" %}">Contact</a></li>
 					<li><a href="{% url "home.views.faq" %}">FAQ</a></li>
-					<li><a href="#">Plan du site</a></li>
+					<!--li><a href="#">Plan du site</a></li-->
 					<li><a href="{% url "home.views.mentions" %}">Mentions légales</a></li>
-					<li><a href="#">Espace pro</a></li>
+					<li><a href="{% url "home.views.pro" %}">Espace pro</a></li>
 				</ul>
 
 				<p>Drinkizy © 2014 - L'abus d'alcool est dangereux pour la santé</p>

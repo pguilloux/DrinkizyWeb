@@ -12,6 +12,8 @@ from haystack.query import SearchQuerySet, EmptySearchQuerySet
 
 from bars.models import *
 from drinks.models import *
+from users.api import *
+from django.contrib.comments.models import Comment
 
 import simplejson, urllib
 
@@ -27,6 +29,25 @@ class ThemeResource(ModelResource):
 	class Meta:
 		queryset = Theme.objects.all()
 		resource_name = 'theme'
+		filtering = {
+			'slug': ALL_WITH_RELATIONS,
+			# 'created': ['exact', 'range', 'gt', 'gte', 'lt', 'lte'],
+			# 'distance': ALL_WITH_RELATIONS,
+		}
+
+
+class CommentResource(ModelResource):
+	user = fields.ToOneField(CustomUserResource, 'user', full=True)
+
+	class Meta:
+		queryset = Comment.objects.all()
+		resource_name = 'comment'
+		filtering = {
+			'object_pk': ALL_WITH_RELATIONS,
+			# 'user': ALL_WITH_RELATIONS,
+			# 'created': ['exact', 'range', 'gt', 'gte', 'lt', 'lte'],
+			# 'distance': ALL_WITH_RELATIONS,
+		}
 
 
 class BarResource(ModelResource):
@@ -35,26 +56,32 @@ class BarResource(ModelResource):
 
 	has_distance = 0
 	distances = dict()
+	ranks = dict()
 
 	class Meta:
 		queryset = Bar.objects.all()
 		resource_name = 'bar'
 		filtering = {
 			'slug': ALL_WITH_RELATIONS,
-			# 'user': ALL_WITH_RELATIONS,
+			'themes': ALL_WITH_RELATIONS,
 			# 'created': ['exact', 'range', 'gt', 'gte', 'lt', 'lte'],
 			# 'distance': ALL_WITH_RELATIONS,
 		}
 
 	def dehydrate(self, bundle):
-		
+
+		bar = bundle.obj
+		if bar.getRanksNumber() == 0:
+			bundle.data['rank'] = -1
+		else:
+			bundle.data['rank'] = bar.getAverageRank()
+
 		if self.has_distance == 1:
 			bundle.data['distance'] = self.distances[bundle.data['slug']]
 
 		return bundle
 
 	def apply_sorting(self, objects, options=None):
-
 
 		if options and "distance" in options and "long" in options and "lat" in options:
 			self.has_distance = 1
