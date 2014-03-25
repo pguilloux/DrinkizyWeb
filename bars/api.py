@@ -82,12 +82,6 @@ class BarResource(ModelResource):
 		return bundle
 
 	def apply_sorting(self, objects, options=None):
-		logger.warning("tata")
-		for bar in Bar.objects.all():
-			if bar.getRanksNumber() == 0:
-				self.ranks[bar.slug] = -1
-			else:
-				self.ranks[bar.slug] = bar.getAverageRank()
 
 		if options and "distance" in options and "long" in options and "lat" in options:
 			self.has_distance = 1
