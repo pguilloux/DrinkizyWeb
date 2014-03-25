@@ -287,7 +287,9 @@ body {padding-top: 50px; font-family: Ubuntu;}
 #bar-drinkMenu h3 { padding-left: 15px; font-size: 20px;}
 #bar-drinkMenu .panel { border: none; box-shadow: none; }
 #bar-drinkMenu .panel-heading {background-color: transparent; background-image: none; padding: 4px 15px; }
-#bar-drinkMenu .panel-title a:hover { color: #999; text-decoration: none;}
+#bar-drinkMenu .panel-title a:hover,
+#bar-drinkMenu .panel-title a:active,
+#bar-drinkMenu .panel-title a:focus { color: #999; text-decoration: none;}
 #bar-drinkMenu .panel-collapse { background-color: #f5F5F5; }
 #bar-drinkMenu .panel-title,
 #bar-drinkMenu .panel-title strong { font-weight: 300 }
