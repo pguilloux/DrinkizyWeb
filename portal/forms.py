@@ -6,18 +6,6 @@ from django.http import HttpResponse
 from django.core.files.images import get_image_dimensions
 
 
-DIFFICULTY_CHOICES=(
-    ('facile', 'facile'),
-    ('moyen', 'moyen'),
-    ('difficile', 'difficile'),
-)
-
-PRICE_CHOICES=(
-    (1, 'eco'),
-    (2, 'abordable'),
-    (3, 'cher'),
-    (4, 'cresus'),
-)
 
 class ModifyProfileForm(forms.Form):
 
@@ -29,12 +17,12 @@ class ModifyProfileForm(forms.Form):
         try:
             w, h = get_image_dimensions(avatar)
 
-            #validate dimensions
-            max_width = max_height = 300
-            # if w != max_width or h != max_height:
+            # #validate dimensions
+            # max_width = max_height = 500
+            # if w > max_width or h > max_height:
             #     raise forms.ValidationError(
             #         u'Please use an image that is '
-            #          '%s x %s pixels.' % (max_width, max_height))
+            #          '%s x %s pixels at maximum.' % (max_width, max_height))
 
             #validate content type
             main, sub = avatar.content_type.split('/')
@@ -43,7 +31,7 @@ class ModifyProfileForm(forms.Form):
                     'GIF or PNG image.')
 
             #validate file size
-            if len(avatar) > (20 * 1024):
+            if len(avatar) > (200 * 1024):
                 raise forms.ValidationError(
                     u'Avatar file size may not exceed 20k.')
 
