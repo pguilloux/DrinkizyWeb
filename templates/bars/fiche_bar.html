@@ -296,7 +296,7 @@
 										<div class="media-body">
 											<h4 class="media-heading">
 												{% with average_rank=bar.getAverageRank %}
-												<span>{% if average_rank > 0 %}{{ average_rank|floatformat:1 }}{% else %} - {% endif %}</span>
+												<span class="{% if average_rank < 6 %}markBackGrey{%else%}markBackOrange{%endif%}">{% if average_rank > 0 %}{{ average_rank|floatformat:1 }}{% else %} - {% endif %}</span>
 												{% endwith %}
 												<a href="{% url 'bars.views.fiche_bar' onebar.slug %}">{{ onebar.name }}</a>
 											</h4>

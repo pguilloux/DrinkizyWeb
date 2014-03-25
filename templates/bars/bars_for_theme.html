@@ -25,9 +25,11 @@
                     {% for bar in bars_for_theme|dictsort:"name" %}
                         <div class="col-xs-6 col-sm-3">
                                 <div class="media media-grey">
-                                    <span class="pull-left">
-                                        9.9
-                                    </span>
+                                    {% with rank=bar.getAverageRank %}
+                                        <span class="pull-left {% if rank < 6 %}markBackGrey{%else%}markBackOrange{%endif%}">
+                                            {% if rank > 0 %}{{ rank|floatformat:1 }}{% else %} - {% endif %}</strong>
+                                        </span>
+                                    {% endwith %}
                                     <div class="media-body">
                                         <h4 class="media-heading">
                                             <a href="{% url 'bars.views.fiche_bar' bar.slug %}">{{ bar.name }}</a>

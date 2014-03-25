@@ -14,9 +14,9 @@
 		{% if bar_distances %}
 			{% with distance=bar_distances|keyvalue:onebar.name %}
 				{% if distance < 1000 %}
-					<p class="pDistance"><span class="distanceBefore"></span><span class="distance">{{ distance }} m</span><span class="distanceAfter"></span></p>
+					<p class="pDistance"><span class="distanceBefore"></span><span class="distanceNumber">{{ distance }} m</span><span class="distanceAfter"></span></p>
 				{% else %}
-					<h3 class="distance">{{ distance|divide:1000 }} km</h3>
+					<p class="distance"><span class="distanceBefore"></span><span class="distanceNumber">{{ distance|divide:1000 }} km</span><span class="distanceAfter"></span></p>
 				{% endif %}
 			{% endwith %}
 		{% endif %}
@@ -24,7 +24,7 @@
 	<div class="media-body">
 		<h4 class="media-heading">
 			{% with rank=onebar.getAverageRank %}
-			<span><strong>{% if rank > 0 %}{{ rank|floatformat:1 }}{% else %} - {% endif %}</strong> /10</span>
+			<span class="{% if rank < 6 %}markBackGrey{%else%}markBackOrange{%endif%}"><strong>{% if rank > 0 %}{{ rank|floatformat:1 }}{% else %} - {% endif %}</strong></span>
 			<a href="{% url 'bars.views.fiche_bar' onebar.slug %}">{{ onebar.name }}</a>
 			{% endwith %}
 		</h4>

@@ -51,7 +51,8 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .btn-primary-grey { color: #000; background: rgba(0, 0, 0, 0.03); }
 .btn-primary-grey:hover, .btn-primary-grey:focus { color: #fff; background: #F3C319;}
 
-
+.markBackGrey { background-color: #999999 }
+.markBackOrange {background-color: #F3C319;}
 
 /*
 *****
@@ -126,7 +127,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .list-bar-band .media {text-align: left; height: 50px; }
 .list-bar-band .media.media-grey { background: #F2F2F2; }
 .list-bar-band .media.media-white { background: #fff; }
-.list-bar-band .media .pull-left { background: #F3C319; height: 100%; padding: 5px; line-height: 40px; margin-right: 3px; color: #fff;}
+.list-bar-band .media .pull-left { height: 100%; padding: 5px; line-height: 40px; margin-right: 3px; color: #fff;}
 .list-bar-band .media-body h4 { margin: 4px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .list-bar-band .media-body h4 a { color: #F3C319;}
 .list-bar-band .media-body h6 {overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin: 5px 0; color: #333333;}
@@ -200,7 +201,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .content-resultats-list ol { padding-left: 0; margin-top: 30px}
 .content-resultats-list ol li { list-style-type: none; }
 .content-resultats-list .media-heading a { color: #000;}
-.content-resultats-list .media-heading span { background: #F3C319; color: #fff; font-size: 12px; padding: 2px; font-weight: 300; float: left; margin-right: 5px;}
+.content-resultats-list .media-heading span { color: #fff; font-size: 12px; padding: 2px; font-weight: 300; float: left; margin-right: 5px;}
 .content-resultats-list h6 a { color: #999;}
 .glyphicon-euro { color: #999; font-size: 10px; font-weight: 300}
 .fullEuros { color: #222;}
@@ -211,10 +212,14 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .content-resultats-list-list .dl-horizontal dt { text-align: left; width: auto;}
 .content-resultats-list-list .dl-horizontal dd { text-align: right; margin-left: 0;}
 .content-resultats-list-list .dl-horizontal a { font-size: 13px;}
-.content-resultats-list-list .media .pDistance {margin-top: 10px; width: 100%;}
-.content-resultats-list-list .media .pDistance .distanceBefore {background-image: url("../medias/img/drinkizy_sprite.png"); background-position: -171px -58px; content: ""; display: block; float: left; height: 23px; margin-right: 1px; width: 21px;}
-.content-resultats-list-list .media .pDistance .distance {border-bottom: 2px solid #F1B219; float: left; margin-top: -10px; font-size: 11px; padding: 3px 1px}
-.content-resultats-list-list .media .pDistance .distanceAfter {background-image: url("../medias/img/drinkizy_sprite.png"); background-position: -74px -57px; content: ""; display: block; float: left; height: 23px; margin-left: 0px; width: 15px;}
+.content-resultats-list-list .media .pDistance,
+.content-resultats-list-list .media .distance {margin-top: 10px; width: 100%;}
+.content-resultats-list-list .media .pDistance .distanceBefore,
+.content-resultats-list-list .media .distance .distanceBefore {background-image: url("../medias/img/drinkizy_sprite.png"); background-position: -171px -58px; content: ""; display: block; float: left; height: 23px; margin-right: 1px; width: 21px;}
+.content-resultats-list-list .media .pDistance .distanceNumber,
+.content-resultats-list-list .media .distance .distanceNumber {border-bottom: 2px solid #F1B219; float: left; margin-top: -10px; font-size: 11px; padding: 3px 1px}
+.content-resultats-list-list .media .pDistance .distanceAfter,
+.content-resultats-list-list .media .distance .distanceAfter {background-image: url("../medias/img/drinkizy_sprite.png"); background-position: -74px -57px; content: ""; display: block; float: left; height: 23px; margin-left: 0px; width: 15px;}
 .content-resultats-list-list .distanceXsSm {display: inline-block;}
 .marginLess { margin-left: -91.7%; }
 .noWidth { width: 0; padding: 0;}
@@ -253,8 +258,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 
 .fiche-bar-left-container .markShare h4 {margin: 0; font-size: 16px}
 .fiche-bar-left-container .markShare div:first-child span {  color: rgba(255, 255, 255, 0.5); padding: 5px; font-size: 20px; font-weight: 500; float: left; }
-.fiche-bar-left-container .markShare span.markBackGrey { background-color: #999999 }
-.fiche-bar-left-container .markShare span.markBackOrange {background-color: #F3C319;}
+
 .fiche-bar-left-container .markShare div:first-child span strong { color: rgba(255, 255, 255, 1); font-weight: 500; }
 .fiche-bar-left-container .markShare div:first-child h4,
 .fiche-bar-left-container .markShare div:first-child a { margin-left: 10px; display: inline-block; width: 65%}
