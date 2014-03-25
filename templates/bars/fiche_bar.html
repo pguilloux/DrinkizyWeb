@@ -81,38 +81,24 @@
 							<h4>{{ bar.getRanksNumber }} personne{% if bar.getRanksNumber > 1 %}s ont {% else %} a {% endif %}noté ce bar</h4>
 							<a data-toggle="collapse" data-parent="#accordionRank" href="#collapse1"id="addNoteButton">Note le à ton tour</a>
 
-
-							{% comment %}{{current_rank_of_user}} {% endcomment %}
 							<div id="collapse1" class="panel-collapse collapse text-center">
-							    <tr>
-							        <form method="POST"> 
-							            {% csrf_token %} 
-							            <h5>Note le bar entre 0 et 10</h5>
-							            {{ rank_form.rank }}
-							            <input type="submit" value="Voter" class="btn btn-primary btn-primary-orange btn-sm">
-							        </form>
-							    </tr>
-							</div>
-
-							<!--div class="panel-group" id="accordion">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title">
-												<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-													<strong class="">gthyj</strong>
-												</a>
-											</h4>
-										</div>
-										<div id="collapse1" class="panel-collapse collapse">
-											<div class="panel-body">
-												<div>
-													<h4> € <span class="label label-default">Happy Hour</span></h4>
-												</div>
-											
-											</div>
-										</div>
-									</div>
-							</div-->
+  							    <tr>
+									{% if user.is_authenticated %}
+										
+	  							        <form method="POST"> 
+	  							            {% csrf_token %} 
+	 							            <h5>Note:</h5>
+								            <h5>Note le bar entre 0 et 10</h5>
+	  							            {{ rank_form.rank }}
+								            <input type="submit" value="Voter" class="btn btn-primary btn-primary-orange btn-sm">
+	  							        </form>
+									{% else %}
+									    <a class="connexionAddMark btn btn-primary btn-primary-orange" href="{% url 'django.contrib.auth.views.login' %}">Connectez-vous</a>
+									{% endif %}
+  							    </tr>
+  							</div>
+						
+							
 						</div>
 						<div class="col-sm-4">
 							<h4>Partager ce bar</h4>
