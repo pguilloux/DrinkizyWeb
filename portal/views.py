@@ -4,6 +4,12 @@ from users.models import CustomUser
 from portal.forms import ModifyProfileForm
 from django.contrib.auth.decorators import login_required
 
+import os
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.conf import settings
+from sorl.thumbnail import delete
+
 @login_required
 def portal_main_page(request):
 
@@ -12,8 +18,22 @@ def portal_main_page(request):
 		profile_form = ModifyProfileForm(request.POST, request.FILES) # A form bound to the POST data
 
 		if profile_form.is_valid(): # All validation rules pass
-			avatar=profile_form.cleaned_data['avatar'], 
-			CustomUser.objects.filter(pk=user.pk).update(avatar=avatar)
+			avatar=profile_form.cleaned_data['avatar']
+
+			main, sub = avatar.content_type.split('/')
+
+			tmp_file = os.path.join('avatars/', user.username+'.'+sub)
+
+			if(os.path.isfile(os.path.join(settings.MEDIA_ROOT, tmp_file))):
+				os.remove(os.path.join(settings.MEDIA_ROOT, tmp_file))
+				delete(tmp_file)
+
+			path = default_storage.save(tmp_file, ContentFile(avatar.read()))
+
+
+			CustomUser.objects.filter(pk=user.pk).update(avatar=path)
+
+			
 
 	else:
 		profile_form = ModifyProfileForm() # An unbound form
