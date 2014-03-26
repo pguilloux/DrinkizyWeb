@@ -46,7 +46,7 @@
 			</div>
 		</div>
 
-		<div class="grey-band site-wrapper-inner footerPage apropos">
+		<div class="grey-band site-wrapper-inner footerPage reseauxContact apropos">
 			<div class="cover-container">
 				<h4>Réseaux sociaux (bientôt)</h4>
 				<div class="text-center clearfix">
@@ -74,6 +74,8 @@
 					setInterval(function(){ 
 						btn.button('reset'); 
 						$('.errorMessageContact').css('display', 'inline');
+						$('.contact input').val("");
+						$('.contact textarea').val("");
 					},1000); 
 					e.preventDefault();
 				     
