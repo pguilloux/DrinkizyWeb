@@ -195,7 +195,7 @@
 								</span>
 								<div class="media-body">
 									{{ comment.comment }}
-									<h5>par <strong>{{ comment.user_name }}</strong>, {{ comment.submit_date }}</h5>
+									<h5>par <strong>{{ comment.user_name }}</strong>, {{ comment.submit_date|date:"d M Y" }}</h5>
 								</div>
 							</li>
 						{% endfor %}

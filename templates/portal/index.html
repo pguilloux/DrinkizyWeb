@@ -21,11 +21,7 @@
 							{% endthumbnail %}
 						</span>
 
-						<form method="POST" action="." enctype="multipart/form-data">{% csrf_token %}
-							{{profile_form}}
-							<input type="submit" value="Actualiser" class="submitSearch-result easeInOut300ms">
-							<div class="clearfix"></div>
-						</form>
+						
 
 
 
@@ -66,43 +62,13 @@
 								<div class="media-body">
 									{{ comment.comment }}
 									
-									<h5>dans <strong><a href="{% url 'bars.views.fiche_bar' bar.slug %}">{{ bar.name }}</a></strong>, {{ comment.submit_date }}</h5>
+									<h5>dans <strong><a href="{% url 'bars.views.fiche_bar' bar.slug %}">{{ bar.name }}</a></strong>, {{ comment.submit_date|date:"d M Y" }}</h5>
 								</div>
 							</li>
 						{% endfor %}
 					</ul>
 				</div>
 				
-
-				{% comment %}
-				{% load comments %}
-				<div class="fiche-bar-left-container fiche-bar-comment">
-
-					{% get_comment_list for bar as comment_list %}
-					{% get_comment_count for bar as comment_count %}
-					<p class="rankFix">
-						<strong>{{ comment_count }} commentaire{% if comment_count > 1 %}s{% endif %}</strong>
-					</p>
-
-					<ul>
-						{% for comment in comment_list reversed %}
-							<li class="media">
-								<span class="pull-left">
-									{% load thumbnail %}
-										{% thumbnail comment.user.avatar "50x50" crop="center" as im %}
-											<img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-										{% endthumbnail %}
-								</span>
-								<div class="media-body">
-									{{ comment.comment }}
-									<h5>par <strong>{{ comment.user_name }}</strong>, {{ comment.submit_date }}</h5>
-								</div>
-							</li>
-						{% endfor %}
-					</ul>
-				</div>
-				{% endcomment %}
-
 			</div>
 			<div class="content-secondary col-sm-4">	
 				<a href="/logout/" title="" class="btn btn-primary btn-primary-orange"><span class="glyphicon glyphicon-remove"></span> Déconnexion</a>
@@ -122,7 +88,12 @@
 								<dd>{{user.email}}</dd>
 							{% endif %}
 						</dl>
-
+					<h2>Avatar</h2>
+					<form method="POST" action="." enctype="multipart/form-data" class="text-right">{% csrf_token %}
+						{{profile_form.avatar}}
+						<input type="submit" value="Actualiser" class="goAddAvatar submitSearch-result easeInOut300ms btn btn-primary btn-primary-orange">
+						<div class="clearfix"></div>
+					</form>
 				</div>
 
 				

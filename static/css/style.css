@@ -332,6 +332,8 @@ body {padding-top: 50px; font-family: Ubuntu;}
 #profil-info dt { width: auto;}
 #profil-info dd { margin-left: 0; padding-left: 50px;}
 
+#id_avatar { margin: 10px 0;}
+#profil-info .goAddAvatar { margin-right: 85px}
 /*
 *****
 	Footer
