@@ -38,7 +38,8 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-primary btn-primary-orange btn-submit">Envoyer</button>
+							<button type="submit" id="sendMessageContact" data-loading-text="Envoi en cours ..." class="btn btn-primary btn-primary-orange btn-submit">Envoyer</button>
+							<p class="text-success errorMessageContact">Votre message a bien été envoyé.</p>
 						</div>
 					</div>
 				</form>
@@ -57,3 +58,28 @@
 		
 
 {% endblock content %}
+
+{% block scriptjs %}
+	
+		<script>
+			$(document).ready(function() {
+				/*$('#sendMessageContact').click(function(e){
+					$('.errorMessageContact').css('display', 'inline');
+					e.preventDefault();
+				});*/
+				 $('#sendMessageContact').click(function (e) {
+				    var btn = $(this);
+				    btn.button('loading');
+
+					setInterval(function(){ 
+						btn.button('reset'); 
+						$('.errorMessageContact').css('display', 'inline');
+					},1000); 
+					e.preventDefault();
+				     
+				  });
+
+			});
+		</script>
+
+{% endblock scriptjs %}
