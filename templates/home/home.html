@@ -75,84 +75,57 @@
 			</div>
 		</div>
 
-		<div class="grey-band list-bar-band site-wrapper-inner">
+		<div class="white-band list-bar-band site-wrapper-inner">
 			<div class="cover-container">
 				<div class="inner cover">
-					<h1 class="cover-heading">"Place to be" à Paris</h1>
+					<h1 class="cover-heading">Bars les moins chers de Paris</h1>
 
-						<div class="row">
+					<div class="row">
+						{% for cheap_bar_and_price in cheap_bars %}
+							{% with cheap_bar=cheap_bar_and_price.0 %}
+							{% with cheap_bar_price=cheap_bar_and_price.1 %}
+							{% with cheap_bar_rank=cheap_bar.getAverageRank %}
 							<div class="col-xs-6 col-sm-3">
-								<div class="media media-white">
-									<span class="pull-left" href="#">
-										9.9
+								<div class="media media-grey">
+
+									<span class="pull-left {% if cheap_bar_rank < 6 %}markBackGrey{%else%}markBackOrange{%endif%}">
+										{% if cheap_bar_rank > 0 %}{{ cheap_bar_rank|floatformat:1 }}{% else %} - {% endif %}
 									</span>
 									<div class="media-body">
 										<h4 class="media-heading">
-											<a href="">Guinness Tavern</a>
+											<a href="{% url 'bars.views.fiche_bar' cheap_bar.slug %}">{{ cheap_bar.name }}</a>
 										</h4>
-										<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
+
+										<h6>
+											{% for theme in cheap_bar.themes.all %}
+								                {% if forloop.last %}
+								                    <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }}</a>
+								                {% else %}
+								                    <a href="{% url 'bars.views.bars_for_theme' theme.slug %}">{{ theme.name }},</a>
+								                {% endif %}
+											{% endfor %} 
+
+											<small>{{ cheap_bar.address }}</small></h>
 									</div>
 								</div>
 								<div class="thumbnail">
-									<img src="img/hannongbar_orange.jpg" alt="...">
+									{% load thumbnail %}
+									{% thumbnail cheap_bar.getImgUrlList.0 "270x140" crop="center" as im %}
+									<a href="{% url 'bars.views.fiche_bar' cheap_bar.slug %}">
+									    <img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+									</a>
+									{% endthumbnail %}
 								</div>
 
 							</div>
-							<div class="col-xs-6 col-sm-3">
-								<div class="media media-white">
-									<span class="pull-left" href="#">
-										9.9
-									</span>
-									<div class="media-body">
-										<h4 class="media-heading">
-											<a href="">Guinness Tavern</a>
-										</h4>
-										<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
-									</div>
-								</div>
-								<div class="thumbnail">
-									<img src="img/hannongbar_orange.jpg" alt="...">
-								</div>
-							</div>
-
-							<!-- Add the extra clearfix for only the required viewport -->
-							<div class="clearfix visible-xs"></div>
-
-							<div class="col-xs-6 col-sm-3">
-								<div class="media media-white">
-									<span class="pull-left" href="#">
-										9.9
-									</span>
-									<div class="media-body">
-										<h4 class="media-heading">
-											<a href="">Guinness Tavern</a>
-										</h4>
-										<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
-									</div>
-								</div>
-								<div class="thumbnail">
-									<img src="img/hannongbar_orange.jpg" alt="...">
-								</div>
-							</div>
-							<div class="col-xs-6 col-sm-3">
-								<div class="media media-white">
-									<span class="pull-left" href="#">
-										9.9
-									</span>
-									<div class="media-body">
-										<h4 class="media-heading">
-											<a href="">Guinness Tavern</a>
-										</h4>
-										<h6><a href="">Pub</a>, <a href="">Concerts</a> <small>31 rue des Lambards 75001 Paris</small></h>
-									</div>
-								</div>
-								<div class="thumbnail">
-									<img src="img/hannongbar_orange.jpg" alt="...">
-								</div>
-							</div>
-						</div>
+							{% endwith %}
+							{% endwith %}
+							{% endwith %}
+						{% endfor %}
+						
+					</div>
+					
 					<a href="search/?q=&address=" class="btn btn-link-underline btn-link-underline-orange">Voir plus de bars</a>
-
 				</div>
 			</div>
 		</div>

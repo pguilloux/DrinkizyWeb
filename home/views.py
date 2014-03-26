@@ -25,8 +25,14 @@ def home(request):
 
 	ordered_bars_ranks = sorted(bars_ranks, key=itemgetter(1), reverse=True)[:4]
 
+	bars_cheap = []
+	for bar in bars:
+		bars_cheap.append((bar, bar.getAveragePrice()))
 
-	return render_to_response('home/home.html', {'famous_bars': ordered_bars_ranks}, context_instance=RequestContext(request))
+	ordered_bars_cheap = sorted(bars_cheap, key=itemgetter(1))[:4]
+
+
+	return render_to_response('home/home.html', {'famous_bars': ordered_bars_ranks, 'cheap_bars': ordered_bars_cheap}, context_instance=RequestContext(request))
 
 def faq(request):
 	return render_to_response('home/faq.html', context_instance=RequestContext(request))
