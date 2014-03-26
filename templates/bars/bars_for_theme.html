@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% block title %}Thèmes{% endblock %}
+{% block metaDescrption %}La page thème présente les bars classés par thème. Drinkizy comprend de nombreux thème : {% for theme in themes|dictsort:"name" %}{{ theme.name }}, {% endfor %}{% endblock %}
 
 {% block content %}
     {% load staticfiles %}

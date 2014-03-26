@@ -1,5 +1,6 @@
 {% extends "layout/base.html" %}
 {% block title %}FAQ{% endblock %}
+{% block metaDescrption %}La page Foire aux Questions réponds aux questions récurrentes et pouvant être utile pour tous les utilisateurs de Drinkizy.{% endblock %}
 
 {% block content %}
 	{% load staticfiles %}
@@ -153,7 +154,12 @@
 						</div>
 						<div id="4-1" class="panel-collapse collapse">
 							<div class="panel-body">
-							Drinkizy est un site Internet consacré à la recherche de bars dans Paris, à l’aide de filtres de recherche préalablement définis (boissons, localisation dans Paris etc.). Nous vous proposons un moteur de recherche fluide, basé sur une base de données remplie par nos soins et avec l’aide des internautes. Le site Internet a été décliné.
+							Plusieurs possibilités s’offrent à vous :
+							<ul>
+								<li>Via la barre de recherche qui vous dirigera vers une page de résultats qui vous permettra d’affiner votre recherche selon vos envies, votre localisation …</li>
+								<li>Via le menu “Thèmes” qui vous proposera les bars classés par thème.</li>
+							</ul>
+
 							</div>
 						</div>
 					</div>
@@ -176,7 +182,7 @@
 						</div>
 						<div id="5-1" class="panel-collapse collapse ">
 							<div class="panel-body">
-							Drinkizy est un site Internet consacré à la recherche de bars dans Paris, à l’aide de filtres de recherche préalablement définis (boissons, localisation dans Paris etc.). Nous vous proposons un moteur de recherche fluide, basé sur une base de données remplie par nos soins et avec l’aide des internautes. Le site Internet a été décliné.
+							Vous pourrez très bientôt contribué à l’évolution du site en ajoutant vous même les bars et boissons que vous aimez et que vous voulez partager avec la communauté Drinkizy.
 							</div>
 						</div>
 					</div>
@@ -185,13 +191,13 @@
 						<div class="panel-heading">
 							<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#5-2">
-								Je veux proposer un bar. Comment faire ?
+							Je veux proposer un bar. Comment faire ?
 							</a>
 							</h4>
 						</div>
 						<div id="5-2" class="panel-collapse collapse ">
 							<div class="panel-body">
-							Drinkizy est un site Internet consacré à la recherche de bars dans Paris, à l’aide de filtres de recherche préalablement définis (boissons, localisation dans Paris etc.). Nous vous proposons un moteur de recherche fluide, basé sur une base de données remplie par nos soins et avec l’aide des internautes. Le site Internet a été décliné.
+							La fonctionnalité n’est pour l’instant pas possible car nous sommes en développement. 
 							</div>
 						</div>
 					</div>
@@ -200,13 +206,13 @@
 						<div class="panel-heading">
 							<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#5-3">
-								Je veux proposer une boisson. Comment faire ?
+							Je veux proposer une boisson. Comment faire ?
 							</a>
 							</h4>
 						</div>
 						<div id="5-3" class="panel-collapse collapse ">
 							<div class="panel-body">
-							Drinkizy est un site Internet consacré à la recherche de bars dans Paris, à l’aide de filtres de recherche préalablement définis (boissons, localisation dans Paris etc.). Nous vous proposons un moteur de recherche fluide, basé sur une base de données remplie par nos soins et avec l’aide des internautes. Le site Internet a été décliné.
+							La fonctionnalité n’est pour l’instant pas possible car nous sommes en développement. Mais d’ici quelques mois vous pourrez le faire sur n’importe quel bar du site.
 							</div>
 						</div>
 					</div>
@@ -218,18 +224,32 @@
 			<div class="cover-container">
 
 				<div class="panel-group" id="accordion">
-					<h3>Géolocalisation</h3>
+					<h3>Données</h3>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#6-1">
-								Pourquoi se géolocaliser ?
+								Que faites vous de nos données personnelles ?
 							</a>
 							</h4>
 						</div>
 						<div id="6-1" class="panel-collapse collapse">
 							<div class="panel-body">
-							Pour permettre à Drinkizy de trouver rapidement les bars qui se trouve autour de toi.
+							Elles sont stockées dans nos bases de données pour un usage exclusivement sur Drinkizy. Elle ne sont en aucun cas partagées avec un autre site.
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#6-2">
+								Pourquoi se géolocaliser ?
+							</a>
+							</h4>
+						</div>
+						<div id="6-2" class="panel-collapse collapse">
+							<div class="panel-body">
+							La géolocalisation permet de trouver rapidement les bars près de chez vous et d’ainsi vous proposez un service adapté à vous.
 							</div>
 						</div>
 					</div>
@@ -253,7 +273,7 @@
 						</div>
 						<div id="7-1" class="panel-collapse collapse">
 							<div class="panel-body">
-							Pour permettre à Drinkizy de trouver rapidement les bars qui se trouve autour de toi.
+							Vous pouvez nous contacter directement via le formulaire de contact que vous trouverez <a href="{% url "home.views.contact" %}">ici</a>.
 							</div>
 						</div>
 					</div>
@@ -276,7 +296,7 @@
 						</div>
 						<div id="8-1" class="panel-collapse collapse">
 							<div class="panel-body">
-							Pour permettre à Drinkizy de trouver rapidement les bars qui se trouve autour de toi.
+							Venant de l’école d’ingénieur IMAC et du master CMW, nous avons de nombreux projets personnel que vous pouvez visualiser sur nos portfolio que vous trouverez dans la <a href="{% url "home.views.apropos" %}">page à propos</a> du site.
 							</div>
 						</div>
 					</div>

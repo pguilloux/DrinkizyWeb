@@ -1,5 +1,6 @@
 {% extends "layout/base.html" %}
 {% block title %}{{bar.name}}{% endblock %}
+{% block metaDescrption %}La page fiche bar permet de présenter les bars présents sur drinkizy. Description pour {{bar.name}} : {{ bar.description }}{% endblock %}
 
 {% block content %}
 	{% load staticfiles %}
