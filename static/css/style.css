@@ -255,7 +255,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .fiche-bar-left-container .dl-horizontal dd .dropdown-menu { left: 23%;}
 .fiche-bar-left-container .dl-horizontal dd .dropdown-menu li { padding: 0 5px; font-weight: 300;}
 
-.fiche-bar-left-container #collapse1 input[type=text] { width: 40px; height: 32px; vertical-align: middle; margin-right: 10px}
+.fiche-bar-left-container #collapse1 input[type=number] { width: 40px; height: 32px; vertical-align: middle; margin-right: 10px}
 .fiche-bar-left-container #collapse1 h5 { display: inline-block; margin-right: 10px; font-style: italic; color: #999999;}
 .fiche-bar-left-container .connexionAddMark {width: auto !important; margin-top: 10px; color: #fff !important; }
 
