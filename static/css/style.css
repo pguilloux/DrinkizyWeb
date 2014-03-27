@@ -362,7 +362,7 @@ body {padding-top: 50px; font-family: Ubuntu;}
 .login-page.cover-container, .registration-page.cover-container { text-align: center; }
 .login-page.cover-container input[type="password"],
 .login-page.cover-container input[type="text"],
-.registration-page input[type="text"],
+.registration-page input[type="text"], .registration-page input[type="email"], 
 .registration-page input[type="password"] {width: 100%}
 .registration-page .errorlist { list-style: none; text-align: left; padding-left: 0; color: #a94442;}
 
